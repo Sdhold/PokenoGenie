@@ -1,5 +1,6 @@
 // Original vector illustrations. The Dart's blue paint, chrome front, and rear
 // stripe are inspired by the user's reference photo, which is not bundled.
+import { moparBackSvg, moparCardSvg } from "./mopar-card-art.mjs";
 
 const palettes = {
   S: ["#b28ae1", "#7943ad", "#3e235f"],
@@ -100,6 +101,7 @@ function heroCar(themeId, y, height = 82) {
 }
 
 export function automotiveCardSvg(themeId, rank, suitCode, suit, courtArt) {
+  if (themeId === "mopar") return moparCardSvg(rank, suitCode, suit);
   const dark = themeId === "mopar";
   const color = dark ? (suitCode === "H" || suitCode === "D" ? "#ff9b87" : "#e6edf0") : suit.color;
   const background = dark ? "#152130" : "#fffdf5";
@@ -134,6 +136,7 @@ export function automotiveCardSvg(themeId, rank, suitCode, suit, courtArt) {
 }
 
 export function automotiveBackSvg(themeId) {
+  if (themeId === "mopar") return moparBackSvg();
   const dark = themeId === "mopar";
   const background = dark ? "#111c2b" : "#edf5f2";
   const accent = dark ? "#44a4e9" : "#0879a7";

@@ -19,7 +19,7 @@ The caller app is a .NET 10 Blazor WebAssembly solution for Visual Studio. A lig
 1. On the phone, open the site and create a table. Keep this browser's data so the caller identity persists between rounds.
 2. Open the site's `tv.html` page on the TV and enter the eight-character table code.
 3. Choose a pattern and select **Shuffle & start round**. The pattern locks for that round.
-4. Select **Draw card** to reveal each card. Number cards show their suit pips, and Jacks, Queens, and Kings have illustrated faces. The button unlocks after three seconds. The TV updates live.
+4. Select **Draw card** to reveal each card. Number cards show their suit pips, and Jacks, Queens, and Kings have illustrated faces (car artwork in the MOPAR deck). The button unlocks after three seconds. The TV updates live.
 5. In **Card deck**, choose Illustrated, Midnight, Sunburst, MOPAR Muscle, or 1969 Dart. The caller and TV switch together without changing the current round or card order. The choice remains in effect for later rounds at that table.
 6. If a player calls Pokeno, choose **Pause / verify Pokeno** and review the full called-card history. Resume or end the round manually.
 7. To begin with a fresh room code and round count, choose **End table & start new** on the caller phone. Enter the new code on the TV.
@@ -29,7 +29,7 @@ Preset patterns: standard bingo (any row, column, or diagonal), horizontal, vert
 ## Solution layout
 
 - `src/PokenoGenie` — responsive Blazor caller interface, Firebase browser bridge, and lightweight TV display.
-- `src/PokenoGenie/wwwroot/cards` — five bundled sets of 52 original SVG faces shared by the caller and TV. Run `node tools/generate-card-art.mjs` to regenerate them. The automotive decks include original vehicle illustrations and matching backs; the blue Dart illustration is inspired by the supplied reference photo. To add another bundled theme, add its assets and ID to `DeckThemeCatalog.cs`, `firebase-bridge.js`, `tv.js`, and `database.rules.json`.
+- `src/PokenoGenie/wwwroot/cards` — five bundled sets of 52 SVG faces shared by the caller and TV. Run `node tools/generate-card-art.mjs` to regenerate them. MOPAR Muscle includes separate Charger, Challenger, ’Cuda, and Superbird illustrations, with each model on 13 cards and all four on the back. The blue Dart illustration is inspired by the supplied reference photo. Artwork sources are recorded in [docs/CARD-ART.md](docs/CARD-ART.md). To add another bundled theme, add its assets and ID to `DeckThemeCatalog.cs`, `firebase-bridge.js`, `tv.js`, and `database.rules.json`.
 - `src/PokenoGenie.Core` — cards, secure shuffle, room codes, and pattern definitions.
 - `tests/PokenoGenie.Tests` — C# game-rule tests.
 - `tests/firebase` and `database.rules.json` — Realtime Database security-rule tests and policy.

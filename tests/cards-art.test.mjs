@@ -35,7 +35,7 @@ test("ace and number cards show the correct number of suit pips", async () => {
 });
 
 test("court cards contain mirrored portrait artwork", async () => {
-  for (const themeDirectory of themeDirectories) {
+  for (const themeDirectory of themeDirectories.filter(url => !url.pathname.endsWith("/mopar/"))) {
     for (const suit of suits) {
       for (const rank of ["J", "Q", "K"]) {
         const art = await readFile(new URL(`${rank}${suit}.svg`, themeDirectory), "utf8");
@@ -61,9 +61,41 @@ test("automotive decks bundle original vehicle illustrations on faces and backs"
   for (const themeId of ["mopar", "dart1969"]) {
     for (const card of ["AH", "10C", "JH", "back"]) {
       const art = await readFile(new URL(`${themeId}/${card}.svg`, directory), "utf8");
-      assert.match(art, /<symbol id="vehicle"/);
-      assert.match(art, /<use xlink:href="#vehicle"/);
+      assert.match(art, /<symbol id="vehicle(?:-[a-z]+)?"/);
+      assert.match(art, /<use xlink:href="#vehicle(?:-[a-z]+)?"/);
       assert.doesNotMatch(art, /<image\b/);
     }
+  }
+});
+
+test("MOPAR collection distributes four distinct car bodies across all 52 cards", async () => {
+  const expectedModels = ["charger", "challenger", "cuda", "superbird"];
+  const bodies = new Map();
+  const counts = Object.fromEntries(expectedModels.map(id => [id, 0]));
+  for (const suit of suits) {
+    const suitModels = new Set();
+    for (const rank of ranks) {
+      const art = await readFile(new URL(`mopar/${rank}${suit}.svg`, directory), "utf8");
+      const model = /<symbol id="vehicle" data-model="([^"]+)"/.exec(art)?.[1];
+      assert.ok(expectedModels.includes(model), `${rank}${suit} has an unexpected model`);
+      const body = new RegExp(`<path data-body="${model}" d="([^"]+)"`).exec(art)?.[1];
+      assert.ok(body, `${rank}${suit} is missing its model's body`);
+      if (bodies.has(model)) assert.equal(body, bodies.get(model));
+      bodies.set(model, body);
+      counts[model]++;
+      suitModels.add(model);
+      assert.match(art, /<use xlink:href="#mopar-logo"/);
+      assert.doesNotMatch(art, /DART|<ellipse cx="125" cy="106"/);
+      if (["J", "Q", "K"].includes(rank)) assert.match(art, />JACK<|>QUEEN<|>KING</);
+    }
+    assert.equal(suitModels.size, 4, `${suit} should contain all four models`);
+  }
+  assert.equal(new Set(bodies.values()).size, 4, "Models must differ in body geometry, not just paint");
+  assert.deepEqual(Object.values(counts), [13, 13, 13, 13]);
+  const back = await readFile(new URL("mopar/back.svg", directory), "utf8");
+  for (const model of expectedModels) {
+    assert.match(back, new RegExp(`<use xlink:href="#vehicle-${model}"`));
+    const backBody = new RegExp(`<path data-body="${model}" d="([^"]+)"`).exec(back)?.[1];
+    assert.equal(backBody, bodies.get(model), `${model} back illustration should match its faces`);
   }
 });

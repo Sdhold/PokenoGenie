@@ -27,7 +27,8 @@
     var themeIds = { illustrated: true, midnight: true, sunburst: true, mopar: true, dart1969: true };
 
     function cardAsset(themeId, id) {
-        return themeId === "illustrated" ? "cards/" + id + ".svg" : "cards/" + themeId + "/" + id + ".svg";
+        var path = themeId === "illustrated" ? "cards/" + id + ".svg" : "cards/" + themeId + "/" + id + ".svg";
+        return path + (themeId === "mopar" ? "?v=2" : "");
     }
 
     function byId(id) { return document.getElementById(id); }
@@ -144,7 +145,7 @@
                 element.className += " art-back";
                 var back = document.createElement("img");
                 back.className = "card-art";
-                back.src = "cards/" + themeId + "/back.svg";
+                back.src = "cards/" + themeId + "/back.svg" + (themeId === "mopar" ? "?v=2" : "");
                 back.alt = "";
                 back.draggable = false;
                 element.appendChild(back);

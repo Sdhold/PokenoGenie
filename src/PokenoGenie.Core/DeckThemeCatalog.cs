@@ -14,7 +14,7 @@ public static class DeckThemeCatalog
         new(DefaultId, "Illustrated", "The original cream and green deck"),
         new("midnight", "Midnight", "Dark navy with warm gold details"),
         new("sunburst", "Sunburst", "Bright coral and blue cards"),
-        new("mopar", "MOPAR Muscle", "Muscle cars, bold paint, and racing details", "AH"),
+        new("mopar", "MOPAR Muscle", "Charger, Challenger, ’Cuda, and Superbird", "AH"),
         new("dart1969", "1969 Dart", "A blue 1969 Dodge Dart with chrome and a white rear stripe", "AH")
     ];
 
@@ -24,12 +24,15 @@ public static class DeckThemeCatalog
     public static string CardPath(string? themeId, string cardId)
     {
         var theme = FindOrDefault(themeId);
-        return theme.Id == DefaultId ? $"cards/{cardId}.svg" : $"cards/{theme.Id}/{cardId}.svg";
+        var path = theme.Id == DefaultId ? $"cards/{cardId}.svg" : $"cards/{theme.Id}/{cardId}.svg";
+        return path + ArtworkVersion(theme.Id);
     }
 
     public static string BackPath(string? themeId)
     {
         var theme = FindOrDefault(themeId);
-        return $"cards/{theme.Id}/back.svg";
+        return $"cards/{theme.Id}/back.svg" + ArtworkVersion(theme.Id);
     }
+
+    private static string ArtworkVersion(string themeId) => themeId == "mopar" ? "?v=2" : "";
 }

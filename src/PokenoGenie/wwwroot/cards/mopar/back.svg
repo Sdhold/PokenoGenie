@@ -1,53 +1,175 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 250 350" role="img" aria-label="MOPAR Muscle card back">
-    <defs><linearGradient id="body-paint" x1="0" y1="0" x2=".25" y2="1"><stop stop-color="#ffc36a"/><stop offset=".38" stop-color="#ed852c"/><stop offset="1" stop-color="#96501b"/></linearGradient>
-    <linearGradient id="chrome" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#f7ffff"/><stop offset=".28" stop-color="#99aeb8"/><stop offset=".5" stop-color="#eff5f3"/><stop offset=".65" stop-color="#647d87"/><stop offset="1" stop-color="#d6e1df"/></linearGradient>
-    <linearGradient id="wheel-metal" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f5f8ed"/><stop offset=".5" stop-color="#6e828d"/><stop offset="1" stop-color="#e2ebdf"/></linearGradient>
-    <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#8daab9"/><stop offset=".5" stop-color="#3b5c70"/><stop offset="1" stop-color="#152e40"/></linearGradient>
-    <symbol id="vehicle" viewBox="0 0 640 280">
-      <ellipse cx="329" cy="248" rx="285" ry="17" fill="#081c29" opacity=".18"/>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 250 350" role="img" aria-label="MOPAR Muscle card back — Charger, Challenger, ’Cuda and Superbird">
+    <defs><symbol id="mopar-logo" viewBox="0 0 49 48">
+  <path d="M23.0579 -0.00100708C16.8957 0.046287 11.0047 2.53938 6.68054 6.92991C2.3564 11.3204 -0.0466583 17.2488 -6.73679e-05 23.411C-0.0125129 28.6049 1.69225 33.6574 4.84893 37.782L12.3139 31.865C10.46 29.4373 9.45927 26.4656 9.46693 23.411C9.45556 20.5789 10.3163 17.812 11.9322 15.4862C13.5481 13.1604 15.8409 11.3884 18.4989 10.411V35.973H27.6129V10.41C30.271 11.3874 32.5637 13.1594 34.1797 15.4852C35.7956 17.811 36.6563 20.5779 36.6449 23.41C36.6519 26.4606 35.6546 29.4286 33.8069 31.856L41.2899 37.744C44.4292 33.6263 46.124 28.5888 46.1119 23.411C46.1588 17.2494 43.7564 11.3215 39.433 6.93102C35.1097 2.54056 29.2195 0.0470779 23.0579 -0.00100708Z" fill="#006ab5"/>
+  <path d="M0 47.115V40.602H1.536L5.118 44.869L8.726 40.59H10.255V47.115H8.726V42.844L5.114 47.106L1.514 42.845V47.116L0 47.115ZM37.358 47.09H38.858V45.027H41.6L43.572 47.1H45.149C45.3327 47.1088 45.5168 47.1054 45.7 47.09C44.3593 45.7207 43.6927 45.0323 43.7 45.025C44.776 45.025 45.315 44.403 45.315 43.168V42.462C45.315 41.214 44.7187 40.59 43.526 40.59H37.358V47.09ZM38.858 42.179H43.421C43.677 42.179 43.808 42.327 43.808 42.618V42.985C43.808 43.285 43.677 43.436 43.421 43.436H38.861L38.858 42.179ZM36.54 42.452C36.542 41.2107 35.9933 40.59 34.894 40.59H30.394C29.2027 40.59 28.607 41.2107 28.607 42.452V47.117H30.113V45.081H35.04V47.117H36.54V42.452ZM30.112 43.49V42.646C30.112 42.334 30.24 42.178 30.496 42.178H34.655C34.911 42.178 35.039 42.334 35.039 42.646V43.49H30.112ZM19.831 47.09H21.337V45.027H25.994C27.194 45.027 27.794 44.405 27.794 43.161V42.461C27.792 41.2137 27.192 40.59 25.994 40.59H19.831V47.09ZM21.337 42.179H25.9C26.159 42.179 26.289 42.327 26.289 42.618V42.985C26.289 43.2857 26.1593 43.436 25.9 43.436H21.34L21.337 42.179ZM17.517 42.633V45.533H12.565V42.181H17.517V42.633ZM17.232 40.59H12.749C11.6237 40.6273 11.0613 41.2477 11.062 42.451V45.251C11.0144 45.7629 11.1687 46.2732 11.492 46.673C11.6792 46.8339 11.8966 46.9558 12.1315 47.0315C12.3664 47.1073 12.6141 47.1353 12.86 47.114H17.333C18.4583 47.0787 19.0207 46.459 19.02 45.255V42.455C19.02 41.2117 18.424 40.59 17.232 40.59Z" fill="#111c2b" fill-rule="evenodd"/>
+  <path d="M47.2515 46.7243C47.3792 46.7241 47.5056 46.6987 47.6234 46.6496C47.7413 46.6005 47.8483 46.5287 47.9384 46.4382C48.0284 46.3477 48.0998 46.2403 48.1483 46.1222C48.1968 46.0042 48.2216 45.8777 48.2212 45.75C48.2216 45.6224 48.1968 45.496 48.1483 45.378C48.0997 45.26 48.0284 45.1527 47.9383 45.0624C47.8482 44.972 47.7412 44.9003 47.6233 44.8514C47.5055 44.8024 47.3791 44.7773 47.2515 44.7773C47.1236 44.7769 46.9969 44.8017 46.8786 44.8505C46.7603 44.8992 46.6528 44.9708 46.5623 45.0612C46.4717 45.1516 46.4 45.2589 46.351 45.3772C46.3021 45.4954 46.2771 45.6221 46.2773 45.75C46.2769 45.8781 46.3018 46.0049 46.3506 46.1233C46.3994 46.2417 46.4712 46.3493 46.5617 46.4398C46.6523 46.5304 46.7598 46.6021 46.8782 46.6509C46.9966 46.6997 47.1235 46.7247 47.2515 46.7243ZM46 45.75C46.0004 45.4183 46.1324 45.1004 46.3671 44.866C46.6018 44.6316 46.9199 44.5 47.2515 44.5C47.5827 44.5008 47.9 44.6328 48.134 44.8671C48.368 45.1014 48.4996 45.4189 48.5 45.75C48.5 46.0813 48.3685 46.399 48.1344 46.6333C47.9003 46.8677 47.5828 46.9996 47.2515 47C46.9199 47 46.6018 46.8684 46.3671 46.634C46.1324 46.3996 46.0004 46.0817 46 45.75Z" fill="#111c2b" fill-rule="evenodd"/>
+  <path d="M46.9605 45.8526H47.1137L47.4737 46.3765H47.8735L47.4737 45.8312C47.6835 45.8174 47.8505 45.7362 47.8505 45.5049C47.8505 45.2169 47.61 45.125 47.2071 45.125H46.625V46.375H46.9605V45.8526ZM46.9605 45.6397V45.3333H47.1933C47.3205 45.3333 47.4997 45.3441 47.4997 45.4727C47.4997 45.6014 47.4139 45.6366 47.2638 45.6366L46.9605 45.6397Z" fill="#111c2b" fill-rule="evenodd"/>
+</symbol><linearGradient id="vehicle-charger-paint" x1="0" y1="0" x2=".1" y2="1"><stop stop-color="#ff9a80"/><stop offset=".45" stop-color="#e34b36"/><stop offset="1" stop-color="#842c28"/></linearGradient>
+    <linearGradient id="vehicle-charger-chrome" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#f5fcff"/><stop offset=".4" stop-color="#93a6b0"/><stop offset=".55" stop-color="#edf5f7"/><stop offset="1" stop-color="#68808e"/></linearGradient>
+    <linearGradient id="vehicle-charger-glass" x1="0" y1="0" x2=".5" y2="1"><stop stop-color="#b7d3e1"/><stop offset=".4" stop-color="#53758e"/><stop offset="1" stop-color="#172b3d"/></linearGradient>
+    <symbol id="vehicle-charger" data-model="charger" viewBox="0 0 640 280">
+      <ellipse cx="320" cy="252" rx="293" ry="14" fill="#02080e" opacity=".5"/>
       <g>
-    <ellipse cx="541" cy="202" rx="28.08" ry="39" fill="#11181d" stroke="#060b0e" stroke-width="4"/>
-    <ellipse cx="541" cy="202" rx="23.08" ry="34" fill="none" stroke="#3c444b" stroke-width="2"/>
-    <ellipse cx="541" cy="202" rx="17.6904" ry="24.57" fill="url(#wheel-metal)" stroke="#9daeb5" stroke-width="2"/>
-    <ellipse cx="541" cy="202" rx="13.5135" ry="20.147399999999998" fill="#29333d"/>
-    <g transform="translate(541 202) scale(.7 .86) translate(-541 -202)"><path d="M541 202l-4-22 8 0Z" fill="#dce7e9" transform="rotate(0 541 202)"/><path d="M541 202l-4-22 8 0Z" fill="#dce7e9" transform="rotate(72 541 202)"/><path d="M541 202l-4-22 8 0Z" fill="#dce7e9" transform="rotate(144 541 202)"/><path d="M541 202l-4-22 8 0Z" fill="#dce7e9" transform="rotate(216 541 202)"/><path d="M541 202l-4-22 8 0Z" fill="#dce7e9" transform="rotate(288 541 202)"/></g><ellipse cx="541" cy="202" rx="6" ry="8" fill="#dce7e9"/>
+    <circle cx="163" cy="216" r="39" fill="#10171b" stroke="#050b10" stroke-width="4"/>
+    <circle cx="163" cy="216" r="34" fill="none" stroke="#56616a" stroke-width="1.5"/>
+    <circle cx="163" cy="216" r="26.909999999999997" fill="url(#vehicle-charger-chrome)" stroke="#e1e8e9" stroke-width="2"/>
+    <circle cx="163" cy="216" r="22.909999999999997" fill="#1b252e"/>
+    <path d="M158 192.09h10l-2 17.909999999999997h-6Z" transform="rotate(0 163 216)" fill="url(#vehicle-charger-chrome)"/><path d="M158 192.09h10l-2 17.909999999999997h-6Z" transform="rotate(72 163 216)" fill="url(#vehicle-charger-chrome)"/><path d="M158 192.09h10l-2 17.909999999999997h-6Z" transform="rotate(144 163 216)" fill="url(#vehicle-charger-chrome)"/><path d="M158 192.09h10l-2 17.909999999999997h-6Z" transform="rotate(216 163 216)" fill="url(#vehicle-charger-chrome)"/><path d="M158 192.09h10l-2 17.909999999999997h-6Z" transform="rotate(288 163 216)" fill="url(#vehicle-charger-chrome)"/>
+    <circle cx="163" cy="216" r="7" fill="url(#vehicle-charger-chrome)" stroke="#b9c8cc" stroke-width="1.5"/>
   </g><g>
-    <ellipse cx="309" cy="222" rx="33.12" ry="46" fill="#11181d" stroke="#060b0e" stroke-width="4"/>
-    <ellipse cx="309" cy="222" rx="28.119999999999997" ry="41" fill="none" stroke="#3c444b" stroke-width="2"/>
-    <ellipse cx="309" cy="222" rx="20.8656" ry="28.98" fill="url(#wheel-metal)" stroke="#9daeb5" stroke-width="2"/>
-    <ellipse cx="309" cy="222" rx="15.939000000000002" ry="23.7636" fill="#29333d"/>
-    <g transform="translate(309 222) scale(.7 .86) translate(-309 -222)"><path d="M309 222l-4-22 8 0Z" fill="#dce7e9" transform="rotate(0 309 222)"/><path d="M309 222l-4-22 8 0Z" fill="#dce7e9" transform="rotate(72 309 222)"/><path d="M309 222l-4-22 8 0Z" fill="#dce7e9" transform="rotate(144 309 222)"/><path d="M309 222l-4-22 8 0Z" fill="#dce7e9" transform="rotate(216 309 222)"/><path d="M309 222l-4-22 8 0Z" fill="#dce7e9" transform="rotate(288 309 222)"/></g><ellipse cx="309" cy="222" rx="6" ry="8" fill="#dce7e9"/>
+    <circle cx="488" cy="215" r="41" fill="#10171b" stroke="#050b10" stroke-width="4"/>
+    <circle cx="488" cy="215" r="36" fill="none" stroke="#56616a" stroke-width="1.5"/>
+    <circle cx="488" cy="215" r="28.29" fill="url(#vehicle-charger-chrome)" stroke="#e1e8e9" stroke-width="2"/>
+    <circle cx="488" cy="215" r="24.29" fill="#1b252e"/>
+    <path d="M483 189.71h10l-2 19.29h-6Z" transform="rotate(0 488 215)" fill="url(#vehicle-charger-chrome)"/><path d="M483 189.71h10l-2 19.29h-6Z" transform="rotate(72 488 215)" fill="url(#vehicle-charger-chrome)"/><path d="M483 189.71h10l-2 19.29h-6Z" transform="rotate(144 488 215)" fill="url(#vehicle-charger-chrome)"/><path d="M483 189.71h10l-2 19.29h-6Z" transform="rotate(216 488 215)" fill="url(#vehicle-charger-chrome)"/><path d="M483 189.71h10l-2 19.29h-6Z" transform="rotate(288 488 215)" fill="url(#vehicle-charger-chrome)"/>
+    <circle cx="488" cy="215" r="7" fill="url(#vehicle-charger-chrome)" stroke="#b9c8cc" stroke-width="1.5"/>
   </g>
-      <path d="M247 122 287 69Q295 59 311 58L399 56Q410 56 423 65L507 118 369 130Z" fill="url(#body-paint)" stroke="#202c39" stroke-width="3"/><path d="m261 118 33-47 69-1-7 52Z" fill="url(#glass)" stroke="#c6d8df" stroke-width="3"/><path d="m374 72 26-2 78 45-108 9Z" fill="url(#glass)" stroke="#c5d6dd" stroke-width="3"/>
-      <path d="M239 145 497 116 585 120Q605 122 610 145L604 183 576 193Q568 161 542 162Q510 163 507 210L350 225Q342 179 313 181Q281 183 277 227L239 220Z" fill="url(#body-paint)" stroke="#163b50" stroke-width="3"/>
-      <path d="M53 138 250 118 373 129 239 151Z" fill="url(#body-paint)" stroke="#18465a" stroke-width="2"/>
-      <path d="m94 131 140 8 91-17-65-4Z" fill="#182431"/><path d="m196 125 47 3 31-6-46-2Z" fill="#121b24" stroke="#d3dce0" stroke-width="1.5"/><path d="m553 126 29-1 5 52-29 10Z" fill="#192530"/><path d="m558 126 5 58m13-59 5 54" stroke="#f2ead4" stroke-width="2"/>
-      <path d="m244 151 336-27" fill="none" stroke="#d3e8eb" stroke-width="3"/><path d="m350 218 154-16m72-17 25-9" stroke="#d4e0df" stroke-width="3"/>
-      <path d="m373 137 108-11 8 72-137 20" fill="none" stroke="#96501b" stroke-width="2"/><path d="m433 143 22-2" stroke="#dce7e6" stroke-width="4" stroke-linecap="round"/>
-      <path d="m258 212 18-2m74-9 148-15m78-13 27-5" fill="none" stroke="#ffc36a" stroke-width="2" opacity=".6"/>
-      <path d="M47 145 237 151 240 189 40 183Z" fill="#17242c" stroke="url(#chrome)" stroke-width="6"/>
-      <path d="m48 153 184 5M45 163l190 5m-192 6 193 5" stroke="#7d939e" stroke-width="2"/>
-      <path d="m119 155-1 22m12-21-1 22m12-21-1 22m12-21-1 22m12-21-1 22" stroke="#a6b5b9" stroke-width="1"/>
-      <ellipse cx="65" cy="166" rx="13" ry="16" fill="url(#chrome)" stroke="#e7eeed" stroke-width="1.5"/><ellipse cx="65" cy="166" rx="9" ry="11" fill="#d7e1d9" stroke="#687b7b" stroke-width="1.5"/><ellipse cx="101" cy="166" rx="13" ry="16" fill="url(#chrome)" stroke="#e7eeed" stroke-width="1.5"/><ellipse cx="101" cy="166" rx="9" ry="11" fill="#d7e1d9" stroke="#687b7b" stroke-width="1.5"/><ellipse cx="187" cy="166" rx="13" ry="16" fill="url(#chrome)" stroke="#e7eeed" stroke-width="1.5"/><ellipse cx="187" cy="166" rx="9" ry="11" fill="#d7e1d9" stroke="#687b7b" stroke-width="1.5"/><ellipse cx="221" cy="166" rx="13" ry="16" fill="url(#chrome)" stroke="#e7eeed" stroke-width="1.5"/><ellipse cx="221" cy="166" rx="9" ry="11" fill="#d7e1d9" stroke="#687b7b" stroke-width="1.5"/>
-      <path d="m38 185 204 7 17 9-14 13-202-9-12-12Z" fill="url(#chrome)" stroke="#7898a4" stroke-width="2"/>
-      <path d="m42 189 195 7m-190 5 194 7" stroke="#eef8f4" stroke-width="2"/>
-      <rect x="103" y="194" width="49" height="22" rx="2" fill="#f9f3db" stroke="#6b8b95" stroke-width="2" transform="rotate(2 127 205)"/>
-      <text x="127" y="209" text-anchor="middle" fill="#a83228" font-size="12" font-weight="700" font-family="Arial,sans-serif">MOPAR</text>
-      <path d="M278 221q5-47 35-47 33-1 40 47m153-18q4-45 35-46 28-1 38 34" fill="none" stroke="#cfdddd" stroke-width="3"/>
-      <path d="m365 123-3-16 12-5 10 5-3 13Z" fill="url(#chrome)" stroke="#567986" stroke-width="2"/>
-      <path d="m359 107-57-30m62 32-45-34" stroke="#c5dce4" stroke-width="3" opacity=".36"/>
-      <path d="m593 140 9-1-1 14-8 2Z" fill="#c94532" stroke="#dfb08a" stroke-width="1"/>
+
+    <path d="M205 145 268 88Q278 79 294 79L374 80Q390 83 409 102L463 145Z" fill="url(#vehicle-charger-paint)" stroke="#303044" stroke-width="3"/>
+    <path d="m224 140 53-49 42 1-6 48Z" fill="url(#vehicle-charger-glass)" stroke="url(#vehicle-charger-chrome)" stroke-width="3"/>
+    <path d="m330 91 41 2 69 46-114 1Z" fill="url(#vehicle-charger-glass)" stroke="url(#vehicle-charger-chrome)" stroke-width="3"/>
+    <path d="m376 91 69 49 24 5-51-46Z" fill="#352b40" stroke="#c0b0c6" stroke-width="2"/>
+    <path data-body="charger" d="M38 157Q71 145 147 144L213 143 263 149Q328 162 395 149L450 140 579 148 602 164 601 202 564 218 532 218Q532 173 488 173T443 221L209 221Q209 174 163 174T116 220L45 212 30 192Z" fill="url(#vehicle-charger-paint)" stroke="#242b3b" stroke-width="3"/>
+    <path d="M48 157 183 154 261 158 388 157 454 149 579 156" fill="none" stroke="#edd5ff" stroke-width="3"/>
+    <path d="m547 148 23 2 3 61-24 6Z" fill="#171d27"/><path d="m552 150 1 64m13-63 2 60" stroke="#deccec" stroke-width="2"/>
+    <path d="m267 157 1 53h163l12-60" fill="none" stroke="#633581" stroke-width="2"/>
+    <path d="m378 166 24-1m-177 48h210" stroke="url(#vehicle-charger-chrome)" stroke-width="3" stroke-linecap="round"/>
+    <path d="m41 164 35-3v32l-39-2Z" fill="#0b1119" stroke="url(#vehicle-charger-chrome)" stroke-width="3"/>
+    <path d="M54 165v27M40 170l34-2m-34 9 34-2m-35 9 35-2" stroke="#62707d" stroke-width="1.5"/>
+    <path d="m35 198 78 3-3 12-73-5Z" fill="url(#vehicle-charger-chrome)"/><path d="m566 207 39-7-1 9-38 10Z" fill="url(#vehicle-charger-chrome)"/>
+    <path d="m94 171 39-3m-37 7 35-3" stroke="#292333" stroke-width="2"/>
+    <text x="216" y="184" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#f2e8f8">R/T</text>
+    <rect x="45" y="194" width="12" height="4" rx="1" fill="#efb252"/><rect x="586" y="168" width="10" height="5" fill="#ef705f"/>
+    </symbol>
+<linearGradient id="vehicle-challenger-paint" x1="0" y1="0" x2=".1" y2="1"><stop stop-color="#d1a0ef"/><stop offset=".45" stop-color="#9652c8"/><stop offset="1" stop-color="#4c256e"/></linearGradient>
+    <linearGradient id="vehicle-challenger-chrome" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#f5fcff"/><stop offset=".4" stop-color="#93a6b0"/><stop offset=".55" stop-color="#edf5f7"/><stop offset="1" stop-color="#68808e"/></linearGradient>
+    <linearGradient id="vehicle-challenger-glass" x1="0" y1="0" x2=".5" y2="1"><stop stop-color="#b7d3e1"/><stop offset=".4" stop-color="#53758e"/><stop offset="1" stop-color="#172b3d"/></linearGradient>
+    <symbol id="vehicle-challenger" data-model="challenger" viewBox="0 0 640 280">
+      <ellipse cx="320" cy="252" rx="293" ry="14" fill="#02080e" opacity=".5"/>
+      <g>
+    <circle cx="167" cy="216" r="39" fill="#10171b" stroke="#050b10" stroke-width="4"/>
+    <circle cx="167" cy="216" r="34" fill="none" stroke="#56616a" stroke-width="1.5"/>
+    <circle cx="167" cy="216" r="26.909999999999997" fill="url(#vehicle-challenger-chrome)" stroke="#e1e8e9" stroke-width="2"/>
+    <circle cx="167" cy="216" r="22.909999999999997" fill="#909fa7"/>
+    <ellipse cx="167" cy="197.09" rx="4" ry="6" fill="#1b242d" transform="rotate(0 167 216)"/><ellipse cx="167" cy="197.09" rx="4" ry="6" fill="#1b242d" transform="rotate(45 167 216)"/><ellipse cx="167" cy="197.09" rx="4" ry="6" fill="#1b242d" transform="rotate(90 167 216)"/><ellipse cx="167" cy="197.09" rx="4" ry="6" fill="#1b242d" transform="rotate(135 167 216)"/><ellipse cx="167" cy="197.09" rx="4" ry="6" fill="#1b242d" transform="rotate(180 167 216)"/><ellipse cx="167" cy="197.09" rx="4" ry="6" fill="#1b242d" transform="rotate(225 167 216)"/><ellipse cx="167" cy="197.09" rx="4" ry="6" fill="#1b242d" transform="rotate(270 167 216)"/><ellipse cx="167" cy="197.09" rx="4" ry="6" fill="#1b242d" transform="rotate(315 167 216)"/>
+    <circle cx="167" cy="216" r="7" fill="url(#vehicle-challenger-chrome)" stroke="#b9c8cc" stroke-width="1.5"/>
+  </g><g>
+    <circle cx="487" cy="215" r="41" fill="#10171b" stroke="#050b10" stroke-width="4"/>
+    <circle cx="487" cy="215" r="36" fill="none" stroke="#56616a" stroke-width="1.5"/>
+    <circle cx="487" cy="215" r="28.29" fill="url(#vehicle-challenger-chrome)" stroke="#e1e8e9" stroke-width="2"/>
+    <circle cx="487" cy="215" r="24.29" fill="#909fa7"/>
+    <ellipse cx="487" cy="194.71" rx="4" ry="6" fill="#1b242d" transform="rotate(0 487 215)"/><ellipse cx="487" cy="194.71" rx="4" ry="6" fill="#1b242d" transform="rotate(45 487 215)"/><ellipse cx="487" cy="194.71" rx="4" ry="6" fill="#1b242d" transform="rotate(90 487 215)"/><ellipse cx="487" cy="194.71" rx="4" ry="6" fill="#1b242d" transform="rotate(135 487 215)"/><ellipse cx="487" cy="194.71" rx="4" ry="6" fill="#1b242d" transform="rotate(180 487 215)"/><ellipse cx="487" cy="194.71" rx="4" ry="6" fill="#1b242d" transform="rotate(225 487 215)"/><ellipse cx="487" cy="194.71" rx="4" ry="6" fill="#1b242d" transform="rotate(270 487 215)"/><ellipse cx="487" cy="194.71" rx="4" ry="6" fill="#1b242d" transform="rotate(315 487 215)"/>
+    <circle cx="487" cy="215" r="7" fill="url(#vehicle-challenger-chrome)" stroke="#b9c8cc" stroke-width="1.5"/>
+  </g>
+
+    <path d="M218 143 266 85Q276 78 288 78H379Q392 80 402 91L450 140Z" fill="#161c25" stroke="#85969e" stroke-width="3"/>
+    <path d="m234 139 40-51h49l-3 51Z" fill="url(#vehicle-challenger-glass)" stroke="url(#vehicle-challenger-chrome)" stroke-width="3"/>
+    <path d="m334 89 44-1 52 48-99 3Z" fill="url(#vehicle-challenger-glass)" stroke="url(#vehicle-challenger-chrome)" stroke-width="3"/>
+    <path data-body="challenger" d="M42 153Q79 141 161 140L230 142 284 149 382 148 448 138Q517 133 568 145L592 160 600 190 584 212 535 217Q531 173 487 172T439 218L213 219Q212 174 167 174T120 216L44 212 29 194Z" fill="url(#vehicle-challenger-paint)" stroke="#442a31" stroke-width="3"/>
+    <path d="m48 151 105-3 79 3 52 7 101-1 63-11 111 4" fill="none" stroke="#ffc0a0" stroke-width="3"/>
+    <path d="m208 160 227-3 39-9 91 3 7 10-95-2-41 10-227 1Z" fill="#1a2027"/>
+    <text x="387" y="166" font-family="Arial,sans-serif" font-size="10" font-weight="900" fill="#f5d8cc">R/T</text>
+    <path d="m282 172 1 37 141-1 10-34" fill="none" stroke="#8b332d" stroke-width="2"/>
+    <path d="m375 179 23-1m-159 35h192" stroke="url(#vehicle-challenger-chrome)" stroke-width="3" stroke-linecap="round"/>
+    <path d="m32 163 67-5 2 31-70 2Z" fill="#171d23" stroke="url(#vehicle-challenger-chrome)" stroke-width="3"/>
+    <ellipse cx="43" cy="175" rx="6" ry="9" fill="#e8ecdf" stroke="#a2b2b6" stroke-width="2"/><ellipse cx="59" cy="175" rx="6" ry="9" fill="#e8ecdf" stroke="#a2b2b6" stroke-width="2"/><ellipse cx="78" cy="175" rx="6" ry="9" fill="#e8ecdf" stroke="#a2b2b6" stroke-width="2"/><ellipse cx="92" cy="175" rx="6" ry="9" fill="#e8ecdf" stroke="#a2b2b6" stroke-width="2"/>
+    <path d="m31 197 86 2-1 12-81 1Z" fill="url(#vehicle-challenger-chrome)"/><path d="m550 208 48-12-2 11-45 12Z" fill="url(#vehicle-challenger-chrome)"/>
+    <path d="m130 142 48-11 56 1 11 9-61-2Z" fill="#20242c"/><path d="m168 135 28-1" stroke="#9ea8ac" stroke-width="2"/>
+    <rect x="105" y="186" width="14" height="5" rx="1" fill="#ffbd63"/><rect x="576" y="166" width="14" height="5" fill="#f09a8f"/>
+    </symbol>
+<linearGradient id="vehicle-cuda-paint" x1="0" y1="0" x2=".1" y2="1"><stop stop-color="#ffd179"/><stop offset=".45" stop-color="#f88b25"/><stop offset="1" stop-color="#a34b1c"/></linearGradient>
+    <linearGradient id="vehicle-cuda-chrome" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#f5fcff"/><stop offset=".4" stop-color="#93a6b0"/><stop offset=".55" stop-color="#edf5f7"/><stop offset="1" stop-color="#68808e"/></linearGradient>
+    <linearGradient id="vehicle-cuda-glass" x1="0" y1="0" x2=".5" y2="1"><stop stop-color="#b7d3e1"/><stop offset=".4" stop-color="#53758e"/><stop offset="1" stop-color="#172b3d"/></linearGradient>
+    <symbol id="vehicle-cuda" data-model="cuda" viewBox="0 0 640 280">
+      <ellipse cx="320" cy="252" rx="293" ry="14" fill="#02080e" opacity=".5"/>
+      <g>
+    <circle cx="168" cy="216" r="39" fill="#10171b" stroke="#050b10" stroke-width="4"/>
+    <circle cx="168" cy="216" r="34" fill="none" stroke="#56616a" stroke-width="1.5"/>
+    <circle cx="168" cy="216" r="26.909999999999997" fill="url(#vehicle-cuda-chrome)" stroke="#e1e8e9" stroke-width="2"/>
+    <circle cx="168" cy="216" r="22.909999999999997" fill="#1b252e"/>
+    <path d="M163 192.09h10l-2 17.909999999999997h-6Z" transform="rotate(0 168 216)" fill="url(#vehicle-cuda-chrome)"/><path d="M163 192.09h10l-2 17.909999999999997h-6Z" transform="rotate(72 168 216)" fill="url(#vehicle-cuda-chrome)"/><path d="M163 192.09h10l-2 17.909999999999997h-6Z" transform="rotate(144 168 216)" fill="url(#vehicle-cuda-chrome)"/><path d="M163 192.09h10l-2 17.909999999999997h-6Z" transform="rotate(216 168 216)" fill="url(#vehicle-cuda-chrome)"/><path d="M163 192.09h10l-2 17.909999999999997h-6Z" transform="rotate(288 168 216)" fill="url(#vehicle-cuda-chrome)"/>
+    <circle cx="168" cy="216" r="7" fill="url(#vehicle-cuda-chrome)" stroke="#b9c8cc" stroke-width="1.5"/>
+  </g><g>
+    <circle cx="490" cy="215" r="41" fill="#10171b" stroke="#050b10" stroke-width="4"/>
+    <circle cx="490" cy="215" r="36" fill="none" stroke="#56616a" stroke-width="1.5"/>
+    <circle cx="490" cy="215" r="28.29" fill="url(#vehicle-cuda-chrome)" stroke="#e1e8e9" stroke-width="2"/>
+    <circle cx="490" cy="215" r="24.29" fill="#1b252e"/>
+    <path d="M485 189.71h10l-2 19.29h-6Z" transform="rotate(0 490 215)" fill="url(#vehicle-cuda-chrome)"/><path d="M485 189.71h10l-2 19.29h-6Z" transform="rotate(72 490 215)" fill="url(#vehicle-cuda-chrome)"/><path d="M485 189.71h10l-2 19.29h-6Z" transform="rotate(144 490 215)" fill="url(#vehicle-cuda-chrome)"/><path d="M485 189.71h10l-2 19.29h-6Z" transform="rotate(216 490 215)" fill="url(#vehicle-cuda-chrome)"/><path d="M485 189.71h10l-2 19.29h-6Z" transform="rotate(288 490 215)" fill="url(#vehicle-cuda-chrome)"/>
+    <circle cx="490" cy="215" r="7" fill="url(#vehicle-cuda-chrome)" stroke="#b9c8cc" stroke-width="1.5"/>
+  </g>
+
+    <path d="m218 145 61-57q7-6 20-7l73 1q14 1 27 15l55 49Z" fill="url(#vehicle-cuda-paint)" stroke="#573528" stroke-width="3"/>
+    <path d="m237 141 49-49 39-1-4 49Z" fill="url(#vehicle-cuda-glass)" stroke="url(#vehicle-cuda-chrome)" stroke-width="3"/>
+    <path d="m337 92 35 1 57 47-96 1Z" fill="url(#vehicle-cuda-glass)" stroke="url(#vehicle-cuda-chrome)" stroke-width="3"/>
+    <path data-body="cuda" d="M47 162Q63 146 128 144L225 145 276 152 380 149Q431 136 471 137L560 145Q581 149 587 166L591 192 576 212 536 216Q531 174 490 173T444 219L214 219Q211 176 168 175T123 218L53 211 35 195Z" fill="url(#vehicle-cuda-paint)" stroke="#553125" stroke-width="3"/>
+    <path d="m59 155 146-3 69 9 107-3 78-13 96 7" fill="none" stroke="#ffe5aa" stroke-width="3"/>
+    <path d="m404 156 68-10 86 8-4 39-12 3 2-29-68-9-72 9Z" fill="#141c24"/>
+    <text x="485" y="164" font-family="Arial,sans-serif" font-size="9" font-weight="700" fill="#ffd19b">’cuda</text>
+    <path d="m277 164 2 46h150l7-55" fill="none" stroke="#a95222" stroke-width="2"/>
+    <path d="m374 173 23-1m-171 42h208" stroke="url(#vehicle-cuda-chrome)" stroke-width="3" stroke-linecap="round"/>
+    <path d="m37 166 60-3 1 27-64 1Z" fill="#111a23" stroke="url(#vehicle-cuda-chrome)" stroke-width="3"/>
+    <ellipse cx="49" cy="177" rx="9" ry="11" fill="#e6e6d8" stroke="#a5b6ba" stroke-width="2"/><ellipse cx="86" cy="177" rx="9" ry="11" fill="#e6e6d8" stroke="#a5b6ba" stroke-width="2"/>
+    <path d="m62 169 11-1v18H62Z" fill="#596f7b"/><path d="m33 199 86 1 2 12-84-3Z" fill="url(#vehicle-cuda-chrome)"/>
+    <path d="m553 208 37-10-1 10-34 10Z" fill="url(#vehicle-cuda-chrome)"/>
+    <path d="m137 144 16-18 47 1 18 19Z" fill="#212931" stroke="#a8b1b2" stroke-width="2"/><path d="m155 128 34 1-2 6-34-1Z" fill="#080f17"/>
+    <rect x="105" y="182" width="12" height="5" rx="1" fill="#e77223"/><rect x="570" y="168" width="12" height="5" fill="#ed6c57"/>
+    </symbol>
+<linearGradient id="vehicle-superbird-paint" x1="0" y1="0" x2=".1" y2="1"><stop stop-color="#d4f487"/><stop offset=".45" stop-color="#9bce3a"/><stop offset="1" stop-color="#4b7b26"/></linearGradient>
+    <linearGradient id="vehicle-superbird-chrome" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#f5fcff"/><stop offset=".4" stop-color="#93a6b0"/><stop offset=".55" stop-color="#edf5f7"/><stop offset="1" stop-color="#68808e"/></linearGradient>
+    <linearGradient id="vehicle-superbird-glass" x1="0" y1="0" x2=".5" y2="1"><stop stop-color="#b7d3e1"/><stop offset=".4" stop-color="#53758e"/><stop offset="1" stop-color="#172b3d"/></linearGradient>
+    <symbol id="vehicle-superbird" data-model="superbird" viewBox="0 0 640 280">
+      <ellipse cx="320" cy="252" rx="293" ry="14" fill="#02080e" opacity=".5"/>
+      <g>
+    <circle cx="198" cy="216" r="39" fill="#10171b" stroke="#050b10" stroke-width="4"/>
+    <circle cx="198" cy="216" r="34" fill="none" stroke="#56616a" stroke-width="1.5"/>
+    <circle cx="198" cy="216" r="26.909999999999997" fill="url(#vehicle-superbird-chrome)" stroke="#e1e8e9" stroke-width="2"/>
+    <circle cx="198" cy="216" r="22.909999999999997" fill="#9bce3a"/>
+
+    <circle cx="198" cy="216" r="11" fill="url(#vehicle-superbird-chrome)" stroke="#b9c8cc" stroke-width="1.5"/>
+  </g><g>
+    <circle cx="490" cy="215" r="41" fill="#10171b" stroke="#050b10" stroke-width="4"/>
+    <circle cx="490" cy="215" r="36" fill="none" stroke="#56616a" stroke-width="1.5"/>
+    <circle cx="490" cy="215" r="28.29" fill="url(#vehicle-superbird-chrome)" stroke="#e1e8e9" stroke-width="2"/>
+    <circle cx="490" cy="215" r="24.29" fill="#9bce3a"/>
+
+    <circle cx="490" cy="215" r="11" fill="url(#vehicle-superbird-chrome)" stroke="#b9c8cc" stroke-width="1.5"/>
+  </g>
+
+    <path d="m247 147 53-59q8-8 19-8l66 1q13 0 24 12l64 55Z" fill="#171e23" stroke="#789277" stroke-width="3"/>
+    <path d="m264 142 43-51 34 1-3 51Z" fill="url(#vehicle-superbird-glass)" stroke="url(#vehicle-superbird-chrome)" stroke-width="3"/>
+    <path d="m352 93 32-1 62 50-97 1Z" fill="url(#vehicle-superbird-glass)" stroke="url(#vehicle-superbird-chrome)" stroke-width="3"/>
+    <path d="m536 156 8-111h15l5 112Zm45 4 4-117h13l9 118Z" fill="url(#vehicle-superbird-paint)" stroke="#385125" stroke-width="3"/>
+    <path d="m518 43 78-3 20 8-79 5Z" fill="url(#vehicle-superbird-paint)" stroke="#385125" stroke-width="3"/>
+    <path data-body="superbird" d="m13 184 80-35 116-4 45 2 46 8 100-1 71-11 110 10 20 23-1 30-39 12-25-1q-3-44-46-44t-46 47H243q-2-43-45-43t-46 43l-48-3-78-14Z" fill="url(#vehicle-superbird-paint)" stroke="#344a28" stroke-width="3"/>
+    <path d="m20 184 92 5-10 24-77-15Z" fill="#83b430" stroke="#4b762c" stroke-width="2"/>
+    <path d="m55 171 38-14 28 2-6 15Z" fill="#aee259" stroke="#50742c" stroke-width="2"/>
+    <path d="m26 184 23-6 12 9-29 2Z" fill="#182228"/><path d="m33 195 55 10" stroke="#182228" stroke-width="3"/>
+    <path d="m126 155 111-1 61 10 103-2 72-10 106 9" fill="none" stroke="#e6ffb1" stroke-width="3"/>
+    <path d="m308 164 2 45h133l17-52" fill="none" stroke="#608b32" stroke-width="2"/>
+    <path d="m396 174 22-1m-163 43h181" stroke="url(#vehicle-superbird-chrome)" stroke-width="3" stroke-linecap="round"/>
+    <path d="m153 149 31-9 54 1 14 9Z" fill="#20292c"/>
+    <path d="m524 163 57 3" stroke="#172027" stroke-width="4"/>
+    <text x="265" y="188" font-family="Arial,sans-serif" font-size="10" font-weight="700" fill="#1b2c23">SUPERBIRD</text>
+    <rect x="116" y="188" width="13" height="5" rx="1" fill="#f3b34f"/><rect x="584" y="177" width="11" height="5" fill="#e16f54"/>
+    <path d="m563 210 39-11-1 10-37 10Z" fill="url(#vehicle-superbird-chrome)"/>
     </symbol></defs>
-    <rect width="250" height="350" rx="11" fill="#111c2b"/><rect x="6" y="6" width="238" height="338" rx="8" fill="none" stroke="#44a4e9" stroke-width="3"/>
-    <path d="M18 16v318m214-318v318" stroke="#44a4e9" stroke-width="2" opacity=".3"/>
-    <path d="m28 15 9 0v320h-9Z" fill="#e36643" opacity=".6"/>
-    <rect x="79" y="30" width="6" height="6" fill="#44a4e9"/><rect x="91" y="30" width="6" height="6" fill="#44a4e9"/><rect x="103" y="30" width="6" height="6" fill="#44a4e9"/><rect x="115" y="30" width="6" height="6" fill="#44a4e9"/><rect x="127" y="30" width="6" height="6" fill="#44a4e9"/><rect x="139" y="30" width="6" height="6" fill="#44a4e9"/><rect x="151" y="30" width="6" height="6" fill="#44a4e9"/><rect x="163" y="30" width="6" height="6" fill="#44a4e9"/><rect x="85" y="36" width="6" height="6" fill="#44a4e9"/><rect x="97" y="36" width="6" height="6" fill="#44a4e9"/><rect x="109" y="36" width="6" height="6" fill="#44a4e9"/><rect x="121" y="36" width="6" height="6" fill="#44a4e9"/><rect x="133" y="36" width="6" height="6" fill="#44a4e9"/><rect x="145" y="36" width="6" height="6" fill="#44a4e9"/><rect x="157" y="36" width="6" height="6" fill="#44a4e9"/><rect x="169" y="36" width="6" height="6" fill="#44a4e9"/>
-    <text x="125" y="82" text-anchor="middle" fill="#44a4e9" font-family="Arial,sans-serif" font-weight="900" font-size="35" letter-spacing="3">MOPAR</text>
-    <text x="125" y="103" text-anchor="middle" fill="#dce8ee" font-family="Arial,sans-serif" font-size="11" font-weight="700" letter-spacing="3">MUSCLE COLLECTION</text>
-    <path d="M38 120h174m-174 140h174" stroke="#44a4e9" stroke-width="1.5"/>
-    <circle cx="125" cy="190" r="73" fill="#233c53"/>
-    <use xlink:href="#vehicle" x="-5" y="123" width="260" height="132"/>
-    <text x="125" y="290" text-anchor="middle" fill="#44a4e9" font-family="Georgia,serif" font-size="25" font-weight="700">PG</text>
-    <text x="125" y="311" text-anchor="middle" fill="#d4e2e7" font-family="Arial,sans-serif" font-size="9" letter-spacing="2">POKENO GENIE</text>
-    <rect x="79" y="323" width="6" height="6" fill="#44a4e9"/><rect x="91" y="323" width="6" height="6" fill="#44a4e9"/><rect x="103" y="323" width="6" height="6" fill="#44a4e9"/><rect x="115" y="323" width="6" height="6" fill="#44a4e9"/><rect x="127" y="323" width="6" height="6" fill="#44a4e9"/><rect x="139" y="323" width="6" height="6" fill="#44a4e9"/><rect x="151" y="323" width="6" height="6" fill="#44a4e9"/><rect x="163" y="323" width="6" height="6" fill="#44a4e9"/><rect x="85" y="329" width="6" height="6" fill="#44a4e9"/><rect x="97" y="329" width="6" height="6" fill="#44a4e9"/><rect x="109" y="329" width="6" height="6" fill="#44a4e9"/><rect x="121" y="329" width="6" height="6" fill="#44a4e9"/><rect x="133" y="329" width="6" height="6" fill="#44a4e9"/><rect x="145" y="329" width="6" height="6" fill="#44a4e9"/><rect x="157" y="329" width="6" height="6" fill="#44a4e9"/><rect x="169" y="329" width="6" height="6" fill="#44a4e9"/>
+    <rect width="250" height="350" rx="11" fill="#101d2c"/>
+    <rect x="6" y="6" width="238" height="338" rx="8" fill="none" stroke="#168cdb" stroke-width="3"/>
+    <path d="M16 19v312m218-312v312" stroke="#006ab5" stroke-width="2"/>
+    <rect x="99" y="14" width="52" height="50" rx="3" fill="#f4f5ee"/>
+    <use xlink:href="#mopar-logo" x="102" y="16" width="46" height="46"/>
+    <text x="125" y="80" text-anchor="middle" fill="#d8e6f0" font-family="Arial,sans-serif" font-size="8" font-weight="700" letter-spacing="2">MUSCLE COLLECTION</text>
+    <path d="M28 142h194" stroke="#29445d" stroke-width="1"/>
+        <use xlink:href="#vehicle-charger" x="47" y="77" width="156" height="66"/>
+        <text x="125" y="145" text-anchor="middle" fill="#ff9a80" font-family="Arial,sans-serif" font-size="6.8" font-weight="700" letter-spacing=".6">1969 DODGE CHARGER R/T</text>
+<path d="M28 203h194" stroke="#29445d" stroke-width="1"/>
+        <use xlink:href="#vehicle-challenger" x="47" y="138" width="156" height="66"/>
+        <text x="125" y="206" text-anchor="middle" fill="#d1a0ef" font-family="Arial,sans-serif" font-size="6.8" font-weight="700" letter-spacing=".6">1970 DODGE CHALLENGER R/T</text>
+<path d="M28 264h194" stroke="#29445d" stroke-width="1"/>
+        <use xlink:href="#vehicle-cuda" x="47" y="199" width="156" height="66"/>
+        <text x="125" y="267" text-anchor="middle" fill="#ffd179" font-family="Arial,sans-serif" font-size="6.8" font-weight="700" letter-spacing=".6">1970 PLYMOUTH ’CUDA</text>
+<path d="M28 325h194" stroke="#29445d" stroke-width="1"/>
+        <use xlink:href="#vehicle-superbird" x="47" y="260" width="156" height="66"/>
+        <text x="125" y="328" text-anchor="middle" fill="#d4f487" font-family="Arial,sans-serif" font-size="6.8" font-weight="700" letter-spacing=".6">1970 PLYMOUTH SUPERBIRD</text>
+    <text x="125" y="335" text-anchor="middle" fill="#8facc1" font-family="Arial,sans-serif" font-size="6.5" letter-spacing="1.5">DODGE • PLYMOUTH • MOPAR</text>
   </svg>
