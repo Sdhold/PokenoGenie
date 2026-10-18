@@ -19,14 +19,16 @@ The caller app is a .NET 10 Blazor WebAssembly solution for Visual Studio. A lig
 1. On the phone, open the site and create a table. Keep this browser's data so the caller identity persists between rounds.
 2. Open the site's `tv.html` page on the TV and enter the eight-character table code.
 3. Choose a pattern and select **Shuffle & start round**. The pattern locks for that round.
-4. Select **Draw card** to reveal each card. The button unlocks after three seconds. The TV updates live.
+4. Select **Draw card** to reveal each card. Number cards show their suit pips, and Jacks, Queens, and Kings have illustrated faces. The button unlocks after three seconds. The TV updates live.
 5. If a player calls Pokeno, choose **Pause / verify Pokeno** and review the full called-card history. Resume or end the round manually.
+6. To begin with a fresh room code and round count, choose **End table & start new** on the caller phone. Enter the new code on the TV.
 
 Preset patterns: standard bingo (any row, column, or diagonal), horizontal, vertical, diagonal, H, C (opens right), X, plus, four corners, perimeter, and full board. The picker previews patterns on hover, keyboard focus, and tap.
 
 ## Solution layout
 
 - `src/PokenoGenie` — responsive Blazor caller interface, Firebase browser bridge, and lightweight TV display.
+- `src/PokenoGenie/wwwroot/cards` — 52 original SVG card faces shared by the caller and TV. Run `node tools/generate-card-art.mjs` to regenerate them.
 - `src/PokenoGenie.Core` — cards, secure shuffle, room codes, and pattern definitions.
 - `tests/PokenoGenie.Tests` — C# game-rule tests.
 - `tests/firebase` and `database.rules.json` — Realtime Database security-rule tests and policy.

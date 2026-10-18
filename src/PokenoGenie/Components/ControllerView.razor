@@ -68,7 +68,7 @@
                 <span class="connection-status @(Rooms.IsConnected ? "online" : "offline")">
                     <span></span>@(Rooms.IsConnected ? "TV sync connected" : "Reconnecting — draws paused")
                 </span>
-                <span class="round-label">ROUND @(_room.Round == 0 ? 1 : _room.Round)</span>
+                <span class="round-label">@(_room.Round == 0 ? "TABLE SETUP" : $"ROUND {_room.Round}")</span>
             </div>
 
             @if (_room.Phase == GamePhase.Lobby)
@@ -171,6 +171,24 @@
                 <div class="share-row"><strong class="share-code">@_code</strong><button class="small-button" @onclick="CopyDisplayLinkAsync">@(_copied ? "Copied!" : "Copy TV link")</button></div>
                 <a class="text-link" href="@DisplayLink" target="_blank" rel="noopener noreferrer">Preview TV display →</a>
             </section>
+
+            <section class="new-table-panel">
+                <span class="eyebrow">FINISHED WITH THIS TABLE?</span>
+                <h2>Start fresh.</h2>
+                @if (_confirmNewTable)
+                {
+                    <p>The current round will end. A new room code starts at table setup, and the TV will need that code.</p>
+                    <div class="action-pair">
+                        <button class="secondary-button" disabled="@_busy" @onclick="() => _confirmNewTable = false">Keep this table</button>
+                        <button class="primary-button" disabled="@(_busy || !Rooms.IsConnected)" @onclick="StartNewTableAsync">@(_busy ? "Starting…" : "Start new table")</button>
+                    </div>
+                }
+                else
+                {
+                    <p>Create a new room code and restart the round count.</p>
+                    <button class="secondary-button" disabled="@(_busy || !Rooms.IsConnected)" @onclick="() => _confirmNewTable = true">End table &amp; start new</button>
+                }
+            </section>
         </main>
     }
 
@@ -185,6 +203,7 @@
     private bool _busy;
     private bool _shuffling;
     private bool _copied;
+    private bool _confirmNewTable;
     private string? _code;
     private string? _setupError;
     private string? _error;
@@ -260,20 +279,48 @@
         _error = null;
         try
         {
-            for (var attempt = 0; attempt < 5; attempt++)
-            {
-                var code = RoomCode.Generate();
-                if (!await Rooms.CreateRoomAsync(code)) continue;
-                _room = null;
-                _code = code;
-                await Rooms.SaveRoomAsync(code);
-                await Rooms.WatchRoomAsync(code);
-                return;
-            }
-            _error = "Could not reserve a room code. Try again.";
+            await CreateRoomCoreAsync();
         }
         catch (Exception error) { _error = error.Message; }
         finally { _busy = false; }
+    }
+
+    private async Task StartNewTableAsync()
+    {
+        if (_code is null || _room is null || !Rooms.IsConnected) return;
+        _busy = true;
+        _error = null;
+        var oldCode = _code;
+        var oldPhase = _room.Phase;
+        try
+        {
+            if (oldPhase == GamePhase.Calling && !await Rooms.ChangePhaseAsync(oldCode, GamePhase.Paused))
+                throw new InvalidOperationException("Could not pause the current round. Try again.");
+            if ((oldPhase is GamePhase.Calling or GamePhase.Paused) &&
+                !await Rooms.ChangePhaseAsync(oldCode, GamePhase.Finished))
+                throw new InvalidOperationException("Could not end the current round. Try again.");
+
+            await CreateRoomCoreAsync();
+        }
+        catch (Exception error) { _error = error.Message; }
+        finally { _busy = false; }
+    }
+
+    private async Task CreateRoomCoreAsync()
+    {
+        for (var attempt = 0; attempt < 5; attempt++)
+        {
+            var code = RoomCode.Generate();
+            if (!await Rooms.CreateRoomAsync(code)) continue;
+            _room = null;
+            _code = code;
+            _selectedPatternId = "standard";
+            _confirmNewTable = false;
+            await Rooms.SaveRoomAsync(code);
+            await Rooms.WatchRoomAsync(code);
+            return;
+        }
+        throw new InvalidOperationException("Could not reserve a room code. Try again.");
     }
 
     private async Task StartRoundAsync()

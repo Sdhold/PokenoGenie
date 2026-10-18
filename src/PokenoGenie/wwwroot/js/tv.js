@@ -120,17 +120,6 @@
         if (!match) return null;
         return { rank: match[1], suit: suitSymbols[match[2]], name: rankNames[match[1]] + " of " + suitNames[match[2]], red: match[2] === "H" || match[2] === "D" };
     }
-    function corner(info, bottom) {
-        var element = document.createElement("div");
-        element.className = bottom ? "corner bottom" : "corner";
-        var rank = document.createElement("strong");
-        rank.textContent = info.rank;
-        var suit = document.createElement("span");
-        suit.textContent = info.suit;
-        element.appendChild(rank);
-        element.appendChild(suit);
-        return element;
-    }
     function makeCard(id, large) {
         var element = document.createElement("div");
         var info = cardInfo(id);
@@ -144,12 +133,12 @@
             element.appendChild(logo);
         } else {
             element.setAttribute("aria-label", info.name);
-            element.appendChild(corner(info, false));
-            var suit = document.createElement("div");
-            suit.className = "suit";
-            suit.textContent = info.suit;
-            element.appendChild(suit);
-            element.appendChild(corner(info, true));
+            var art = document.createElement("img");
+            art.className = "card-art";
+            art.src = "cards/" + id + ".svg";
+            art.alt = "";
+            art.draggable = false;
+            element.appendChild(art);
         }
         return element;
     }
@@ -198,7 +187,7 @@
         renderPattern(pattern);
         setText("room-label", "ROOM " + roomCode);
         setText("draw-count", count + " / 52");
-        setText("round-label", "ROUND " + (Number(state.round) || 1));
+        setText("round-label", Number(state.round) > 0 ? "ROUND " + state.round : "TABLE SETUP");
         var current = cards.length ? cards[cards.length - 1] : null;
         var currentContainer = byId("current-card");
         clearChildren(currentContainer);
@@ -277,6 +266,7 @@
             roomCode = "";
             lastSignature = "";
             clearTimeout(pollTimer);
+            byId("room-code").value = "";
             try { history.replaceState(null, "", "tv.html"); } catch (error) { /* The room can still be changed. */ }
             showJoin("Enter another room code.");
             byId("room-code").focus();

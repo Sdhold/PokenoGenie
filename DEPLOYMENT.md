@@ -60,12 +60,13 @@ The workflow fails clearly if `FIREBASE_CONFIG_JSON` is missing or invalid. The 
 2. On the TV or its connected computer, open `https://sdhold.github.io/PokenoGenie/tv.html` and enter the code. The site's main URL redirects LG webOS browsers to this TV page. You can also open the caller's **Copy TV link** URL on the display.
 3. Choose **H**, start a round, and draw five cards. Check that the TV's large card, previous four, and count match the phone. Try rapid taps; the next draw should remain locked for three seconds.
 4. Pause, review the history, resume, and end the round. Reload both screens; the active room and private deck should return on the original caller phone.
+5. On the caller phone, choose **End table & start new**, confirm, and check that a different room code appears at table setup. Enter that code on the TV to begin again at the first round.
 
 The caller identity is stored in that browser's local data. Clearing its site data or using a different phone loses caller control of the old room; create a new table in that case. If the network disconnects, drawing pauses and the TV shows its last known state until it reconnects. The TV page uses simple JavaScript and Firebase's authenticated REST API, polling for new cards about every 1.5 seconds. It does not load Blazor, so it can run on browsers where the Blazor startup remains on the splash screen.
 
 ## Tests and free-tier limits
 
-Run `dotnet test PokenoGenie.slnx` for the C# tests. With Node.js, pnpm, and Java 21 installed, run `pnpm install` and `pnpm test:rules` to test the Firebase rules in the local emulator. The GitHub workflow runs both suites before deployment.
+Run `dotnet test PokenoGenie.slnx` for the C# tests and `node --test tests/cards-art.test.mjs` to check the 52 card faces. With Node.js, pnpm, and Java 21 installed, run `pnpm install` and `pnpm test:rules` to test the Firebase rules in the local emulator. The GitHub workflow runs all three suites before deployment.
 
 Firebase's Spark plan currently includes 100 simultaneous Realtime Database connections, 1 GB stored, and 10 GB downloaded per month. It does not bill beyond the included quota; the service can stop accepting new connections or become unavailable until quota resets. The app requires internet access for Firebase and its hosted JavaScript SDK.
 

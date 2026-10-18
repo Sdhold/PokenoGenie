@@ -10,9 +10,7 @@ else
 {
     <div class="playing-card @(Card.IsRed ? "red-suit" : "black-suit") @Class"
          role="img" aria-label="@Card.AccessibleName">
-        <div class="card-corner"><strong>@Card.Rank</strong><span>@Card.Suit</span></div>
-        <div class="card-suit">@Card.Suit</div>
-        <div class="card-corner card-corner-bottom"><strong>@Card.Rank</strong><span>@Card.Suit</span></div>
+        <img class="playing-card-art" src="@($"cards/{Card.Id}.svg")" alt="" draggable="false" />
     </div>
 }
 

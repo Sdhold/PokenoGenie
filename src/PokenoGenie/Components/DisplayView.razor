@@ -75,7 +75,7 @@
 
         <footer class="display-footer">
             <span class="connection-status @(Rooms.IsConnected ? "online" : "offline")"><span></span>@(Rooms.IsConnected ? "LIVE FROM THE CALLER'S DEVICE" : "RECONNECTING · SHOWING LAST KNOWN CARD")</span>
-            <span>ROUND @(_room.Round == 0 ? 1 : _room.Round)</span>
+            <span>@(_room.Round == 0 ? "TABLE SETUP" : $"ROUND {_room.Round}")</span>
         </footer>
     }
 

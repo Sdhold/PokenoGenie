@@ -109,10 +109,7 @@ a { color: inherit; }
 .shadow-two { transform: rotate(5deg) translate(7px, 2px); background: #9d7550; }
 .playing-card { aspect-ratio: 5 / 7; position: relative; display: flex; align-items: center; justify-content: center; background: #fffdf7; color: #171e24; border: 1px solid #dccfb6; border-radius: 13px; box-shadow: 0 16px 26px #071e1d44; overflow: hidden; }
 .playing-card.red-suit, .red-suit { color: #bb3b40; }
-.card-corner { position: absolute; top: 8%; left: 9%; display: flex; align-items: center; flex-direction: column; line-height: .9; font-size: clamp(1.2rem, 2.5vw, 2.2rem); }
-.card-corner span { margin-top: 5px; }
-.card-corner-bottom { inset: auto 9% 8% auto; transform: rotate(180deg); }
-.card-suit { font-family: Georgia, serif; font-size: clamp(4rem, 11vw, 10rem); line-height: 1; }
+.playing-card-art { display: block; width: 100%; height: 100%; object-fit: fill; }
 .card-back { padding: 9px; background: #f9f2df; }
 .card-back-inner { width: 100%; height: 100%; border-radius: 7px; border: 2px solid #e9d6a8; color: #ebca82; background: repeating-linear-gradient(45deg, #214e41 0 12px, #285849 12px 17px); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 1.8rem; text-shadow: 0 1px 4px #0e2826; }
 .card-back-inner strong { font-family: Georgia, serif; font-size: 2.2rem; border: 2px solid #e6c77e; border-radius: 50%; width: 65px; height: 65px; display: grid; place-items: center; background: #204637; }
@@ -143,6 +140,11 @@ a { color: inherit; }
 .share-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
 .share-code { letter-spacing: .17em; font-size: 1.35rem; }
 .display-join-panel .text-link { margin-top: 12px; font-size: .85rem; }
+.new-table-panel { margin-top: 24px; padding: 18px 20px; border: 1px solid #d5c18b55; border-radius: 15px; }
+.new-table-panel h2 { font: 500 1.5rem Georgia, serif; margin: 8px 0; }
+.new-table-panel p { color: #c5d2c4; line-height: 1.45; margin: 8px 0 16px; }
+.new-table-panel .secondary-button { border-color: #f4e9d166; }
+.new-table-panel .action-pair .primary-button { box-shadow: none; }
 .toast-error { position: fixed; z-index: 20; bottom: 18px; left: 50%; transform: translateX(-50%); max-width: min(520px, calc(100vw - 30px)); width: max-content; background: #fce1d5; color: #612d23; border: 1px solid #d7755e; border-radius: 10px; padding: 12px 15px; box-shadow: 0 12px 28px #081c1b88; font-size: .9rem; }
 .toast-error button { background: none; border: 0; color: inherit; margin-left: 12px; font-size: 1.2rem; }
 
@@ -170,8 +172,6 @@ a { color: inherit; }
 .current-half { border-right: 1px solid #ead9af44; }
 .display-section-label { color: #e8c57e; font-size: clamp(.65rem, 1vw, 1rem); }
 .display-current-card { width: min(34vw, 52vh); max-height: 67vh; margin: 18px auto 14px; animation: deal-in .48s ease-out both; }
-.display-current-card .card-corner { font-size: clamp(2.2rem, 4.8vw, 5rem); }
-.display-current-card .card-suit { font-size: clamp(8rem, 20vw, 18rem); }
 .display-current-card .card-back-inner { font-size: 4rem; }
 .display-current-card .card-back-inner strong { width: 130px; height: 130px; font-size: 4rem; }
 .current-name { font: 500 clamp(1rem, 2vw, 1.8rem) Georgia, serif; color: #fff3d8; }
@@ -180,8 +180,6 @@ a { color: inherit; }
 .previous-heading small { color: #a8c6b6; font-size: .6rem; letter-spacing: .14em; }
 .previous-grid { display: grid; grid-template-columns: repeat(2, min(16vw, 22vh)); gap: clamp(12px, 1.6vw, 26px); }
 .display-previous-card, .previous-empty { width: min(16vw, 22vh); aspect-ratio: 5 / 7; }
-.display-previous-card .card-corner { font-size: clamp(1rem, 2.2vw, 2.3rem); }
-.display-previous-card .card-suit { font-size: clamp(3.3rem, 8vw, 7.5rem); }
 .previous-empty { border: 2px dashed #d6c79a66; border-radius: 12px; display: grid; place-items: center; color: #d6c79a77; font-size: 2.3rem; }
 .display-footer { min-height: 49px; padding: 11px clamp(20px, 2.5vw, 50px); display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #d3c39144; color: #c7d4c8; font-size: .65rem; letter-spacing: .13em; }
 
@@ -208,15 +206,11 @@ a { color: inherit; }
     .display-content { grid-template-columns: 1fr; grid-template-rows: auto auto; }
     .current-half { border-right: 0; border-bottom: 1px solid #ead9af44; padding: 20px; }
     .display-current-card { width: min(44vw, 23vh); max-height: none; margin: 10px auto; }
-    .display-current-card .card-corner { font-size: 1.5rem; }
-    .display-current-card .card-suit { font-size: 5rem; }
     .display-current-card .card-back-inner strong { width: 55px; height: 55px; font-size: 1.6rem; }
     .previous-half { padding: 16px; }
     .previous-heading { margin-bottom: 10px; }
     .previous-grid { grid-template-columns: repeat(4, min(18vw, 10vh)); }
     .display-previous-card, .previous-empty { width: min(18vw, 10vh); }
-    .display-previous-card .card-corner { font-size: .8rem; }
-    .display-previous-card .card-suit { font-size: 2.2rem; }
     .display-footer { padding: 10px; }
 }
 

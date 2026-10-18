@@ -42,11 +42,7 @@ button:focus, input:focus { outline: 3px solid #e7bf6d; outline-offset: 3px; }
 .tv-card { position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; background: #fffdf7; border: 1px solid #dccfb6; color: #171e24; box-shadow: 0 12px 24px #071e1d66; }
 .tv-card.red { color: #bb3b40; }
 .tv-card.large { width: 40vh; height: 56vh; }
-.tv-card .suit { font: 8vh Georgia, serif; }
-.tv-card.large .suit { font-size: 18vh; }
-.tv-card .corner { position: absolute; top: 7%; left: 9%; display: flex; flex-direction: column; align-items: center; font: bold 3.2vh Georgia, serif; line-height: .95; }
-.tv-card.large .corner { font-size: 5.5vh; }
-.tv-card .corner.bottom { top: auto; left: auto; bottom: 7%; right: 9%; transform: rotate(180deg); }
+.tv-card .card-art { display: block; width: 100%; height: 100%; }
 .tv-card.back { border: 8px solid #f9f2df; background: repeating-linear-gradient(45deg, #214e41 0 12px, #285849 12px 17px); color: #ebca82; }
 .tv-card.back span { font: bold 6vh Georgia, serif; border: 3px solid #e6c77e; border-radius: 50%; padding: 12px; background: #204637; }
 .empty-card { display: flex; align-items: center; justify-content: center; border: 2px dashed #d6c79a66; color: #d6c79a77; font-size: 2.3rem; }
@@ -66,10 +62,6 @@ button:focus, input:focus { outline: 3px solid #e7bf6d; outline-offset: 3px; }
     .current-half, .previous-half { width: 100%; }
     .current-half { border-right: 0; border-bottom: 1px solid #ead9af44; }
     .tv-card.large { width: 26vh; height: 36vh; }
-    .tv-card.large .suit { font-size: 12vh; }
-    .tv-card.large .corner { font-size: 3vh; }
     .previous-cards { grid-template-columns: repeat(4, 10vh); gap: 1vh; }
     .previous-cards .tv-card, .previous-cards .empty-card { width: 10vh; height: 14vh; }
-    .previous-cards .tv-card .suit { font-size: 4vh; }
-    .previous-cards .tv-card .corner { font-size: 1.4vh; }
 }
