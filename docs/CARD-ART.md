@@ -45,7 +45,7 @@ These are fan themed collections; the characters, franchise names, and associate
 
 ## Matching backgrounds
 
-Every alternate deck has a bundled 1600 × 900 SVG background shared by the caller, Blazor display, and lightweight TV display. The Illustrated deck retains its original green table. Backgrounds follow the card collection automatically, including during verification; no external image service is used.
+Every alternate deck has a bundled 1600 × 900 SVG background shared by the caller, Blazor display, and lightweight TV display. The caller's shuffle and drawing panels also show the selected scenery behind the deck, with light labels and contrasting controls. The Illustrated deck retains its original green table and cream panels. Backgrounds follow the card collection automatically, including during verification; no external image service is used.
 
 - **Midnight:** navy, gold constellations and Art Deco arcs.
 - **Sunburst:** coral sun rays and blue rolling shapes.

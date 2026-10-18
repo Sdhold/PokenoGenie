@@ -8,6 +8,34 @@
 [data-deck-theme="lordoftherings"] { background-color: #172d32; background-image: linear-gradient(90deg, #11272a11, #11272a77, #11272a11), url("../backgrounds/lordoftherings.svg"); }
 [data-deck-theme] { background-position: center center; background-repeat: no-repeat; background-size: cover; }
 .controller-shell[data-deck-theme] { background-attachment: fixed; }
+
+/* Keep the scenery visible inside the caller's deck and shuffle panels. */
+.caller-deck-panel:not([data-deck-theme="illustrated"]) {
+    color: #fff4dd;
+    background-position: right top;
+    box-shadow: inset 0 0 0 1px #dac18b55, 0 25px 55px #071b1980;
+}
+.caller-deck-panel[data-deck-theme="harrypotter"] { background-position: left top; }
+.caller-deck-panel:not([data-deck-theme="illustrated"]) .eyebrow,
+.caller-deck-panel:not([data-deck-theme="illustrated"]) .field-label { color: #f1cd88; }
+.caller-deck-panel:not([data-deck-theme="illustrated"]) h1,
+.caller-deck-panel:not([data-deck-theme="illustrated"]) .draw-count { text-shadow: 0 2px 6px #071322; }
+.caller-deck-panel:not([data-deck-theme="illustrated"]) .draw-count span,
+.caller-deck-panel:not([data-deck-theme="illustrated"]) .section-heading,
+.caller-deck-panel:not([data-deck-theme="illustrated"]) .muted,
+.caller-deck-panel:not([data-deck-theme="illustrated"]) .fine-print { color: #e0e4d5; }
+.caller-deck-panel:not([data-deck-theme="illustrated"]) .history-panel { border-color: #dcc89d66; }
+.caller-deck-panel:not([data-deck-theme="illustrated"]) .primary-button {
+    background: #eac580;
+    color: #183830;
+    box-shadow: 0 7px 0 #6a5434;
+}
+.caller-deck-panel:not([data-deck-theme="illustrated"]) .primary-button:not(:disabled):active { box-shadow: 0 3px 0 #6a5434; }
+.caller-deck-panel:not([data-deck-theme="illustrated"]) .secondary-button { color: #fff4dd; border-color: #f4dfb5aa; background: #07132280; }
+.caller-deck-panel:not([data-deck-theme="illustrated"]) .action-pair .primary-button { box-shadow: none; }
+.caller-deck-panel:not([data-deck-theme="illustrated"]) .paused-banner,
+.caller-deck-panel:not([data-deck-theme="illustrated"]) .pattern-preview-panel { color: #183830; text-shadow: none; }
+
 [data-deck-theme="starwars"] .deck-theme-panel,
 [data-deck-theme="starwars"] .display-join-panel,
 [data-deck-theme="starwars"] .new-table-panel { background: #14273dc9; }

@@ -73,7 +73,7 @@
 
             @if (_room.Phase == GamePhase.Lobby)
             {
-                <section class="setup-panel">
+                <section class="setup-panel caller-deck-panel" data-deck-theme="@_themeId">
                     <span class="eyebrow">BEFORE THE FIRST DRAW</span>
                     <h1>Set the winning shape.</h1>
                     <div class="shuffle-fan @(_shuffling ? "is-shuffling" : "")" aria-hidden="true"><i></i><i></i><i></i></div>
@@ -86,7 +86,7 @@
             }
             else
             {
-                <section class="calling-panel">
+                <section class="calling-panel caller-deck-panel" data-deck-theme="@_themeId">
                     <div class="calling-heading">
                         <div><span class="eyebrow">WINNING PATTERN</span><h1>@CurrentPattern.Name</h1></div>
                         <PatternGrid Pattern="CurrentPattern" Class="pattern-grid-small" />
@@ -155,7 +155,7 @@
 
             @if (_room.Phase == GamePhase.Finished)
             {
-                <section class="setup-panel next-round-panel">
+                <section class="setup-panel next-round-panel caller-deck-panel" data-deck-theme="@_themeId">
                     <span class="eyebrow">READY FOR ANOTHER ROUND</span>
                     <h1>Play it again.</h1>
                     <div class="shuffle-fan @(_shuffling ? "is-shuffling" : "")" aria-hidden="true"><i></i><i></i><i></i></div>
