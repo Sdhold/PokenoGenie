@@ -20,3 +20,25 @@ The MOPAR emblem and wordmark use the paths from the [official Mopar header logo
 Vehicle references include [Dodge's 1970 Challenger history](https://www.dodge.com/news/black-ghost-dodge-challenger.html), [Stellantis' 1970 Plymouth Superbird feature](https://blog.stellantisnorthamerica.com/2015/07/21/1970-superbird-travels-from-indiana-to-alaska/), and [Holley's 1970 ’Cuda shaker hood feature](https://www.holley.com/blog/post/unearthed_1970_plymouth_cuda_340_with_the_shaker_scoop/).
 
 Mopar, Dodge, Plymouth and the vehicle names and logos belong to their respective owners. This is a fan themed deck, with no claim of affiliation or endorsement.
+
+## Character collections
+
+Harry Potter, Star Wars, and Lord of the Rings each have 52 faces and a matching card back. The artwork is original, stylized SVG illustration, generated from the editable sources in `tools/character-art/` and `tools/story-card-art.mjs`. No movie stills, actor photographs, remote image requests, or image generation services are needed to build or run the app.
+
+The courts use mirrored character portraits, with these assignments in all four suits:
+
+| Deck | King | Queen | Jack | Ace |
+| --- | --- | --- | --- | --- |
+| Harry Potter | Albus Dumbledore | Minerva McGonagall | Harry Potter | Golden Snitch |
+| Star Wars | Darth Vader | Leia Organa | Luke Skywalker | Death Star |
+| Lord of the Rings | Aragorn | Arwen | Frodo Baggins | One Ring |
+
+The 2–10 cards feature nine supporting characters per collection, distributed deterministically across the four suits. This gives artwork variety without introducing randomness or changing the shuffled deck, call history, or rules. They use full character scenes instead of central pip arrays; corner ranks and standard suit symbols identify the cards from either end.
+
+- **Harry Potter:** Hermione, Ron, Hagrid, Luna, Dobby, Snape, Sirius, Draco, and Hedwig. Parchment, castle silhouettes, wand borders, and spell flourishes frame the portraits.
+- **Star Wars:** Obi-Wan, Yoda, Rey, Ahsoka, Han, Chewbacca, R2-D2, C-3PO, and the Mandalorian. Vader has red lightsaber rails, Luke and Yoda green, Obi-Wan blue, Rey yellow, and Ahsoka white. Other characters use spacecraft panel framing against a star field.
+- **Lord of the Rings:** Gandalf, Legolas, Gimli, Sam, Galadriel, Eowyn, Boromir, Gollum, and Sauron. Elven leaf borders, map contours, mountains, swords, and character accessories form part of the illustration.
+
+Character design references include the official [Harry Potter encyclopedia](https://www.harrypotter.com/fact-file/characters-and-pets/albus-dumbledore), the [Star Wars Databank](https://www.starwars.com/databank/leia-organa), and its [Vader](https://www.starwars.com/databank/darth-vaders-lightsaber) and [Luke](https://www.starwars.com/databank/luke-skywalkers-lightsaber) lightsaber entries. The Lord of the Rings court assignments follow the requested Aragorn/Arwen/Frodo/One Ring arrangement.
+
+These are fan themed collections; the characters, franchise names, and associated marks belong to their respective owners. No affiliation or endorsement is claimed.

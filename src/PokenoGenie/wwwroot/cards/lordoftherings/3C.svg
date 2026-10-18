@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 250 350" role="img" aria-label="3 of C — Lord of the Rings: Legolas" data-deck="lordoftherings" data-character="legolas">
+    <defs><symbol id="pip" viewBox="0 0 32 32"><g fill="#284e47"><circle cx="16" cy="8" r="6.5"/><circle cx="8" cy="19" r="6.5"/><circle cx="24" cy="19" r="6.5"/><path d="M13 20h6l4 11H9Z"/></g></symbol><linearGradient id="artifact-gold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f4e3ac"/><stop offset=".28" stop-color="#d3aa53"/><stop offset=".55" stop-color="#f8e7ae"/><stop offset=".8" stop-color="#b48c3e"/><stop offset="1" stop-color="#e5c373"/></linearGradient><symbol id="character" data-character="legolas" viewBox="0 0 200 240"><path d="M162 226 144 62l14-3 21 165Z" fill="#70583a" stroke="#342e28" stroke-width="2"/>
+    <path d="m146 66-8-37 10 8 1-15 8 14 2-18 8 25" fill="#cdcdb3" stroke="#6e705d" stroke-width="2"/>
+    <path d="M58 193q-8-31 3-64-14-64 17-84 28-19 49 1 27 17 11 76 16 39 7 72l-30-22-30 4Z" fill="#d9c591" stroke="#26313c" stroke-width="2"/>
+    <path d="M72 68q-15 32-3 71-13 24-5 44m66-117q13 35 1 77 13 25 7 42" fill="none" stroke="#f1e2b6" stroke-width="3" opacity=".65"/><path d="M14 238q-2-60 35-72l34-12 17 19 17-19 34 12q35 12 35 72Z" fill="#486653" stroke="#26313c" stroke-width="2.5"/>
+    <path d="m84 156 16 17 16-17 14 82H70Z" fill="#8e9a72"/>
+    <path d="m79 157-22 20 22 61m42-81 22 20-22 61" fill="none" stroke="#b8ae7c" stroke-width="3"/>
+    <path d="m39 198-6 40m128-40 6 40" stroke="#122330" stroke-width="2" opacity=".25"/>
+    <path d="M85 137v30q15 15 30 0v-30" fill="#e8c6a2" stroke="#99735d" stroke-width="1.7"/>
+    <path d="m72 91-23-16 11 33 15 6m53-23 23-16-11 33-15 6" fill="#e8c6a2" stroke="#99735d" stroke-width="2"/>
+    <path d="M77 87Q72 54 100 53q29 1 24 34l-2 36q-3 21-22 31-22-9-25-31Z" fill="#e8c6a2" stroke="#99735d" stroke-width="1.8"/>
+    <path d="M77 85q3-24 23-25-17 14-16 50l3 23q-12-12-10-48Z" fill="#fff2d5" opacity=".2"/>
+    <path d="m79 91 13-2m16 0 13 2" stroke="#a88c57" stroke-width="2.2" stroke-linecap="round"/>
+    <path d="M79 100q8-7 14 0-7 6-14 0Zm28 0q8-7 14 0-7 6-14 0Z" fill="#fff5e6" stroke="#765c50" stroke-width="1"/>
+    <circle cx="87" cy="100" r="3.2" fill="#8bafab"/><circle cx="114" cy="100" r="3.2" fill="#8bafab"/>
+    <circle cx="87" cy="100" r="1.5" fill="#1c2830"/><circle cx="114" cy="100" r="1.5" fill="#1c2830"/>
+    <path d="m101 103-4 14 7 2" fill="none" stroke="#ab7960" stroke-width="1.6" stroke-linecap="round"/>
+    <path d="M92 131q8 2 16-1" fill="none" stroke="#8d594e" stroke-width="2" stroke-linecap="round"/>
+
+
+
+    <path d="M72 72q29-29 56 0l-5-21-49 2Z" fill="#dbcb97" stroke="#9e8b5b" stroke-width="1.5"/>
+    <path d="M76 66Q57 91 67 142l-9 39q20-8 20-36L76 66Zm47-2q23 26 10 77l12 43q-23-10-23-40Z" fill="#d9c591" stroke="#26313c" stroke-width="1.7"/>
+    <path d="M70 91q-6 27 3 46m56-46q7 29-2 46" fill="none" stroke="#f1e2b6" stroke-width="2"/>
+    <path d="m73 96-3 70m59-70 2 69" stroke="#997d4d" stroke-width="4" stroke-dasharray="4 2"/>
+    <path d="M37 98q-40 63 0 138m0-138v138" fill="none" stroke="#bd9b60" stroke-width="5"/><path d="M37 98v138" stroke="#e8d3a1" stroke-width="1"/><path d="m89 170q16-13 23-3-1 15-19 17Z" fill="#72a47a" stroke="#d2d9bd" stroke-width="1.8"/><path d="m90 185 19-14" stroke="#e1e2c3" stroke-width="1.3"/></symbol></defs>
+    <rect width="250" height="350" rx="11" fill="#edf0dc"/>
+    <rect x="4" y="4" width="242" height="342" rx="8" fill="none" stroke="#aa8f4e" stroke-width="2"/>
+    <rect x="9" y="9" width="232" height="332" rx="5" fill="none" stroke="#aa8f4e" stroke-width=".7" opacity=".65"/>
+    <rect x="47" y="40" width="156" height="270" rx="70" fill="#c9d6bc" opacity=".33"/>
+    <path d="M47 221 75 185l20 20 25-46 33 48 21-29 30 44m-157 17 30-11 29 10 32-13 26 12 40-12" fill="none" stroke="#94a58c" stroke-width="1.5" opacity=".5"/>
+    <path d="M53 96q30-24 65-9t70-15M48 101q34-24 68-10t73-12m-133 158q50-12 90 2t46-4" fill="none" stroke="#91a184" stroke-width="1" stroke-dasharray="3 3" opacity=".45"/>
+    <circle cx="170" cy="85" r="18" fill="#e6e5b7" opacity=".5"/><g data-motif="elven-leaves" fill="none" stroke="#809676" stroke-width="1.4">
+    <path d="M39 72q-15 54 0 104t0 102m172-206q15 54 0 104t0 102"/>
+    <path d="m39 85q17-16 13-27-15 10 -13 27Zm172 0q-17-16 -13-27 15 10 13 27Z" fill="#b2c4a1"/><path d="m39 118q-17-16 -13-27-15 10 13 27Zm172 0q17-16 13-27 15 10 -13 27Z" fill="#b2c4a1"/><path d="m39 151q17-16 13-27-15 10 -13 27Zm172 0q-17-16 -13-27 15 10 13 27Z" fill="#b2c4a1"/><path d="m39 184q-17-16 -13-27-15 10 13 27Zm172 0q17-16 13-27 15 10 -13 27Z" fill="#b2c4a1"/><path d="m39 217q17-16 13-27-15 10 -13 27Zm172 0q-17-16 -13-27 15 10 13 27Z" fill="#b2c4a1"/><path d="m39 250q-17-16 -13-27-15 10 13 27Zm172 0q17-16 13-27 15 10 -13 27Z" fill="#b2c4a1"/>
+    </g>
+    <text x="125" y="26" text-anchor="middle" fill="#31554a" font-family="Georgia,serif" font-weight="700" font-size="7.5" letter-spacing="1.3">LORD OF THE RINGS</text>
+    <g fill="#284e47" text-anchor="middle"><text x="22" y="31" font-family="Georgia,serif" font-weight="700" font-size="29">3</text><use xlink:href="#pip" x="13" y="38" width="18" height="18"/></g><g transform="rotate(180 125 175)"><g fill="#284e47" text-anchor="middle"><text x="22" y="31" font-family="Georgia,serif" font-weight="700" font-size="29">3</text><use xlink:href="#pip" x="13" y="38" width="18" height="18"/></g></g>
+    <g id="main-art"><use xlink:href="#character" x="42" y="48" width="166" height="216"/>
+      <path d="M57 273h136m-125 31h114" stroke="#aa8f4e" stroke-width="1"/>
+      <text x="125" y="288" text-anchor="middle" fill="#31554a" font-family="Georgia,serif" font-weight="700" font-size="11.5">LEGOLAS</text>
+      <text x="125" y="300" text-anchor="middle" fill="#31554a" font-family="Arial,sans-serif" font-size="6.5" letter-spacing=".3">ARCHER OF THE WOODLAND REALM</text>
+      <path d="m125 309 13 13-13 13-13-13Z" fill="#c9d6bc" stroke="#aa8f4e" stroke-width="1"/>
+      <text x="125" y="327" text-anchor="middle" fill="#284e47" font-family="Georgia,serif" font-weight="700" font-size="15">3</text></g>
+  </svg>

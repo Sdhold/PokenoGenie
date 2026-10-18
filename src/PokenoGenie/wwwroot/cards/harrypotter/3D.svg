@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 250 350" role="img" aria-label="3 of D — Harry Potter: Draco Malfoy" data-deck="harrypotter" data-character="draco">
+    <defs><symbol id="pip" viewBox="0 0 32 32"><g fill="#a13d46"><path d="M16 1 30 16 16 31 2 16Z"/></g></symbol><linearGradient id="artifact-gold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f4e3ac"/><stop offset=".28" stop-color="#d3aa53"/><stop offset=".55" stop-color="#f8e7ae"/><stop offset=".8" stop-color="#b48c3e"/><stop offset="1" stop-color="#e5c373"/></linearGradient><symbol id="character" data-character="draco" viewBox="0 0 200 240"><path d="M14 238q-2-60 35-72l34-12 17 19 17-19 34 12q35 12 35 72Z" fill="#29363d" stroke="#26313c" stroke-width="2.5"/>
+    <path d="m84 156 16 17 16-17 14 82H70Z" fill="#e3ddc9"/>
+    <path d="m79 157-22 20 22 61m42-81 22 20-22 61" fill="none" stroke="#32634c" stroke-width="3"/>
+    <path d="m39 198-6 40m128-40 6 40" stroke="#122330" stroke-width="2" opacity=".25"/><path d="m91 167 9 10 9-10-5 71h-8Z" fill="#32634c"/><path d="m94 185 12-6m-12 19 11-6m-10 19 10-6m-10 19 10-6" stroke="#bec9ba" stroke-width="3"/>
+    <path d="m58 185 14 6-1 20-12-5Z" fill="#32634c" stroke="#bec9ba" stroke-width="1.5"/><path d="m62 194 6 7-5 1 5 4" stroke="#bec9ba" fill="none" stroke-width="1.5"/><path d="M85 137v30q15 15 30 0v-30" fill="#ebcfb0" stroke="#99735d" stroke-width="1.7"/>
+    <ellipse cx="72" cy="105" rx="7" ry="12" fill="#ebcfb0"/><ellipse cx="128" cy="105" rx="7" ry="12" fill="#ebcfb0"/>
+    <path d="M77 87Q72 54 100 53q29 1 24 34l-2 36q-3 21-22 31-22-9-25-31Z" fill="#ebcfb0" stroke="#99735d" stroke-width="1.8"/>
+    <path d="M77 85q3-24 23-25-17 14-16 50l3 23q-12-12-10-48Z" fill="#fff2d5" opacity=".2"/>
+    <path d="m79 91 13-2m16 0 13 2" stroke="#a99e7b" stroke-width="2.2" stroke-linecap="round"/>
+    <path d="M79 100q8-7 14 0-7 6-14 0Zm28 0q8-7 14 0-7 6-14 0Z" fill="#fff5e6" stroke="#765c50" stroke-width="1"/>
+    <circle cx="87" cy="100" r="3.2" fill="#859fa2"/><circle cx="114" cy="100" r="3.2" fill="#859fa2"/>
+    <circle cx="87" cy="100" r="1.5" fill="#1c2830"/><circle cx="114" cy="100" r="1.5" fill="#1c2830"/>
+    <path d="m101 103-4 14 7 2" fill="none" stroke="#ab7960" stroke-width="1.6" stroke-linecap="round"/>
+    <path d="M92 131q8 2 16-1" fill="none" stroke="#8d594e" stroke-width="2" stroke-linecap="round"/>
+
+
+
+    <path d="M72 90q-10-35 24-43 37-4 34 43l-13-19-43 8Z" fill="#dfd6b4" stroke="#aaa580" stroke-width="2"/>
+    <path d="M77 68q19-11 45-6m-41 1q15-9 34-8" stroke="#f5efd2" stroke-width="3" fill="none"/>
+    <path d="m77 90 16 2m15 0 15-2" stroke="#b4a782" stroke-width="2"/>
+    <path d="m148 228 11-118" stroke="#74503a" stroke-width="5" stroke-linecap="round"/><path d="m159 98v24m-12-12h24m-20-8 16 16m0-16-16 16" stroke="#a8e0b4" stroke-width="2"/><circle cx="159" cy="110" r="4" fill="#fff4bf"/><path d="M54 208q20-17 20-3-2 11-15 10 12 13 10 19" fill="none" stroke="#8db89a" stroke-width="4"/></symbol></defs>
+    <rect width="250" height="350" rx="11" fill="#f5edda"/>
+    <rect x="4" y="4" width="242" height="342" rx="8" fill="none" stroke="#ad864a" stroke-width="2"/>
+    <rect x="9" y="9" width="232" height="332" rx="5" fill="none" stroke="#ad864a" stroke-width=".7" opacity=".65"/>
+    <rect x="47" y="40" width="156" height="270" rx="70" fill="#e8d5ad" opacity=".33"/>
+    <path d="M48 250v-36h10v-55l10-19 10 19v35h10v-27h10v-45l11-17 10 17v42h13v-18l12-23 12 23v48h12v-46l11-15 10 15v63h13v42Z" fill="#b6a27d" opacity=".3"/>
+    <path d="M57 267q68-22 136 0m-136 5q68-20 136 0" fill="none" stroke="#a78b58" opacity=".3"/>
+    <circle cx="129" cy="190" r="1.2" fill="#aa8449" opacity="0.65"/><circle cx="166" cy="251" r="0.55" fill="#aa8449" opacity="0.3"/><circle cx="203" cy="69" r="0.55" fill="#aa8449" opacity="0.3"/><circle cx="77" cy="130" r="0.55" fill="#aa8449" opacity="0.65"/><circle cx="114" cy="191" r="0.55" fill="#aa8449" opacity="0.3"/><circle cx="151" cy="252" r="1.2" fill="#aa8449" opacity="0.3"/><circle cx="188" cy="70" r="0.55" fill="#aa8449" opacity="0.65"/><circle cx="62" cy="131" r="0.55" fill="#aa8449" opacity="0.3"/><circle cx="99" cy="192" r="0.55" fill="#aa8449" opacity="0.3"/><circle cx="136" cy="253" r="0.55" fill="#aa8449" opacity="0.65"/><circle cx="173" cy="71" r="1.2" fill="#aa8449" opacity="0.3"/><circle cx="47" cy="132" r="0.55" fill="#aa8449" opacity="0.3"/><circle cx="84" cy="193" r="0.55" fill="#aa8449" opacity="0.65"/><circle cx="121" cy="254" r="0.55" fill="#aa8449" opacity="0.3"/><circle cx="158" cy="72" r="0.55" fill="#aa8449" opacity="0.3"/><circle cx="195" cy="133" r="1.2" fill="#aa8449" opacity="0.65"/><circle cx="69" cy="194" r="0.55" fill="#aa8449" opacity="0.3"/><circle cx="106" cy="255" r="0.55" fill="#aa8449" opacity="0.3"/><circle cx="143" cy="73" r="0.55" fill="#aa8449" opacity="0.65"/><circle cx="180" cy="134" r="0.55" fill="#aa8449" opacity="0.3"/><circle cx="54" cy="195" r="1.2" fill="#aa8449" opacity="0.3"/><circle cx="91" cy="256" r="0.55" fill="#aa8449" opacity="0.65"/><circle cx="128" cy="74" r="0.55" fill="#aa8449" opacity="0.3"/><circle cx="165" cy="135" r="0.55" fill="#aa8449" opacity="0.3"/><circle cx="202" cy="196" r="0.55" fill="#aa8449" opacity="0.65"/><circle cx="76" cy="257" r="1.2" fill="#aa8449" opacity="0.3"/><circle cx="113" cy="75" r="0.55" fill="#aa8449" opacity="0.3"/><circle cx="150" cy="136" r="0.55" fill="#aa8449" opacity="0.65"/><circle cx="187" cy="197" r="0.55" fill="#aa8449" opacity="0.3"/><circle cx="61" cy="258" r="0.55" fill="#aa8449" opacity="0.3"/><circle cx="98" cy="76" r="1.2" fill="#aa8449" opacity="0.65"/><circle cx="135" cy="137" r="0.55" fill="#aa8449" opacity="0.3"/><circle cx="172" cy="198" r="0.55" fill="#aa8449" opacity="0.3"/><circle cx="46" cy="259" r="0.55" fill="#aa8449" opacity="0.65"/><circle cx="83" cy="77" r="0.55" fill="#aa8449" opacity="0.3"/><circle cx="120" cy="138" r="1.2" fill="#aa8449" opacity="0.3"/><circle cx="157" cy="199" r="0.55" fill="#aa8449" opacity="0.65"/><circle cx="194" cy="260" r="0.55" fill="#aa8449" opacity="0.3"/><g data-motif="wand-magic" fill="none" stroke-linecap="round">
+    <path d="M38 274 42 107m170-31-4 167" stroke="#805b41" stroke-width="3"/>
+    <path d="M35 257h7m-7 7h7m163-171h7m-7-7h7" stroke="#c4a573" stroke-width="2"/>
+    <path d="M42 107q-18-38 4-49 18-9 8 12m154 173q18 38-4 49-18 9-8-12" stroke="#b18c4e" stroke-width="1.5"/>
+    <path d="M42 91v16m-8-8h16m158 144v16m-8-8h16" stroke="#b18c4e" stroke-width="2"/>
+    <circle cx="42" cy="99" r="3" fill="#e7c978"/><circle cx="208" cy="251" r="3" fill="#e7c978"/>
+    </g>
+    <text x="125" y="26" text-anchor="middle" fill="#5c3438" font-family="Georgia,serif" font-weight="700" font-size="9" letter-spacing="1.3">HARRY POTTER</text>
+    <g fill="#a13d46" text-anchor="middle"><text x="22" y="31" font-family="Georgia,serif" font-weight="700" font-size="29">3</text><use xlink:href="#pip" x="13" y="38" width="18" height="18"/></g><g transform="rotate(180 125 175)"><g fill="#a13d46" text-anchor="middle"><text x="22" y="31" font-family="Georgia,serif" font-weight="700" font-size="29">3</text><use xlink:href="#pip" x="13" y="38" width="18" height="18"/></g></g>
+    <g id="main-art"><use xlink:href="#character" x="42" y="48" width="166" height="216"/>
+      <path d="M57 273h136m-125 31h114" stroke="#ad864a" stroke-width="1"/>
+      <text x="125" y="288" text-anchor="middle" fill="#5c3438" font-family="Georgia,serif" font-weight="700" font-size="11.5">DRACO MALFOY</text>
+      <text x="125" y="300" text-anchor="middle" fill="#5c3438" font-family="Arial,sans-serif" font-size="6.5" letter-spacing=".3">SLYTHERIN SEEKER</text>
+      <path d="m125 309 13 13-13 13-13-13Z" fill="#e8d5ad" stroke="#ad864a" stroke-width="1"/>
+      <text x="125" y="327" text-anchor="middle" fill="#a13d46" font-family="Georgia,serif" font-weight="700" font-size="15">3</text></g>
+  </svg>

@@ -5,7 +5,9 @@ import { test } from "node:test";
 const directory = new URL("../src/PokenoGenie/wwwroot/cards/", import.meta.url);
 const ranks = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
 const suits = ["S", "H", "D", "C"];
-const themeDirectories = [directory, ...["midnight", "sunburst", "mopar", "dart1969"].map(id => new URL(`${id}/`, directory))];
+const traditionalDirectories = [directory, ...["midnight", "sunburst", "mopar", "dart1969"].map(id => new URL(`${id}/`, directory))];
+const storyIds = ["harrypotter", "starwars", "lordoftherings"];
+const themeDirectories = [...traditionalDirectories, ...storyIds.map(id => new URL(`${id}/`, directory))];
 
 test("every theme has 52 self-contained SVG faces", async () => {
   const expected = suits.flatMap(suit => ranks.map(rank => `${rank}${suit}.svg`)).sort();
@@ -22,7 +24,7 @@ test("every theme has 52 self-contained SVG faces", async () => {
 });
 
 test("ace and number cards show the correct number of suit pips", async () => {
-  for (const themeDirectory of themeDirectories) {
+  for (const themeDirectory of traditionalDirectories) {
     for (const suit of suits) {
       for (const rank of ranks.slice(0, 10)) {
         const art = await readFile(new URL(`${rank}${suit}.svg`, themeDirectory), "utf8");
@@ -35,7 +37,7 @@ test("ace and number cards show the correct number of suit pips", async () => {
 });
 
 test("court cards contain mirrored portrait artwork", async () => {
-  for (const themeDirectory of themeDirectories.filter(url => !url.pathname.endsWith("/mopar/"))) {
+  for (const themeDirectory of traditionalDirectories.filter(url => !url.pathname.endsWith("/mopar/"))) {
     for (const suit of suits) {
       for (const rank of ["J", "Q", "K"]) {
         const art = await readFile(new URL(`${rank}${suit}.svg`, themeDirectory), "utf8");
@@ -45,6 +47,58 @@ test("court cards contain mirrored portrait artwork", async () => {
       }
     }
   }
+});
+
+test("story decks have named, mirrored character courts and themed object aces", async () => {
+  const expected = {
+    harrypotter: { K: "dumbledore", Q: "mcgonagall", J: "harry", A: "snitch" },
+    starwars: { K: "vader", Q: "leia", J: "luke", A: "deathstar" },
+    lordoftherings: { K: "aragorn", Q: "arwen", J: "frodo", A: "onering" }
+  };
+  for (const [themeId, characters] of Object.entries(expected)) {
+    const numberCharacters = new Set();
+    const illustrations = new Set();
+    for (const suit of suits) {
+      for (const rank of ranks) {
+        const art = await readFile(new URL(`${themeId}/${rank}${suit}.svg`, directory), "utf8");
+        const main = /<g id="main-art">([\s\S]*)<\/g>\s*<\/svg>/.exec(art)?.[1];
+        assert.ok(main);
+        assert.doesNotMatch(main, /xlink:href="#pip"/, "These decks use integrated scenes, not pip fields");
+        assert.match(art, /<g transform="rotate\(180 125 175\)">/, "Keep rank and suit readable from both ends");
+        if (characters[rank]) assert.match(art, new RegExp(`data-character="${characters[rank]}"`));
+        if (["J","Q","K"].includes(rank)) {
+          assert.equal((main.match(/<use xlink:href="#character"/g) || []).length, 2);
+          assert.match(main, /data-portrait="inverted" transform="rotate\(180 125 175\)"/);
+        } else if (rank === "A") {
+          assert.match(art, new RegExp(`data-artifact="${characters.A}"`));
+        } else {
+          numberCharacters.add(/data-character="([^"]+)"/.exec(art)?.[1]);
+          assert.match(main, /<use xlink:href="#character"/);
+        }
+        if (rank !== "A") illustrations.add(/<symbol id="character"[^>]*>([\s\S]*?)<\/symbol>/.exec(art)?.[1]);
+        const ids = new Set([...art.matchAll(/\bid="([^"]+)"/g)].map(match => match[1]));
+        for (const reference of art.matchAll(/(?:xlink:href="#|url\(#)([^"\)]+)/g)) {
+          assert.ok(ids.has(reference[1]), `${themeId}/${rank}${suit} has a broken SVG reference: ${reference[1]}`);
+        }
+      }
+    }
+    assert.equal(numberCharacters.size, 9, `${themeId} needs a varied supporting cast`);
+    assert.equal(illustrations.size, 12, `${themeId} needs distinct illustrations for its 12 characters`);
+    const back = await readFile(new URL(`${themeId}/back.svg`, directory), "utf8");
+    assert.match(back, new RegExp(`data-artifact="${characters.A}"`));
+    assert.match(back, /<use xlink:href="#artifact"/);
+  }
+});
+
+test("Star Wars force users have character-colored lightsaber borders", async () => {
+  for (const [card,color] of [["KS","#fa6964"],["JS","#7ce6ab"],["2S","#74c9ff"],["5S","#e5f5ff"]]) {
+    const art = await readFile(new URL(`starwars/${card}.svg`, directory), "utf8");
+    assert.equal((art.match(/data-motif="lightsaber"/g) || []).length, 2);
+    assert.ok(art.includes(`stroke="${color}"`));
+  }
+  const han = await readFile(new URL("starwars/6S.svg", directory), "utf8");
+  assert.match(han, /data-character="han"/);
+  assert.match(han, /data-motif="starship-panels"/);
 });
 
 test("alternate decks have distinct art and a matching back", async () => {

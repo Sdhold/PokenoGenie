@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 250 350" role="img" aria-label="7 of D — Harry Potter: Rubeus Hagrid" data-deck="harrypotter" data-character="hagrid">
+    <defs><symbol id="pip" viewBox="0 0 32 32"><g fill="#a13d46"><path d="M16 1 30 16 16 31 2 16Z"/></g></symbol><linearGradient id="artifact-gold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f4e3ac"/><stop offset=".28" stop-color="#d3aa53"/><stop offset=".55" stop-color="#f8e7ae"/><stop offset=".8" stop-color="#b48c3e"/><stop offset="1" stop-color="#e5c373"/></linearGradient><symbol id="character" data-character="hagrid" viewBox="0 0 200 240"><path d="M28 238q-16-61 23-79l97-1q39 15 28 80Z" fill="#765542" stroke="#343936" stroke-width="3"/>
+    <path d="m55 173 31 17-5 48m63-65-31 17 5 48" stroke="#b49871" stroke-width="5" fill="none"/>
+    <path d="M48 82q-2-48 50-49 55-2 55 49l-1 77-17 29-70-1-18-30Z" fill="#503a2c" stroke="#302e28" stroke-width="3"/>
+    <g transform="translate(-12 -5) scale(1.12 1.06)"><path d="M85 137v30q15 15 30 0v-30" fill="#d5a17b" stroke="#99735d" stroke-width="1.7"/>
+    <ellipse cx="72" cy="105" rx="7" ry="12" fill="#d5a17b"/><ellipse cx="128" cy="105" rx="7" ry="12" fill="#d5a17b"/>
+    <path d="M72 87Q72 54 100 53q29 1 28 34l-2 36q-3 21-22 31-22-9-25-31Z" fill="#d5a17b" stroke="#99735d" stroke-width="1.8"/>
+    <path d="M77 85q3-24 23-25-17 14-16 50l3 23q-12-12-10-48Z" fill="#fff2d5" opacity=".2"/>
+    <path d="m79 91 13-2m16 0 13 2" stroke="#49362a" stroke-width="3" stroke-linecap="round"/>
+    <path d="M79 100q8-7 14 0-7 6-14 0Zm28 0q8-7 14 0-7 6-14 0Z" fill="#fff5e6" stroke="#765c50" stroke-width="1"/>
+    <circle cx="87" cy="100" r="3.2" fill="#536d65"/><circle cx="114" cy="100" r="3.2" fill="#536d65"/>
+    <circle cx="87" cy="100" r="1.5" fill="#1c2830"/><circle cx="114" cy="100" r="1.5" fill="#1c2830"/>
+    <path d="m101 103-4 14 7 2" fill="none" stroke="#ab7960" stroke-width="1.6" stroke-linecap="round"/>
+    <path d="M92 131q8 2 16-1" fill="none" stroke="#8d594e" stroke-width="2" stroke-linecap="round"/>
+    <path d="m78 109 12 2m22 0 11-3m-40 13-2 9m37-9 2 8m-30 9 8 2" fill="none" stroke="#ac8571" stroke-width="1.2"/>
+
+    </g>
+    <path d="M62 118q14 11 25 10l13-6 14 6q13 1 27-10l-6 58-35 35-35-35Z" fill="#664632" stroke="#382e27" stroke-width="2.5"/>
+    <path d="m70 143q-10 18 1 35" stroke="#9d7150" stroke-width="3" fill="none"/><path d="m86 143q-10 18 1 35" stroke="#9d7150" stroke-width="3" fill="none"/><path d="m105 143q-10 18 1 35" stroke="#9d7150" stroke-width="3" fill="none"/><path d="m122 143q-10 18 1 35" stroke="#9d7150" stroke-width="3" fill="none"/>
+    <path d="M62 81q-16-21 4-37 18-16 35-2 22-15 37 2 17 18 2 37l-18-18-12 9-18-11-16 14Z" fill="#503a2c" stroke="#302e28" stroke-width="2"/>
+    <path d="M161 237V91q-1-18-13-9" fill="none" stroke="#c48d9a" stroke-width="7"/><path d="M149 91h24" stroke="#e9bec0" stroke-width="3"/></symbol></defs>
+    <rect width="250" height="350" rx="11" fill="#f5edda"/>
+    <rect x="4" y="4" width="242" height="342" rx="8" fill="none" stroke="#ad864a" stroke-width="2"/>
+    <rect x="9" y="9" width="232" height="332" rx="5" fill="none" stroke="#ad864a" stroke-width=".7" opacity=".65"/>
+    <rect x="47" y="40" width="156" height="270" rx="70" fill="#e8d5ad" opacity=".33"/>
+    <path d="M48 250v-36h10v-55l10-19 10 19v35h10v-27h10v-45l11-17 10 17v42h13v-18l12-23 12 23v48h12v-46l11-15 10 15v63h13v42Z" fill="#b6a27d" opacity=".3"/>
+    <path d="M57 267q68-22 136 0m-136 5q68-20 136 0" fill="none" stroke="#a78b58" opacity=".3"/>
+    <circle cx="197" cy="63" r="1.2" fill="#aa8449" opacity="0.65"/><circle cx="71" cy="124" r="0.55" fill="#aa8449" opacity="0.3"/><circle cx="108" cy="185" r="0.55" fill="#aa8449" opacity="0.3"/><circle cx="145" cy="246" r="0.55" fill="#aa8449" opacity="0.65"/><circle cx="182" cy="64" r="0.55" fill="#aa8449" opacity="0.3"/><circle cx="56" cy="125" r="1.2" fill="#aa8449" opacity="0.3"/><circle cx="93" cy="186" r="0.55" fill="#aa8449" opacity="0.65"/><circle cx="130" cy="247" r="0.55" fill="#aa8449" opacity="0.3"/><circle cx="167" cy="65" r="0.55" fill="#aa8449" opacity="0.3"/><circle cx="204" cy="126" r="0.55" fill="#aa8449" opacity="0.65"/><circle cx="78" cy="187" r="1.2" fill="#aa8449" opacity="0.3"/><circle cx="115" cy="248" r="0.55" fill="#aa8449" opacity="0.3"/><circle cx="152" cy="66" r="0.55" fill="#aa8449" opacity="0.65"/><circle cx="189" cy="127" r="0.55" fill="#aa8449" opacity="0.3"/><circle cx="63" cy="188" r="0.55" fill="#aa8449" opacity="0.3"/><circle cx="100" cy="249" r="1.2" fill="#aa8449" opacity="0.65"/><circle cx="137" cy="67" r="0.55" fill="#aa8449" opacity="0.3"/><circle cx="174" cy="128" r="0.55" fill="#aa8449" opacity="0.3"/><circle cx="48" cy="189" r="0.55" fill="#aa8449" opacity="0.65"/><circle cx="85" cy="250" r="0.55" fill="#aa8449" opacity="0.3"/><circle cx="122" cy="68" r="1.2" fill="#aa8449" opacity="0.3"/><circle cx="159" cy="129" r="0.55" fill="#aa8449" opacity="0.65"/><circle cx="196" cy="190" r="0.55" fill="#aa8449" opacity="0.3"/><circle cx="70" cy="251" r="0.55" fill="#aa8449" opacity="0.3"/><circle cx="107" cy="69" r="0.55" fill="#aa8449" opacity="0.65"/><circle cx="144" cy="130" r="1.2" fill="#aa8449" opacity="0.3"/><circle cx="181" cy="191" r="0.55" fill="#aa8449" opacity="0.3"/><circle cx="55" cy="252" r="0.55" fill="#aa8449" opacity="0.65"/><circle cx="92" cy="70" r="0.55" fill="#aa8449" opacity="0.3"/><circle cx="129" cy="131" r="0.55" fill="#aa8449" opacity="0.3"/><circle cx="166" cy="192" r="1.2" fill="#aa8449" opacity="0.65"/><circle cx="203" cy="253" r="0.55" fill="#aa8449" opacity="0.3"/><circle cx="77" cy="71" r="0.55" fill="#aa8449" opacity="0.3"/><circle cx="114" cy="132" r="0.55" fill="#aa8449" opacity="0.65"/><circle cx="151" cy="193" r="0.55" fill="#aa8449" opacity="0.3"/><circle cx="188" cy="254" r="1.2" fill="#aa8449" opacity="0.3"/><circle cx="62" cy="72" r="0.55" fill="#aa8449" opacity="0.65"/><circle cx="99" cy="133" r="0.55" fill="#aa8449" opacity="0.3"/><g data-motif="wand-magic" fill="none" stroke-linecap="round">
+    <path d="M38 274 42 107m170-31-4 167" stroke="#805b41" stroke-width="3"/>
+    <path d="M35 257h7m-7 7h7m163-171h7m-7-7h7" stroke="#c4a573" stroke-width="2"/>
+    <path d="M42 107q-18-38 4-49 18-9 8 12m154 173q18 38-4 49-18 9-8-12" stroke="#b18c4e" stroke-width="1.5"/>
+    <path d="M42 91v16m-8-8h16m158 144v16m-8-8h16" stroke="#b18c4e" stroke-width="2"/>
+    <circle cx="42" cy="99" r="3" fill="#e7c978"/><circle cx="208" cy="251" r="3" fill="#e7c978"/>
+    </g>
+    <text x="125" y="26" text-anchor="middle" fill="#5c3438" font-family="Georgia,serif" font-weight="700" font-size="9" letter-spacing="1.3">HARRY POTTER</text>
+    <g fill="#a13d46" text-anchor="middle"><text x="22" y="31" font-family="Georgia,serif" font-weight="700" font-size="29">7</text><use xlink:href="#pip" x="13" y="38" width="18" height="18"/></g><g transform="rotate(180 125 175)"><g fill="#a13d46" text-anchor="middle"><text x="22" y="31" font-family="Georgia,serif" font-weight="700" font-size="29">7</text><use xlink:href="#pip" x="13" y="38" width="18" height="18"/></g></g>
+    <g id="main-art"><use xlink:href="#character" x="42" y="48" width="166" height="216"/>
+      <path d="M57 273h136m-125 31h114" stroke="#ad864a" stroke-width="1"/>
+      <text x="125" y="288" text-anchor="middle" fill="#5c3438" font-family="Georgia,serif" font-weight="700" font-size="11.5">RUBEUS HAGRID</text>
+      <text x="125" y="300" text-anchor="middle" fill="#5c3438" font-family="Arial,sans-serif" font-size="6.5" letter-spacing=".3">KEEPER OF KEYS AND GROUNDS</text>
+      <path d="m125 309 13 13-13 13-13-13Z" fill="#e8d5ad" stroke="#ad864a" stroke-width="1"/>
+      <text x="125" y="327" text-anchor="middle" fill="#a13d46" font-family="Georgia,serif" font-weight="700" font-size="15">7</text></g>
+  </svg>

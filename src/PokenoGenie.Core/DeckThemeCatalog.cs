@@ -15,7 +15,10 @@ public static class DeckThemeCatalog
         new("midnight", "Midnight", "Dark navy with warm gold details"),
         new("sunburst", "Sunburst", "Bright coral and blue cards"),
         new("mopar", "MOPAR Muscle", "Charger, Challenger, ’Cuda, and Superbird", "AH"),
-        new("dart1969", "1969 Dart", "A blue 1969 Dodge Dart with chrome and a white rear stripe", "AH")
+        new("dart1969", "1969 Dart", "A blue 1969 Dodge Dart with chrome and a white rear stripe", "AH"),
+        new("harrypotter", "Harry Potter", "Hogwarts characters, wand magic, and the Golden Snitch", "JH"),
+        new("starwars", "Star Wars", "Characters, lightsabers, droids, and the Death Star", "KS"),
+        new("lordoftherings", "Lord of the Rings", "Aragorn, Arwen, Frodo, and the One Ring", "KS")
     ];
 
     public static DeckTheme FindOrDefault(string? id) =>
