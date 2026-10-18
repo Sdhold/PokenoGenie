@@ -111,6 +111,7 @@ a { color: inherit; }
 .playing-card.red-suit, .red-suit { color: #bb3b40; }
 .playing-card-art { display: block; width: 100%; height: 100%; object-fit: fill; }
 .card-back { padding: 9px; background: #f9f2df; }
+.card-back.art-back { padding: 0; background: transparent; border: 0; }
 .card-back-inner { width: 100%; height: 100%; border-radius: 7px; border: 2px solid #e9d6a8; color: #ebca82; background: repeating-linear-gradient(45deg, #214e41 0 12px, #285849 12px 17px); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 1.8rem; text-shadow: 0 1px 4px #0e2826; }
 .card-back-inner strong { font-family: Georgia, serif; font-size: 2.2rem; border: 2px solid #e6c77e; border-radius: 50%; width: 65px; height: 65px; display: grid; place-items: center; background: #204637; }
 .deck-top-card { position: absolute; inset: 0; width: 100%; backface-visibility: hidden; animation: deal-in .46s ease-out both; }
@@ -134,6 +135,15 @@ a { color: inherit; }
 .history-grid { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 14px; max-height: 240px; overflow-y: auto; }
 .history-chip { font-size: .95rem; padding: 6px 9px; }
 .history-chip small { font-family: "Segoe UI", Arial, sans-serif; font-size: .65rem; color: #718076; }
+.deck-theme-panel { margin-top: 22px; padding: 20px; border: 1px solid #d5c18b55; border-radius: 15px; }
+.deck-theme-heading { display: flex; align-items: end; justify-content: space-between; gap: 15px; }
+.deck-theme-heading h2 { font: 500 1.5rem Georgia, serif; margin: 6px 0 0; }
+.deck-theme-heading p { max-width: 23ch; color: #c5d2c4; font-size: .8rem; line-height: 1.4; margin: 0; }
+.deck-theme-options { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-top: 17px; }
+.deck-theme-option { min-width: 0; min-height: 143px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 9px; padding: 10px 5px; border: 2px solid #d7c69d66; border-radius: 12px; background: #fffbef10; color: #f8f1df; }
+.deck-theme-option.selected { border-color: #eac580; background: #eac58022; box-shadow: 0 0 0 2px #eac58033; }
+.deck-theme-option img { display: block; width: 55px; height: 77px; border-radius: 4px; box-shadow: 0 5px 10px #061b1a88; }
+.deck-theme-option strong { font-size: .75rem; letter-spacing: .01em; }
 .display-join-panel { display: flex; flex-direction: column; gap: 4px; border: 1px solid #d5c18b55; border-radius: 15px; padding: 20px; margin-top: 22px; }
 .display-join-panel h2 { font-family: Georgia, serif; font-size: 1.5rem; font-weight: 500; margin: 6px 0; }
 .display-join-panel p { color: #c5d2c4; line-height: 1.45; margin: 4px 0 12px; }
@@ -194,6 +204,9 @@ a { color: inherit; }
     .pattern-grid { width: 88px; height: 88px; gap: 3px; }
     .pattern-grid-small { width: 60px; height: 60px; gap: 2px; }
     .pattern-grid-tiny { width: 35px; height: 35px; gap: 1px; }
+    .deck-theme-panel { padding: 16px; }
+    .deck-theme-heading { align-items: start; flex-direction: column; gap: 7px; }
+    .deck-theme-heading p { max-width: none; }
     .display-entry form { flex-direction: column; }
     .display-entry .primary-button { width: 100%; }
 }

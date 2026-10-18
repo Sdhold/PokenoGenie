@@ -108,10 +108,66 @@ function cardSvg(rank, suitCode) {
   </svg>\n`;
 }
 
+const themes = {
+  midnight: {
+    colors: {
+      "#fffdf8": "#111c2c", "#d7cdbb": "#d5b875",
+      "#182b35": "#bde2e3", "#b13743": "#ff8d91",
+      "#d7bd88": "#c8a96f", "#ebdfc8": "#33425b", "#cda967": "#c99d5d",
+      "#f5ead5": "#263550", "#bc9b67": "#d5b875", "#f4e8cc": "#3b4965",
+      "#325a75": "#38728a", "#a83f48": "#c75a66"
+    },
+    ornament: '<path d="M12 70v210m226-210v210" fill="none" stroke="#d5b875" stroke-width="1" opacity=".45"/><path d="m125 10 3 6-3 6-3-6Zm0 318 3 6-3 6-3-6Z" fill="#d5b875" opacity=".7"/>'
+  },
+  sunburst: {
+    colors: {
+      "#fffdf8": "#fff8ee", "#d7cdbb": "#eb9a4e",
+      "#182b35": "#204b79", "#b13743": "#d64f53",
+      "#d7bd88": "#f2ad59", "#ebdfc8": "#ffe0a2", "#cda967": "#e18448",
+      "#f5ead5": "#fff1c9", "#bc9b67": "#d5794a", "#f4e8cc": "#eef4e5",
+      "#325a75": "#386b91", "#a83f48": "#df6871", "#c79a4a": "#e6a450"
+    },
+    ornament: '<circle cx="125" cy="14" r="3" fill="#eb9a4e"/><circle cx="125" cy="336" r="3" fill="#eb9a4e"/><path d="M12 68v214m226-214v214" fill="none" stroke="#eb9a4e" stroke-width="1" opacity=".4"/>'
+  }
+};
+
+function themedCardSvg(rank, suitCode, theme) {
+  const original = cardSvg(rank, suitCode);
+  const colored = original.replace(/#[0-9a-fA-F]{6}/g, color => theme.colors[color.toLowerCase()] || color);
+  return colored.replace("<defs>", `<g id="theme-ornament">${theme.ornament}</g><defs>`);
+}
+
+function backSvg(themeId) {
+  if (themeId === "midnight") {
+    return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 250 350" role="img" aria-label="Midnight card back">
+      <rect width="250" height="350" rx="11" fill="#111c2c"/><rect x="8" y="8" width="234" height="334" rx="8" fill="none" stroke="#d5b875" stroke-width="3"/>
+      <rect x="19" y="19" width="212" height="312" rx="4" fill="#263550" stroke="#d5b875" stroke-width="1.5"/>
+      <path d="M19 60 231 290M19 110 231 340M19 240 231 10M19 290 231 60" stroke="#6e83a5" stroke-width="3" opacity=".5"/>
+      <path d="m125 81 11 70 70 24-70 24-11 70-11-70-70-24 70-24Z" fill="#1b2a43" stroke="#d5b875" stroke-width="3"/>
+      <circle cx="125" cy="175" r="51" fill="#111c2c" stroke="#d5b875" stroke-width="3"/><text x="125" y="188" text-anchor="middle" fill="#efd59c" font-family="Georgia,serif" font-size="41" font-weight="700">PG</text>
+      <circle cx="39" cy="39" r="5" fill="#d5b875"/><circle cx="211" cy="39" r="5" fill="#d5b875"/><circle cx="39" cy="311" r="5" fill="#d5b875"/><circle cx="211" cy="311" r="5" fill="#d5b875"/>
+    </svg>\n`;
+  }
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 250 350" role="img" aria-label="Sunburst card back">
+    <rect width="250" height="350" rx="11" fill="#fff8ee"/><rect x="8" y="8" width="234" height="334" rx="8" fill="#df6852" stroke="#204b79" stroke-width="3"/>
+    <rect x="18" y="18" width="214" height="314" rx="5" fill="#f4bd7b" stroke="#fff6d9" stroke-width="4"/>
+    <path d="M125 34v282M34 175h182M48 57l154 236M202 57 48 293M24 94l202 162M226 94 24 256" stroke="#df6852" stroke-width="10" opacity=".65"/>
+    <circle cx="125" cy="175" r="68" fill="#fff8ee" stroke="#204b79" stroke-width="5"/><circle cx="125" cy="175" r="57" fill="#204b79" stroke="#fff8ee" stroke-width="2"/>
+    <text x="125" y="189" text-anchor="middle" fill="#fff8ee" font-family="Georgia,serif" font-size="44" font-weight="700">PG</text>
+  </svg>\n`;
+}
+
 await mkdir(root, { recursive: true });
 for (const suit of Object.keys(suits)) {
   for (const rank of ranks) {
     await writeFile(path.join(root, `${rank}${suit}.svg`), cardSvg(rank, suit), "utf8");
+    for (const [themeId, theme] of Object.entries(themes)) {
+      await mkdir(path.join(root, themeId), { recursive: true });
+      await writeFile(path.join(root, themeId, `${rank}${suit}.svg`), themedCardSvg(rank, suit, theme), "utf8");
+    }
   }
 }
-console.log(`Generated ${ranks.length * Object.keys(suits).length} original card faces in ${root}`);
+for (const themeId of Object.keys(themes)) {
+  await writeFile(path.join(root, themeId, "back.svg"), backSvg(themeId), "utf8");
+}
+console.log(`Generated ${ranks.length * Object.keys(suits).length} faces per deck in ${root}`);

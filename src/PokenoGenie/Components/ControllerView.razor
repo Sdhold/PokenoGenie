@@ -96,7 +96,7 @@
                         <div class="deck-stack">
                             <div class="deck-shadow-card shadow-one"></div>
                             <div class="deck-shadow-card shadow-two"></div>
-                            <PlayingCardView @key="_room.DrawnCount" Card="_room.CurrentCard" Class="deck-top-card" />
+                            <PlayingCardView @key="_room.DrawnCount" Card="_room.CurrentCard" ThemeId="@_themeId" Class="deck-top-card" />
                         </div>
                         <div class="draw-count"><strong>@_room.DrawnCount</strong><span>/ 52 CARDS</span></div>
                     </div>
@@ -166,6 +166,25 @@
                 </section>
             }
 
+            <section class="deck-theme-panel" aria-labelledby="deck-theme-heading">
+                <div class="deck-theme-heading">
+                    <div><span class="eyebrow">CARD DECK</span><h2 id="deck-theme-heading">Choose a look.</h2></div>
+                    <p>Changes the cards on your phone and TV. The round stays as it is.</p>
+                </div>
+                <div class="deck-theme-options" role="group" aria-label="Deck themes">
+                    @foreach (var theme in DeckThemeCatalog.All)
+                    {
+                        <button class="deck-theme-option @(theme.Id == _themeId ? "selected" : "")"
+                                type="button" aria-pressed="@(theme.Id == _themeId ? "true" : "false")" title="@theme.Description"
+                                disabled="@(!Rooms.IsConnected || _busy || _themeBusy)"
+                                @onclick="() => SelectThemeAsync(theme.Id)">
+                            <img src="@theme.PreviewPath" alt="" draggable="false" />
+                            <strong>@theme.Name</strong>
+                        </button>
+                    }
+                </div>
+            </section>
+
             <section class="display-join-panel">
                 <div><span class="eyebrow">ON THE BIG SCREEN</span><h2>Open the TV view</h2><p>Open <strong>tv.html</strong> on the TV and enter the room code.</p></div>
                 <div class="share-row"><strong class="share-code">@_code</strong><button class="small-button" @onclick="CopyDisplayLinkAsync">@(_copied ? "Copied!" : "Copy TV link")</button></div>
@@ -202,12 +221,14 @@
     private bool _loading = true;
     private bool _busy;
     private bool _shuffling;
+    private bool _themeBusy;
     private bool _copied;
     private bool _confirmNewTable;
     private string? _code;
     private string? _setupError;
     private string? _error;
     private string _selectedPatternId = "standard";
+    private string _themeId = DeckThemeCatalog.DefaultId;
     private RoomState? _room;
     private PeriodicTimer? _timer;
     private CancellationTokenSource? _timerCancellation;
@@ -222,6 +243,7 @@
     protected override async Task OnInitializedAsync()
     {
         Rooms.RoomChanged += HandleRoomChanged;
+        Rooms.ThemeChanged += HandleThemeChanged;
         Rooms.ConnectionChanged += HandleConnectionChanged;
         Rooms.ErrorReceived += HandleError;
         try
@@ -270,6 +292,12 @@
         _ = InvokeAsync(StateHasChanged);
     }
 
+    private void HandleThemeChanged(string themeId)
+    {
+        _themeId = DeckThemeCatalog.FindOrDefault(themeId).Id;
+        _ = InvokeAsync(StateHasChanged);
+    }
+
     private void HandleConnectionChanged(bool connected) => _ = InvokeAsync(StateHasChanged);
     private void HandleError(string message) { _error = message; _ = InvokeAsync(StateHasChanged); }
 
@@ -315,6 +343,7 @@
             _room = null;
             _code = code;
             _selectedPatternId = "standard";
+            _themeId = DeckThemeCatalog.DefaultId;
             _confirmNewTable = false;
             await Rooms.SaveRoomAsync(code);
             await Rooms.WatchRoomAsync(code);
@@ -367,6 +396,16 @@
         finally { _busy = false; }
     }
 
+    private async Task SelectThemeAsync(string themeId)
+    {
+        if (_code is null || _themeBusy || themeId == _themeId) return;
+        _themeBusy = true;
+        _error = null;
+        try { await Rooms.ChangeThemeAsync(_code, themeId); }
+        catch (Exception error) { _error = error.Message; }
+        finally { _themeBusy = false; }
+    }
+
     private async Task CopyDisplayLinkAsync()
     {
         try
@@ -382,6 +421,7 @@
     public ValueTask DisposeAsync()
     {
         Rooms.RoomChanged -= HandleRoomChanged;
+        Rooms.ThemeChanged -= HandleThemeChanged;
         Rooms.ConnectionChanged -= HandleConnectionChanged;
         Rooms.ErrorReceived -= HandleError;
         _timerCancellation?.Cancel();

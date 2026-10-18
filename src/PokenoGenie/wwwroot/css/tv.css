@@ -44,6 +44,7 @@ button:focus, input:focus { outline: 3px solid #e7bf6d; outline-offset: 3px; }
 .tv-card.large { width: 40vh; height: 56vh; }
 .tv-card .card-art { display: block; width: 100%; height: 100%; }
 .tv-card.back { border: 8px solid #f9f2df; background: repeating-linear-gradient(45deg, #214e41 0 12px, #285849 12px 17px); color: #ebca82; }
+.tv-card.back.art-back { border: 0; background: transparent; }
 .tv-card.back span { font: bold 6vh Georgia, serif; border: 3px solid #e6c77e; border-radius: 50%; padding: 12px; background: #204637; }
 .empty-card { display: flex; align-items: center; justify-content: center; border: 2px dashed #d6c79a66; color: #d6c79a77; font-size: 2.3rem; }
 .display-footer { min-height: 50px; padding: 10px 2.5vw; display: flex; align-items: center; gap: 20px; border-top: 1px solid #d3c39144; color: #c7d4c8; font-size: .72rem; letter-spacing: .11em; }

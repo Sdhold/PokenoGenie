@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 250 350" role="img" aria-label="Sunburst card back">
+    <rect width="250" height="350" rx="11" fill="#fff8ee"/><rect x="8" y="8" width="234" height="334" rx="8" fill="#df6852" stroke="#204b79" stroke-width="3"/>
+    <rect x="18" y="18" width="214" height="314" rx="5" fill="#f4bd7b" stroke="#fff6d9" stroke-width="4"/>
+    <path d="M125 34v282M34 175h182M48 57l154 236M202 57 48 293M24 94l202 162M226 94 24 256" stroke="#df6852" stroke-width="10" opacity=".65"/>
+    <circle cx="125" cy="175" r="68" fill="#fff8ee" stroke="#204b79" stroke-width="5"/><circle cx="125" cy="175" r="57" fill="#204b79" stroke="#fff8ee" stroke-width="2"/>
+    <text x="125" y="189" text-anchor="middle" fill="#fff8ee" font-family="Georgia,serif" font-size="44" font-weight="700">PG</text>
+  </svg>

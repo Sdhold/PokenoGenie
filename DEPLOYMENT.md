@@ -4,7 +4,7 @@ Pokeno Genie uses a public GitHub Pages site and a Firebase **Spark** (no-cost) 
 
 ## Firebase setup for this project
 
-The Firebase side was configured on October 18, 2026. The **PokenoGenie** Web app is registered in project `pokenogenie` on the Spark plan. Anonymous sign-in is enabled, Realtime Database is at `https://pokenogenie-default-rtdb.firebaseio.com` in `us-central1`, and the checked-in `database.rules.json` rules are published. The local web configuration is in `src/PokenoGenie/wwwroot/firebase-config.json`; it is ignored by Git. A live local check created a room, drew two cards, and displayed them on a second browser tab.
+The Firebase side was configured on October 18, 2026. The **PokenoGenie** Web app is registered in project `pokenogenie` on the Spark plan. Anonymous sign-in is enabled, Realtime Database is at `https://pokenogenie-default-rtdb.firebaseio.com` in `us-central1`, and the checked-in `database.rules.json` rules are published. The local web configuration is in `src/PokenoGenie/wwwroot/firebase-config.json`; it is ignored by Git. The rules include an owner-controlled, viewer-readable deck theme stored separately from round state.
 
 For this Firebase project, skip section 2. Section 4 covers the remaining GitHub Pages setup. Section 2 remains as a guide if you need to set up a new Firebase project later.
 
@@ -29,6 +29,8 @@ For this Firebase project, skip section 2. Section 4 covers the remaining GitHub
    ```
 
    The rules allow any anonymous viewer with a valid room code to read called cards. Only the anonymous identity that created the room can write it or read the private shuffled deck. Never switch the database to public test rules.
+
+When deploying a new bundled deck theme, publish the updated `database.rules.json` before deploying the site. In Firebase console, open **Realtime Database → Rules**, replace the editor contents with that file, and select **Publish**. The theme rule only allows the caller to change the table's artwork choice; viewers can read it so the TV matches.
 
 ## 3. Configure and run locally
 
@@ -61,6 +63,7 @@ The workflow fails clearly if `FIREBASE_CONFIG_JSON` is missing or invalid. The 
 3. Choose **H**, start a round, and draw five cards. Check that the TV's large card, previous four, and count match the phone. Try rapid taps; the next draw should remain locked for three seconds.
 4. Pause, review the history, resume, and end the round. Reload both screens; the active room and private deck should return on the original caller phone.
 5. On the caller phone, choose **End table & start new**, confirm, and check that a different room code appears at table setup. Enter that code on the TV to begin again at the first round.
+6. While a round is active, choose **Midnight** and then **Sunburst** under **Card deck**. The current and previous cards should change artwork on both screens, while the card names, draw count, and cooldown stay the same. Reload the screens and confirm the chosen theme remains.
 
 The caller identity is stored in that browser's local data. Clearing its site data or using a different phone loses caller control of the old room; create a new table in that case. If the network disconnects, drawing pauses and the TV shows its last known state until it reconnects. The TV page uses simple JavaScript and Firebase's authenticated REST API, polling for new cards about every 1.5 seconds. It does not load Blazor, so it can run on browsers where the Blazor startup remains on the splash screen.
 

@@ -22,6 +22,7 @@ let auth;
 let database;
 let dotNet;
 let stopRoomWatch;
+let stopThemeWatch;
 let stopConnectionWatch;
 let stopOffsetWatch;
 let connected = false;
@@ -29,7 +30,9 @@ let serverOffset = 0;
 let cachedDeck;
 
 const statePath = code => `rooms/${code}/state`;
+const themePath = code => `rooms/${code}/theme`;
 const deckPath = code => `decks/${code}`;
+const themeIds = new Set(["illustrated", "midnight", "sunburst"]);
 
 function notify(method, value) {
   dotNet?.invokeMethodAsync(method, value).catch(() => {});
@@ -93,9 +96,14 @@ export function saveRoom(code) {
 
 export function watchRoom(code) {
   stopRoomWatch?.();
+  stopThemeWatch?.();
   cachedDeck = null;
   stopRoomWatch = onValue(ref(database, statePath(code)), snapshot => {
     notify("OnRoomChanged", normalizeState(snapshot.val()));
+  }, error => notify("OnBridgeError", error.message));
+  stopThemeWatch = onValue(ref(database, themePath(code)), snapshot => {
+    const value = snapshot.val();
+    notify("OnThemeChanged", themeIds.has(value) ? value : "illustrated");
   }, error => notify("OnBridgeError", error.message));
 }
 
@@ -239,6 +247,14 @@ export async function changePhase(code, targetPhase) {
   return true;
 }
 
+export async function changeTheme(code, themeId) {
+  if (!connected) throw new Error("The table is offline. Wait for it to reconnect.");
+  if (!themeIds.has(themeId)) throw new Error("That deck theme is unavailable.");
+  const state = normalizeState((await get(ref(database, statePath(code)))).val());
+  requireOwner(state);
+  await set(ref(database, themePath(code)), themeId);
+}
+
 export async function copyText(value) {
   await navigator.clipboard.writeText(value);
 }
@@ -249,8 +265,9 @@ export async function enterFullscreen() {
 
 export function dispose() {
   stopRoomWatch?.();
+  stopThemeWatch?.();
   stopConnectionWatch?.();
   stopOffsetWatch?.();
-  stopRoomWatch = stopConnectionWatch = stopOffsetWatch = undefined;
+  stopRoomWatch = stopThemeWatch = stopConnectionWatch = stopOffsetWatch = undefined;
   dotNet = undefined;
 }

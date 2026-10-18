@@ -46,12 +46,12 @@
                 <span class="display-section-label">CURRENT CARD</span>
                 @if (_room.CurrentCard is not null)
                 {
-                    <PlayingCardView @key="_room.DrawnCount" Card="_room.CurrentCard" Class="display-current-card" />
+                    <PlayingCardView @key="_room.DrawnCount" Card="_room.CurrentCard" ThemeId="@_themeId" Class="display-current-card" />
                     <div class="current-name">@_room.CurrentCard.AccessibleName</div>
                 }
                 else
                 {
-                    <PlayingCardView Class="display-current-card" />
+                    <PlayingCardView ThemeId="@_themeId" Class="display-current-card" />
                     <div class="current-name">Waiting for the first draw</div>
                 }
                 @if (_room.Phase == GamePhase.Paused) { <div class="display-phase">PAUSED FOR VERIFICATION</div> }
@@ -63,7 +63,7 @@
                 <div class="previous-grid">
                     @foreach (var card in _room.PreviousFour)
                     {
-                        <PlayingCardView Card="card" Class="display-previous-card" />
+                        <PlayingCardView Card="card" ThemeId="@_themeId" Class="display-previous-card" />
                     }
                     @for (var index = _room.PreviousFour.Count; index < 4; index++)
                     {
@@ -92,11 +92,13 @@
     private string? _setupError;
     private string? _error;
     private RoomState? _room;
+    private string _themeId = DeckThemeCatalog.DefaultId;
     private PatternDefinition CurrentPattern => PatternCatalog.Find(_room?.PatternId) ?? PatternCatalog.All[0];
 
     protected override async Task OnInitializedAsync()
     {
         Rooms.RoomChanged += HandleRoomChanged;
+        Rooms.ThemeChanged += HandleThemeChanged;
         Rooms.ConnectionChanged += HandleConnectionChanged;
         Rooms.ErrorReceived += HandleError;
         try
@@ -136,6 +138,12 @@
         _ = InvokeAsync(StateHasChanged);
     }
 
+    private void HandleThemeChanged(string themeId)
+    {
+        _themeId = DeckThemeCatalog.FindOrDefault(themeId).Id;
+        _ = InvokeAsync(StateHasChanged);
+    }
+
     private void HandleConnectionChanged(bool connected) => _ = InvokeAsync(StateHasChanged);
     private void HandleError(string message) { _error = message; _ = InvokeAsync(StateHasChanged); }
 
@@ -148,6 +156,7 @@
     public ValueTask DisposeAsync()
     {
         Rooms.RoomChanged -= HandleRoomChanged;
+        Rooms.ThemeChanged -= HandleThemeChanged;
         Rooms.ConnectionChanged -= HandleConnectionChanged;
         Rooms.ErrorReceived -= HandleError;
         return ValueTask.CompletedTask;

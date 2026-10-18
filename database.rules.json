@@ -13,6 +13,11 @@
               ".validate": "newData.isString() && newData.val() == root.child('decks').child($code).child('cards').child($index).val()"
             }
           }
+        },
+        "theme": {
+          ".read": "auth != null && $code.matches(/^[A-HJ-NP-Z2-9]{8}$/) && root.child('rooms').child($code).child('state').exists()",
+          ".write": "auth != null && $code.matches(/^[A-HJ-NP-Z2-9]{8}$/) && root.child('rooms').child($code).child('state').child('ownerUid').val() == auth.uid",
+          ".validate": "newData.isString() && newData.val().matches(/^(illustrated|midnight|sunburst)$/)"
         }
       }
     },

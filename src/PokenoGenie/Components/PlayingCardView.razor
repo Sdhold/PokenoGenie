@@ -2,19 +2,29 @@
 
 @if (Card is null)
 {
-    <div class="playing-card card-back @Class" role="img" aria-label="Face-down card">
-        <div class="card-back-inner"><span>✦</span><strong>PG</strong><span>✦</span></div>
+    <div class="playing-card card-back @(IsIllustrated ? "" : "art-back") @Class" role="img" aria-label="Face-down card">
+        @if (IsIllustrated)
+        {
+            <div class="card-back-inner"><span>✦</span><strong>PG</strong><span>✦</span></div>
+        }
+        else
+        {
+            <img class="playing-card-art" src="@DeckThemeCatalog.BackPath(ThemeId)" alt="" draggable="false" />
+        }
     </div>
 }
 else
 {
     <div class="playing-card @(Card.IsRed ? "red-suit" : "black-suit") @Class"
          role="img" aria-label="@Card.AccessibleName">
-        <img class="playing-card-art" src="@($"cards/{Card.Id}.svg")" alt="" draggable="false" />
+        <img class="playing-card-art" src="@DeckThemeCatalog.CardPath(ThemeId, Card.Id)" alt="" draggable="false" />
     </div>
 }
 
 @code {
     [Parameter] public PlayingCard? Card { get; set; }
+    [Parameter] public string ThemeId { get; set; } = DeckThemeCatalog.DefaultId;
     [Parameter] public string Class { get; set; } = string.Empty;
+
+    private bool IsIllustrated => DeckThemeCatalog.FindOrDefault(ThemeId).Id == DeckThemeCatalog.DefaultId;
 }

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 250 350" role="img" aria-label="Midnight card back">
+      <rect width="250" height="350" rx="11" fill="#111c2c"/><rect x="8" y="8" width="234" height="334" rx="8" fill="none" stroke="#d5b875" stroke-width="3"/>
+      <rect x="19" y="19" width="212" height="312" rx="4" fill="#263550" stroke="#d5b875" stroke-width="1.5"/>
+      <path d="M19 60 231 290M19 110 231 340M19 240 231 10M19 290 231 60" stroke="#6e83a5" stroke-width="3" opacity=".5"/>
+      <path d="m125 81 11 70 70 24-70 24-11 70-11-70-70-24 70-24Z" fill="#1b2a43" stroke="#d5b875" stroke-width="3"/>
+      <circle cx="125" cy="175" r="51" fill="#111c2c" stroke="#d5b875" stroke-width="3"/><text x="125" y="188" text-anchor="middle" fill="#efd59c" font-family="Georgia,serif" font-size="41" font-weight="700">PG</text>
+      <circle cx="39" cy="39" r="5" fill="#d5b875"/><circle cx="211" cy="39" r="5" fill="#d5b875"/><circle cx="39" cy="311" r="5" fill="#d5b875"/><circle cx="211" cy="311" r="5" fill="#d5b875"/>
+    </svg>

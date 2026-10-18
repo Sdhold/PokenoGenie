@@ -10,6 +10,7 @@ import { get, ref, runTransaction, serverTimestamp, set } from "firebase/databas
 
 const room = "ABCDEFGH";
 const statePath = `rooms/${room}/state`;
+const themePath = `rooms/${room}/theme`;
 const deckPath = `decks/${room}`;
 const cards = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
   .flatMap(rank => ["S", "H", "D", "C"].map(suit => rank + suit));
@@ -171,4 +172,27 @@ test("pause, resume, and finish are allowed without changing the draw history", 
   await assertSucceeds(set(ref(owner, statePath), { ...state, phase: "paused" }));
   state = (await get(ref(owner, statePath))).val();
   await assertSucceeds(set(ref(owner, statePath), { ...state, phase: "finished" }));
+});
+
+test("the caller can switch a deck theme without changing a live round", async () => {
+  await seedCallingRound(Date.now() - 4000);
+  assert.equal((await assertSucceeds(get(ref(viewer, themePath)))).val(), null);
+
+  await assertSucceeds(set(ref(owner, themePath), "midnight"));
+  assert.equal((await assertSucceeds(get(ref(viewer, themePath)))).val(), "midnight");
+  await assertFails(set(ref(viewer, themePath), "sunburst"));
+  await assertFails(set(ref(owner, themePath), "unknown"));
+  await assertFails(get(ref(environment.unauthenticatedContext().database(), themePath)));
+
+  const state = (await get(ref(owner, statePath))).val();
+  assert.equal(state.round, 1);
+  assert.equal(state.drawnCount, 0);
+  await assertSucceeds(set(ref(owner, statePath), {
+    ...state,
+    drawn: [cards[0]],
+    drawnCount: 1,
+    lastDrawAt: serverTimestamp()
+  }));
+  await assertSucceeds(set(ref(owner, themePath), "sunburst"));
+  assert.equal((await get(ref(owner, statePath))).val().drawnCount, 1);
 });

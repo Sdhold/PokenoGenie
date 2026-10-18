@@ -16,6 +16,7 @@ public sealed class FirebaseRoomService(
     private DotNetObjectReference<FirebaseRoomService>? _callbackReference;
 
     public event Action<RoomState?>? RoomChanged;
+    public event Action<string>? ThemeChanged;
     public event Action<bool>? ConnectionChanged;
     public event Action<string>? ErrorReceived;
 
@@ -45,7 +46,7 @@ public sealed class FirebaseRoomService(
         }
 
         _module = await js.InvokeAsync<IJSObjectReference>(
-            "import", navigation.BaseUri + "js/firebase-bridge.js");
+            "import", navigation.BaseUri + "js/firebase-bridge.js?v=3");
         _callbackReference = DotNetObjectReference.Create(this);
         UserId = await _module.InvokeAsync<string>("initialize", options, _callbackReference);
     }
@@ -71,6 +72,9 @@ public sealed class FirebaseRoomService(
     public async Task<bool> ChangePhaseAsync(string code, string phase) =>
         await Module.InvokeAsync<bool>("changePhase", code, phase);
 
+    public async Task ChangeThemeAsync(string code, string themeId) =>
+        await Module.InvokeVoidAsync("changeTheme", code, themeId);
+
     public async Task CopyTextAsync(string text) =>
         await Module.InvokeVoidAsync("copyText", text);
 
@@ -79,6 +83,9 @@ public sealed class FirebaseRoomService(
 
     [JSInvokable]
     public void OnRoomChanged(RoomState? state) => RoomChanged?.Invoke(state);
+
+    [JSInvokable]
+    public void OnThemeChanged(string themeId) => ThemeChanged?.Invoke(themeId);
 
     [JSInvokable]
     public void OnConnectionChanged(bool connected)

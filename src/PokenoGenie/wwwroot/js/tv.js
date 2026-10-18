@@ -8,6 +8,9 @@
     var roomCode = "";
     var pollTimer;
     var lastSignature = "";
+    var lastTheme = "illustrated";
+    var lastState = null;
+    var themeInFlight = false;
     var codePattern = /^[A-HJ-NP-Z2-9]{8}$/;
     var patternNames = {
         standard: "Standard bingo", horizontal: "Horizontal line", vertical: "Vertical line",
@@ -21,6 +24,11 @@
         "6": "Six", "7": "Seven", "8": "Eight", "9": "Nine", "10": "Ten",
         J: "Jack", Q: "Queen", K: "King"
     };
+    var themeIds = { illustrated: true, midnight: true, sunburst: true };
+
+    function cardAsset(themeId, id) {
+        return themeId === "illustrated" ? "cards/" + id + ".svg" : "cards/" + themeId + "/" + id + ".svg";
+    }
 
     function byId(id) { return document.getElementById(id); }
     function setText(id, value) { byId(id).textContent = value; }
@@ -120,7 +128,7 @@
         if (!match) return null;
         return { rank: match[1], suit: suitSymbols[match[2]], name: rankNames[match[1]] + " of " + suitNames[match[2]], red: match[2] === "H" || match[2] === "D" };
     }
-    function makeCard(id, large) {
+    function makeCard(id, large, themeId) {
         var element = document.createElement("div");
         var info = cardInfo(id);
         element.className = "tv-card" + (large ? " large" : "") + (info && info.red ? " red" : "");
@@ -128,14 +136,24 @@
         if (!info) {
             element.className += " back";
             element.setAttribute("aria-label", "Face-down card");
-            var logo = document.createElement("span");
-            logo.textContent = "PG";
-            element.appendChild(logo);
+            if (themeId === "illustrated") {
+                var logo = document.createElement("span");
+                logo.textContent = "PG";
+                element.appendChild(logo);
+            } else {
+                element.className += " art-back";
+                var back = document.createElement("img");
+                back.className = "card-art";
+                back.src = "cards/" + themeId + "/back.svg";
+                back.alt = "";
+                back.draggable = false;
+                element.appendChild(back);
+            }
         } else {
             element.setAttribute("aria-label", info.name);
             var art = document.createElement("img");
             art.className = "card-art";
-            art.src = "cards/" + id + ".svg";
+            art.src = cardAsset(themeId, id);
             art.alt = "";
             art.draggable = false;
             element.appendChild(art);
@@ -174,11 +192,11 @@
         }
         return cards;
     }
-    function render(state) {
+    function render(state, themeId) {
         var cards = drawnCards(state);
         var count = Math.min(Math.max(Number(state.drawnCount) || 0, 0), 52);
         var pattern = patternNames[state.patternId] ? state.patternId : "standard";
-        var signature = [state.round, state.phase, pattern, count, cards.join(",")].join("|");
+        var signature = [state.round, state.phase, pattern, count, cards.join(","), themeId].join("|");
         showDisplay();
         setText("connection-label", "LIVE FROM THE CALLER'S DEVICE");
         if (signature === lastSignature) return;
@@ -191,12 +209,12 @@
         var current = cards.length ? cards[cards.length - 1] : null;
         var currentContainer = byId("current-card");
         clearChildren(currentContainer);
-        currentContainer.appendChild(makeCard(current, true));
+        currentContainer.appendChild(makeCard(current, true, themeId));
         setText("current-name", current ? cardInfo(current).name : "Waiting for the first draw");
         var previous = byId("previous-cards");
         clearChildren(previous);
         for (var i = 1; i <= 4; i++) {
-            if (cards.length > i) previous.appendChild(makeCard(cards[cards.length - 1 - i], false));
+            if (cards.length > i) previous.appendChild(makeCard(cards[cards.length - 1 - i], false, themeId));
             else {
                 var empty = document.createElement("div");
                 empty.className = "empty-card";
@@ -208,6 +226,20 @@
         var phase = byId("phase-label");
         phase.hidden = state.phase !== "paused" && state.phase !== "finished";
         phase.textContent = state.phase === "paused" ? "PAUSED FOR VERIFICATION" : "ROUND COMPLETE";
+    }
+    function pollTheme(requestedCode) {
+        if (themeInFlight) return;
+        themeInFlight = true;
+        var databaseUrl = config.databaseURL.replace(/\/$/, "");
+        var url = databaseUrl + "/rooms/" + requestedCode + "/theme.json?auth=" + encodeURIComponent(token) + "&_=" + Date.now();
+        request("GET", url, null, null, function (status, themeId) {
+            if (requestedCode !== roomCode) return;
+            themeInFlight = false;
+            if (status === 200) {
+                lastTheme = themeIds[themeId] ? themeId : "illustrated";
+                if (lastState) render(lastState, lastTheme);
+            }
+        });
     }
     function poll() {
         if (!roomCode) return;
@@ -224,8 +256,10 @@
             request("GET", url, null, null, function (status, state) {
                 if (requestedCode !== roomCode) return;
                 if (status === 200 && state) {
-                    render(state);
+                    lastState = state;
+                    render(state, lastTheme);
                     schedulePoll(1500);
+                    pollTheme(requestedCode);
                 } else if (status === 200) {
                     showJoin("That table was not found. Check the code on the caller's phone.");
                     schedulePoll(3000);
@@ -252,6 +286,9 @@
         }
         roomCode = code;
         lastSignature = "";
+        lastTheme = "illustrated";
+        lastState = null;
+        themeInFlight = false;
         showJoin("Joining room " + roomCode + "…");
         try { history.replaceState(null, "", "tv.html?room=" + encodeURIComponent(roomCode)); } catch (error) { /* The room still works without URL history. */ }
         schedulePoll(0);
@@ -265,6 +302,9 @@
         byId("change-room").onclick = function () {
             roomCode = "";
             lastSignature = "";
+            lastTheme = "illustrated";
+            lastState = null;
+            themeInFlight = false;
             clearTimeout(pollTimer);
             byId("room-code").value = "";
             try { history.replaceState(null, "", "tv.html"); } catch (error) { /* The room can still be changed. */ }
