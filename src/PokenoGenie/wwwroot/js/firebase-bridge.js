@@ -32,7 +32,7 @@ let cachedDeck;
 const statePath = code => `rooms/${code}/state`;
 const themePath = code => `rooms/${code}/theme`;
 const deckPath = code => `decks/${code}`;
-const themeIds = new Set(["illustrated", "midnight", "sunburst"]);
+const themeIds = new Set(["illustrated", "midnight", "sunburst", "mopar", "dart1969"]);
 
 function notify(method, value) {
   dotNet?.invokeMethodAsync(method, value).catch(() => {});

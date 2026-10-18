@@ -3,6 +3,7 @@
 import { mkdir, writeFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
+import { automotiveBackSvg, automotiveCardSvg } from "./automotive-card-art.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../src/PokenoGenie/wwwroot/cards");
 const ranks = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
@@ -169,5 +170,15 @@ for (const suit of Object.keys(suits)) {
 }
 for (const themeId of Object.keys(themes)) {
   await writeFile(path.join(root, themeId, "back.svg"), backSvg(themeId), "utf8");
+}
+for (const themeId of ["mopar", "dart1969"]) {
+  await mkdir(path.join(root, themeId), { recursive: true });
+  for (const suitCode of Object.keys(suits)) {
+    for (const rank of ranks) {
+      await writeFile(path.join(root, themeId, `${rank}${suitCode}.svg`),
+        automotiveCardSvg(themeId, rank, suitCode, suits[suitCode], court(rank, suits[suitCode])), "utf8");
+    }
+  }
+  await writeFile(path.join(root, themeId, "back.svg"), automotiveBackSvg(themeId), "utf8");
 }
 console.log(`Generated ${ranks.length * Object.keys(suits).length} faces per deck in ${root}`);

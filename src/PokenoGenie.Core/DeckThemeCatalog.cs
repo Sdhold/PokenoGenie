@@ -1,8 +1,8 @@
 namespace PokenoGenie.Core;
 
-public sealed record DeckTheme(string Id, string Name, string Description)
+public sealed record DeckTheme(string Id, string Name, string Description, string PreviewCardId = "JH")
 {
-    public string PreviewPath => DeckThemeCatalog.CardPath(Id, "JH");
+    public string PreviewPath => DeckThemeCatalog.CardPath(Id, PreviewCardId);
 }
 
 public static class DeckThemeCatalog
@@ -13,7 +13,9 @@ public static class DeckThemeCatalog
     [
         new(DefaultId, "Illustrated", "The original cream and green deck"),
         new("midnight", "Midnight", "Dark navy with warm gold details"),
-        new("sunburst", "Sunburst", "Bright coral and blue cards")
+        new("sunburst", "Sunburst", "Bright coral and blue cards"),
+        new("mopar", "MOPAR Muscle", "Muscle cars, bold paint, and racing details", "AH"),
+        new("dart1969", "1969 Dart", "A blue 1969 Dodge Dart with chrome and a white rear stripe", "AH")
     ];
 
     public static DeckTheme FindOrDefault(string? id) =>

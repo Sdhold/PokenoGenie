@@ -5,7 +5,7 @@ import { test } from "node:test";
 const directory = new URL("../src/PokenoGenie/wwwroot/cards/", import.meta.url);
 const ranks = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
 const suits = ["S", "H", "D", "C"];
-const themeDirectories = [directory, new URL("midnight/", directory), new URL("sunburst/", directory)];
+const themeDirectories = [directory, ...["midnight", "sunburst", "mopar", "dart1969"].map(id => new URL(`${id}/`, directory))];
 
 test("every theme has 52 self-contained SVG faces", async () => {
   const expected = suits.flatMap(suit => ranks.map(rank => `${rank}${suit}.svg`)).sort();
@@ -26,9 +26,9 @@ test("ace and number cards show the correct number of suit pips", async () => {
     for (const suit of suits) {
       for (const rank of ranks.slice(0, 10)) {
         const art = await readFile(new URL(`${rank}${suit}.svg`, themeDirectory), "utf8");
-        const main = /<g id="main-art">([\s\S]*?)<\/g>/.exec(art)?.[1];
+        const main = /<g id="main-art">([\s\S]*)<\/g>\s*<\/svg>/.exec(art)?.[1];
         assert.ok(main, `${rank}${suit} main art is missing`);
-        assert.equal((main.match(/<use /g) || []).length, rank === "A" ? 1 : Number(rank), `${rank}${suit}`);
+        assert.equal((main.match(/<use xlink:href="#pip" /g) || []).length, rank === "A" ? 1 : Number(rank), `${rank}${suit}`);
       }
     }
   }
@@ -54,5 +54,16 @@ test("alternate decks have distinct art and a matching back", async () => {
     const back = await readFile(new URL("back.svg", themeDirectory), "utf8");
     assert.match(back, /viewBox="0 0 250 350"/);
     assert.doesNotMatch(back, /(?:href|src)="https?:/);
+  }
+});
+
+test("automotive decks bundle original vehicle illustrations on faces and backs", async () => {
+  for (const themeId of ["mopar", "dart1969"]) {
+    for (const card of ["AH", "10C", "JH", "back"]) {
+      const art = await readFile(new URL(`${themeId}/${card}.svg`, directory), "utf8");
+      assert.match(art, /<symbol id="vehicle"/);
+      assert.match(art, /<use xlink:href="#vehicle"/);
+      assert.doesNotMatch(art, /<image\b/);
+    }
   }
 });

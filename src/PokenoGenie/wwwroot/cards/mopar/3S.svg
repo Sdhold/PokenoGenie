@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 250 350" role="img" aria-label="3 of S — MOPAR">
+    <rect width="250" height="350" rx="11" fill="#152130"/>
+    <rect x="3" y="3" width="244" height="344" rx="9" fill="none" stroke="#4eaaea" stroke-width="2"/>
+    <path d="M8 70v211m234-211v211" stroke="#4eaaea" stroke-width="2" opacity=".4"/>
+    <text x="133" y="25" text-anchor="middle" fill="#4eaaea" font-family="Arial,sans-serif" font-weight="900" font-size="17" letter-spacing="3">MOPAR</text>
+    <rect x="85" y="315" width="4" height="4" fill="#4eaaea"/><rect x="93" y="315" width="4" height="4" fill="#4eaaea"/><rect x="101" y="315" width="4" height="4" fill="#4eaaea"/><rect x="109" y="315" width="4" height="4" fill="#4eaaea"/><rect x="117" y="315" width="4" height="4" fill="#4eaaea"/><rect x="125" y="315" width="4" height="4" fill="#4eaaea"/><rect x="133" y="315" width="4" height="4" fill="#4eaaea"/><rect x="141" y="315" width="4" height="4" fill="#4eaaea"/><rect x="149" y="315" width="4" height="4" fill="#4eaaea"/><rect x="157" y="315" width="4" height="4" fill="#4eaaea"/><rect x="89" y="319" width="4" height="4" fill="#4eaaea"/><rect x="97" y="319" width="4" height="4" fill="#4eaaea"/><rect x="105" y="319" width="4" height="4" fill="#4eaaea"/><rect x="113" y="319" width="4" height="4" fill="#4eaaea"/><rect x="121" y="319" width="4" height="4" fill="#4eaaea"/><rect x="129" y="319" width="4" height="4" fill="#4eaaea"/><rect x="137" y="319" width="4" height="4" fill="#4eaaea"/><rect x="145" y="319" width="4" height="4" fill="#4eaaea"/><rect x="153" y="319" width="4" height="4" fill="#4eaaea"/><rect x="161" y="319" width="4" height="4" fill="#4eaaea"/>
+    <text x="125" y="338" text-anchor="middle" fill="#b5c9d6" font-family="Arial,sans-serif" font-size="7" letter-spacing="1.6">MUSCLE COLLECTION</text>
+    <defs><symbol id="pip" viewBox="0 0 32 32"><g fill="#e6edf0"><path d="M16 2C11 10 3 13 3 21c0 5 4 8 8 8 2 0 4-1 5-3 1 2 3 3 5 3 4 0 8-3 8-8 0-8-8-11-13-19Z"/><path d="M13 25h6l4 6H9Z"/></g></symbol><linearGradient id="body-paint" x1="0" y1="0" x2=".25" y2="1"><stop stop-color="#b28ae1"/><stop offset=".38" stop-color="#7943ad"/><stop offset="1" stop-color="#3e235f"/></linearGradient>
+    <linearGradient id="chrome" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#f7ffff"/><stop offset=".28" stop-color="#99aeb8"/><stop offset=".5" stop-color="#eff5f3"/><stop offset=".65" stop-color="#647d87"/><stop offset="1" stop-color="#d6e1df"/></linearGradient>
+    <linearGradient id="wheel-metal" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f5f8ed"/><stop offset=".5" stop-color="#6e828d"/><stop offset="1" stop-color="#e2ebdf"/></linearGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#8daab9"/><stop offset=".5" stop-color="#3b5c70"/><stop offset="1" stop-color="#152e40"/></linearGradient>
+    <symbol id="vehicle" viewBox="0 0 640 280">
+      <ellipse cx="329" cy="248" rx="285" ry="17" fill="#081c29" opacity=".18"/>
+      <g>
+    <ellipse cx="541" cy="202" rx="28.08" ry="39" fill="#11181d" stroke="#060b0e" stroke-width="4"/>
+    <ellipse cx="541" cy="202" rx="23.08" ry="34" fill="none" stroke="#3c444b" stroke-width="2"/>
+    <ellipse cx="541" cy="202" rx="17.6904" ry="24.57" fill="url(#wheel-metal)" stroke="#9daeb5" stroke-width="2"/>
+    <ellipse cx="541" cy="202" rx="13.5135" ry="20.147399999999998" fill="#29333d"/>
+    <g transform="translate(541 202) scale(.7 .86) translate(-541 -202)"><path d="M541 202l-4-22 8 0Z" fill="#dce7e9" transform="rotate(0 541 202)"/><path d="M541 202l-4-22 8 0Z" fill="#dce7e9" transform="rotate(72 541 202)"/><path d="M541 202l-4-22 8 0Z" fill="#dce7e9" transform="rotate(144 541 202)"/><path d="M541 202l-4-22 8 0Z" fill="#dce7e9" transform="rotate(216 541 202)"/><path d="M541 202l-4-22 8 0Z" fill="#dce7e9" transform="rotate(288 541 202)"/></g><ellipse cx="541" cy="202" rx="6" ry="8" fill="#dce7e9"/>
+  </g><g>
+    <ellipse cx="309" cy="222" rx="33.12" ry="46" fill="#11181d" stroke="#060b0e" stroke-width="4"/>
+    <ellipse cx="309" cy="222" rx="28.119999999999997" ry="41" fill="none" stroke="#3c444b" stroke-width="2"/>
+    <ellipse cx="309" cy="222" rx="20.8656" ry="28.98" fill="url(#wheel-metal)" stroke="#9daeb5" stroke-width="2"/>
+    <ellipse cx="309" cy="222" rx="15.939000000000002" ry="23.7636" fill="#29333d"/>
+    <g transform="translate(309 222) scale(.7 .86) translate(-309 -222)"><path d="M309 222l-4-22 8 0Z" fill="#dce7e9" transform="rotate(0 309 222)"/><path d="M309 222l-4-22 8 0Z" fill="#dce7e9" transform="rotate(72 309 222)"/><path d="M309 222l-4-22 8 0Z" fill="#dce7e9" transform="rotate(144 309 222)"/><path d="M309 222l-4-22 8 0Z" fill="#dce7e9" transform="rotate(216 309 222)"/><path d="M309 222l-4-22 8 0Z" fill="#dce7e9" transform="rotate(288 309 222)"/></g><ellipse cx="309" cy="222" rx="6" ry="8" fill="#dce7e9"/>
+  </g>
+      <path d="M247 122 287 69Q295 59 311 58L399 56Q410 56 423 65L507 118 369 130Z" fill="url(#body-paint)" stroke="#202c39" stroke-width="3"/><path d="m261 118 33-47 69-1-7 52Z" fill="url(#glass)" stroke="#c6d8df" stroke-width="3"/><path d="m374 72 26-2 78 45-108 9Z" fill="url(#glass)" stroke="#c5d6dd" stroke-width="3"/>
+      <path d="M239 145 497 116 585 120Q605 122 610 145L604 183 576 193Q568 161 542 162Q510 163 507 210L350 225Q342 179 313 181Q281 183 277 227L239 220Z" fill="url(#body-paint)" stroke="#163b50" stroke-width="3"/>
+      <path d="M53 138 250 118 373 129 239 151Z" fill="url(#body-paint)" stroke="#18465a" stroke-width="2"/>
+      <path d="m94 131 140 8 91-17-65-4Z" fill="#182431"/><path d="m196 125 47 3 31-6-46-2Z" fill="#121b24" stroke="#d3dce0" stroke-width="1.5"/><path d="m553 126 29-1 5 52-29 10Z" fill="#192530"/><path d="m558 126 5 58m13-59 5 54" stroke="#f2ead4" stroke-width="2"/>
+      <path d="m244 151 336-27" fill="none" stroke="#d3e8eb" stroke-width="3"/><path d="m350 218 154-16m72-17 25-9" stroke="#d4e0df" stroke-width="3"/>
+      <path d="m373 137 108-11 8 72-137 20" fill="none" stroke="#3e235f" stroke-width="2"/><path d="m433 143 22-2" stroke="#dce7e6" stroke-width="4" stroke-linecap="round"/>
+      <path d="m258 212 18-2m74-9 148-15m78-13 27-5" fill="none" stroke="#b28ae1" stroke-width="2" opacity=".6"/>
+      <path d="M47 145 237 151 240 189 40 183Z" fill="#17242c" stroke="url(#chrome)" stroke-width="6"/>
+      <path d="m48 153 184 5M45 163l190 5m-192 6 193 5" stroke="#7d939e" stroke-width="2"/>
+      <path d="m119 155-1 22m12-21-1 22m12-21-1 22m12-21-1 22m12-21-1 22" stroke="#a6b5b9" stroke-width="1"/>
+      <ellipse cx="65" cy="166" rx="13" ry="16" fill="url(#chrome)" stroke="#e7eeed" stroke-width="1.5"/><ellipse cx="65" cy="166" rx="9" ry="11" fill="#d7e1d9" stroke="#687b7b" stroke-width="1.5"/><ellipse cx="101" cy="166" rx="13" ry="16" fill="url(#chrome)" stroke="#e7eeed" stroke-width="1.5"/><ellipse cx="101" cy="166" rx="9" ry="11" fill="#d7e1d9" stroke="#687b7b" stroke-width="1.5"/><ellipse cx="187" cy="166" rx="13" ry="16" fill="url(#chrome)" stroke="#e7eeed" stroke-width="1.5"/><ellipse cx="187" cy="166" rx="9" ry="11" fill="#d7e1d9" stroke="#687b7b" stroke-width="1.5"/><ellipse cx="221" cy="166" rx="13" ry="16" fill="url(#chrome)" stroke="#e7eeed" stroke-width="1.5"/><ellipse cx="221" cy="166" rx="9" ry="11" fill="#d7e1d9" stroke="#687b7b" stroke-width="1.5"/>
+      <path d="m38 185 204 7 17 9-14 13-202-9-12-12Z" fill="url(#chrome)" stroke="#7898a4" stroke-width="2"/>
+      <path d="m42 189 195 7m-190 5 194 7" stroke="#eef8f4" stroke-width="2"/>
+      <rect x="103" y="194" width="49" height="22" rx="2" fill="#f9f3db" stroke="#6b8b95" stroke-width="2" transform="rotate(2 127 205)"/>
+      <text x="127" y="209" text-anchor="middle" fill="#a83228" font-size="12" font-weight="700" font-family="Arial,sans-serif">MOPAR</text>
+      <path d="M278 221q5-47 35-47 33-1 40 47m153-18q4-45 35-46 28-1 38 34" fill="none" stroke="#cfdddd" stroke-width="3"/>
+      <path d="m365 123-3-16 12-5 10 5-3 13Z" fill="url(#chrome)" stroke="#567986" stroke-width="2"/>
+      <path d="m359 107-57-30m62 32-45-34" stroke="#c5dce4" stroke-width="3" opacity=".36"/>
+      <path d="m593 140 9-1-1 14-8 2Z" fill="#c94532" stroke="#dfb08a" stroke-width="1"/>
+    </symbol></defs>
+    <g fill="#e6edf0" text-anchor="middle"><text x="22" y="31" font-family="Georgia,serif" font-weight="700" font-size="29">3</text><use xlink:href="#pip" x="13" y="38" width="18" height="18"/></g><g transform="rotate(180 125 175)"><g fill="#e6edf0" text-anchor="middle"><text x="22" y="31" font-family="Georgia,serif" font-weight="700" font-size="29">3</text><use xlink:href="#pip" x="13" y="38" width="18" height="18"/></g></g>
+    <g id="main-art"><use xlink:href="#pip" x="110" y="66" width="30" height="30"/>
+<use xlink:href="#pip" x="110" y="106" width="30" height="30"/>
+<use xlink:href="#pip" x="110" y="249" width="30" height="30" transform="rotate(180 125 264)"/><rect x="34" y="159" width="182" height="57" rx="7" fill="#213044"/>
+    <path d="M40 212h170" stroke="#6b98b4" stroke-width="1"/>
+    <use xlink:href="#vehicle" x="22" y="143" width="206" height="79"/></g>
+  </svg>

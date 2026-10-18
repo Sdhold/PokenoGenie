@@ -194,5 +194,8 @@ test("the caller can switch a deck theme without changing a live round", async (
     lastDrawAt: serverTimestamp()
   }));
   await assertSucceeds(set(ref(owner, themePath), "sunburst"));
+  await assertSucceeds(set(ref(owner, themePath), "mopar"));
+  await assertSucceeds(set(ref(owner, themePath), "dart1969"));
+  assert.equal((await get(ref(viewer, themePath))).val(), "dart1969");
   assert.equal((await get(ref(owner, statePath))).val().drawnCount, 1);
 });

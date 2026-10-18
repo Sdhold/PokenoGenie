@@ -63,7 +63,7 @@ The workflow fails clearly if `FIREBASE_CONFIG_JSON` is missing or invalid. The 
 3. Choose **H**, start a round, and draw five cards. Check that the TV's large card, previous four, and count match the phone. Try rapid taps; the next draw should remain locked for three seconds.
 4. Pause, review the history, resume, and end the round. Reload both screens; the active room and private deck should return on the original caller phone.
 5. On the caller phone, choose **End table & start new**, confirm, and check that a different room code appears at table setup. Enter that code on the TV to begin again at the first round.
-6. While a round is active, choose **Midnight** and then **Sunburst** under **Card deck**. The current and previous cards should change artwork on both screens, while the card names, draw count, and cooldown stay the same. Reload the screens and confirm the chosen theme remains.
+6. While a round is active, choose **MOPAR Muscle** and then **1969 Dart** under **Card deck**. The current and previous cards should change artwork on both screens, while the card names, draw count, and cooldown stay the same. Reload the screens and confirm the chosen theme remains. The original Illustrated, Midnight, and Sunburst decks remain available.
 
 The caller identity is stored in that browser's local data. Clearing its site data or using a different phone loses caller control of the old room; create a new table in that case. If the network disconnects, drawing pauses and the TV shows its last known state until it reconnects. The TV page uses simple JavaScript and Firebase's authenticated REST API, polling for new cards about every 1.5 seconds. It does not load Blazor, so it can run on browsers where the Blazor startup remains on the splash screen.
 
