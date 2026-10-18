@@ -2,7 +2,7 @@
 
 A free, live Pokeno card caller for one shared phone or tablet and a separate TV browser. Players use their physical 5×5 boards. The caller picks a preset winning pattern, starts a freshly shuffled 52-card deck, and draws cards at least three seconds apart. The TV shows the current card and four previous cards.
 
-The app is a .NET 10 Blazor WebAssembly solution for Visual Studio. GitHub Pages serves its static files; Firebase Realtime Database on the no-cost Spark plan synchronizes the two screens. No paid account, image service, or hosted C# server is needed. See [DEPLOYMENT.md](DEPLOYMENT.md) for the full setup and deployment steps.
+The caller app is a .NET 10 Blazor WebAssembly solution for Visual Studio. A lightweight `tv.html` display supports TV browsers that cannot start Blazor. GitHub Pages serves the static files; Firebase Realtime Database on the no-cost Spark plan synchronizes the two screens. No paid account, image service, or hosted C# server is needed. See [DEPLOYMENT.md](DEPLOYMENT.md) for the full setup and deployment steps.
 
 ## Screen mockups
 
@@ -17,7 +17,7 @@ The app is a .NET 10 Blazor WebAssembly solution for Visual Studio. GitHub Pages
 ## Game flow
 
 1. On the phone, open the site and create a table. Keep this browser's data so the caller identity persists between rounds.
-2. Open the same site on the TV, choose **Display**, and enter the eight-character table code.
+2. Open the site's `tv.html` page on the TV and enter the eight-character table code.
 3. Choose a pattern and select **Shuffle & start round**. The pattern locks for that round.
 4. Select **Draw card** to reveal each card. The button unlocks after three seconds. The TV updates live.
 5. If a player calls Pokeno, choose **Pause / verify Pokeno** and review the full called-card history. Resume or end the round manually.
@@ -26,7 +26,7 @@ Preset patterns: standard bingo (any row, column, or diagonal), horizontal, vert
 
 ## Solution layout
 
-- `src/PokenoGenie` — responsive Blazor interface and Firebase browser bridge.
+- `src/PokenoGenie` — responsive Blazor caller interface, Firebase browser bridge, and lightweight TV display.
 - `src/PokenoGenie.Core` — cards, secure shuffle, room codes, and pattern definitions.
 - `tests/PokenoGenie.Tests` — C# game-rule tests.
 - `tests/firebase` and `database.rules.json` — Realtime Database security-rule tests and policy.

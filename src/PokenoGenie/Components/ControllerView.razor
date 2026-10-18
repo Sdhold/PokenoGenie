@@ -40,7 +40,7 @@
             {
                 <p class="connection-note">Connecting to the free game service…</p>
             }
-            <a class="text-link" href="@(Navigation.BaseUri + "?view=display")">Open the TV display instead →</a>
+            <a class="text-link" href="@(Navigation.BaseUri + "tv.html")">Open the TV display instead →</a>
         </main>
     }
     else if (_room is null)
@@ -167,7 +167,7 @@
             }
 
             <section class="display-join-panel">
-                <div><span class="eyebrow">ON THE BIG SCREEN</span><h2>Open the TV view</h2><p>Open this app on the TV, choose <strong>Display</strong>, and enter the room code.</p></div>
+                <div><span class="eyebrow">ON THE BIG SCREEN</span><h2>Open the TV view</h2><p>Open <strong>tv.html</strong> on the TV and enter the room code.</p></div>
                 <div class="share-row"><strong class="share-code">@_code</strong><button class="small-button" @onclick="CopyDisplayLinkAsync">@(_copied ? "Copied!" : "Copy TV link")</button></div>
                 <a class="text-link" href="@DisplayLink" target="_blank" rel="noopener noreferrer">Preview TV display →</a>
             </section>
@@ -194,7 +194,7 @@
     private CancellationTokenSource? _timerCancellation;
 
     private PatternDefinition CurrentPattern => PatternCatalog.Find(_room?.PatternId) ?? PatternCatalog.All[0];
-    private string DisplayLink => Navigation.BaseUri + "?view=display&room=" + _code;
+    private string DisplayLink => Navigation.BaseUri + "tv.html?room=" + _code;
     private int CooldownSeconds => _room is null ? 0 : (int)Math.Ceiling(Math.Max(0,
         _room.LastDrawAt + 3000 - (DateTimeOffset.UtcNow.ToUnixTimeMilliseconds() + Rooms.ServerOffsetMs)) / 1000.0);
     private bool CanDraw => _room?.Phase == GamePhase.Calling && _room.DrawnCount < 52 &&
@@ -297,7 +297,11 @@
         if (_code is null || !CanDraw) return;
         _busy = true;
         _error = null;
-        try { await Rooms.DrawAsync(_code); }
+        try
+        {
+            if (!await Rooms.DrawAsync(_code))
+                _error = "The card was not drawn. Check the room and connection, then try again.";
+        }
         catch (Exception error) { _error = error.Message; }
         finally { _busy = false; }
     }
@@ -307,7 +311,11 @@
         if (_code is null) return;
         _busy = true;
         _error = null;
-        try { await Rooms.ChangePhaseAsync(_code, phase); }
+        try
+        {
+            if (!await Rooms.ChangePhaseAsync(_code, phase))
+                _error = "The round did not change. Check the room and connection, then try again.";
+        }
         catch (Exception error) { _error = error.Message; }
         finally { _busy = false; }
     }

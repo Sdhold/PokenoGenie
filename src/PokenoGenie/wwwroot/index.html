@@ -14,13 +14,18 @@
 </head>
 
 <body>
-    <div id="app"><div class="boot-loading">✦<span>POKENO GENIE</span></div></div>
+    <div id="app"><div class="boot-loading">✦<span>POKENO GENIE</span><a href="tv.html" style="color:#f0ce84;font-size:.85rem;letter-spacing:normal">Open TV display</a></div></div>
 
     <div id="blazor-error-ui">
         Something went wrong.
         <a href="." class="reload">Reload</a>
         <span class="dismiss">🗙</span>
     </div>
+    <script>
+        if (/Web0S|webOS|LG Browser/i.test(navigator.userAgent)) {
+            location.replace(document.querySelector('base').href + 'tv.html' + location.search);
+        }
+    </script>
     <script src="_framework/blazor.webassembly#[.{fingerprint}].js"></script>
 </body>
 

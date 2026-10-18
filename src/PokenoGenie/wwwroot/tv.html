@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#102b28">
+    <title>Pokeno Genie — TV display</title>
+    <link rel="stylesheet" href="css/tv.css">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+</head>
+<body>
+    <div id="join-screen" class="join-screen">
+        <div class="brand">✦ POKENO <strong>GENIE</strong></div>
+        <div class="eyebrow">BIG SCREEN MODE</div>
+        <h1>Join a table.</h1>
+        <p>Enter the eight-character room code shown on the caller's phone.</p>
+        <form id="join-form">
+            <input id="room-code" aria-label="Room code" maxlength="8" autocomplete="off" placeholder="ROOM CODE">
+            <button type="submit">Show the cards</button>
+        </form>
+        <p id="join-message" class="message" role="status">Connecting to the game service…</p>
+    </div>
+
+    <div id="display-screen" class="display-screen" hidden>
+        <header class="display-header">
+            <div class="brand">✦ POKENO <strong>GENIE</strong></div>
+            <div class="pattern-meta">
+                <div id="pattern-grid" class="pattern-grid" aria-hidden="true"></div>
+                <div><small>WINNING PATTERN</small><strong id="pattern-name">Standard bingo</strong></div>
+            </div>
+            <div class="room-meta"><span id="room-label">ROOM</span><strong id="draw-count">0 / 52</strong></div>
+            <button id="fullscreen-button" class="icon-button" type="button" aria-label="Enter full screen" title="Full screen">⛶</button>
+        </header>
+        <main class="display-content">
+            <section class="current-half">
+                <div class="section-label">CURRENT CARD</div>
+                <div id="current-card" class="current-card"></div>
+                <div id="current-name" class="current-name">Waiting for the first draw</div>
+                <div id="phase-label" class="phase-label" hidden></div>
+            </section>
+            <section class="previous-half">
+                <div class="previous-heading"><div class="section-label">PREVIOUS FOUR</div><small>MOST RECENT FIRST</small></div>
+                <div id="previous-cards" class="previous-cards"></div>
+            </section>
+        </main>
+        <footer class="display-footer">
+            <span id="connection-label">CONNECTING · SHOWING LAST KNOWN CARD</span>
+            <span id="round-label">ROUND 1</span>
+            <button id="change-room" class="change-room" type="button">Change room</button>
+        </footer>
+    </div>
+    <noscript>This TV display needs JavaScript. Please enable it in the TV browser.</noscript>
+    <script src="js/tv.js"></script>
+</body>
+</html>

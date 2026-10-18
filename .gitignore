@@ -5,6 +5,7 @@
 
 # User-specific files
 src/PokenoGenie/wwwroot/firebase-config.json
+/out/
 .pnpm-store/
 *.rsuser
 *.suo

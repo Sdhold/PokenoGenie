@@ -157,7 +157,7 @@ export async function drawCard(code) {
   const stateReference = ref(database, statePath(code));
   const before = normalizeState((await get(stateReference)).val());
   requireOwner(before);
-  if (before.phase !== "calling") return false;
+  if (before.phase !== "calling") throw new Error("This round is not ready for another draw.");
 
   if (!cachedDeck || cachedDeck.round !== before.round) {
     cachedDeck = (await get(ref(database, deckPath(code)))).val();
@@ -166,14 +166,26 @@ export async function drawCard(code) {
     throw new Error("This round's deck could not be restored. Pause the round and check the connection.");
   }
 
-  const result = await runTransaction(stateReference, current => {
-    if (!current || current.ownerUid !== auth.currentUser.uid ||
-        current.phase !== "calling" || current.round !== cachedDeck.round ||
-        current.drawnCount >= 52) return undefined;
+  let abortReason = "The room changed while drawing. Check the current card and try again.";
+  let missingLocalState = false;
+  const update = current => {
+    if (!current) {
+      missingLocalState = true;
+      abortReason = "The room is still loading. Try again in a moment.";
+      return undefined;
+    }
+    if (current.ownerUid !== auth.currentUser.uid || current.phase !== "calling" ||
+        current.round !== cachedDeck.round || current.drawnCount >= 52) return undefined;
 
     const currentDrawn = normalizeDrawn(current.drawn);
-    if (currentDrawn.length !== current.drawnCount) return undefined;
-    if (Date.now() + serverOffset < current.lastDrawAt + 3000) return undefined;
+    if (currentDrawn.length !== current.drawnCount) {
+      abortReason = "The called-card list is out of sync. Reload the page before drawing.";
+      return undefined;
+    }
+    if (Date.now() + serverOffset < current.lastDrawAt + 3000) {
+      abortReason = "Please wait three seconds between cards.";
+      return undefined;
+    }
 
     const nextDrawn = [...currentDrawn, cachedDeck.cards[current.drawnCount]];
     return {
@@ -183,20 +195,48 @@ export async function drawCard(code) {
       lastDrawAt: serverTimestamp(),
       phase: nextDrawn.length === 52 ? "finished" : "calling"
     };
-  }, { applyLocally: false });
-  return result.committed;
+  };
+  let result = await runTransaction(stateReference, update, { applyLocally: false });
+  if (!result.committed && missingLocalState) {
+    await get(stateReference);
+    missingLocalState = false;
+    result = await runTransaction(stateReference, update, { applyLocally: false });
+  }
+  if (!result.committed) {
+    notify("OnRoomChanged", normalizeState((await get(stateReference)).val()));
+    throw new Error(abortReason);
+  }
+  return true;
 }
 
 export async function changePhase(code, targetPhase) {
   if (!connected) throw new Error("The table is offline. Wait for it to reconnect.");
-  const result = await runTransaction(ref(database, statePath(code)), current => {
-    if (!current || current.ownerUid !== auth.currentUser.uid) return undefined;
+  const stateReference = ref(database, statePath(code));
+  const before = normalizeState((await get(stateReference)).val());
+  requireOwner(before);
+  let missingLocalState = false;
+  const update = current => {
+    if (!current) {
+      missingLocalState = true;
+      return undefined;
+    }
+    if (current.ownerUid !== auth.currentUser.uid) return undefined;
     const allowed =
       (current.phase === "calling" && targetPhase === "paused") ||
       (current.phase === "paused" && (targetPhase === "calling" || targetPhase === "finished"));
     return allowed ? { ...current, phase: targetPhase } : undefined;
-  }, { applyLocally: false });
-  return result.committed;
+  };
+  let result = await runTransaction(stateReference, update, { applyLocally: false });
+  if (!result.committed && missingLocalState) {
+    await get(stateReference);
+    missingLocalState = false;
+    result = await runTransaction(stateReference, update, { applyLocally: false });
+  }
+  if (!result.committed) {
+    notify("OnRoomChanged", normalizeState((await get(stateReference)).val()));
+    throw new Error("The round changed in another tab. Check its status and try again.");
+  }
+  return true;
 }
 
 export async function copyText(value) {

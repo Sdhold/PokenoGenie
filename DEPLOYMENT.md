@@ -38,7 +38,7 @@ The local `src/PokenoGenie/wwwroot/firebase-config.json` is already configured f
 dotnet run --project src/PokenoGenie/PokenoGenie.csproj
 ```
 
-Open the local URL printed by `dotnet run`. For a two-screen check, open one browser tab as the caller and a second tab with `?view=display` appended to the URL. The second tab needs a different anonymous identity to verify read-only access; use an incognito window or a different browser for that check.
+Open the local URL printed by `dotnet run`. For a two-screen check, open one browser tab as the caller and a second tab at `tv.html`. The second tab signs in anonymously and reads only the public called-card state. Use a different browser or an incognito window if you want to verify read-only access with a separate identity.
 
 The Firebase configuration identifies your project, but it is **not a private service credential**. Access is controlled by `database.rules.json`. Do not add service-account keys to this app or to GitHub Pages.
 
@@ -57,11 +57,11 @@ The workflow fails clearly if `FIREBASE_CONFIG_JSON` is missing or invalid. The 
 ## 5. Check the phone and TV
 
 1. On the phone, open the published URL and select **Create a table**. Note the eight-character code.
-2. On the TV or its connected computer, open the same URL, choose **Open the TV display**, and enter the code. You can also open the caller's **Copy TV link** URL on the display.
+2. On the TV or its connected computer, open `https://sdhold.github.io/PokenoGenie/tv.html` and enter the code. The site's main URL redirects LG webOS browsers to this TV page. You can also open the caller's **Copy TV link** URL on the display.
 3. Choose **H**, start a round, and draw five cards. Check that the TV's large card, previous four, and count match the phone. Try rapid taps; the next draw should remain locked for three seconds.
 4. Pause, review the history, resume, and end the round. Reload both screens; the active room and private deck should return on the original caller phone.
 
-The caller identity is stored in that browser's local data. Clearing its site data or using a different phone loses caller control of the old room; create a new table in that case. If the network disconnects, drawing pauses and the TV shows its last known state until it reconnects.
+The caller identity is stored in that browser's local data. Clearing its site data or using a different phone loses caller control of the old room; create a new table in that case. If the network disconnects, drawing pauses and the TV shows its last known state until it reconnects. The TV page uses simple JavaScript and Firebase's authenticated REST API, polling for new cards about every 1.5 seconds. It does not load Blazor, so it can run on browsers where the Blazor startup remains on the splash screen.
 
 ## Tests and free-tier limits
 
