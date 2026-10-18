@@ -22,8 +22,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
-      - name: Test card artwork
-        run: node --test tests/cards-art.test.mjs
+      - name: Test card artwork and TV verification display
+        run: node --test tests/cards-art.test.mjs tests/tv-display.test.mjs
       - uses: pnpm/action-setup@v4
         with:
           version: 11.25.0

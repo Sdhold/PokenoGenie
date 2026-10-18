@@ -42,3 +42,17 @@ The 2–10 cards feature nine supporting characters per collection, distributed 
 Character design references include the official [Harry Potter encyclopedia](https://www.harrypotter.com/fact-file/characters-and-pets/albus-dumbledore), the [Star Wars Databank](https://www.starwars.com/databank/leia-organa), and its [Vader](https://www.starwars.com/databank/darth-vaders-lightsaber) and [Luke](https://www.starwars.com/databank/luke-skywalkers-lightsaber) lightsaber entries. The Lord of the Rings court assignments follow the requested Aragorn/Arwen/Frodo/One Ring arrangement.
 
 These are fan themed collections; the characters, franchise names, and associated marks belong to their respective owners. No affiliation or endorsement is claimed.
+
+## Matching backgrounds
+
+Every alternate deck has a bundled 1600 × 900 SVG background shared by the caller, Blazor display, and lightweight TV display. The Illustrated deck retains its original green table. Backgrounds follow the card collection automatically, including during verification; no external image service is used.
+
+- **Midnight:** navy, gold constellations and Art Deco arcs.
+- **Sunburst:** coral sun rays and blue rolling shapes.
+- **MOPAR Muscle:** a garage with the same four model illustrations used in the deck and the MOPAR emblem.
+- **1969 Dart:** a blue and chrome garage with the deck's blue hardtop.
+- **Harry Potter:** a moonlit castle, an owl and wand magic.
+- **Star Wars:** a battle station, starfighters and a star field in the cards' vector style.
+- **Lord of the Rings:** mountains, Elven woodland, the White Tree and a golden ring.
+
+Run `node tools/generate-deck-backgrounds.mjs` to regenerate them after generating card art. The automotive backgrounds reuse the deck's existing vehicle symbols. The assets are in `src/PokenoGenie/wwwroot/backgrounds/`; their colors and overlays are controlled by `css/deck-backgrounds.css`.

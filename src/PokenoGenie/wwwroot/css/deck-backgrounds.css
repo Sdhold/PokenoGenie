@@ -1,0 +1,13 @@
+/* The Illustrated deck retains the original green table backgrounds. */
+[data-deck-theme="midnight"] { background-color: #101d33; background-image: linear-gradient(90deg, #101b3033, #101b3080, #101b3033), url("../backgrounds/midnight.svg"); }
+[data-deck-theme="sunburst"] { background-color: #543743; background-image: linear-gradient(90deg, #201c3033, #201c3066, #201c3033), url("../backgrounds/sunburst.svg"); }
+[data-deck-theme="mopar"] { background-color: #101d30; background-image: linear-gradient(90deg, #09142522, #09142588, #09142522), url("../backgrounds/mopar.svg"); }
+[data-deck-theme="dart1969"] { background-color: #152e3e; background-image: linear-gradient(90deg, #0c223322, #0c223388, #0c223322), url("../backgrounds/dart1969.svg"); }
+[data-deck-theme="harrypotter"] { background-color: #20283d; background-image: linear-gradient(90deg, #111c3022, #111c3077, #111c3022), url("../backgrounds/harrypotter.svg"); }
+[data-deck-theme="starwars"] { background-color: #0b1728; background-image: linear-gradient(90deg, #07132211, #07132266, #07132211), url("../backgrounds/starwars.svg"); }
+[data-deck-theme="lordoftherings"] { background-color: #172d32; background-image: linear-gradient(90deg, #11272a11, #11272a77, #11272a11), url("../backgrounds/lordoftherings.svg"); }
+[data-deck-theme] { background-position: center center; background-repeat: no-repeat; background-size: cover; }
+.controller-shell[data-deck-theme] { background-attachment: fixed; }
+[data-deck-theme="starwars"] .deck-theme-panel,
+[data-deck-theme="starwars"] .display-join-panel,
+[data-deck-theme="starwars"] .new-table-panel { background: #14273dc9; }

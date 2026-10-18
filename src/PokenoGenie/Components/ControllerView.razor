@@ -4,7 +4,7 @@
 @inject FirebaseRoomService Rooms
 @inject NavigationManager Navigation
 
-<div class="controller-shell">
+<div class="controller-shell" data-deck-theme="@_themeId">
     <header class="app-header">
         <a class="brand" href="@Navigation.BaseUri"><span class="brand-mark">✦</span> POKENO <strong>GENIE</strong></a>
         @if (_code is not null)
@@ -169,7 +169,7 @@
             <section class="deck-theme-panel" aria-labelledby="deck-theme-heading">
                 <div class="deck-theme-heading">
                     <div><span class="eyebrow">CARD DECK</span><h2 id="deck-theme-heading">Choose a look.</h2></div>
-                    <p>Changes the cards on your phone and TV. The round stays as it is.</p>
+                    <p>Changes the cards and background on your phone and TV. The round stays as it is.</p>
                 </div>
                 <div class="deck-theme-options" role="group" aria-label="Deck themes">
                     @foreach (var theme in DeckThemeCatalog.All)

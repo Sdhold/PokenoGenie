@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#102b28">
     <title>Pokeno Genie — TV display</title>
-    <link rel="stylesheet" href="css/tv.css?v=4">
+    <link rel="stylesheet" href="css/tv.css?v=5">
+    <link rel="stylesheet" href="css/verification.css?v=1">
+    <link rel="stylesheet" href="css/deck-backgrounds.css?v=1">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
 </head>
 <body>
@@ -31,7 +33,7 @@
             <div class="room-meta"><span id="room-label">ROOM</span><strong id="draw-count">0 / 52</strong></div>
             <button id="fullscreen-button" class="icon-button" type="button" aria-label="Enter full screen" title="Full screen">⛶</button>
         </header>
-        <main class="display-content">
+        <main id="calling-display" class="display-content">
             <section class="current-half">
                 <div class="section-label">CURRENT CARD</div>
                 <div id="current-card" class="current-card"></div>
@@ -43,6 +45,14 @@
                 <div id="previous-cards" class="previous-cards"></div>
             </section>
         </main>
+        <main id="verification-panel" class="verification-panel" aria-labelledby="verification-title" hidden>
+            <div class="verification-heading">
+                <div><span class="verification-eyebrow">PAUSED · ALL CALLED CARDS</span><h1 id="verification-title">Verify the win.</h1></div>
+                <p>First drawn → last drawn · Gold marks the latest card</p>
+            </div>
+            <div id="verification-grid-wrap" class="verification-grid-wrap"><ol id="verification-cards" class="verification-grid" aria-label="All called cards in draw order"></ol></div>
+            <p id="verification-empty" class="verification-empty" hidden>No cards have been drawn yet.</p>
+        </main>
         <footer class="display-footer">
             <span id="connection-label">CONNECTING · SHOWING LAST KNOWN CARD</span>
             <span id="round-label">ROUND 1</span>
@@ -50,6 +60,7 @@
         </footer>
     </div>
     <noscript>This TV display needs JavaScript. Please enable it in the TV browser.</noscript>
-    <script src="js/tv.js?v=6"></script>
+    <script src="js/verification-layout.js?v=1"></script>
+    <script src="js/tv.js?v=7"></script>
 </body>
 </html>

@@ -202,11 +202,44 @@
         setText("connection-label", "LIVE FROM THE CALLER'S DEVICE");
         if (signature === lastSignature) return;
         lastSignature = signature;
+        byId("display-screen").setAttribute("data-deck-theme", themeId);
+        var verifying = state.phase === "paused";
+        byId("display-screen").className = "display-screen" + (verifying ? " is-verifying" : "");
+        byId("calling-display").hidden = verifying;
+        byId("verification-panel").hidden = !verifying;
         setText("pattern-name", patternNames[pattern]);
         renderPattern(pattern);
         setText("room-label", "ROOM " + roomCode);
         setText("draw-count", count + " / 52");
         setText("round-label", Number(state.round) > 0 ? "ROUND " + state.round : "TABLE SETUP");
+        var verification = byId("verification-cards");
+        clearChildren(verification);
+        if (verifying) {
+            for (var calledIndex = 0; calledIndex < cards.length; calledIndex++) {
+                var info = cardInfo(cards[calledIndex]);
+                var latest = calledIndex === cards.length - 1;
+                var item = document.createElement("li");
+                item.className = "verification-item" + (info.red ? " red" : "") + (latest ? " latest" : "");
+                item.setAttribute("aria-label", "Draw " + (calledIndex + 1) + ": " + info.name + (latest ? ", latest card" : ""));
+                item.appendChild(makeCard(cards[calledIndex], false, themeId));
+                var details = document.createElement("div");
+                details.className = "verification-details";
+                var order = document.createElement("small");
+                order.className = "verification-order";
+                order.textContent = "#" + (calledIndex + 1) + (latest ? " · LAST" : "");
+                var label = document.createElement("strong");
+                label.className = "verification-card-label";
+                label.textContent = info.rank + info.suit;
+                details.appendChild(order);
+                details.appendChild(label);
+                item.appendChild(details);
+                verification.appendChild(item);
+            }
+            byId("verification-empty").hidden = cards.length !== 0;
+            byId("verification-grid-wrap").hidden = cards.length === 0;
+            window.pokenoVerificationLayout.fit();
+            return;
+        }
         var current = cards.length ? cards[cards.length - 1] : null;
         var currentContainer = byId("current-card");
         clearChildren(currentContainer);

@@ -20,8 +20,8 @@ The caller app is a .NET 10 Blazor WebAssembly solution for Visual Studio. A lig
 2. Open the site's `tv.html` page on the TV and enter the eight-character table code.
 3. Choose a pattern and select **Shuffle & start round**. The pattern locks for that round.
 4. Select **Draw card** to reveal each card. Ranks and suits remain visible in the corners. The classic decks use pip arrangements; the character decks use illustrated scenes and mirrored character courts. The button unlocks after three seconds. The TV updates live.
-5. In **Card deck**, choose Illustrated, Midnight, Sunburst, MOPAR Muscle, 1969 Dart, Harry Potter, Star Wars, or Lord of the Rings. The caller and TV switch together without changing the current round or card order. The choice remains in effect for later rounds at that table.
-6. If a player calls Pokeno, choose **Pause / verify Pokeno** and review the full called-card history. Resume or end the round manually.
+5. In **Card deck**, choose Illustrated, Midnight, Sunburst, MOPAR Muscle, 1969 Dart, Harry Potter, Star Wars, or Lord of the Rings. Cards and illustrated backgrounds switch together on the caller and TV without changing the current round or card order. Illustrated keeps the original green table. The choice remains in effect for later rounds at that table.
+6. If a player calls Pokeno, choose **Pause / verify Pokeno**. The TV switches to all called cards in draw order, with large rank/suit labels and the latest card outlined in gold. The caller also shows the full history. **Resume drawing** restores the normal current-card/previous-four TV layout; **End round** shows the completed round and final card.
 7. To begin with a fresh room code and round count, choose **End table & start new** on the caller phone. Enter the new code on the TV.
 
 Preset patterns: standard bingo (any row, column, or diagonal), horizontal, vertical, diagonal, H, C (opens right), X, plus, four corners, perimeter, and full board. The picker previews patterns on hover, keyboard focus, and tap.
