@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 250 350" role="img" aria-label="Q of D — Royal Cats: Autumn" data-deck="cats" data-character="autumn">
+    <defs><symbol id="pip" viewBox="0 0 32 32"><g fill="#b64c56"><path d="M16 1 30 16 16 31 2 16Z"/></g></symbol>
+    <symbol id="cat-art" viewBox="0 0 200 182"><g data-cat="autumn"><path d="M38 182q4-37 40-48h44q37 11 40 48" fill="#292d30" stroke="#35494a" stroke-width="2"/><path d="M72 139q27 10 56 0l10 43H60Z" fill="#f3efe3"/>
+     <path d="m42 160 19-11 9 15-10 17H38Z" fill="#ba7e50"/><defs><clipPath id="fur-autumn"><path d="M43 79 31 19Q51 17 77 41q23-10 47 0 25-23 46-22l-13 60q11 26-3 49-17 29-54 29-36 0-54-29Q32 105 43 79Z"/></clipPath></defs>
+    <path d="M43 79 31 19Q51 17 77 41q23-10 47 0 25-23 46-22l-13 60q11 26-3 49-17 29-54 29-36 0-54-29Q32 105 43 79Z" fill="#292d30" stroke="#35494a" stroke-width="2"/>
+    <g clip-path="url(#fur-autumn)"><g data-marking="orange-cheek-black-face">
+    <path d="M28 87q22 4 32 22l25 7-7 30H35Zm98-52 18-14 29 6-14 42-19-7Z" fill="#bf8456"/>
+    <path d="m84 36 10-8 17 2-6 23-13 6Zm64 89 18-12 7 21-26 17Z" fill="#aa704e"/>
+    <path d="M73 137q27-12 55 0l12 22H62Z" fill="#f3efe3"/>
+    <path d="M48 103q15 0 25 9m68-77-4 13" fill="none" stroke="#d7a571" stroke-width="3"/>
+  </g></g>
+    <path d="m42 32 7 36 19-20Zm115 0-7 36-18-20Z" fill="#c4a397" opacity=".8"/>
+
+    <path d="M52 96q17-18 36 0-15 18-36 0Z" fill="#adbd80" stroke="#394744" stroke-width="2"/>
+      <ellipse cx="70" cy="96" rx="4.5" ry="10" fill="#222c30"/><circle cx="67" cy="92" r="2.7" fill="#fff8df"/>
+      <path d="M52 96q17-18 36 0" fill="none" stroke="#303d3e" stroke-width="2.5"/><path d="M112 96q17-18 36 0-15 18-36 0Z" fill="#adbd80" stroke="#394744" stroke-width="2"/>
+      <ellipse cx="130" cy="96" rx="4.5" ry="10" fill="#222c30"/><circle cx="127" cy="92" r="2.7" fill="#fff8df"/>
+      <path d="M112 96q17-18 36 0" fill="none" stroke="#303d3e" stroke-width="2.5"/>
+    <path data-feature="nose" d="M90 117q10-5 20 0l-10 11Z" fill="#282e32" stroke="#655d58" stroke-width="1.1"/>
+    <path d="M100 128v7m0-1q-6 8-13 2m13-2q6 8 13 2" fill="none" stroke="#e8e0c7" stroke-width="1.5" stroke-linecap="round"/>
+    <g fill="#e8e0c7" opacity=".65"><circle cx="78" cy="122" r="1"/><circle cx="83" cy="126" r="1"/><circle cx="122" cy="122" r="1"/><circle cx="117" cy="126" r="1"/></g>
+    <path d="M68 121 13 110m53 18-57-1m60 8-48 12m111-26 55-11m-53 18 57-1m-60 8 48 12" fill="none" stroke="#e8e0c7" stroke-width="1.25" opacity=".8" stroke-linecap="round"/><path d="M65 147q35 23 70 0l-4 13q-31 19-62 0Z" fill="#85687f" stroke="#b59c63" stroke-width="1.7"/>
+    <path d="m100 158 9 9-9 10-9-10Z" fill="#dec48b" stroke="#947649" stroke-width="1.3"/>
+    <circle cx="100" cy="167" r="3" fill="#88586e"/><g data-regalia="queen-tiara"><path d="M72 38q28-13 56 0l-5-13-11 6-12-18-12 18-11-6Z" fill="#d1b376" stroke="#937548" stroke-width="1.6"/><path d="m100 21 5 7-5 7-5-7Z" fill="#9a6686"/><circle cx="80" cy="33" r="2" fill="#f9e6b5"/><circle cx="120" cy="33" r="2" fill="#f9e6b5"/></g></g></symbol></defs><rect width="250" height="350" rx="11" fill="#f6efde"/>
+    <rect x="4" y="4" width="242" height="342" rx="8" fill="none" stroke="#b08b51" stroke-width="2"/>
+    <rect x="9" y="9" width="232" height="332" rx="5" fill="none" stroke="#b08b51" stroke-width=".7" opacity=".7"/>
+    <rect x="47" y="40" width="156" height="270" rx="70" fill="#d7dfcd" opacity=".65"/>
+    <g data-motif="paw-and-yarn-border" fill="none" stroke="#a8b49a" stroke-width="1.3">
+    <path d="M39 74q-15 23 0 42t0 44m172 30q15 23 0 42t0 44"/>
+    <path d="M40 202q-12 14-2 25 13 13 4 25m168-154q12 14 2 25-13 13-4 25"/>
+    </g><g transform="translate(30 166) scale(0.53125)" fill="#a6b399"><path d="M6 24q0-5 5-7 5-5 10 0 5 2 5 7 0 6-10 3-10 3-10-3Z"/><ellipse cx="6" cy="13" rx="3.5" ry="5" transform="rotate(-25 6 13)"/><ellipse cx="13" cy="8" rx="3.5" ry="5"/><ellipse cx="21" cy="9" rx="3.5" ry="5" transform="rotate(12 21 9)"/><ellipse cx="27" cy="15" rx="3.2" ry="4.5" transform="rotate(28 27 15)"/></g><g transform="translate(202 166) scale(0.53125)" fill="#a6b399"><path d="M6 24q0-5 5-7 5-5 10 0 5 2 5 7 0 6-10 3-10 3-10-3Z"/><ellipse cx="6" cy="13" rx="3.5" ry="5" transform="rotate(-25 6 13)"/><ellipse cx="13" cy="8" rx="3.5" ry="5"/><ellipse cx="21" cy="9" rx="3.5" ry="5" transform="rotate(12 21 9)"/><ellipse cx="27" cy="15" rx="3.2" ry="4.5" transform="rotate(28 27 15)"/></g>
+    <g fill="#c9b47e" opacity=".55"><circle cx="133" cy="81" r=".9"/><circle cx="186" cy="128" r=".9"/><circle cx="92" cy="175" r=".9"/><circle cx="145" cy="222" r=".9"/><circle cx="198" cy="269" r=".9"/><circle cx="104" cy="73" r=".9"/><circle cx="157" cy="120" r=".9"/><circle cx="63" cy="167" r=".9"/><circle cx="116" cy="214" r=".9"/><circle cx="169" cy="261" r=".9"/><circle cx="75" cy="65" r=".9"/><circle cx="128" cy="112" r=".9"/></g><text x="125" y="26" text-anchor="middle" fill="#35494a" font-family="Georgia,serif" font-weight="700" font-size="9" letter-spacing="1.8">ROYAL CATS</text>
+    <g fill="#b64c56" text-anchor="middle"><text x="22" y="31" font-family="Georgia,serif" font-weight="700" font-size="29">Q</text><use xlink:href="#pip" x="13" y="38" width="18" height="18"/></g><g transform="rotate(180 125 175)"><g fill="#b64c56" text-anchor="middle"><text x="22" y="31" font-family="Georgia,serif" font-weight="700" font-size="29">Q</text><use xlink:href="#pip" x="13" y="38" width="18" height="18"/></g></g><g id="main-art"><g data-portrait="upright"><use xlink:href="#cat-art" x="43" y="34" width="164" height="134"/></g>
+      <g data-portrait="inverted" transform="rotate(180 125 175)"><use xlink:href="#cat-art" x="43" y="34" width="164" height="134"/></g>
+      <path d="M43 162h164v27H43Z" fill="#f6efde" stroke="#b08b51" stroke-width="1.4"/>
+      <text x="125" y="174" text-anchor="middle" fill="#35494a" font-family="Georgia,serif" font-weight="700" font-size="11.5">AUTUMN</text>
+      <text x="125" y="184" text-anchor="middle" fill="#35494a" font-family="Arial,sans-serif" font-size="6.6" letter-spacing="1.7">QUEEN</text></g>
+  </svg>

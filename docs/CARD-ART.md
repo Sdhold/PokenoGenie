@@ -43,6 +43,21 @@ Character design references include the official [Harry Potter encyclopedia](htt
 
 These are fan themed collections; the characters, franchise names, and associated marks belong to their respective owners. No affiliation or endorsement is claimed.
 
+## Royal Cats
+
+The Royal Cats collection uses original flat vector illustrations based on the supplied cat photos. Their names and assignments are the same in all four suits:
+
+| Rank | Cat | Identifying details |
+| --- | --- | --- |
+| Jack | Binx | Black coat, yellow-green eyes and a small white chest locket. |
+| Queen | Autumn | Mostly black face, orange cheek and coat patches, white chest, green eyes and a tiara. |
+| King | Chip | Grey cap and shoulders, broad white face blaze and chest, pink nose, folded ear, wink and a crown. |
+| Ace | Anya | White face and chest, orange cheeks, black crown patches and the distinctive black-tipped nose. |
+
+The Jack, Queen and King portraits are mirrored like the other character courts. The Ace shows Anya in an ornamental frame. Number cards alternate among nine scenes: yarn, a basket nap, a window watch, a box, stretching, a book, a fish toy, a garden and moonlight. Corner ranks and standard suits still identify every card.
+
+`tools/cat-card-art.mjs` contains the editable portrait, scene, back and background definitions. The back and the moonlit sitting-room background reuse the same four pet illustrations. The supplied photos are references only and are not included in the public repository or deployed app.
+
 ## Matching backgrounds
 
 Every alternate deck has a bundled 1600 × 900 SVG background shared by the caller, Blazor display, and lightweight TV display. The caller's shuffle and drawing panels also show the selected scenery behind the deck, with light labels and contrasting controls. The Illustrated deck retains its original green table and cream panels. Backgrounds follow the card collection automatically, including during verification; no external image service is used.
@@ -54,5 +69,6 @@ Every alternate deck has a bundled 1600 × 900 SVG background shared by the call
 - **Harry Potter:** a moonlit castle, an owl and wand magic.
 - **Star Wars:** a battle station, starfighters and a star field in the cards' vector style.
 - **Lord of the Rings:** mountains, Elven woodland, the White Tree and a golden ring.
+- **Royal Cats:** a moonlit sitting room, plants, paw prints and all four named cats.
 
 Run `node tools/generate-deck-backgrounds.mjs` to regenerate them after generating card art. The automotive backgrounds reuse the deck's existing vehicle symbols. The assets are in `src/PokenoGenie/wwwroot/backgrounds/`; their colors and overlays are controlled by `css/deck-backgrounds.css`.

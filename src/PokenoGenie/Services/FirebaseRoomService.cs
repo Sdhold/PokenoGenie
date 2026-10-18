@@ -46,7 +46,7 @@ public sealed class FirebaseRoomService(
         }
 
         _module = await js.InvokeAsync<IJSObjectReference>(
-            "import", navigation.BaseUri + "js/firebase-bridge.js?v=5");
+            "import", navigation.BaseUri + "js/firebase-bridge.js?v=6");
         _callbackReference = DotNetObjectReference.Create(this);
         UserId = await _module.InvokeAsync<string>("initialize", options, _callbackReference);
     }

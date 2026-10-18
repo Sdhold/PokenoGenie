@@ -197,7 +197,7 @@ test("the caller can switch a deck theme without changing a live round", async (
   await assertSucceeds(set(ref(owner, themePath), "mopar"));
   await assertSucceeds(set(ref(owner, themePath), "dart1969"));
   assert.equal((await get(ref(viewer, themePath))).val(), "dart1969");
-  for (const themeId of ["harrypotter", "starwars", "lordoftherings"]) {
+  for (const themeId of ["harrypotter", "starwars", "lordoftherings", "cats"]) {
     await assertSucceeds(set(ref(owner, themePath), themeId));
     assert.equal((await assertSucceeds(get(ref(viewer, themePath)))).val(), themeId);
     await assertFails(set(ref(viewer, themePath), themeId));

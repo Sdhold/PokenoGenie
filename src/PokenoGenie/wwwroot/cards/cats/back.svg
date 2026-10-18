@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 250 350" role="img" aria-label="Royal Cats card back — Binx, Autumn, Chip and Anya" data-deck="cats" data-character="the-four-cats">
+    <defs><symbol id="pet-binx" viewBox="0 0 200 182"><g data-cat="binx"><path d="M38 182q4-37 40-48h44q37 11 40 48" fill="#242b30" stroke="#35494a" stroke-width="2"/><path data-marking="small-white-locket" d="m94 169 5-6 7 5-1 6-7 4Z" fill="#dfded6"/><defs><clipPath id="fur-binx"><path d="M43 79 31 19Q51 17 77 41q23-10 47 0 25-23 46-22l-13 60q11 26-3 49-17 29-54 29-36 0-54-29Q32 105 43 79Z"/></clipPath></defs>
+    <path d="M43 79 31 19Q51 17 77 41q23-10 47 0 25-23 46-22l-13 60q11 26-3 49-17 29-54 29-36 0-54-29Q32 105 43 79Z" fill="#242b30" stroke="#35494a" stroke-width="2"/>
+    <g clip-path="url(#fur-binx)"><path d="M44 85q6-26 28-35M51 126q-9-17-5-32m75-50 27 15" fill="none" stroke="#465159" stroke-width="3" opacity=".65"/></g>
+    <path d="m42 32 7 36 19-20Zm115 0-7 36-18-20Z" fill="#76646a" opacity=".8"/>
+
+    <ellipse cx="70" cy="96" rx="14" ry="16" fill="#c6c77d" stroke="#394744" stroke-width="2"/>
+      <ellipse cx="70" cy="96" rx="5" ry="13" fill="#222c30"/><circle cx="67" cy="92" r="2.7" fill="#fff8df"/>
+      <ellipse cx="130" cy="96" rx="14" ry="16" fill="#c6c77d" stroke="#394744" stroke-width="2"/>
+      <ellipse cx="130" cy="96" rx="5" ry="13" fill="#222c30"/><circle cx="127" cy="92" r="2.7" fill="#fff8df"/>
+
+    <path data-feature="nose" d="M90 117q10-5 20 0l-10 11Z" fill="#30383d" stroke="#5a6061" stroke-width="1.1"/>
+    <path d="M100 128v7m0-1q-6 8-13 2m13-2q6 8 13 2" fill="none" stroke="#e8e0c7" stroke-width="1.5" stroke-linecap="round"/>
+    <g fill="#e8e0c7" opacity=".65"><circle cx="78" cy="122" r="1"/><circle cx="83" cy="126" r="1"/><circle cx="122" cy="122" r="1"/><circle cx="117" cy="126" r="1"/></g>
+    <path d="M68 121 13 110m53 18-57-1m60 8-48 12m111-26 55-11m-53 18 57-1m-60 8 48 12" fill="none" stroke="#e8e0c7" stroke-width="1.25" opacity=".8" stroke-linecap="round"/><path d="M65 147q35 23 70 0l-4 13q-31 19-62 0Z" fill="#588880" stroke="#b59c63" stroke-width="1.7"/>
+    <path d="m100 158 9 9-9 10-9-10Z" fill="#dec48b" stroke="#947649" stroke-width="1.3"/>
+    <circle cx="100" cy="167" r="3" fill="#466d69"/></g></symbol><symbol id="pet-autumn" viewBox="0 0 200 182"><g data-cat="autumn"><path d="M38 182q4-37 40-48h44q37 11 40 48" fill="#292d30" stroke="#35494a" stroke-width="2"/><path d="M72 139q27 10 56 0l10 43H60Z" fill="#f3efe3"/>
+     <path d="m42 160 19-11 9 15-10 17H38Z" fill="#ba7e50"/><defs><clipPath id="fur-autumn"><path d="M43 79 31 19Q51 17 77 41q23-10 47 0 25-23 46-22l-13 60q11 26-3 49-17 29-54 29-36 0-54-29Q32 105 43 79Z"/></clipPath></defs>
+    <path d="M43 79 31 19Q51 17 77 41q23-10 47 0 25-23 46-22l-13 60q11 26-3 49-17 29-54 29-36 0-54-29Q32 105 43 79Z" fill="#292d30" stroke="#35494a" stroke-width="2"/>
+    <g clip-path="url(#fur-autumn)"><g data-marking="orange-cheek-black-face">
+    <path d="M28 87q22 4 32 22l25 7-7 30H35Zm98-52 18-14 29 6-14 42-19-7Z" fill="#bf8456"/>
+    <path d="m84 36 10-8 17 2-6 23-13 6Zm64 89 18-12 7 21-26 17Z" fill="#aa704e"/>
+    <path d="M73 137q27-12 55 0l12 22H62Z" fill="#f3efe3"/>
+    <path d="M48 103q15 0 25 9m68-77-4 13" fill="none" stroke="#d7a571" stroke-width="3"/>
+  </g></g>
+    <path d="m42 32 7 36 19-20Zm115 0-7 36-18-20Z" fill="#c4a397" opacity=".8"/>
+
+    <path d="M52 96q17-18 36 0-15 18-36 0Z" fill="#adbd80" stroke="#394744" stroke-width="2"/>
+      <ellipse cx="70" cy="96" rx="4.5" ry="10" fill="#222c30"/><circle cx="67" cy="92" r="2.7" fill="#fff8df"/>
+      <path d="M52 96q17-18 36 0" fill="none" stroke="#303d3e" stroke-width="2.5"/><path d="M112 96q17-18 36 0-15 18-36 0Z" fill="#adbd80" stroke="#394744" stroke-width="2"/>
+      <ellipse cx="130" cy="96" rx="4.5" ry="10" fill="#222c30"/><circle cx="127" cy="92" r="2.7" fill="#fff8df"/>
+      <path d="M112 96q17-18 36 0" fill="none" stroke="#303d3e" stroke-width="2.5"/>
+    <path data-feature="nose" d="M90 117q10-5 20 0l-10 11Z" fill="#282e32" stroke="#655d58" stroke-width="1.1"/>
+    <path d="M100 128v7m0-1q-6 8-13 2m13-2q6 8 13 2" fill="none" stroke="#e8e0c7" stroke-width="1.5" stroke-linecap="round"/>
+    <g fill="#e8e0c7" opacity=".65"><circle cx="78" cy="122" r="1"/><circle cx="83" cy="126" r="1"/><circle cx="122" cy="122" r="1"/><circle cx="117" cy="126" r="1"/></g>
+    <path d="M68 121 13 110m53 18-57-1m60 8-48 12m111-26 55-11m-53 18 57-1m-60 8 48 12" fill="none" stroke="#e8e0c7" stroke-width="1.25" opacity=".8" stroke-linecap="round"/><path d="M65 147q35 23 70 0l-4 13q-31 19-62 0Z" fill="#85687f" stroke="#b59c63" stroke-width="1.7"/>
+    <path d="m100 158 9 9-9 10-9-10Z" fill="#dec48b" stroke="#947649" stroke-width="1.3"/>
+    <circle cx="100" cy="167" r="3" fill="#88586e"/><g data-regalia="queen-tiara"><path d="M72 38q28-13 56 0l-5-13-11 6-12-18-12 18-11-6Z" fill="#d1b376" stroke="#937548" stroke-width="1.6"/><path d="m100 21 5 7-5 7-5-7Z" fill="#9a6686"/><circle cx="80" cy="33" r="2" fill="#f9e6b5"/><circle cx="120" cy="33" r="2" fill="#f9e6b5"/></g></g></symbol><symbol id="pet-chip" viewBox="0 0 200 182"><g data-cat="chip"><path d="M38 182q4-37 40-48h44q37 11 40 48" fill="#858d8c" stroke="#35494a" stroke-width="2"/><path d="M72 139q27 10 56 0l10 43H60Z" fill="#f4f1e8"/>
+     <defs><clipPath id="fur-chip"><path d="M43 79 31 19Q51 17 77 41q23-10 47 0l22-17q17 2 20 18l-12 8 7 12-4 17q11 26-3 49-17 29-54 29-36 0-54-29Q32 105 43 79Z"/></clipPath></defs>
+    <path d="M43 79 31 19Q51 17 77 41q23-10 47 0l22-17q17 2 20 18l-12 8 7 12-4 17q11 26-3 49-17 29-54 29-36 0-54-29Q32 105 43 79Z" fill="#858d8c" stroke="#35494a" stroke-width="2"/>
+    <g clip-path="url(#fur-chip)"><g data-marking="white-blaze-grey-cap">
+    <path d="m100 37-12 31-9 18q-25-2-39 23l-8 54h137l-13-56q-12-23-32-20l-11-23-4-27Z" fill="#f5f2e9"/>
+    <path d="m50 54 18 9m-22 6 16 7m71-23 15 9m-11 7 17 8M44 117l16 4m80 1 16-5" fill="none" stroke="#66716f" stroke-width="3"/>
+  </g></g>
+    <path d="m42 32 7 36 19-20ZM146 34l10 9-12 18-11-13Z" fill="#c4a397" opacity=".8"/>
+    <path data-feature="folded-ear" d="M146 25q11 3 18 17l-14 2" fill="#a9aaa0" stroke="#727e78" stroke-width="1.5"/>
+    <path d="M52 96q17-18 36 0-15 18-36 0Z" fill="#a5b495" stroke="#394744" stroke-width="2"/>
+      <ellipse cx="70" cy="96" rx="4.5" ry="10" fill="#222c30"/><circle cx="67" cy="92" r="2.7" fill="#fff8df"/>
+      <path d="M52 96q17-18 36 0" fill="none" stroke="#303d3e" stroke-width="2.5"/><path data-feature="gentle-wink" d="M115 97q15 7 30-1m-27-8q11-3 22 0" fill="none" stroke="#6e7b76" stroke-width="2.5" stroke-linecap="round"/>
+    <path data-feature="nose" d="M90 117q10-5 20 0l-10 11Z" fill="#ce9899" stroke="#655d58" stroke-width="1.1"/>
+    <path d="M100 128v7m0-1q-6 8-13 2m13-2q6 8 13 2" fill="none" stroke="#6b7774" stroke-width="1.5" stroke-linecap="round"/>
+    <g fill="#6b7774" opacity=".65"><circle cx="78" cy="122" r="1"/><circle cx="83" cy="126" r="1"/><circle cx="122" cy="122" r="1"/><circle cx="117" cy="126" r="1"/></g>
+    <path d="M68 121 13 110m53 18-57-1m60 8-48 12m111-26 55-11m-53 18 57-1m-60 8 48 12" fill="none" stroke="#6b7774" stroke-width="1.25" opacity=".8" stroke-linecap="round"/><path d="M65 147q35 23 70 0l-4 13q-31 19-62 0Z" fill="#588880" stroke="#b59c63" stroke-width="1.7"/>
+    <path d="m100 158 9 9-9 10-9-10Z" fill="#dec48b" stroke="#947649" stroke-width="1.3"/>
+    <circle cx="100" cy="167" r="3" fill="#466d69"/><g data-regalia="king-crown"><path d="m68 30-4-23 21 12L100 2l15 17 21-12-4 23Z" fill="#d4af69" stroke="#8d7045" stroke-width="1.8"/><path d="M69 31h62v8H69Z" fill="#ad8650" stroke="#775c3a" stroke-width="1"/><path d="m100 19 5 6-5 6-5-6Z" fill="#9e5860"/><circle cx="77" cy="24" r="2" fill="#f6e3b0"/><circle cx="123" cy="24" r="2" fill="#f6e3b0"/></g></g></symbol><symbol id="pet-anya" viewBox="0 0 200 182"><g data-cat="anya"><path d="M38 182q4-37 40-48h44q37 11 40 48" fill="#f3eee1" stroke="#35494a" stroke-width="2"/><path d="M72 139q27 10 56 0l10 43H60Z" fill="#f8f3e6"/>
+     <path d="m133 140 22 15 9 27h-27l-11-19Z" fill="#303738"/><path d="m42 164 17-13 10 13-7 18H38Z" fill="#c38a52"/><defs><clipPath id="fur-anya"><path d="M43 79 31 19Q51 17 77 41q23-10 47 0 25-23 46-22l-13 60q11 26-3 49-17 29-54 29-36 0-54-29Q32 105 43 79Z"/></clipPath></defs>
+    <path d="M43 79 31 19Q51 17 77 41q23-10 47 0 25-23 46-22l-13 60q11 26-3 49-17 29-54 29-36 0-54-29Q32 105 43 79Z" fill="#f3eee1" stroke="#35494a" stroke-width="2"/>
+    <g clip-path="url(#fur-anya)"><g data-marking="orange-cheeks-white-blaze">
+    <path d="M25 17q45-13 76 24l-12 35q-24-2-32 29l-29-4Zm81 20q34-30 72-16l1 80-33 8q-6-22-26-30Z" fill="#ca905a"/>
+    <path d="m34 12 26 8 14 25-17 24-18-1Zm65 23 20 1 14 16-13 18-6-7-8 26-10-21 5-16Z" fill="#2d3437"/>
+    <path d="m85 116 7-9 11 13-7 12-13-2Zm24 12 10-5 8 11-15 2Z" fill="#c39362"/>
+  </g></g>
+    <path d="m42 32 7 36 19-20Zm115 0-7 36-18-20Z" fill="#c4a397" opacity=".8"/>
+
+    <path d="M52 96q17-18 36 0-15 18-36 0Z" fill="#acb780" stroke="#394744" stroke-width="2"/>
+      <ellipse cx="70" cy="96" rx="4.5" ry="10" fill="#222c30"/><circle cx="67" cy="92" r="2.7" fill="#fff8df"/>
+      <path d="M52 96q17-18 36 0" fill="none" stroke="#303d3e" stroke-width="2.5"/><path d="M112 96q17-18 36 0-15 18-36 0Z" fill="#acb780" stroke="#394744" stroke-width="2"/>
+      <ellipse cx="130" cy="96" rx="4.5" ry="10" fill="#222c30"/><circle cx="127" cy="92" r="2.7" fill="#fff8df"/>
+      <path d="M112 96q17-18 36 0" fill="none" stroke="#303d3e" stroke-width="2.5"/>
+    <path data-feature="black-tipped-nose" d="M90 117q10-5 20 0l-10 11Z" fill="#252e33" stroke="#655d58" stroke-width="1.1"/>
+    <path d="M100 128v7m0-1q-6 8-13 2m13-2q6 8 13 2" fill="none" stroke="#6b7774" stroke-width="1.5" stroke-linecap="round"/>
+    <g fill="#6b7774" opacity=".65"><circle cx="78" cy="122" r="1"/><circle cx="83" cy="126" r="1"/><circle cx="122" cy="122" r="1"/><circle cx="117" cy="126" r="1"/></g>
+    <path d="M68 121 13 110m53 18-57-1m60 8-48 12m111-26 55-11m-53 18 57-1m-60 8 48 12" fill="none" stroke="#6b7774" stroke-width="1.25" opacity=".8" stroke-linecap="round"/></g></symbol></defs><rect width="250" height="350" rx="11" fill="#f6efde"/>
+    <rect x="4" y="4" width="242" height="342" rx="8" fill="none" stroke="#b08b51" stroke-width="2"/>
+    <rect x="9" y="9" width="232" height="332" rx="5" fill="none" stroke="#b08b51" stroke-width=".7" opacity=".7"/>
+    <rect x="47" y="40" width="156" height="270" rx="70" fill="#d7dfcd" opacity=".65"/>
+    <g data-motif="paw-and-yarn-border" fill="none" stroke="#a8b49a" stroke-width="1.3">
+    <path d="M39 74q-15 23 0 42t0 44m172 30q15 23 0 42t0 44"/>
+    <path d="M40 202q-12 14-2 25 13 13 4 25m168-154q12 14 2 25-13 13-4 25"/>
+    </g><g transform="translate(30 166) scale(0.53125)" fill="#a6b399"><path d="M6 24q0-5 5-7 5-5 10 0 5 2 5 7 0 6-10 3-10 3-10-3Z"/><ellipse cx="6" cy="13" rx="3.5" ry="5" transform="rotate(-25 6 13)"/><ellipse cx="13" cy="8" rx="3.5" ry="5"/><ellipse cx="21" cy="9" rx="3.5" ry="5" transform="rotate(12 21 9)"/><ellipse cx="27" cy="15" rx="3.2" ry="4.5" transform="rotate(28 27 15)"/></g><g transform="translate(202 166) scale(0.53125)" fill="#a6b399"><path d="M6 24q0-5 5-7 5-5 10 0 5 2 5 7 0 6-10 3-10 3-10-3Z"/><ellipse cx="6" cy="13" rx="3.5" ry="5" transform="rotate(-25 6 13)"/><ellipse cx="13" cy="8" rx="3.5" ry="5"/><ellipse cx="21" cy="9" rx="3.5" ry="5" transform="rotate(12 21 9)"/><ellipse cx="27" cy="15" rx="3.2" ry="4.5" transform="rotate(28 27 15)"/></g>
+    <g fill="#c9b47e" opacity=".55"><circle cx="57" cy="232" r=".9"/><circle cx="110" cy="279" r=".9"/><circle cx="163" cy="83" r=".9"/><circle cx="69" cy="130" r=".9"/><circle cx="122" cy="177" r=".9"/><circle cx="175" cy="224" r=".9"/><circle cx="81" cy="271" r=".9"/><circle cx="134" cy="75" r=".9"/><circle cx="187" cy="122" r=".9"/><circle cx="93" cy="169" r=".9"/><circle cx="146" cy="216" r=".9"/><circle cx="52" cy="263" r=".9"/></g><text x="125" y="26" text-anchor="middle" fill="#35494a" font-family="Georgia,serif" font-weight="700" font-size="9" letter-spacing="1.8">ROYAL CATS</text>
+
+    <g id="main-art"><use xlink:href="#pet-binx" x="39" y="46" width="87" height="86"/><use xlink:href="#pet-autumn" x="124" y="46" width="87" height="86"/>
+    <use xlink:href="#pet-chip" x="39" y="204" width="87" height="86"/><use xlink:href="#pet-anya" x="124" y="204" width="87" height="86"/>
+    <path d="M44 143h162v57H44Z" fill="#274b47" stroke="#b08b51" stroke-width="1.6"/>
+    <text x="125" y="162" text-anchor="middle" fill="#f6e5b7" font-family="Georgia,serif" font-size="14" letter-spacing="1">ROYAL CATS</text>
+    <text x="125" y="177" text-anchor="middle" fill="#e2d9bc" font-family="Arial,sans-serif" font-size="5.9" letter-spacing=".7">BINX · AUTUMN · CHIP · ANYA</text>
+    <g transform="translate(116 181) scale(0.5625)" fill="#d2b578"><path d="M6 24q0-5 5-7 5-5 10 0 5 2 5 7 0 6-10 3-10 3-10-3Z"/><ellipse cx="6" cy="13" rx="3.5" ry="5" transform="rotate(-25 6 13)"/><ellipse cx="13" cy="8" rx="3.5" ry="5"/><ellipse cx="21" cy="9" rx="3.5" ry="5" transform="rotate(12 21 9)"/><ellipse cx="27" cy="15" rx="3.2" ry="4.5" transform="rotate(28 27 15)"/></g>
+    <text x="125" y="315" text-anchor="middle" fill="#35494a" font-family="Arial,sans-serif" font-size="6.5" letter-spacing="1.5">FOUR CATS. ONE ROYAL COURT.</text></g>
+  </svg>

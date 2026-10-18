@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 250 350" role="img" aria-label="6 of H — Royal Cats: Gone Fishing" data-deck="cats" data-character="fish">
+    <defs><symbol id="pip" viewBox="0 0 32 32"><g fill="#b64c56"><path d="M16 29 3.5 16C-2 9 3 2 10 3c3 0 5 2 6 4 1-2 3-4 6-4 7-1 12 6 6.5 13Z"/></g></symbol>
+    <symbol id="cat-art" viewBox="0 0 200 240"><ellipse cx="101" cy="226" rx="90" ry="7" fill="#adbca9" opacity=".4"/><path d="M143 198q56 40 40-24-5-19-15-20" fill="none" stroke="#35494a" stroke-width="19" stroke-linecap="round"/>
+    <path d="M143 198q56 40 40-24-5-19-15-20" fill="none" stroke="#9b9583" stroke-width="15" stroke-linecap="round"/>
+    <path d="M53 219q-8-53 19-99h55q32 43 22 99Z" fill="#9b9583" stroke="#35494a" stroke-width="2"/>
+    <path d="M79 135q21 11 43 0l12 81H65Z" fill="#d9d3bd"/>
+    <g transform="translate(25 20) scale(.75)"><defs><clipPath id="fur-scene-fish"><path d="M43 79 31 19Q51 17 77 41q23-10 47 0 25-23 46-22l-13 60q11 26-3 49-17 29-54 29-36 0-54-29Q32 105 43 79Z"/></clipPath></defs>
+    <path d="M43 79 31 19Q51 17 77 41q23-10 47 0 25-23 46-22l-13 60q11 26-3 49-17 29-54 29-36 0-54-29Q32 105 43 79Z" fill="#9b9583" stroke="#35494a" stroke-width="2"/>
+    <g clip-path="url(#fur-scene-fish)"><g fill="none" stroke="#696d63" stroke-width="4" stroke-linecap="round">
+    <path d="m78 43 9 23 13-13 12 13 9-23M43 83l20 5m-23 10 18 5m85-16 17-6m-17 21 17-5M52 126l13-4m70 0 14 5"/>
+  </g><path d="M79 130q21-12 43 0l10 28H68Z" fill="#d9d3bd"/></g>
+    <path d="m42 32 7 36 19-20Zm115 0-7 36-18-20Z" fill="#c4a397" opacity=".8"/>
+
+    <path d="M52 96q17-18 36 0-15 18-36 0Z" fill="#b9bf78" stroke="#394744" stroke-width="2"/>
+      <ellipse cx="70" cy="96" rx="4.5" ry="10" fill="#222c30"/><circle cx="67" cy="92" r="2.7" fill="#fff8df"/>
+      <path d="M52 96q17-18 36 0" fill="none" stroke="#303d3e" stroke-width="2.5"/><path d="M112 96q17-18 36 0-15 18-36 0Z" fill="#b9bf78" stroke="#394744" stroke-width="2"/>
+      <ellipse cx="130" cy="96" rx="4.5" ry="10" fill="#222c30"/><circle cx="127" cy="92" r="2.7" fill="#fff8df"/>
+      <path d="M112 96q17-18 36 0" fill="none" stroke="#303d3e" stroke-width="2.5"/>
+    <path data-feature="nose" d="M90 117q10-5 20 0l-10 11Z" fill="#ac8178" stroke="#655d58" stroke-width="1.1"/>
+    <path d="M100 128v7m0-1q-6 8-13 2m13-2q6 8 13 2" fill="none" stroke="#6b7774" stroke-width="1.5" stroke-linecap="round"/>
+    <g fill="#6b7774" opacity=".65"><circle cx="78" cy="122" r="1"/><circle cx="83" cy="126" r="1"/><circle cx="122" cy="122" r="1"/><circle cx="117" cy="126" r="1"/></g>
+    <path d="M68 121 13 110m53 18-57-1m60 8-48 12m111-26 55-11m-53 18 57-1m-60 8 48 12" fill="none" stroke="#6b7774" stroke-width="1.25" opacity=".8" stroke-linecap="round"/></g>
+    <path d="M68 178v35m63-35v35" fill="none" stroke="#35494a" stroke-width="1.5"/>
+    <ellipse cx="74" cy="219" rx="18" ry="9" fill="#d9d3bd" stroke="#35494a" stroke-width="1.5"/><ellipse cx="127" cy="219" rx="18" ry="9" fill="#d9d3bd" stroke="#35494a" stroke-width="1.5"/><path d="M26 185 8 68m0 0q38-34 73-7" stroke="#9d855f" stroke-width="3" fill="none"/><path d="M80 61q-14 56 53 116" stroke="#b5b792" stroke-width="1.4" fill="none"/>
+      <g transform="translate(153 193) rotate(-22)"><path d="M-25 0q23-30 48 0L38-13v26L23 0q-25 30-48 0Z" fill="#8daea4" stroke="#35494a" stroke-width="1.5"/><circle cx="-14" cy="-2" r="2" fill="#35494a"/><path d="M0-11 7 0 0 11" fill="none" stroke="#d7dbc1" stroke-width="2"/></g></symbol></defs><rect width="250" height="350" rx="11" fill="#f6efde"/>
+    <rect x="4" y="4" width="242" height="342" rx="8" fill="none" stroke="#b08b51" stroke-width="2"/>
+    <rect x="9" y="9" width="232" height="332" rx="5" fill="none" stroke="#b08b51" stroke-width=".7" opacity=".7"/>
+    <rect x="47" y="40" width="156" height="270" rx="70" fill="#d7dfcd" opacity=".65"/>
+    <g data-motif="paw-and-yarn-border" fill="none" stroke="#a8b49a" stroke-width="1.3">
+    <path d="M39 74q-15 23 0 42t0 44m172 30q15 23 0 42t0 44"/>
+    <path d="M40 202q-12 14-2 25 13 13 4 25m168-154q12 14 2 25-13 13-4 25"/>
+    </g><g transform="translate(30 166) scale(0.53125)" fill="#a6b399"><path d="M6 24q0-5 5-7 5-5 10 0 5 2 5 7 0 6-10 3-10 3-10-3Z"/><ellipse cx="6" cy="13" rx="3.5" ry="5" transform="rotate(-25 6 13)"/><ellipse cx="13" cy="8" rx="3.5" ry="5"/><ellipse cx="21" cy="9" rx="3.5" ry="5" transform="rotate(12 21 9)"/><ellipse cx="27" cy="15" rx="3.2" ry="4.5" transform="rotate(28 27 15)"/></g><g transform="translate(202 166) scale(0.53125)" fill="#a6b399"><path d="M6 24q0-5 5-7 5-5 10 0 5 2 5 7 0 6-10 3-10 3-10-3Z"/><ellipse cx="6" cy="13" rx="3.5" ry="5" transform="rotate(-25 6 13)"/><ellipse cx="13" cy="8" rx="3.5" ry="5"/><ellipse cx="21" cy="9" rx="3.5" ry="5" transform="rotate(12 21 9)"/><ellipse cx="27" cy="15" rx="3.2" ry="4.5" transform="rotate(28 27 15)"/></g>
+    <g fill="#c9b47e" opacity=".55"><circle cx="166" cy="186" r=".9"/><circle cx="72" cy="233" r=".9"/><circle cx="125" cy="280" r=".9"/><circle cx="178" cy="84" r=".9"/><circle cx="84" cy="131" r=".9"/><circle cx="137" cy="178" r=".9"/><circle cx="190" cy="225" r=".9"/><circle cx="96" cy="272" r=".9"/><circle cx="149" cy="76" r=".9"/><circle cx="55" cy="123" r=".9"/><circle cx="108" cy="170" r=".9"/><circle cx="161" cy="217" r=".9"/></g><text x="125" y="26" text-anchor="middle" fill="#35494a" font-family="Georgia,serif" font-weight="700" font-size="9" letter-spacing="1.8">ROYAL CATS</text>
+    <g fill="#b64c56" text-anchor="middle"><text x="22" y="31" font-family="Georgia,serif" font-weight="700" font-size="29">6</text><use xlink:href="#pip" x="13" y="38" width="18" height="18"/></g><g transform="rotate(180 125 175)"><g fill="#b64c56" text-anchor="middle"><text x="22" y="31" font-family="Georgia,serif" font-weight="700" font-size="29">6</text><use xlink:href="#pip" x="13" y="38" width="18" height="18"/></g></g><g id="main-art"><use xlink:href="#cat-art" x="42" y="49" width="166" height="212"/>
+      <path d="M57 271h136m-125 32h114" stroke="#b08b51" stroke-width="1"/>
+      <text x="125" y="286" text-anchor="middle" fill="#35494a" font-family="Georgia,serif" font-weight="700" font-size="11.5">GONE FISHING</text>
+      <text x="125" y="298" text-anchor="middle" fill="#35494a" font-family="Arial,sans-serif" font-size="5.7" letter-spacing="0.2">THE CATCH OF THE DAY</text>
+      <g transform="translate(115 310) scale(0.625)" fill="#b08b51"><path d="M6 24q0-5 5-7 5-5 10 0 5 2 5 7 0 6-10 3-10 3-10-3Z"/><ellipse cx="6" cy="13" rx="3.5" ry="5" transform="rotate(-25 6 13)"/><ellipse cx="13" cy="8" rx="3.5" ry="5"/><ellipse cx="21" cy="9" rx="3.5" ry="5" transform="rotate(12 21 9)"/><ellipse cx="27" cy="15" rx="3.2" ry="4.5" transform="rotate(28 27 15)"/></g></g>
+  </svg>

@@ -1,6 +1,7 @@
 // Original static vector scenery. Reuse the automotive deck's own car symbols
 // so background cars and cards always depict the same models.
 import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { catBackgroundSvg } from "./cat-card-art.mjs";
 
 const root = new URL("../src/PokenoGenie/wwwroot/", import.meta.url);
 const output = new URL("backgrounds/", root);
@@ -95,4 +96,5 @@ for (const theme of ["mopar","dart1969"]) {
     <text x="115" y="128" fill="${blue?'#c7e2e5':'#adc9da'}" font-family="Arial,sans-serif" font-size="${blue?34:24}" font-weight="700" letter-spacing="7">${blue?'1969 DODGE DART':'MOPAR MUSCLE'}</text>`;
   await writeFile(new URL(`${theme}.svg`,output),svg(theme,blue?'Blue 1969 Dodge Dart in a chrome and blue garage':'MOPAR garage with Charger, Challenger, Cuda and Superbird',scene,defs));
 }
-console.log("Generated seven bundled deck backgrounds; Illustrated keeps its green table.");
+await writeFile(new URL("cats.svg",output),catBackgroundSvg());
+console.log("Generated eight bundled deck backgrounds; Illustrated keeps its green table.");

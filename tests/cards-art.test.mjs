@@ -7,7 +7,7 @@ const ranks = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
 const suits = ["S", "H", "D", "C"];
 const traditionalDirectories = [directory, ...["midnight", "sunburst", "mopar", "dart1969"].map(id => new URL(`${id}/`, directory))];
 const storyIds = ["harrypotter", "starwars", "lordoftherings"];
-const themeDirectories = [...traditionalDirectories, ...storyIds.map(id => new URL(`${id}/`, directory))];
+const themeDirectories = [...traditionalDirectories, ...[...storyIds,"cats"].map(id => new URL(`${id}/`, directory))];
 
 test("every theme has 52 self-contained SVG faces", async () => {
   const expected = suits.flatMap(suit => ranks.map(rank => `${rank}${suit}.svg`)).sort();
@@ -99,6 +99,33 @@ test("Star Wars force users have character-colored lightsaber borders", async ()
   const han = await readFile(new URL("starwars/6S.svg", directory), "utf8");
   assert.match(han, /data-character="han"/);
   assert.match(han, /data-motif="starship-panels"/);
+});
+
+test("Royal Cats keeps the four named pets on their assigned ranks in every suit", async () => {
+  const assigned = { J:["binx","BINX","small-white-locket"], Q:["autumn","AUTUMN","orange-cheek-black-face"], K:["chip","CHIP","white-blaze-grey-cap"], A:["anya","ANYA","black-tipped-nose"] };
+  const portraits = new Set(), scenes = new Set();
+  for (const suit of suits) {
+    for (const [rank,[id,name,marking]] of Object.entries(assigned)) {
+      const art = await readFile(new URL(`cats/${rank}${suit}.svg`,directory),"utf8");
+      assert.match(art,new RegExp(`data-character="${id}"`));
+      assert.match(art,new RegExp(`data-cat="${id}"`));
+      assert.ok(art.includes(name));
+      assert.ok(art.includes(marking),`${name} needs the photo's distinguishing markings`);
+      if (id === "chip") { assert.match(art,/data-feature="gentle-wink"/); assert.match(art,/data-feature="folded-ear"/); }
+      portraits.add(/<symbol id="cat-art"[^>]*>([\s\S]*?)<\/symbol>/.exec(art)?.[1]);
+      if (rank !== "A") assert.match(art,/data-portrait="inverted" transform="rotate\(180 125 175\)"/);
+    }
+    for (const rank of ranks) {
+      const art = await readFile(new URL(`cats/${rank}${suit}.svg`,directory),"utf8");
+      const ids = new Set([...art.matchAll(/\bid="([^"]+)"/g)].map(match=>match[1]));
+      for (const reference of art.matchAll(/(?:xlink:href="#|url\(#)([^"\)]+)/g)) assert.ok(ids.has(reference[1]),`${rank}${suit}: ${reference[1]}`);
+      if (!assigned[rank]) scenes.add(/data-character="([^"]+)"/.exec(art)?.[1]);
+    }
+  }
+  assert.equal(portraits.size,4,"The four pets need distinct portrait artwork");
+  assert.equal(scenes.size,9,"The number cards need varied cat scenes");
+  const back = await readFile(new URL("cats/back.svg",directory),"utf8");
+  for (const [id] of Object.values(assigned)) assert.match(back,new RegExp(`xlink:href="#pet-${id}"`));
 });
 
 test("alternate decks have distinct art and a matching back", async () => {

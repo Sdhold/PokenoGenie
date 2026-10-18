@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 250 350" role="img" aria-label="10 of C — Royal Cats: Library Cat" data-deck="cats" data-character="book">
+    <defs><symbol id="pip" viewBox="0 0 32 32"><g fill="#29494a"><circle cx="16" cy="8" r="6.5"/><circle cx="8" cy="19" r="6.5"/><circle cx="24" cy="19" r="6.5"/><path d="M13 20h6l4 11H9Z"/></g></symbol>
+    <symbol id="cat-art" viewBox="0 0 200 240"><ellipse cx="101" cy="226" rx="90" ry="7" fill="#adbca9" opacity=".4"/><path d="M143 198q56 40 40-24-5-19-15-20" fill="none" stroke="#35494a" stroke-width="19" stroke-linecap="round"/>
+    <path d="M143 198q56 40 40-24-5-19-15-20" fill="none" stroke="#39434b" stroke-width="15" stroke-linecap="round"/>
+    <path d="M53 219q-8-53 19-99h55q32 43 22 99Z" fill="#39434b" stroke="#35494a" stroke-width="2"/>
+    <path d="M79 135q21 11 43 0l12 81H65Z" fill="#f5f0e5"/>
+    <g transform="translate(25 20) scale(.75)"><defs><clipPath id="fur-scene-book"><path d="M43 79 31 19Q51 17 77 41q23-10 47 0 25-23 46-22l-13 60q11 26-3 49-17 29-54 29-36 0-54-29Q32 105 43 79Z"/></clipPath></defs>
+    <path d="M43 79 31 19Q51 17 77 41q23-10 47 0 25-23 46-22l-13 60q11 26-3 49-17 29-54 29-36 0-54-29Q32 105 43 79Z" fill="#39434b" stroke="#35494a" stroke-width="2"/>
+    <g clip-path="url(#fur-scene-book)"><path d="M99 50 86 94q-29 4-35 41l17 29h65l17-29q-9-37-34-41l-10-44Z" fill="#f6f1e5"/></g>
+    <path d="m42 32 7 36 19-20Zm115 0-7 36-18-20Z" fill="#c4a397" opacity=".8"/>
+
+    <path d="M52 96q17-18 36 0-15 18-36 0Z" fill="#b4c58f" stroke="#394744" stroke-width="2"/>
+      <ellipse cx="70" cy="96" rx="4.5" ry="10" fill="#222c30"/><circle cx="67" cy="92" r="2.7" fill="#fff8df"/>
+      <path d="M52 96q17-18 36 0" fill="none" stroke="#303d3e" stroke-width="2.5"/><path d="M112 96q17-18 36 0-15 18-36 0Z" fill="#b4c58f" stroke="#394744" stroke-width="2"/>
+      <ellipse cx="130" cy="96" rx="4.5" ry="10" fill="#222c30"/><circle cx="127" cy="92" r="2.7" fill="#fff8df"/>
+      <path d="M112 96q17-18 36 0" fill="none" stroke="#303d3e" stroke-width="2.5"/>
+    <path data-feature="nose" d="M90 117q10-5 20 0l-10 11Z" fill="#b37e82" stroke="#655d58" stroke-width="1.1"/>
+    <path d="M100 128v7m0-1q-6 8-13 2m13-2q6 8 13 2" fill="none" stroke="#6b7774" stroke-width="1.5" stroke-linecap="round"/>
+    <g fill="#6b7774" opacity=".65"><circle cx="78" cy="122" r="1"/><circle cx="83" cy="126" r="1"/><circle cx="122" cy="122" r="1"/><circle cx="117" cy="126" r="1"/></g>
+    <path d="M68 121 13 110m53 18-57-1m60 8-48 12m111-26 55-11m-53 18 57-1m-60 8 48 12" fill="none" stroke="#6b7774" stroke-width="1.25" opacity=".8" stroke-linecap="round"/></g>
+    <path d="M68 178v35m63-35v35" fill="none" stroke="#35494a" stroke-width="1.5"/>
+    <ellipse cx="74" cy="219" rx="18" ry="9" fill="#f5f0e5" stroke="#35494a" stroke-width="1.5"/><ellipse cx="127" cy="219" rx="18" ry="9" fill="#f5f0e5" stroke="#35494a" stroke-width="1.5"/><path d="M17 180q47-14 83 8 36-22 83-8v47q-44-12-83 8-39-20-83-8Z" fill="#f5e6bf" stroke="#627b70" stroke-width="2"/><path d="M100 188v47m-69-42q25-4 52 7m-52 4q25-3 52 7m-52 4q25-3 52 7m34-22q27-11 52-7m-52 18q27-10 52-7m-52 18q27-10 52-7" fill="none" stroke="#b3a980" stroke-width="1.3"/></symbol></defs><rect width="250" height="350" rx="11" fill="#f6efde"/>
+    <rect x="4" y="4" width="242" height="342" rx="8" fill="none" stroke="#b08b51" stroke-width="2"/>
+    <rect x="9" y="9" width="232" height="332" rx="5" fill="none" stroke="#b08b51" stroke-width=".7" opacity=".7"/>
+    <rect x="47" y="40" width="156" height="270" rx="70" fill="#d7dfcd" opacity=".65"/>
+    <g data-motif="paw-and-yarn-border" fill="none" stroke="#a8b49a" stroke-width="1.3">
+    <path d="M39 74q-15 23 0 42t0 44m172 30q15 23 0 42t0 44"/>
+    <path d="M40 202q-12 14-2 25 13 13 4 25m168-154q12 14 2 25-13 13-4 25"/>
+    </g><g transform="translate(30 166) scale(0.53125)" fill="#a6b399"><path d="M6 24q0-5 5-7 5-5 10 0 5 2 5 7 0 6-10 3-10 3-10-3Z"/><ellipse cx="6" cy="13" rx="3.5" ry="5" transform="rotate(-25 6 13)"/><ellipse cx="13" cy="8" rx="3.5" ry="5"/><ellipse cx="21" cy="9" rx="3.5" ry="5" transform="rotate(12 21 9)"/><ellipse cx="27" cy="15" rx="3.2" ry="4.5" transform="rotate(28 27 15)"/></g><g transform="translate(202 166) scale(0.53125)" fill="#a6b399"><path d="M6 24q0-5 5-7 5-5 10 0 5 2 5 7 0 6-10 3-10 3-10-3Z"/><ellipse cx="6" cy="13" rx="3.5" ry="5" transform="rotate(-25 6 13)"/><ellipse cx="13" cy="8" rx="3.5" ry="5"/><ellipse cx="21" cy="9" rx="3.5" ry="5" transform="rotate(12 21 9)"/><ellipse cx="27" cy="15" rx="3.2" ry="4.5" transform="rotate(28 27 15)"/></g>
+    <g fill="#c9b47e" opacity=".55"><circle cx="95" cy="278" r=".9"/><circle cx="148" cy="82" r=".9"/><circle cx="54" cy="129" r=".9"/><circle cx="107" cy="176" r=".9"/><circle cx="160" cy="223" r=".9"/><circle cx="66" cy="270" r=".9"/><circle cx="119" cy="74" r=".9"/><circle cx="172" cy="121" r=".9"/><circle cx="78" cy="168" r=".9"/><circle cx="131" cy="215" r=".9"/><circle cx="184" cy="262" r=".9"/><circle cx="90" cy="66" r=".9"/></g><text x="125" y="26" text-anchor="middle" fill="#35494a" font-family="Georgia,serif" font-weight="700" font-size="9" letter-spacing="1.8">ROYAL CATS</text>
+    <g fill="#29494a" text-anchor="middle"><text x="22" y="31" font-family="Georgia,serif" font-weight="700" font-size="25">10</text><use xlink:href="#pip" x="13" y="38" width="18" height="18"/></g><g transform="rotate(180 125 175)"><g fill="#29494a" text-anchor="middle"><text x="22" y="31" font-family="Georgia,serif" font-weight="700" font-size="25">10</text><use xlink:href="#pip" x="13" y="38" width="18" height="18"/></g></g><g id="main-art"><use xlink:href="#cat-art" x="42" y="49" width="166" height="212"/>
+      <path d="M57 271h136m-125 32h114" stroke="#b08b51" stroke-width="1"/>
+      <text x="125" y="286" text-anchor="middle" fill="#35494a" font-family="Georgia,serif" font-weight="700" font-size="11.5">LIBRARY CAT</text>
+      <text x="125" y="298" text-anchor="middle" fill="#35494a" font-family="Arial,sans-serif" font-size="5.7" letter-spacing="0.2">ONE MORE CHAPTER, ONE MORE NAP</text>
+      <g transform="translate(115 310) scale(0.625)" fill="#b08b51"><path d="M6 24q0-5 5-7 5-5 10 0 5 2 5 7 0 6-10 3-10 3-10-3Z"/><ellipse cx="6" cy="13" rx="3.5" ry="5" transform="rotate(-25 6 13)"/><ellipse cx="13" cy="8" rx="3.5" ry="5"/><ellipse cx="21" cy="9" rx="3.5" ry="5" transform="rotate(12 21 9)"/><ellipse cx="27" cy="15" rx="3.2" ry="4.5" transform="rotate(28 27 15)"/></g></g>
+  </svg>

@@ -106,8 +106,17 @@ test("verification layout fits up to 52 cards on landscape TVs",()=>{
   }
 });
 
+test("Royal Cats synchronizes artwork in calling and verification views",()=>{
+  const tv=harness(); tv.update("calling",22,"cats");
+  assert.equal(tv.elements["display-screen"].attributes["data-deck-theme"],"cats");
+  assert.equal(tv.elements["current-card"].children[0].children[0].src,"cards/cats/9H.svg");
+  tv.update("paused",22,"cats");
+  assert.equal(tv.elements["verification-cards"].children.length,22);
+  assert.equal(tv.elements["verification-cards"].children[0].children[0].children[0].src,"cards/cats/AS.svg");
+});
+
 test("every alternate deck bundles a self-contained matching background",async()=>{
-  for (const id of ["midnight","sunburst","mopar","dart1969","harrypotter","starwars","lordoftherings"]) {
+  for (const id of ["midnight","sunburst","mopar","dart1969","harrypotter","starwars","lordoftherings","cats"]) {
     const scene=await readFile(new URL(`backgrounds/${id}.svg`,root),"utf8");
     assert.match(scene,/viewBox="0 0 1600 900"/);
     assert.ok(scene.includes(`data-deck="${id}"`));
