@@ -1,0 +1,155 @@
+@using PokenoGenie.Core
+@using PokenoGenie.Services
+@implements IAsyncDisposable
+@inject FirebaseRoomService Rooms
+@inject NavigationManager Navigation
+
+<div class="display-shell">
+    @if (_loading)
+    {
+        <div class="display-entry"><span class="spinner"></span><p>Connecting to the table…</p></div>
+    }
+    else if (_setupError is not null)
+    {
+        <div class="display-entry"><span class="eyebrow">SETUP NEEDED</span><h1>TV display unavailable</h1><p>@_setupError</p></div>
+    }
+    else if (_code is null || _room is null)
+    {
+        <div class="display-entry">
+            <div class="display-entry-brand">✦ POKENO <strong>GENIE</strong></div>
+            <span class="eyebrow">BIG SCREEN MODE</span>
+            <h1>@(_code is null ? "Join a table." : "Table not found.")</h1>
+            <p>Enter the eight-character code shown on the caller's phone.</p>
+            <form @onsubmit="JoinAsync" @onsubmit:preventDefault>
+                <input class="room-input" aria-label="Room code" maxlength="8" autocomplete="off"
+                       placeholder="ROOM CODE" @bind="_entryCode" @bind:event="oninput" />
+                <button class="primary-button" type="submit">Show the cards</button>
+            </form>
+            @if (_joinError is not null) { <p class="form-error" role="alert">@_joinError</p> }
+            <a class="text-link" href="@Navigation.BaseUri">Use this device as the caller →</a>
+        </div>
+    }
+    else
+    {
+        <header class="display-header">
+            <div class="display-title"><span class="brand-mark">✦</span> POKENO <strong>GENIE</strong></div>
+            <div class="display-pattern">
+                <PatternGrid Pattern="CurrentPattern" Class="pattern-grid-tiny" />
+                <span><small>WINNING PATTERN</small><strong>@CurrentPattern.Name</strong></span>
+            </div>
+            <div class="display-meta"><span>ROOM @_code</span><strong>@_room.DrawnCount / 52</strong></div>
+            <button class="fullscreen-button" title="Full screen" aria-label="Enter full screen" @onclick="EnterFullscreenAsync">⛶</button>
+        </header>
+
+        <div class="display-content">
+            <section class="current-half">
+                <span class="display-section-label">CURRENT CARD</span>
+                @if (_room.CurrentCard is not null)
+                {
+                    <PlayingCardView @key="_room.DrawnCount" Card="_room.CurrentCard" Class="display-current-card" />
+                    <div class="current-name">@_room.CurrentCard.AccessibleName</div>
+                }
+                else
+                {
+                    <PlayingCardView Class="display-current-card" />
+                    <div class="current-name">Waiting for the first draw</div>
+                }
+                @if (_room.Phase == GamePhase.Paused) { <div class="display-phase">PAUSED FOR VERIFICATION</div> }
+                @if (_room.Phase == GamePhase.Finished) { <div class="display-phase">ROUND COMPLETE</div> }
+            </section>
+
+            <section class="previous-half">
+                <div class="previous-heading"><span class="display-section-label">PREVIOUS FOUR</span><small>MOST RECENT FIRST</small></div>
+                <div class="previous-grid">
+                    @foreach (var card in _room.PreviousFour)
+                    {
+                        <PlayingCardView Card="card" Class="display-previous-card" />
+                    }
+                    @for (var index = _room.PreviousFour.Count; index < 4; index++)
+                    {
+                        <div class="previous-empty" aria-label="No earlier card yet"><span>✦</span></div>
+                    }
+                </div>
+            </section>
+        </div>
+
+        <footer class="display-footer">
+            <span class="connection-status @(Rooms.IsConnected ? "online" : "offline")"><span></span>@(Rooms.IsConnected ? "LIVE FROM THE CALLER'S DEVICE" : "RECONNECTING · SHOWING LAST KNOWN CARD")</span>
+            <span>ROUND @(_room.Round == 0 ? 1 : _room.Round)</span>
+        </footer>
+    }
+
+    @if (_error is not null) { <div class="toast-error" role="alert">@_error</div> }
+</div>
+
+@code {
+    [Parameter] public string? InitialRoomCode { get; set; }
+
+    private bool _loading = true;
+    private string? _code;
+    private string _entryCode = string.Empty;
+    private string? _joinError;
+    private string? _setupError;
+    private string? _error;
+    private RoomState? _room;
+    private PatternDefinition CurrentPattern => PatternCatalog.Find(_room?.PatternId) ?? PatternCatalog.All[0];
+
+    protected override async Task OnInitializedAsync()
+    {
+        Rooms.RoomChanged += HandleRoomChanged;
+        Rooms.ConnectionChanged += HandleConnectionChanged;
+        Rooms.ErrorReceived += HandleError;
+        try
+        {
+            await Rooms.InitializeAsync();
+            var code = RoomCode.Normalize(InitialRoomCode);
+            if (RoomCode.IsValid(code))
+            {
+                _code = code;
+                _entryCode = code;
+                await Rooms.WatchRoomAsync(code);
+            }
+        }
+        catch (Exception error) { _setupError = error.Message; }
+        finally { _loading = false; }
+    }
+
+    private async Task JoinAsync()
+    {
+        var code = RoomCode.Normalize(_entryCode);
+        if (!RoomCode.IsValid(code))
+        {
+            _joinError = "Enter the eight letters and numbers shown on the caller's phone.";
+            return;
+        }
+
+        _joinError = null;
+        _room = null;
+        _code = code;
+        await Rooms.WatchRoomAsync(code);
+        Navigation.NavigateTo(Navigation.BaseUri + "?view=display&room=" + code, replace: true);
+    }
+
+    private void HandleRoomChanged(RoomState? room)
+    {
+        _room = room;
+        _ = InvokeAsync(StateHasChanged);
+    }
+
+    private void HandleConnectionChanged(bool connected) => _ = InvokeAsync(StateHasChanged);
+    private void HandleError(string message) { _error = message; _ = InvokeAsync(StateHasChanged); }
+
+    private async Task EnterFullscreenAsync()
+    {
+        try { await Rooms.EnterFullscreenAsync(); }
+        catch (Exception error) { _error = error.Message; }
+    }
+
+    public ValueTask DisposeAsync()
+    {
+        Rooms.RoomChanged -= HandleRoomChanged;
+        Rooms.ConnectionChanged -= HandleConnectionChanged;
+        Rooms.ErrorReceived -= HandleError;
+        return ValueTask.CompletedTask;
+    }
+}

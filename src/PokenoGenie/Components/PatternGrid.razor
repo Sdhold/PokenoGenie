@@ -1,0 +1,13 @@
+@using PokenoGenie.Core
+
+<div class="pattern-grid @Class" role="img" aria-label="@($"{Pattern.Name}: {Pattern.Description}")">
+    @for (var index = 0; index < 25; index++)
+    {
+        <span class="pattern-cell @(Pattern.IsInPreview(index) ? "filled" : "")"></span>
+    }
+</div>
+
+@code {
+    [Parameter, EditorRequired] public PatternDefinition Pattern { get; set; } = default!;
+    [Parameter] public string Class { get; set; } = string.Empty;
+}

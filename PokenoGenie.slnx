@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/PokenoGenie.Core/PokenoGenie.Core.csproj" />
+    <Project Path="src/PokenoGenie/PokenoGenie.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/PokenoGenie.Tests/PokenoGenie.Tests.csproj" />
+  </Folder>
+</Solution>

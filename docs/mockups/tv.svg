@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" role="img" aria-label="Pokeno Genie widescreen TV display mockup">
+  <defs>
+    <radialGradient id="felt"><stop stop-color="#2b5b49"/><stop offset="1" stop-color="#0b2826"/></radialGradient>
+    <filter id="shadow"><feDropShadow dx="0" dy="13" stdDeviation="15" flood-color="#061917" flood-opacity=".55"/></filter>
+  </defs>
+  <rect width="1280" height="720" fill="url(#felt)"/>
+  <path d="M0 92H1280 M640 92V677 M0 677H1280" stroke="#d3c391" stroke-opacity=".38"/>
+  <text x="45" y="58" fill="#e8c57e" font-size="27">✦</text>
+  <text x="83" y="56" fill="#f6f0dc" font-family="Segoe UI,Arial" font-size="24" font-weight="800" letter-spacing="3">POKENO <tspan fill="#e8c57e">GENIE</tspan></text>
+  <text x="620" y="40" fill="#d6bc88" font-family="Segoe UI,Arial" font-size="10" font-weight="800" letter-spacing="2">WINNING PATTERN</text>
+  <text x="620" y="65" fill="#fff0d4" font-family="Georgia,serif" font-size="25">H</text>
+  <text x="1020" y="38" fill="#d6dfcf" font-family="Segoe UI,Arial" font-size="13" letter-spacing="2">ROOM K7M2Q9PX</text>
+  <text x="1158" y="69" text-anchor="end" fill="#f0cd87" font-family="Georgia,serif" font-size="37">22 / 52</text>
+  <text x="320" y="133" text-anchor="middle" fill="#e8c57e" font-family="Segoe UI,Arial" font-size="13" font-weight="800" letter-spacing="3">CURRENT CARD</text>
+  <rect x="169" y="156" width="302" height="423" rx="19" fill="#fffdf7" stroke="#dac9a9" stroke-width="3" filter="url(#shadow)"/>
+  <text x="195" y="218" fill="#ba3c42" font-family="Georgia,serif" font-size="50">Q</text>
+  <text x="195" y="267" fill="#ba3c42" font-family="Georgia,serif" font-size="43">♥</text>
+  <text x="320" y="417" text-anchor="middle" fill="#ba3c42" font-family="Georgia,serif" font-size="202">♥</text>
+  <text x="443" y="543" text-anchor="end" fill="#ba3c42" font-family="Georgia,serif" font-size="50">Q</text>
+  <text x="320" y="623" text-anchor="middle" fill="#fff0d4" font-family="Georgia,serif" font-size="27">Queen of Hearts</text>
+  <text x="960" y="133" text-anchor="middle" fill="#e8c57e" font-family="Segoe UI,Arial" font-size="13" font-weight="800" letter-spacing="3">PREVIOUS FOUR</text>
+  <text x="960" y="155" text-anchor="middle" fill="#aac6b8" font-family="Segoe UI,Arial" font-size="10" letter-spacing="2">MOST RECENT FIRST</text>
+  <g filter="url(#shadow)">
+    <rect x="755" y="181" width="179" height="231" rx="13" fill="#fffdf7"/>
+    <rect x="986" y="181" width="179" height="231" rx="13" fill="#fffdf7"/>
+    <rect x="755" y="429" width="179" height="231" rx="13" fill="#fffdf7"/>
+    <rect x="986" y="429" width="179" height="231" rx="13" fill="#fffdf7"/>
+  </g>
+  <text x="774" y="218" fill="#202b2a" font-family="Georgia,serif" font-size="32">J♠</text>
+  <text x="844" y="340" text-anchor="middle" fill="#202b2a" font-family="Georgia,serif" font-size="101">♠</text>
+  <text x="1005" y="218" fill="#ba3c42" font-family="Georgia,serif" font-size="32">4♦</text>
+  <text x="1075" y="340" text-anchor="middle" fill="#ba3c42" font-family="Georgia,serif" font-size="101">♦</text>
+  <text x="774" y="466" fill="#202b2a" font-family="Georgia,serif" font-size="32">9♣</text>
+  <text x="844" y="588" text-anchor="middle" fill="#202b2a" font-family="Georgia,serif" font-size="101">♣</text>
+  <text x="1005" y="466" fill="#ba3c42" font-family="Georgia,serif" font-size="32">A♥</text>
+  <text x="1075" y="588" text-anchor="middle" fill="#ba3c42" font-family="Georgia,serif" font-size="101">♥</text>
+  <circle cx="47" cy="699" r="5" fill="#7ed3a7"/>
+  <text x="61" y="703" fill="#cbd8c9" font-family="Segoe UI,Arial" font-size="11" letter-spacing="2">LIVE FROM THE CALLER'S DEVICE</text>
+  <text x="1229" y="703" text-anchor="end" fill="#cbd8c9" font-family="Segoe UI,Arial" font-size="11" letter-spacing="2">ROUND 1</text>
+</svg>

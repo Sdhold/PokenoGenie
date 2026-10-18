@@ -1,0 +1,32 @@
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+    "rooms": {
+      "$code": {
+        "state": {
+          ".read": "auth != null && $code.matches(/^[A-HJ-NP-Z2-9]{8}$/)",
+          ".write": "auth != null && $code.matches(/^[A-HJ-NP-Z2-9]{8}$/) && ((!data.exists() && newData.child('ownerUid').val() == auth.uid) || (data.exists() && data.child('ownerUid').val() == auth.uid && newData.child('ownerUid').val() == auth.uid))",
+          ".validate": "newData.hasChildren(['ownerUid', 'round', 'patternId', 'phase', 'drawnCount', 'lastDrawAt', 'createdAt']) && newData.child('ownerUid').isString() && newData.child('round').isNumber() && newData.child('patternId').isString() && newData.child('phase').isString() && newData.child('drawnCount').isNumber() && newData.child('drawnCount').val() >= 0 && newData.child('drawnCount').val() <= 52 && newData.child('lastDrawAt').isNumber() && newData.child('createdAt').isNumber() && ((!data.exists() && newData.child('round').val() == 0 && newData.child('phase').val() == 'lobby' && newData.child('patternId').val() == '' && newData.child('drawnCount').val() == 0 && newData.child('lastDrawAt').val() == 0 && newData.child('createdAt').val() <= now && newData.child('createdAt').val() >= now - 10000) || (data.exists() && newData.child('createdAt').val() == data.child('createdAt').val() && ((newData.child('round').val() == data.child('round').val() + 1 && (data.child('phase').val() == 'lobby' || data.child('phase').val() == 'finished') && newData.child('phase').val() == 'calling' && newData.child('patternId').val().matches(/^(standard|horizontal|vertical|diagonal|h|c|x|plus|corners|perimeter|blackout)$/) && newData.child('drawnCount').val() == 0 && newData.child('lastDrawAt').val() == 0 && root.child('decks').child($code).child('round').val() == newData.child('round').val()) || (newData.child('round').val() == data.child('round').val() && newData.child('patternId').val() == data.child('patternId').val() && data.child('phase').val() == 'calling' && newData.child('drawnCount').val() == data.child('drawnCount').val() + 1 && now - data.child('lastDrawAt').val() >= 3000 && newData.child('lastDrawAt').val() <= now && newData.child('lastDrawAt').val() >= now - 1000 && ((newData.child('drawnCount').val() < 52 && newData.child('phase').val() == 'calling') || (newData.child('drawnCount').val() == 52 && newData.child('phase').val() == 'finished'))) || (newData.child('round').val() == data.child('round').val() && newData.child('patternId').val() == data.child('patternId').val() && newData.child('drawnCount').val() == data.child('drawnCount').val() && newData.child('lastDrawAt').val() == data.child('lastDrawAt').val() && ((data.child('phase').val() == 'calling' && newData.child('phase').val() == 'paused') || (data.child('phase').val() == 'paused' && (newData.child('phase').val() == 'calling' || newData.child('phase').val() == 'finished')))))))",
+          "drawn": {
+            "$index": {
+              ".validate": "newData.isString() && newData.val() == root.child('decks').child($code).child('cards').child($index).val()"
+            }
+          }
+        }
+      }
+    },
+    "decks": {
+      "$code": {
+        ".read": "auth != null && root.child('rooms').child($code).child('state').child('ownerUid').val() == auth.uid",
+        ".write": "auth != null && $code.matches(/^[A-HJ-NP-Z2-9]{8}$/) && root.child('rooms').child($code).child('state').child('ownerUid').val() == auth.uid && (root.child('rooms').child($code).child('state').child('phase').val() == 'lobby' || root.child('rooms').child($code).child('state').child('phase').val() == 'finished') && newData.child('ownerUid').val() == auth.uid && newData.child('round').val() == root.child('rooms').child($code).child('state').child('round').val() + 1 && (!data.exists() || data.child('round').val() < newData.child('round').val())",
+        ".validate": "newData.hasChildren(['ownerUid', 'round', 'cards']) && newData.child('ownerUid').isString() && newData.child('round').isNumber() && newData.child('cards').hasChildren(['0', '51'])",
+        "cards": {
+          "$index": {
+            ".validate": "newData.isString() && newData.val().matches(/^(A|[2-9]|10|J|Q|K)[SHDC]$/)"
+          }
+        }
+      }
+    }
+  }
+}

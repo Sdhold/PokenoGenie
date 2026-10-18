@@ -1,0 +1,7 @@
+{
+  "apiKey": "PASTE_FIREBASE_API_KEY",
+  "authDomain": "YOUR_PROJECT.firebaseapp.com",
+  "databaseURL": "https://YOUR_DATABASE.firebasedatabase.app",
+  "projectId": "YOUR_PROJECT",
+  "appId": "PASTE_FIREBASE_APP_ID"
+}

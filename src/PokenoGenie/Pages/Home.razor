@@ -1,0 +1,17 @@
+﻿@page "/"
+
+<PageTitle>Pokeno Genie</PageTitle>
+
+@if (string.Equals(View, "display", StringComparison.OrdinalIgnoreCase))
+{
+    <DisplayView InitialRoomCode="@Room" />
+}
+else
+{
+    <ControllerView />
+}
+
+@code {
+    [SupplyParameterFromQuery(Name = "view")] public string? View { get; set; }
+    [SupplyParameterFromQuery(Name = "room")] public string? Room { get; set; }
+}

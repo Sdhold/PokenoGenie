@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 430 900" role="img" aria-label="Pokeno Genie phone caller screen mockup">
+  <defs>
+    <radialGradient id="felt"><stop stop-color="#2c5949"/><stop offset="1" stop-color="#102b28"/></radialGradient>
+    <filter id="shadow"><feDropShadow dx="0" dy="12" stdDeviation="14" flood-color="#071a19" flood-opacity=".5"/></filter>
+  </defs>
+  <rect width="430" height="900" fill="#d7d8cf"/>
+  <rect x="29" y="12" width="372" height="876" rx="41" fill="#101d1d"/>
+  <rect x="40" y="24" width="350" height="852" rx="32" fill="url(#felt)"/>
+  <rect x="165" y="31" width="100" height="17" rx="9" fill="#101d1d"/>
+  <text x="63" y="85" fill="#e9c681" font-size="20">✦</text>
+  <text x="87" y="83" fill="#f8f1df" font-family="Segoe UI,Arial" font-size="15" font-weight="800" letter-spacing="2">POKENO <tspan fill="#e9c681">GENIE</tspan></text>
+  <rect x="279" y="62" width="94" height="30" rx="15" fill="none" stroke="#d3b976"/>
+  <text x="326" y="81" text-anchor="middle" fill="#f8f1df" font-family="Segoe UI,Arial" font-size="10" font-weight="700">K7M2Q9PX</text>
+  <circle cx="65" cy="119" r="4" fill="#7ed3a7"/>
+  <text x="76" y="123" fill="#d8e5d6" font-family="Segoe UI,Arial" font-size="11">TV SYNC CONNECTED</text>
+  <text x="354" y="123" text-anchor="end" fill="#e9c681" font-family="Segoe UI,Arial" font-size="11" font-weight="700">ROUND 1</text>
+  <rect x="54" y="144" width="322" height="626" rx="22" fill="#f1e9d8" filter="url(#shadow)"/>
+  <text x="77" y="176" fill="#986633" font-family="Segoe UI,Arial" font-size="10" font-weight="800" letter-spacing="2">WINNING PATTERN</text>
+  <text x="77" y="210" fill="#183830" font-family="Georgia,serif" font-size="31">H</text>
+  <rect x="293" y="166" width="60" height="60" rx="6" fill="#dce4d5"/>
+  <text x="323" y="178" text-anchor="middle" fill="#c77d50" font-family="Consolas,monospace" font-size="12" letter-spacing="2">■···■</text>
+  <text x="323" y="188" text-anchor="middle" fill="#c77d50" font-family="Consolas,monospace" font-size="12" letter-spacing="2">■···■</text>
+  <text x="323" y="198" text-anchor="middle" fill="#c77d50" font-family="Consolas,monospace" font-size="12" letter-spacing="2">■■■■■</text>
+  <text x="323" y="208" text-anchor="middle" fill="#c77d50" font-family="Consolas,monospace" font-size="12" letter-spacing="2">■···■</text>
+  <text x="323" y="218" text-anchor="middle" fill="#c77d50" font-family="Consolas,monospace" font-size="12" letter-spacing="2">■···■</text>
+  <rect x="125" y="256" width="170" height="228" rx="14" fill="#b3995c" stroke="#fff5dd" stroke-width="8" transform="rotate(-7 210 370)"/>
+  <rect x="125" y="256" width="170" height="228" rx="14" fill="#9e7752" stroke="#fff5dd" stroke-width="8" transform="rotate(6 210 370)"/>
+  <rect x="125" y="256" width="170" height="228" rx="14" fill="#fffdf7" stroke="#decfb4" stroke-width="2"/>
+  <text x="142" y="293" fill="#ba3c42" font-family="Georgia,serif" font-size="25">Q</text>
+  <text x="142" y="314" fill="#ba3c42" font-family="Georgia,serif" font-size="22">♥</text>
+  <text x="210" y="400" text-anchor="middle" fill="#ba3c42" font-family="Georgia,serif" font-size="104">♥</text>
+  <text x="277" y="454" text-anchor="end" fill="#ba3c42" font-family="Georgia,serif" font-size="25">Q</text>
+  <text x="210" y="525" text-anchor="middle" fill="#183830" font-family="Georgia,serif" font-size="34">22<tspan fill="#60776b" font-size="14" font-family="Segoe UI,Arial"> / 52 CARDS</tspan></text>
+  <rect x="76" y="549" width="278" height="62" rx="12" fill="#1a4638"/>
+  <text x="215" y="587" text-anchor="middle" fill="#fff5df" font-family="Segoe UI,Arial" font-size="18" font-weight="800">DRAW CARD  →</text>
+  <rect x="76" y="628" width="278" height="51" rx="12" fill="none" stroke="#9cac9b"/>
+  <text x="215" y="660" text-anchor="middle" fill="#245045" font-family="Segoe UI,Arial" font-size="15" font-weight="700">PAUSE / VERIFY POKENO</text>
+  <line x1="76" y1="699" x2="354" y2="699" stroke="#a9baa9"/>
+  <text x="76" y="723" fill="#506a5e" font-family="Segoe UI,Arial" font-size="10" font-weight="800" letter-spacing="2">PREVIOUS CARDS</text>
+  <text x="76" y="751" fill="#243c37" font-family="Georgia,serif" font-size="19">J♠   4♦   9♣   A♥</text>
+  <text x="215" y="811" text-anchor="middle" fill="#f3d18f" font-family="Segoe UI,Arial" font-size="12">Pass this device to the next caller after the round.</text>
+</svg>

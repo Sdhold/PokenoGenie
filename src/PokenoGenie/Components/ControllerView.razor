@@ -1,0 +1,337 @@
+@using PokenoGenie.Core
+@using PokenoGenie.Services
+@implements IAsyncDisposable
+@inject FirebaseRoomService Rooms
+@inject NavigationManager Navigation
+
+<div class="controller-shell">
+    <header class="app-header">
+        <a class="brand" href="@Navigation.BaseUri"><span class="brand-mark">✦</span> POKENO <strong>GENIE</strong></a>
+        @if (_code is not null)
+        {
+            <span class="room-pill">ROOM <strong>@_code</strong></span>
+        }
+    </header>
+
+    @if (_loading)
+    {
+        <main class="loading-panel"><span class="spinner"></span><p>Setting up your table…</p></main>
+    }
+    else if (_setupError is not null)
+    {
+        <main class="intro-panel">
+            <span class="eyebrow">SETUP NEEDED</span>
+            <h1>One quick setup before game night.</h1>
+            <p>@_setupError</p>
+            <p class="muted">The repository includes <strong>DEPLOYMENT.md</strong> with the free Firebase and GitHub Pages steps.</p>
+        </main>
+    }
+    else if (_code is null)
+    {
+        <main class="intro-panel">
+            <span class="eyebrow">THE CARD CALLER'S COMPANION</span>
+            <h1>A better view<br />for every call.</h1>
+            <p>Pick a Pokeno pattern, shuffle a fresh deck, and send every card to the big screen as you draw.</p>
+            <div class="intro-card-fan" aria-hidden="true"><i></i><i></i><i>♥</i></div>
+            <button class="primary-button" disabled="@(!Rooms.IsConnected || _busy)" @onclick="CreateRoomAsync">
+                @(_busy ? "Creating table…" : "Create a table")
+            </button>
+            @if (!Rooms.IsConnected)
+            {
+                <p class="connection-note">Connecting to the free game service…</p>
+            }
+            <a class="text-link" href="@(Navigation.BaseUri + "?view=display")">Open the TV display instead →</a>
+        </main>
+    }
+    else if (_room is null)
+    {
+        <main class="intro-panel">
+            <span class="eyebrow">TABLE NOT FOUND</span>
+            <h1>Let's start a new table.</h1>
+            <p>The saved room is no longer available.</p>
+            <button class="primary-button" disabled="@(!Rooms.IsConnected || _busy)" @onclick="CreateRoomAsync">Create a table</button>
+        </main>
+    }
+    else if (_room.OwnerUid != Rooms.UserId)
+    {
+        <main class="intro-panel">
+            <span class="eyebrow">CALLER ACCESS</span>
+            <h1>This table belongs to another browser.</h1>
+            <p>Use the phone that created it, or start a new table here.</p>
+            <button class="primary-button" disabled="@(!Rooms.IsConnected || _busy)" @onclick="CreateRoomAsync">Create a new table</button>
+        </main>
+    }
+    else
+    {
+        <main class="controller-main">
+            <div class="status-row">
+                <span class="connection-status @(Rooms.IsConnected ? "online" : "offline")">
+                    <span></span>@(Rooms.IsConnected ? "TV sync connected" : "Reconnecting — draws paused")
+                </span>
+                <span class="round-label">ROUND @(_room.Round == 0 ? 1 : _room.Round)</span>
+            </div>
+
+            @if (_room.Phase == GamePhase.Lobby)
+            {
+                <section class="setup-panel">
+                    <span class="eyebrow">BEFORE THE FIRST DRAW</span>
+                    <h1>Set the winning shape.</h1>
+                    <div class="shuffle-fan @(_shuffling ? "is-shuffling" : "")" aria-hidden="true"><i></i><i></i><i></i></div>
+                    <PatternPicker @bind-SelectedId="_selectedPatternId" />
+                    <button class="primary-button" disabled="@(!Rooms.IsConnected || _busy)" @onclick="StartRoundAsync">
+                        @(_shuffling ? "Shuffling the deck…" : "Shuffle & start round")
+                    </button>
+                    <p class="fine-print">A new 52-card deck is shuffled for every round.</p>
+                </section>
+            }
+            else
+            {
+                <section class="calling-panel">
+                    <div class="calling-heading">
+                        <div><span class="eyebrow">WINNING PATTERN</span><h1>@CurrentPattern.Name</h1></div>
+                        <PatternGrid Pattern="CurrentPattern" Class="pattern-grid-small" />
+                    </div>
+
+                    <div class="deck-area">
+                        <div class="deck-stack">
+                            <div class="deck-shadow-card shadow-one"></div>
+                            <div class="deck-shadow-card shadow-two"></div>
+                            <PlayingCardView @key="_room.DrawnCount" Card="_room.CurrentCard" Class="deck-top-card" />
+                        </div>
+                        <div class="draw-count"><strong>@_room.DrawnCount</strong><span>/ 52 CARDS</span></div>
+                    </div>
+
+                    @if (_room.Phase == GamePhase.Calling)
+                    {
+                        <button class="primary-button draw-button" disabled="@(!CanDraw)" @onclick="DrawAsync">
+                            @if (_busy) { <span>Drawing…</span> }
+                            else if (!Rooms.IsConnected) { <span>Waiting for connection</span> }
+                            else if (CooldownSeconds > 0) { <span>Next draw in @CooldownSeconds s</span> }
+                            else { <span>Draw card <span aria-hidden="true">→</span></span> }
+                        </button>
+                        <button class="secondary-button" disabled="@(_busy || !Rooms.IsConnected)" @onclick="() => ChangePhaseAsync(GamePhase.Paused)">Pause / verify Pokeno</button>
+                    }
+                    else if (_room.Phase == GamePhase.Paused)
+                    {
+                        <div class="paused-banner">Draws paused. Check the called cards below.</div>
+                        <div class="action-pair">
+                            <button class="secondary-button" disabled="@(_busy || !Rooms.IsConnected)" @onclick="() => ChangePhaseAsync(GamePhase.Calling)">Resume drawing</button>
+                            <button class="primary-button" disabled="@(_busy || !Rooms.IsConnected)" @onclick="() => ChangePhaseAsync(GamePhase.Finished)">End round</button>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="paused-banner">Round complete. The final card stays visible for verification.</div>
+                    }
+
+                    <div class="history-panel">
+                        <div class="section-heading"><span>@(_room.Phase is GamePhase.Paused or GamePhase.Finished ? "ALL CALLED CARDS" : "PREVIOUS CARDS")</span><span>@_room.DrawnCount/52</span></div>
+                        @if (_room.Phase is GamePhase.Paused or GamePhase.Finished)
+                        {
+                            <div class="history-grid">
+                                @for (var index = 0; index < _room.Drawn.Count; index++)
+                                {
+                                    var card = PlayingCard.FromId(_room.Drawn[index]);
+                                    if (card is not null)
+                                    {
+                                        <span class="history-chip @(card.IsRed ? "red-suit" : "")"><small>@(index + 1).</small> @card.Rank@card.Suit</span>
+                                    }
+                                }
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="recent-row">
+                                @foreach (var card in _room.PreviousFour)
+                                {
+                                    <span class="recent-card @(card.IsRed ? "red-suit" : "")">@card.Rank@card.Suit</span>
+                                }
+                                @if (_room.PreviousFour.Count == 0) { <span class="muted">Cards you draw will appear here.</span> }
+                            </div>
+                        }
+                    </div>
+                </section>
+            }
+
+            @if (_room.Phase == GamePhase.Finished)
+            {
+                <section class="setup-panel next-round-panel">
+                    <span class="eyebrow">READY FOR ANOTHER ROUND</span>
+                    <h1>Play it again.</h1>
+                    <div class="shuffle-fan @(_shuffling ? "is-shuffling" : "")" aria-hidden="true"><i></i><i></i><i></i></div>
+                    <PatternPicker @bind-SelectedId="_selectedPatternId" />
+                    <button class="primary-button" disabled="@(!Rooms.IsConnected || _busy)" @onclick="StartRoundAsync">
+                        @(_shuffling ? "Shuffling the deck…" : "Shuffle & start round")
+                    </button>
+                </section>
+            }
+
+            <section class="display-join-panel">
+                <div><span class="eyebrow">ON THE BIG SCREEN</span><h2>Open the TV view</h2><p>Open this app on the TV, choose <strong>Display</strong>, and enter the room code.</p></div>
+                <div class="share-row"><strong class="share-code">@_code</strong><button class="small-button" @onclick="CopyDisplayLinkAsync">@(_copied ? "Copied!" : "Copy TV link")</button></div>
+                <a class="text-link" href="@DisplayLink" target="_blank" rel="noopener noreferrer">Preview TV display →</a>
+            </section>
+        </main>
+    }
+
+    @if (_error is not null)
+    {
+        <div class="toast-error" role="alert">@_error <button aria-label="Dismiss error" @onclick="() => _error = null">×</button></div>
+    }
+</div>
+
+@code {
+    private bool _loading = true;
+    private bool _busy;
+    private bool _shuffling;
+    private bool _copied;
+    private string? _code;
+    private string? _setupError;
+    private string? _error;
+    private string _selectedPatternId = "standard";
+    private RoomState? _room;
+    private PeriodicTimer? _timer;
+    private CancellationTokenSource? _timerCancellation;
+
+    private PatternDefinition CurrentPattern => PatternCatalog.Find(_room?.PatternId) ?? PatternCatalog.All[0];
+    private string DisplayLink => Navigation.BaseUri + "?view=display&room=" + _code;
+    private int CooldownSeconds => _room is null ? 0 : (int)Math.Ceiling(Math.Max(0,
+        _room.LastDrawAt + 3000 - (DateTimeOffset.UtcNow.ToUnixTimeMilliseconds() + Rooms.ServerOffsetMs)) / 1000.0);
+    private bool CanDraw => _room?.Phase == GamePhase.Calling && _room.DrawnCount < 52 &&
+        Rooms.IsConnected && !_busy && CooldownSeconds == 0;
+
+    protected override async Task OnInitializedAsync()
+    {
+        Rooms.RoomChanged += HandleRoomChanged;
+        Rooms.ConnectionChanged += HandleConnectionChanged;
+        Rooms.ErrorReceived += HandleError;
+        try
+        {
+            await Rooms.InitializeAsync();
+            var saved = RoomCode.Normalize(await Rooms.GetSavedRoomAsync());
+            if (RoomCode.IsValid(saved))
+            {
+                _code = saved;
+                await Rooms.WatchRoomAsync(saved);
+            }
+        }
+        catch (Exception error)
+        {
+            _setupError = error.Message;
+        }
+        finally
+        {
+            _loading = false;
+        }
+
+        _timerCancellation = new CancellationTokenSource();
+        _timer = new PeriodicTimer(TimeSpan.FromMilliseconds(250));
+        _ = RunClockAsync(_timerCancellation.Token);
+    }
+
+    private async Task RunClockAsync(CancellationToken cancellation)
+    {
+        try
+        {
+            while (_timer is not null && await _timer.WaitForNextTickAsync(cancellation))
+            {
+                if (_room?.Phase == GamePhase.Calling && _room.LastDrawAt > 0 &&
+                    DateTimeOffset.UtcNow.ToUnixTimeMilliseconds() + Rooms.ServerOffsetMs < _room.LastDrawAt + 3500)
+                    await InvokeAsync(StateHasChanged);
+            }
+        }
+        catch (OperationCanceledException) { }
+    }
+
+    private void HandleRoomChanged(RoomState? room)
+    {
+        _room = room;
+        if (room is not null && room.Phase == GamePhase.Finished)
+            _selectedPatternId = room.PatternId;
+        _ = InvokeAsync(StateHasChanged);
+    }
+
+    private void HandleConnectionChanged(bool connected) => _ = InvokeAsync(StateHasChanged);
+    private void HandleError(string message) { _error = message; _ = InvokeAsync(StateHasChanged); }
+
+    private async Task CreateRoomAsync()
+    {
+        _busy = true;
+        _error = null;
+        try
+        {
+            for (var attempt = 0; attempt < 5; attempt++)
+            {
+                var code = RoomCode.Generate();
+                if (!await Rooms.CreateRoomAsync(code)) continue;
+                _room = null;
+                _code = code;
+                await Rooms.SaveRoomAsync(code);
+                await Rooms.WatchRoomAsync(code);
+                return;
+            }
+            _error = "Could not reserve a room code. Try again.";
+        }
+        catch (Exception error) { _error = error.Message; }
+        finally { _busy = false; }
+    }
+
+    private async Task StartRoundAsync()
+    {
+        if (_code is null) return;
+        _busy = true;
+        _shuffling = true;
+        _error = null;
+        try
+        {
+            var deck = DeckShuffler.Shuffle();
+            await Task.Delay(850);
+            await Rooms.StartRoundAsync(_code, _selectedPatternId, deck);
+        }
+        catch (Exception error) { _error = error.Message; }
+        finally { _busy = false; _shuffling = false; }
+    }
+
+    private async Task DrawAsync()
+    {
+        if (_code is null || !CanDraw) return;
+        _busy = true;
+        _error = null;
+        try { await Rooms.DrawAsync(_code); }
+        catch (Exception error) { _error = error.Message; }
+        finally { _busy = false; }
+    }
+
+    private async Task ChangePhaseAsync(string phase)
+    {
+        if (_code is null) return;
+        _busy = true;
+        _error = null;
+        try { await Rooms.ChangePhaseAsync(_code, phase); }
+        catch (Exception error) { _error = error.Message; }
+        finally { _busy = false; }
+    }
+
+    private async Task CopyDisplayLinkAsync()
+    {
+        try
+        {
+            await Rooms.CopyTextAsync(DisplayLink);
+            _copied = true;
+            await Task.Delay(1800);
+            _copied = false;
+        }
+        catch (Exception error) { _error = error.Message; }
+    }
+
+    public ValueTask DisposeAsync()
+    {
+        Rooms.RoomChanged -= HandleRoomChanged;
+        Rooms.ConnectionChanged -= HandleConnectionChanged;
+        Rooms.ErrorReceived -= HandleError;
+        _timerCancellation?.Cancel();
+        _timer?.Dispose();
+        _timerCancellation?.Dispose();
+        return ValueTask.CompletedTask;
+    }
+}

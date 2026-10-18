@@ -1,0 +1,63 @@
+@using Microsoft.AspNetCore.Components.Web
+@using PokenoGenie.Core
+
+<div class="pattern-picker" @onkeydown="HandleKeyDown">
+    <label class="field-label" id="pattern-label">Winning pattern</label>
+    <button type="button" class="pattern-trigger" aria-labelledby="pattern-label"
+            aria-expanded="@_open" aria-controls="pattern-options" @onclick="Toggle">
+        <span>@Selected.Name</span><span aria-hidden="true">⌄</span>
+    </button>
+
+    @if (_open)
+    {
+        <div class="pattern-options" id="pattern-options" aria-label="Pattern choices">
+            @foreach (var pattern in PatternCatalog.All)
+            {
+                <button type="button" class="pattern-option @(pattern.Id == SelectedId ? "selected" : "")"
+                        @onmouseenter="() => _preview = pattern"
+                        @onfocus="() => _preview = pattern"
+                        @onclick="() => SelectAsync(pattern)">
+                    <PatternGrid Pattern="pattern" Class="pattern-grid-tiny" />
+                    <span>@pattern.Name</span>
+                </button>
+            }
+        </div>
+    }
+
+    <div class="pattern-preview-panel" aria-live="polite">
+        <PatternGrid Pattern="Preview" />
+        <div><strong>@Preview.Name</strong><p>@Preview.Description</p></div>
+    </div>
+</div>
+
+@code {
+    [Parameter] public string SelectedId { get; set; } = "standard";
+    [Parameter] public EventCallback<string> SelectedIdChanged { get; set; }
+
+    private bool _open;
+    private PatternDefinition? _preview;
+    private PatternDefinition Selected => PatternCatalog.Find(SelectedId) ?? PatternCatalog.All[0];
+    private PatternDefinition Preview => _preview ?? Selected;
+
+    private void Toggle()
+    {
+        _open = !_open;
+        _preview = Selected;
+    }
+
+    private async Task SelectAsync(PatternDefinition pattern)
+    {
+        _preview = pattern;
+        _open = false;
+        await SelectedIdChanged.InvokeAsync(pattern.Id);
+    }
+
+    private void HandleKeyDown(KeyboardEventArgs eventArgs)
+    {
+        if (eventArgs.Key == "Escape")
+        {
+            _open = false;
+            _preview = Selected;
+        }
+    }
+}

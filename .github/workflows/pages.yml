@@ -1,0 +1,86 @@
+name: Verify and deploy Pokeno Genie
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+      - name: Test C# game rules
+        run: dotnet test PokenoGenie.slnx --configuration Release
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11.25.0
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - name: Install Firebase test tooling
+        run: pnpm install --frozen-lockfile
+      - name: Test Firebase security rules
+        run: pnpm test:rules
+
+  deploy:
+    if: github.event_name != 'pull_request'
+    needs: verify
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+      - uses: actions/configure-pages@v5
+      - name: Add the Firebase web configuration
+        env:
+          FIREBASE_CONFIG_JSON: ${{ secrets.FIREBASE_CONFIG_JSON }}
+        run: |
+          test -n "$FIREBASE_CONFIG_JSON" || { echo 'Set the FIREBASE_CONFIG_JSON repository secret first.'; exit 1; }
+          printf '%s' "$FIREBASE_CONFIG_JSON" > src/PokenoGenie/wwwroot/firebase-config.json
+          python -m json.tool src/PokenoGenie/wwwroot/firebase-config.json > /dev/null
+      - name: Publish Blazor WebAssembly
+        run: dotnet publish src/PokenoGenie/PokenoGenie.csproj --configuration Release --output out
+      - name: Set the GitHub Pages base path
+        env:
+          REPOSITORY: ${{ github.repository }}
+        run: |
+          python - <<'PY'
+          import os
+          from pathlib import Path
+
+          owner, repository = os.environ['REPOSITORY'].split('/', 1)
+          base = '/' if repository.lower() == f'{owner.lower()}.github.io' else f'/{repository}/'
+          index = Path('out/wwwroot/index.html')
+          html = index.read_text(encoding='utf-8')
+          old = '<base href="/" />'
+          if old not in html:
+              raise SystemExit('Could not find the Blazor base href in index.html')
+          index.write_text(html.replace(old, f'<base href="{base}" />', 1), encoding='utf-8')
+          PY
+          touch out/wwwroot/.nojekyll
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: out/wwwroot
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
