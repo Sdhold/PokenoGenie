@@ -24,6 +24,8 @@ The caller app is a .NET 10 Blazor WebAssembly solution for Visual Studio. A lig
 6. If a player calls Pokeno, choose **Pause / verify Pokeno**. The TV switches to all called cards in draw order, with large rank/suit labels and the latest card outlined in gold. The caller also shows the full history. **Resume drawing** restores the normal current-card/previous-four TV layout; **End round** shows the completed round and final card.
 7. To begin with a fresh room code and round count, choose **End table & start new** on the caller phone. Enter the new code on the TV.
 
+Use **How to use** at the top of the caller screen for a six-step guide to the app. At a connected table, it opens on the phone and TV together and holds draws. **Return to table** closes both guides and restores the same round, cards, and calling or verification screen. The guide also works on the phone before creating a table. Only the caller can open or close the shared guide; a TV refresh restores it while it is open.
+
 Preset patterns: standard bingo (any row, column, or diagonal), horizontal, vertical, diagonal, H, C (opens right), X, plus, four corners, perimeter, and full board. The picker previews patterns on hover, keyboard focus, and tap.
 
 ## Solution layout

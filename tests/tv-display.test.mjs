@@ -9,7 +9,7 @@ const script = await readFile(new URL("js/tv.js", root), "utf8");
 const layoutSource = await readFile(new URL("js/verification-layout.js", root), "utf8");
 const cards = ["S","H","D","C"].flatMap(suit => ["A","2","3","4","5","6","7","8","9","10","J","Q","K"].map(rank => rank+suit));
 
-function harness() {
+function harness(initialState = {}) {
   function node() {
     return {
       children: [], hidden: false, style: {}, attributes: {}, textContent: "", className: "",
@@ -20,7 +20,7 @@ function harness() {
     };
   }
   const elements = Object.fromEntries([...html.matchAll(/\bid="([^"]+)"/g)].map(match=>[match[1],node()]));
-  let state = { round:1, phase:"calling", patternId:"h", drawnCount:0, drawn:[] };
+  let state = { round:1, phase:"calling", patternId:"h", drawnCount:0, drawn:[], ...initialState };
   let theme = "starwars", fitCalls = 0, timerId = 0;
   const pending = new Map();
   class Request {
@@ -46,8 +46,8 @@ function harness() {
   return {
     elements,
     get fitCalls() { return fitCalls; },
-    update(phase,count,nextTheme=theme) {
-      state={...state,phase,drawnCount:count,drawn:cards.slice(0,count)}; theme=nextTheme;
+    update(phase,count,nextTheme=theme,guideOpen=state.guideOpen === true) {
+      state={...state,phase,drawnCount:count,drawn:cards.slice(0,count),guideOpen}; theme=nextTheme;
       const [id,callback]=pending.entries().next().value;
       pending.delete(id); callback();
     }
@@ -113,6 +113,38 @@ test("Royal Cats synchronizes artwork in calling and verification views",()=>{
   tv.update("paused",22,"cats");
   assert.equal(tv.elements["verification-cards"].children.length,22);
   assert.equal(tv.elements["verification-cards"].children[0].children[0].children[0].src,"cards/cats/AS.svg");
+});
+
+test("the caller's guide replaces both TV views and returns to the same round",()=>{
+  const tv=harness(); tv.update("calling",22,"cats",true);
+  assert.equal(tv.elements["howto-panel"].hidden,false);
+  assert.equal(tv.elements["calling-display"].hidden,true);
+  assert.equal(tv.elements["verification-panel"].hidden,true);
+  assert.equal(tv.elements["draw-count"].textContent,"22 / 52");
+  assert.equal(tv.elements["display-screen"].attributes["data-deck-theme"],"cats");
+  tv.update("calling",22,"cats",false);
+  assert.equal(tv.elements["howto-panel"].hidden,true);
+  assert.equal(tv.elements["calling-display"].hidden,false);
+  assert.equal(tv.elements["current-card"].children[0].attributes["aria-label"],"Nine of Hearts");
+  assert.deepEqual(tv.elements["previous-cards"].children.map(card=>card.attributes["aria-label"]),["Eight of Hearts","Seven of Hearts","Six of Hearts","Five of Hearts"]);
+
+  tv.update("paused",22,"cats",true);
+  assert.equal(tv.elements["howto-panel"].hidden,false);
+  assert.equal(tv.elements["verification-panel"].hidden,true);
+  tv.update("paused",22,"cats",false);
+  assert.equal(tv.elements["verification-panel"].hidden,false);
+  assert.equal(tv.elements["verification-cards"].children.length,22);
+});
+
+test("a TV reload restores an open guide, including setup and finished tables",()=>{
+  for (const phase of ["lobby","calling","paused","finished"]) {
+    const tv=harness({guideOpen:true,phase});
+    tv.update(phase,phase === "lobby" ? 0 : 5);
+    assert.equal(tv.elements["howto-panel"].hidden,false);
+    tv.update(phase,phase === "lobby" ? 0 : 5,"starwars",false);
+    assert.equal(tv.elements["howto-panel"].hidden,true);
+    assert.equal(tv.elements["verification-panel"].hidden,phase !== "paused");
+  }
 });
 
 test("every alternate deck bundles a self-contained matching background",async()=>{

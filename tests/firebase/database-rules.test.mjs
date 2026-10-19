@@ -6,7 +6,7 @@ import {
   assertSucceeds,
   initializeTestEnvironment
 } from "@firebase/rules-unit-testing";
-import { get, ref, runTransaction, serverTimestamp, set } from "firebase/database";
+import { get, ref, runTransaction, serverTimestamp, set, update } from "firebase/database";
 
 const room = "ABCDEFGH";
 const statePath = `rooms/${room}/state`;
@@ -203,4 +203,50 @@ test("the caller can switch a deck theme without changing a live round", async (
     await assertFails(set(ref(viewer, themePath), themeId));
   }
   assert.equal((await get(ref(owner, statePath))).val().drawnCount, 1);
+});
+
+test("only the caller controls the guide; opening it holds draws and preserves the cooldown", async () => {
+  await seedCallingRound(Date.now() - 4000);
+  const original = (await get(ref(owner, statePath))).val();
+  const guide = ref(owner, `${statePath}/guideOpen`);
+  await assertFails(set(ref(viewer, `${statePath}/guideOpen`), true));
+  await assertFails(set(guide, "true"));
+  await assertSucceeds(set(guide, true));
+  assert.equal((await assertSucceeds(get(ref(viewer, statePath)))).val().guideOpen, true);
+  const open = (await get(ref(owner, statePath))).val();
+  const draw = { ...open, drawn: [cards[0]], drawnCount: 1, lastDrawAt: serverTimestamp() };
+  await assertFails(set(ref(owner, statePath), draw));
+  await assertFails(set(ref(owner, statePath), { ...draw, guideOpen: false }));
+  await assertFails(set(ref(owner, statePath), { ...open, phase: "paused", guideOpen: false }));
+  await assertSucceeds(set(guide, false));
+  assert.deepEqual((await get(ref(owner, statePath))).val(), { ...original, guideOpen: false });
+  await assertSucceeds(set(ref(owner, statePath), { ...draw, guideOpen: false }));
+  const called = (await get(ref(owner, statePath))).val();
+  await assertFails(set(ref(owner, statePath), { ...called, guideOpen: true, drawn: [] }));
+  await assertFails(update(ref(owner, statePath), { guideOpen: true, drawn: null }));
+  await assertSucceeds(set(guide, true));
+  await assertSucceeds(set(guide, false));
+  assert.deepEqual((await get(ref(owner, statePath))).val(), called);
+  await assertFails(set(ref(owner, statePath), {
+    ...called, drawn: cards.slice(0,2), drawnCount: 2, lastDrawAt: serverTimestamp()
+  }));
+});
+
+test("the guide opens and closes during setup, pause and finish without starting or resuming a round", async () => {
+  await assertSucceeds(set(ref(owner, statePath), initialState()));
+  const setup = (await get(ref(owner, statePath))).val();
+  await assertSucceeds(set(ref(owner, `${statePath}/guideOpen`), true));
+  await assertFails(set(ref(owner, deckPath), { ownerUid: "caller", round: 1, cards }));
+  await assertSucceeds(set(ref(owner, `${statePath}/guideOpen`), false));
+  assert.deepEqual((await get(ref(owner, statePath))).val(), { ...setup, guideOpen: false });
+  await assertSucceeds(set(ref(owner, deckPath), { ownerUid: "caller", round: 1, cards }));
+  await assertSucceeds(set(ref(owner, statePath), { ...setup, guideOpen: false, round:1, patternId:"h", phase:"calling" }));
+  for (const phase of ["paused", "finished"]) {
+    const before = (await get(ref(owner, statePath))).val();
+    await assertSucceeds(set(ref(owner, statePath), { ...before, phase }));
+    const expected = (await get(ref(owner, statePath))).val();
+    await assertSucceeds(set(ref(owner, `${statePath}/guideOpen`), true));
+    await assertSucceeds(set(ref(owner, `${statePath}/guideOpen`), false));
+    assert.deepEqual((await get(ref(owner, statePath))).val(), expected);
+  }
 });

@@ -197,16 +197,18 @@
         var cards = drawnCards(state);
         var count = Math.min(Math.max(Number(state.drawnCount) || 0, 0), 52);
         var pattern = patternNames[state.patternId] ? state.patternId : "standard";
-        var signature = [state.round, state.phase, pattern, count, cards.join(","), themeId].join("|");
+        var showingGuide = state.guideOpen === true;
+        var signature = [state.round, state.phase, showingGuide, pattern, count, cards.join(","), themeId].join("|");
         showDisplay();
         setText("connection-label", "LIVE FROM THE CALLER'S DEVICE");
         if (signature === lastSignature) return;
         lastSignature = signature;
         byId("display-screen").setAttribute("data-deck-theme", themeId);
-        var verifying = state.phase === "paused";
+        var verifying = state.phase === "paused" && !showingGuide;
         byId("display-screen").className = "display-screen" + (verifying ? " is-verifying" : "");
-        byId("calling-display").hidden = verifying;
+        byId("calling-display").hidden = verifying || showingGuide;
         byId("verification-panel").hidden = !verifying;
+        byId("howto-panel").hidden = !showingGuide;
         setText("pattern-name", patternNames[pattern]);
         renderPattern(pattern);
         setText("room-label", "ROOM " + roomCode);
@@ -214,6 +216,7 @@
         setText("round-label", Number(state.round) > 0 ? "ROUND " + state.round : "TABLE SETUP");
         var verification = byId("verification-cards");
         clearChildren(verification);
+        if (showingGuide) return;
         if (verifying) {
             for (var calledIndex = 0; calledIndex < cards.length; calledIndex++) {
                 var info = cardInfo(cards[calledIndex]);

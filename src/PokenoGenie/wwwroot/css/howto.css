@@ -1,0 +1,52 @@
+.app-header { flex-wrap: wrap; padding-top: 12px; padding-bottom: 12px; }
+.header-tools { display: flex; align-items: center; justify-content: flex-end; flex-wrap: wrap; gap: 8px; margin-left: auto; }
+.howto-button { min-height: 44px; padding: 9px 12px; border: 1px solid #e7bf6d99; border-radius: 10px; background: #173b34e6; color: #f5dba5; font-size: .8rem; font-weight: 800; white-space: nowrap; }
+.phone-guide { padding-top: 20px; outline: none; }
+.guide-toolbar { position: sticky; top: 0; z-index: 4; display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 12px 0; background: #102b28; border-bottom: 1px solid #e7bf6d44; }
+.guide-toolbar > span { color: #d2ddce; font-size: .78rem; line-height: 1.4; }
+.guide-toolbar .small-button { flex: none; min-height: 48px; }
+.howto-intro { margin: 26px 0 22px; }
+.howto-eyebrow { color: #e6bf76; font-size: .7rem; font-weight: 800; letter-spacing: .18em; }
+.howto-intro h1 { margin: 10px 0; font: 500 2.6rem/1.05 Georgia, serif; letter-spacing: -.03em; color: #fff3d8; }
+.howto-intro > p { margin: 0; color: #d4e0d2; font-size: 1rem; line-height: 1.45; }
+.howto-steps { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; padding: 0; margin: 0; list-style: none; }
+.howto-steps > li { display: flex; align-items: flex-start; gap: 12px; min-width: 0; border: 1px solid #e8d4a977; border-radius: 14px; padding: 18px; color: #183830; background: #f8f1e1f5; box-shadow: 0 8px 24px #071b1933; }
+.howto-step-number { flex: none; color: #986633; font: 500 1.5rem/1 Georgia, serif; padding-top: 2px; }
+.howto-steps h2 { margin: 0 0 7px; font-size: 1.02rem; line-height: 1.25; }
+.howto-steps p { margin: 0; color: #355349; font-size: .92rem; line-height: 1.5; }
+.howto-return-note { margin: 18px 0 12px; padding: 13px 16px; border: 1px solid #e7bf6d77; border-radius: 10px; color: #f3d496; background: #102b28e6; line-height: 1.45; font-size: .88rem; }
+.guide-connection-note { color: #ffd0b5; line-height: 1.45; }
+.tv-guide { flex: 1; min-width: 0; padding: 12px 3vw 10px; }
+.tv-guide .howto-intro { margin: 0 0 14px; }
+.tv-guide .howto-eyebrow { font-size: .8rem; }
+.tv-guide .howto-intro h1 { font-size: 2.7rem; }
+.tv-guide .howto-intro > p { font-size: 1.05rem; }
+.tv-guide .howto-steps { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.tv-guide .howto-steps > li { padding: 14px; gap: 12px; }
+.tv-guide .howto-step-number { font-size: 1.65rem; }
+.tv-guide .howto-steps h2 { font-size: 1.15rem; }
+.tv-guide .howto-steps p { font-size: 1rem; line-height: 1.4; }
+.tv-guide .howto-return-note { margin: 12px 0 0; padding: 10px 16px; font-size: 1rem; text-align: center; }
+@media (min-width: 1600px) {
+    .tv-guide { padding: 24px 3vw; }
+    .tv-guide .howto-intro { margin-bottom: 25px; }
+    .tv-guide .howto-intro h1 { font-size: 3.8rem; }
+    .tv-guide .howto-intro > p { font-size: 1.6rem; }
+    .tv-guide .howto-eyebrow { font-size: 1rem; }
+    .tv-guide .howto-steps { gap: 20px; }
+    .tv-guide .howto-steps > li { padding: 24px; gap: 18px; }
+    .tv-guide .howto-steps h2 { font-size: 1.6rem; }
+    .tv-guide .howto-step-number { font-size: 2.1rem; }
+    .tv-guide .howto-steps p { font-size: 1.4rem; }
+    .tv-guide .howto-return-note { font-size: 1.3rem; margin-top: 22px; padding: 18px; }
+}
+@media (max-width: 999px) {
+    .tv-guide .howto-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .tv-guide .howto-intro h1 { font-size: 2.4rem; }
+}
+@media (max-width: 600px) {
+    .header-tools .room-pill { order: 2; }
+    .tv-guide .howto-steps { grid-template-columns: minmax(0, 1fr); }
+    .tv-guide .howto-intro h1, .howto-intro h1 { font-size: 2.2rem; }
+    .howto-steps > li { padding: 16px; }
+}

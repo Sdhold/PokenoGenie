@@ -1,0 +1,25 @@
+<div class="howto-intro">
+    <span class="howto-eyebrow">YOUR GAME NIGHT GUIDE</span>
+    <h1 id="howto-title">How to use Pokeno Genie.</h1>
+    <p>One caller, one big screen, and your physical Pokeno boards.</p>
+</div>
+<ol class="howto-steps">
+    <li><span class="howto-step-number" aria-hidden="true">01</span><div><h2>Connect the two screens</h2><p>On the phone, tap <strong>Create a table</strong>. On the TV, open this site's <strong>tv.html</strong> page and enter the phone's eight-character room code.</p></div></li>
+    <li><span class="howto-step-number" aria-hidden="true">02</span><div><h2>Pick the winning shape</h2><p>Choose a pattern and check its 5×5 preview. Tap <strong>Shuffle &amp; start round</strong> for a fresh 52-card deck. The pattern stays fixed until the round ends.</p></div></li>
+    <li><span class="howto-step-number" aria-hidden="true">03</span><div><h2>Draw, call, and mark</h2><p>Tap <strong>Draw card</strong> and call its rank and suit. Players mark matching cards on their boards. Wait three seconds between draws. The TV shows the current card and previous four.</p></div></li>
+    <li><span class="howto-step-number" aria-hidden="true">04</span><div><h2>Someone calls “Pokeno!”</h2><p>Tap <strong>Pause / verify Pokeno</strong> to show all called cards on both screens. Check the player's physical board and winning shape. Then choose <strong>Resume drawing</strong> or <strong>End round</strong>.</p></div></li>
+    <li><span class="howto-step-number" aria-hidden="true">05</span><div><h2>Make the table yours</h2><p>Choose a look in <strong>Card deck</strong>. The cards and background change on the phone and TV together. Your round, pattern, and called cards stay the same.</p></div></li>
+    <li><span class="howto-step-number" aria-hidden="true">06</span><div><h2>Play another round</h2><p>After ending a round, pick a pattern and shuffle again using the same code. Pass the caller phone to the next person. <strong>End table &amp; start new</strong> creates a new code and resets the round count.</p></div></li>
+</ol>
+<p class="howto-return-note">@ReturnNote</p>
+
+@code {
+    [Parameter] public bool IsTelevision { get; set; }
+    [Parameter] public bool Shared { get; set; } = true;
+
+    private string ReturnNote => IsTelevision
+        ? "Drawing is on hold. The caller taps Return to table on the phone to close this guide on both screens."
+        : Shared
+            ? "Drawing is on hold while this guide is open. Return to table restores both screens exactly where you left off."
+            : "Ready to try it? Return to table to create your first room.";
+}

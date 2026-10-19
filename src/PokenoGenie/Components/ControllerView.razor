@@ -7,13 +7,38 @@
 <div class="controller-shell" data-deck-theme="@_themeId">
     <header class="app-header">
         <a class="brand" href="@Navigation.BaseUri"><span class="brand-mark">✦</span> POKENO <strong>GENIE</strong></a>
-        @if (_code is not null)
-        {
-            <span class="room-pill">ROOM <strong>@_code</strong></span>
-        }
+        <div class="header-tools">
+            @if (_code is not null)
+            {
+                <span class="room-pill">ROOM <strong>@_code</strong></span>
+            }
+            @if (!GuideOpen)
+            {
+                <button class="howto-button" type="button" @ref="_howToButton"
+                        disabled="@(_loading || _busy || (OwnsRoom && !Rooms.IsConnected))"
+                        @onclick="() => SetGuideAsync(true)">How to use</button>
+            }
+        </div>
     </header>
 
-    @if (_loading)
+    @if (GuideOpen)
+    {
+        <main class="phone-guide" aria-labelledby="howto-title" tabindex="-1" @ref="_guidePanel">
+            <div class="guide-toolbar">
+                <span>@(OwnsRoom ? "Guide shown on both screens" : "A quick tour of the app")</span>
+                <button class="small-button" type="button" disabled="@(_busy || (OwnsRoom && !Rooms.IsConnected))"
+                        @onclick="() => SetGuideAsync(false)">@(_busy ? "Returning…" : "Return to table")</button>
+            </div>
+            @if (OwnsRoom && !Rooms.IsConnected)
+            {
+                <p class="guide-connection-note" role="status">Reconnecting… Return to table will unlock when both screens can sync again.</p>
+            }
+            <HowToGuide Shared="OwnsRoom" />
+            <button class="secondary-button" type="button" disabled="@(_busy || (OwnsRoom && !Rooms.IsConnected))"
+                    @onclick="() => SetGuideAsync(false)">Return to table</button>
+        </main>
+    }
+    else if (_loading)
     {
         <main class="loading-panel"><span class="spinner"></span><p>Setting up your table…</p></main>
     }
@@ -224,6 +249,11 @@
     private bool _themeBusy;
     private bool _copied;
     private bool _confirmNewTable;
+    private bool _localGuideOpen;
+    private bool _focusGuide;
+    private bool _focusHowTo;
+    private ElementReference _guidePanel;
+    private ElementReference _howToButton;
     private string? _code;
     private string? _setupError;
     private string? _error;
@@ -234,11 +264,27 @@
     private CancellationTokenSource? _timerCancellation;
 
     private PatternDefinition CurrentPattern => PatternCatalog.Find(_room?.PatternId) ?? PatternCatalog.All[0];
+    private bool OwnsRoom => _code is not null && _room is not null && _room.OwnerUid == Rooms.UserId;
+    private bool GuideOpen => OwnsRoom ? _room!.GuideOpen : _localGuideOpen;
     private string DisplayLink => Navigation.BaseUri + "tv.html?room=" + _code;
     private int CooldownSeconds => _room is null ? 0 : (int)Math.Ceiling(Math.Max(0,
         _room.LastDrawAt + 3000 - (DateTimeOffset.UtcNow.ToUnixTimeMilliseconds() + Rooms.ServerOffsetMs)) / 1000.0);
     private bool CanDraw => _room?.Phase == GamePhase.Calling && _room.DrawnCount < 52 &&
-        Rooms.IsConnected && !_busy && CooldownSeconds == 0;
+        Rooms.IsConnected && !_busy && !GuideOpen && CooldownSeconds == 0;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (_focusGuide && GuideOpen)
+        {
+            _focusGuide = false;
+            await _guidePanel.FocusAsync();
+        }
+        if (_focusHowTo && !GuideOpen)
+        {
+            _focusHowTo = false;
+            await _howToButton.FocusAsync();
+        }
+    }
 
     protected override async Task OnInitializedAsync()
     {
@@ -286,7 +332,13 @@
 
     private void HandleRoomChanged(RoomState? room)
     {
+        var wasOpen = GuideOpen;
         _room = room;
+        if (GuideOpen != wasOpen)
+        {
+            _focusGuide = GuideOpen;
+            _focusHowTo = !GuideOpen;
+        }
         if (room is not null && room.Phase == GamePhase.Finished)
             _selectedPatternId = room.PatternId;
         _ = InvokeAsync(StateHasChanged);
@@ -345,6 +397,7 @@
             _selectedPatternId = "standard";
             _themeId = DeckThemeCatalog.DefaultId;
             _confirmNewTable = false;
+            _localGuideOpen = false;
             await Rooms.SaveRoomAsync(code);
             await Rooms.WatchRoomAsync(code);
             return;
@@ -354,7 +407,7 @@
 
     private async Task StartRoundAsync()
     {
-        if (_code is null) return;
+        if (_code is null || GuideOpen) return;
         _busy = true;
         _shuffling = true;
         _error = null;
@@ -384,7 +437,7 @@
 
     private async Task ChangePhaseAsync(string phase)
     {
-        if (_code is null) return;
+        if (_code is null || GuideOpen) return;
         _busy = true;
         _error = null;
         try
@@ -404,6 +457,28 @@
         try { await Rooms.ChangeThemeAsync(_code, themeId); }
         catch (Exception error) { _error = error.Message; }
         finally { _themeBusy = false; }
+    }
+
+    private async Task SetGuideAsync(bool open)
+    {
+        if (_busy) return;
+        _error = null;
+        if (!OwnsRoom)
+        {
+            _localGuideOpen = open;
+            _focusGuide = open;
+            _focusHowTo = !open;
+            return;
+        }
+        if (!Rooms.IsConnected) return;
+        _busy = true;
+        try
+        {
+            if (!await Rooms.ChangeGuideAsync(_code!, open))
+                _error = "The guide did not change. Check the connection and try again.";
+        }
+        catch (Exception error) { _error = error.Message; }
+        finally { _busy = false; }
     }
 
     private async Task CopyDisplayLinkAsync()

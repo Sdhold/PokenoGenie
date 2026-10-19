@@ -24,6 +24,9 @@ public sealed class RoomState
     [JsonPropertyName("phase")]
     public string Phase { get; set; } = GamePhase.Lobby;
 
+    [JsonPropertyName("guideOpen")]
+    public bool GuideOpen { get; set; }
+
     [JsonPropertyName("drawn")]
     public List<string> Drawn { get; set; } = [];
 

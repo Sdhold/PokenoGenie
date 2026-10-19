@@ -46,7 +46,7 @@ public sealed class FirebaseRoomService(
         }
 
         _module = await js.InvokeAsync<IJSObjectReference>(
-            "import", navigation.BaseUri + "js/firebase-bridge.js?v=6");
+            "import", navigation.BaseUri + "js/firebase-bridge.js?v=7");
         _callbackReference = DotNetObjectReference.Create(this);
         UserId = await _module.InvokeAsync<string>("initialize", options, _callbackReference);
     }
@@ -71,6 +71,9 @@ public sealed class FirebaseRoomService(
 
     public async Task<bool> ChangePhaseAsync(string code, string phase) =>
         await Module.InvokeAsync<bool>("changePhase", code, phase);
+
+    public async Task<bool> ChangeGuideAsync(string code, bool open) =>
+        await Module.InvokeAsync<bool>("changeGuide", code, open);
 
     public async Task ChangeThemeAsync(string code, string themeId) =>
         await Module.InvokeVoidAsync("changeTheme", code, themeId);

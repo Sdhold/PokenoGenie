@@ -54,6 +54,8 @@ To test without a live Firebase project, start the local emulators with `pnpm ex
 4. Run **Actions → Verify and deploy Pokeno Genie → Run workflow**, or push to `main`. The workflow tests the C# logic and Firebase rules, publishes Blazor, sets the correct GitHub Pages base path, and uploads the site.
 5. Wait for the workflow's deployment URL, normally `https://<your-github-name>.github.io/<repository-name>/`.
 
+When updating an existing deployment, publish the current `database.rules.json` in Firebase before deploying app changes that use new shared settings, including the how-to guide. The GitHub workflow deploys the website; it does not publish database rules.
+
 The workflow fails clearly if `FIREBASE_CONFIG_JSON` is missing or invalid. The published app contains the Firebase web configuration because browsers need it; the database rules protect game state. The shuffled deck is stored under a separate owner-only database path.
 
 ## 5. Check the phone and TV
@@ -64,6 +66,8 @@ The workflow fails clearly if `FIREBASE_CONFIG_JSON` is missing or invalid. The 
 4. Pause and confirm the TV replaces its split view with every called card, numbered in draw order; the latest card has a gold outline. Reload the TV while paused and confirm the history returns. Resume and confirm the current card and previous four return without advancing the count. End the round. Reload both screens; the active room and private deck should return on the original caller phone.
 5. On the caller phone, choose **End table & start new**, confirm, and check that a different room code appears at table setup. Enter that code on the TV to begin again at the first round.
 6. While a round is active, choose **Star Wars** under **Card deck** and confirm both screens show matching cards and the illustrated space background. Switch to other decks, including **Royal Cats** (Binx J, Autumn Q, Chip K, Anya A) and **Illustrated**, which keeps the original green table. Confirm the caller's deck panel also shows the selected scenery. The card names, draw count, and cooldown stay the same. Also switch themes while paused and confirm all called cards remain visible. Reload the screens and confirm the chosen theme remains.
+
+7. Tap **How to use** at the top of the caller screen. Confirm the guide appears on both screens, with no Draw card button. Reload the TV and caller while it is open; the guide should remain. Tap **Return to table** on the phone and confirm the same round, pattern, count, and cards return. Repeat while paused; returning should restore the called-card history and leave the round paused.
 
 The caller identity is stored in that browser's local data. Clearing its site data or using a different phone loses caller control of the old room; create a new table in that case. If the network disconnects, drawing pauses and the TV shows its last known state until it reconnects. The TV page uses simple JavaScript and Firebase's authenticated REST API, polling for new cards about every 1.5 seconds. It does not load Blazor, so it can run on browsers where the Blazor startup remains on the splash screen.
 

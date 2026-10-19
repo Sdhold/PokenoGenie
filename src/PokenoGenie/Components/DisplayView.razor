@@ -5,7 +5,7 @@
 @inject NavigationManager Navigation
 @inject IJSRuntime JS
 
-<div class="display-shell @(_room?.Phase == GamePhase.Paused ? "is-verifying" : "")" data-deck-theme="@_themeId">
+<div class="display-shell @(_room?.Phase == GamePhase.Paused && !_room.GuideOpen ? "is-verifying" : "")" data-deck-theme="@_themeId">
     @if (_loading)
     {
         <div class="display-entry"><span class="spinner"></span><p>Connecting to the table…</p></div>
@@ -42,7 +42,11 @@
             <button class="fullscreen-button" title="Full screen" aria-label="Enter full screen" @onclick="EnterFullscreenAsync">⛶</button>
         </header>
 
-        @if (_room.Phase == GamePhase.Paused)
+        @if (_room.GuideOpen)
+        {
+            <main class="tv-guide" aria-labelledby="howto-title"><HowToGuide IsTelevision="true" /></main>
+        }
+        else if (_room.Phase == GamePhase.Paused)
         {
             <main class="verification-panel" aria-labelledby="verification-title">
                 <div class="verification-heading">
@@ -137,7 +141,7 @@
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if (_room?.Phase == GamePhase.Paused)
+        if (_room?.Phase == GamePhase.Paused && !_room.GuideOpen)
             await JS.InvokeVoidAsync("pokenoVerificationLayout.fit");
     }
 

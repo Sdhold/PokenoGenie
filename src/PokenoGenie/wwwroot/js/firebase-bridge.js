@@ -116,6 +116,7 @@ export async function createRoom(code) {
       round: 0,
       patternId: "",
       phase: "lobby",
+      guideOpen: false,
       drawnCount: 0,
       lastDrawAt: 0,
       createdAt: serverTimestamp()
@@ -133,6 +134,7 @@ export async function startRound(code, patternId, cards) {
   const stateReference = ref(database, statePath(code));
   const before = normalizeState((await get(stateReference)).val());
   requireOwner(before);
+  if (before.guideOpen === true) throw new Error("Close the how-to guide before starting a round.");
   if (before.phase !== "lobby" && before.phase !== "finished") {
     throw new Error("Finish the current round before starting another.");
   }
@@ -143,13 +145,14 @@ export async function startRound(code, patternId, cards) {
 
   const result = await runTransaction(stateReference, current => {
     if (!current || current.ownerUid !== auth.currentUser.uid ||
-        current.round !== before.round ||
+        current.round !== before.round || current.guideOpen === true ||
         (current.phase !== "lobby" && current.phase !== "finished")) return undefined;
     return {
       ownerUid: current.ownerUid,
       round: nextRound,
       patternId,
       phase: "calling",
+      guideOpen: false,
       drawnCount: 0,
       lastDrawAt: 0,
       createdAt: current.createdAt
@@ -165,6 +168,7 @@ export async function drawCard(code) {
   const stateReference = ref(database, statePath(code));
   const before = normalizeState((await get(stateReference)).val());
   requireOwner(before);
+  if (before.guideOpen === true) throw new Error("Close the how-to guide before drawing.");
   if (before.phase !== "calling") throw new Error("This round is not ready for another draw.");
 
   if (!cachedDeck || cachedDeck.round !== before.round) {
@@ -182,7 +186,7 @@ export async function drawCard(code) {
       abortReason = "The room is still loading. Try again in a moment.";
       return undefined;
     }
-    if (current.ownerUid !== auth.currentUser.uid || current.phase !== "calling" ||
+    if (current.ownerUid !== auth.currentUser.uid || current.phase !== "calling" || current.guideOpen === true ||
         current.round !== cachedDeck.round || current.drawnCount >= 52) return undefined;
 
     const currentDrawn = normalizeDrawn(current.drawn);
@@ -228,7 +232,7 @@ export async function changePhase(code, targetPhase) {
       missingLocalState = true;
       return undefined;
     }
-    if (current.ownerUid !== auth.currentUser.uid) return undefined;
+    if (current.ownerUid !== auth.currentUser.uid || current.guideOpen === true) return undefined;
     const allowed =
       (current.phase === "calling" && targetPhase === "paused") ||
       (current.phase === "paused" && (targetPhase === "calling" || targetPhase === "finished"));
@@ -253,6 +257,26 @@ export async function changeTheme(code, themeId) {
   const state = normalizeState((await get(ref(database, statePath(code)))).val());
   requireOwner(state);
   await set(ref(database, themePath(code)), themeId);
+}
+
+export async function changeGuide(code, open) {
+  if (!connected) throw new Error("Reconnect before changing the guide on both screens.");
+  if (typeof open !== "boolean") throw new Error("The guide setting is invalid.");
+  const stateReference = ref(database, statePath(code));
+  const before = normalizeState((await get(stateReference)).val());
+  requireOwner(before);
+  if ((before.guideOpen === true) !== open) {
+    // Only this child path can change the guide, so it cannot replace any round data.
+    try { await set(ref(database, `${statePath(code)}/guideOpen`), open); }
+    catch (error) {
+      const latest = (await get(stateReference)).val();
+      if (!latest || (latest.guideOpen === true) !== open) throw error;
+    }
+  }
+  const state = normalizeState((await get(stateReference)).val());
+  requireOwner(state);
+  notify("OnRoomChanged", state);
+  return (state.guideOpen === true) === open;
 }
 
 export async function copyText(value) {
