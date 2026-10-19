@@ -6,6 +6,10 @@
 {
     <DisplayView InitialRoomCode="@Room" />
 }
+else if (string.Equals(View, "boards", StringComparison.OrdinalIgnoreCase))
+{
+    <BoardLibraryPage />
+}
 else
 {
     <ControllerView />

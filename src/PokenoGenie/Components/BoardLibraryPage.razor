@@ -1,0 +1,10 @@
+@inject NavigationManager Navigation
+
+<div class="controller-shell" data-deck-theme="illustrated">
+    <header class="app-header"><a class="brand" href="@Navigation.BaseUri"><span class="brand-mark">✦</span> POKENO <strong>GENIE</strong></a></header>
+    <BoardLibraryPanel Close="ReturnAsync" />
+</div>
+
+@code {
+    private void ReturnAsync() => Navigation.NavigateTo(Navigation.BaseUri);
+}

@@ -77,6 +77,8 @@ Publish the updated `database.rules.json` before deploying this feature. The sha
 
 ### Approve your first editor
 
+You can open the library directly at `https://sdhold.github.io/PokenoGenie/?view=boards` to manage boards without opening or pausing a caller room. The caller's **Board library** button also opens it, pausing that caller's active round first.
+
 1. On your caller phone, open **Board library → Editor sign-in / setup → Administrator: approve this device**. Copy the displayed editor ID. This is a separate identity from your caller table.
 2. In your Firebase project's **Realtime Database → Data**, add a top-level `boardEditors` object if it does not exist. Inside it add a child whose key is that exact editor ID and whose value is the Boolean **true**. Preserve existing roles and room data. Only an administrator can grant this permission; the website cannot grant it to itself.
 3. The phone should show **Library editor access ✓**. You can now create a set, add boards, and publish reviewed layouts. Published boards can be selected by every room and device using this deployment.
