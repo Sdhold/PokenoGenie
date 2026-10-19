@@ -273,10 +273,10 @@ function revision(overrides = {}) {
     layoutHash: "a".repeat(64), createdBy: "editor", createdAt: serverTimestamp(), ...overrides };
 }
 async function seedLibrary() {
-  await environment.withSecurityRulesDisabled(async context => set(ref(context.database(), "boardEditors/editor"), true));
-  await assertSucceeds(set(ref(editor, "boardSets/set-1"), { name: "Our Pokeno set", version: 1 }));
+  await assertSucceeds(set(ref(editor, "boardSets/set-1"), { name: "Our Pokeno set", ownerUid: "editor", version: 1 }));
+  await assertSucceeds(set(ref(editor, "boardOwners/board-1"), { setId: "set-1", ownerUid: "editor" }));
   await assertSucceeds(set(ref(editor, "boardRevisions/board-1/revision-1"), revision()));
-  await assertSucceeds(set(ref(editor, "boardSets/set-1"), { name: "Our Pokeno set", version: 2,
+  await assertSucceeds(set(ref(editor, "boardSets/set-1"), { name: "Our Pokeno set", ownerUid: "editor", version: 2,
     boards: { "board-1": { label: "Board 07", revisionId: "revision-1", layoutHash: "a".repeat(64), archived: false } } }));
 }
 function roundSet(round = 1) {
@@ -286,14 +286,20 @@ function boardCheck(overrides = {}) {
   return { id: "check-1", round: 1, drawnCount: 0, patternId: "h", boardId: "board-1", revisionId: "revision-1", setId: "set-1", setName: "Our Pokeno set", label: "Board 07", cards: boardCells, checkedAt: serverTimestamp(), ...overrides };
 }
 
-test("the shared library survives rooms and only appointed editors can publish", async () => {
+test("any anonymous visitor can create a set, while existing sets stay creator-owned across rooms", async () => {
   await seedLibrary();
   assert.equal((await assertSucceeds(get(ref(viewer, "boardSets/set-1")))).val().name, "Our Pokeno set");
   assert.equal((await assertSucceeds(get(ref(owner, "boardRevisions/board-1/revision-1")))).val().cards.length, 25);
-  await assertFails(set(ref(viewer, "boardSets/set-2"), { name: "Forged", version: 1 }));
+  await assertSucceeds(set(ref(viewer, "boardSets/set-2"), { name: "My set", ownerUid: "viewer", version: 1 }));
+  await assertFails(set(ref(viewer, "boardSets/set-3"), { name: "Forged", ownerUid: "editor", version: 1 }));
+  await assertFails(set(ref(viewer, "boardSets/set-4"), { name: "Missing owner", version: 1 }));
+  await assertFails(set(ref(viewer, "boardSets/set-1"), { name: "Overwrite", ownerUid: "viewer", version: 3 }));
+  await assertFails(update(ref(viewer, "boardSets/set-1"), { name: "Overwrite", version: 3 }));
+  await assertFails(update(ref(editor, "boardSets/set-1"), { ownerUid: "viewer", version: 3 }));
+  await assertFails(set(ref(editor, "boardSets/set-1"), null));
   await assertFails(set(ref(viewer, "boardEditors/viewer"), true));
   await assertFails(get(ref(viewer, "boardEditors/editor")));
-  await assertSucceeds(get(ref(viewer, "boardEditors/viewer")));
+  await assertFails(get(ref(viewer, "boardEditors/viewer")));
   await assertFails(get(ref(environment.unauthenticatedContext().database(), "boardSets")));
   await assertSucceeds(set(ref(owner, statePath), initialState()));
   await assertSucceeds(set(ref(owner, "rooms/JKLMNPQR/state"), initialState()));
@@ -305,9 +311,10 @@ test("published layouts are immutable, contain exactly 25 distinct cards, and ca
   await assertFails(set(ref(editor, "boardRevisions/board-1/revision-1"), revision({ label: "Changed" })));
   await assertFails(set(ref(editor, "boardRevisions/board-1/revision-1"), null));
   const repeated = [...boardCells]; repeated[24] = repeated[0];
+  await assertSucceeds(set(ref(editor, "boardOwners/board-2"), { setId: "set-1", ownerUid: "editor" }));
   await assertFails(set(ref(editor, "boardRevisions/board-2/revision-2"), revision({ boardId: "board-2", revisionId: "revision-2", cards: repeated })));
   await assertFails(set(ref(editor, "boardRevisions/board-2/revision-2"), revision({ boardId: "board-2", revisionId: "revision-2", cards: boardCells.slice(0, 24) })));
-  await assertFails(set(ref(editor, "boardSets/set-2"), { name: "Other", version: 1, boards: { "board-1": { label: "Board 07", revisionId: "revision-1", layoutHash: "a".repeat(64), archived: false } } }));
+  await assertFails(set(ref(editor, "boardSets/set-2"), { name: "Other", ownerUid: "editor", version: 1, boards: { "board-1": { label: "Board 07", revisionId: "revision-1", layoutHash: "a".repeat(64), archived: false } } }));
   await assertFails(update(ref(editor, "boardSets/set-1"), { name: "Silent concurrent overwrite" }));
 });
 
@@ -318,8 +325,25 @@ test("drafts are private, can contain empty cells, and are separate from publish
   await assertSucceeds(get(ref(editor, "boardDrafts/editor")));
   await assertFails(get(ref(viewer, "boardDrafts/editor")));
   await assertFails(set(ref(owner, "boardDrafts/editor/draft-1"), draft));
+  await assertFails(set(ref(viewer, "boardDrafts/viewer/draft-1"), draft));
   await assertFails(set(ref(editor, "boardDrafts/editor/draft-1"), { ...draft, cards: [...Array(24).fill(""), "Joker"] }));
   assert.equal((await get(ref(viewer, "boardSets/set-1"))).val().boards["board-2"], undefined);
+});
+
+test("another creator can copy layouts with new IDs but cannot take ownership or inject revisions", async () => {
+  await seedLibrary();
+  await assertSucceeds(set(ref(viewer, "boardSets/copy"), { name: "Our Pokeno set (copy)", ownerUid: "viewer", version: 1 }));
+  await assertFails(set(ref(viewer, "boardOwners/board-1"), { setId: "copy", ownerUid: "viewer" }));
+  await assertFails(set(ref(editor, "boardOwners/board-1"), null));
+  await assertFails(set(ref(viewer, "boardOwners/other-board"), { setId: "set-1", ownerUid: "viewer" }));
+  await assertFails(set(ref(viewer, "boardRevisions/board-1/injected"), revision({ revisionId: "injected", setId: "copy", createdBy: "viewer" })));
+  await assertFails(set(ref(viewer, "boardRevisions/board-1/injected"), revision({ revisionId: "injected", createdBy: "viewer" })));
+  await assertFails(update(ref(viewer, "boardSets/set-1"), { version: 3, "boards/board-1/archived": true }));
+  await assertSucceeds(set(ref(viewer, "boardOwners/copied-board"), { setId: "copy", ownerUid: "viewer" }));
+  await assertSucceeds(set(ref(viewer, "boardRevisions/copied-board/copied-revision"), revision({ boardId: "copied-board", revisionId: "copied-revision", setId: "copy", createdBy: "viewer" })));
+  await assertSucceeds(update(ref(viewer, "boardSets/copy"), { version: 2, "boards/copied-board": { label: "Board 07", revisionId: "copied-revision", layoutHash: "a".repeat(64), archived: false } }));
+  assert.deepEqual((await get(ref(owner, "boardRevisions/copied-board/copied-revision/cards"))).val(), boardCells);
+  assert.equal((await get(ref(viewer, "boardSets/set-1"))).val().boards["board-1"].archived, false);
 });
 
 test("the caller pins published board versions once per round; viewers and active draws cannot replace them", async () => {

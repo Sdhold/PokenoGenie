@@ -3,8 +3,6 @@
 @using System.Text.Json
 @implements IDisposable
 @inject BoardLibraryService Boards
-@inject FirebaseRoomService Rooms
-@inject IJSRuntime JS
 
 <main class="board-library" aria-labelledby="board-library-title">
     <div class="library-title-row"><div><span class="eyebrow">AVAILABLE TO EVERY ROOM</span><h1 id="board-library-title">Board library.</h1></div><button class="small-button" @onclick="Close">Return to table</button></div>
@@ -15,27 +13,7 @@
     else
     {
         <p>Save each physical board once. Every caller can use these layouts to check a win.</p>
-        <details class="library-editor-access" open="@(!Boards.Editor.CanEdit)">
-            <summary>@(Boards.Editor.CanEdit ? "Library editor access ✓" : "Editor sign-in / setup")</summary>
-            @if (Boards.Editor.CanEdit)
-            {
-                <p>You can add and edit shared boards. Your caller table keeps its existing identity.</p>
-                @if (Boards.Editor.IsAnonymous)
-                {
-                    <p>Make this approved editor recoverable on another device:</p>
-                    @EditorCredentials
-                    <button class="small-button" disabled="@_busy" @onclick="LinkAccountAsync">Save editor login</button>
-                }
-                else { <p>Signed in as @Boards.Editor.Email</p><button class="small-button" disabled="@_busy" @onclick="SignOutAsync">Sign out of editing</button> }
-            }
-            else
-            {
-                @EditorCredentials
-                <button class="secondary-button" disabled="@_busy" @onclick="SignInAsync">Sign in to edit</button>
-                <p class="fine-print">Everyone can use published boards. An administrator approves editors in Firebase.</p>
-                <details><summary>Administrator: approve this device</summary><p>Add this editor ID with the value <strong>true</strong> under <strong>boardEditors</strong> in Firebase Realtime Database. Then save an editor login here. See the deployment guide for the one-time setup.</p><code class="editor-access-id">@Boards.Editor.Uid</code><button class="small-button" @onclick="CopyEditorIdAsync">Copy editor ID</button></details>
-            }
-        </details>
+        <p class="fine-print">No account or password needed. This browser can edit sets it creates. On another device, copy a shared set to make changes. Keep an exported backup; clearing browser data removes your editing access and private drafts from this device.</p>
 
         @if (Boards.Editor.CanEdit)
         {
@@ -49,36 +27,38 @@
 
         @if (Boards.Sets.Count == 0)
         {
-            <div class="library-empty"><h2>No boards yet.</h2><p>An approved editor can create a set and enter its boards. Once published, every room can select them.</p></div>
+            <div class="library-empty"><h2>No boards yet.</h2><p>Create a set above and enter your boards. Once published, every room can select them.</p></div>
         }
         else
         {
-            <label class="library-field">Board set<select @bind="_setId"><option value="">Choose a set</option>@foreach (var set in Boards.Sets) { <option value="@set.Id">@set.Name (@set.Boards.Count(pair => !pair.Value.Archived) boards)</option> }</select></label>
+            <label class="library-field">Board set<select @bind="_setId" @bind:after="SetChanged"><option value="">Choose a set</option>@foreach (var set in Boards.Sets) { <option value="@set.Id">@set.Name (@set.Boards.Count(pair => !pair.Value.Archived) boards)</option> }</select></label>
             @if (CurrentSet is { } collection)
             {
+                <p class="fine-print">@(OwnsCurrentSet ? "Your set · you can edit it in this browser." : "Shared set · copy it to edit your own version.")</p>
                 <div class="library-actions">
-                    @if (Boards.Editor.CanEdit) { <button class="primary-button" disabled="@_busy" @onclick="AddBoardAsync">Add existing board</button><button class="secondary-button" @onclick="() => _generate = !_generate">Generate custom boards</button> }
+                    @if (OwnsCurrentSet) { <button class="primary-button" disabled="@_busy" @onclick="AddBoardAsync">Add existing board</button><button class="secondary-button" disabled="@_busy" @onclick="() => _generate = !_generate">Generate custom boards</button> }
+                    else { <button class="primary-button" disabled="@(_busy || !Boards.Editor.CanEdit)" @onclick="CopySetAsync">Copy set to edit</button> }
                     <button class="small-button" disabled="@_busy" @onclick="ExportAsync">Export backup</button>
                     <button class="small-button" disabled="@(_busy || !collection.Boards.Any(pair => !pair.Value.Archived))" @onclick="PrintAsync">Print / Save PDF</button>
                 </div>
                 <label class="library-field">Print theme<select @bind="_printTheme">@foreach (var theme in DeckThemeCatalog.All) { <option value="@theme.Id">@theme.Name</option> }</select></label>
-                @if (_generate && Boards.Editor.CanEdit)
+                @if (_generate && OwnsCurrentSet)
                 {
                     <section class="library-generator"><h2>Create a themed set</h2><p>Generate different 25-card layouts, review them, and publish them before printing. Printing uses the theme selected above.</p><label class="library-field">Number of boards<input type="number" min="1" max="50" @bind="_generateCount" /></label><button class="primary-button" disabled="@_busy" @onclick="GenerateAsync">Generate drafts</button></section>
                 }
                 <label class="library-field">Find a board<input @bind="_search" @bind:event="oninput" placeholder="Board number or label" /></label>
-                @if (Boards.Editor.CanEdit) { <label class="library-check"><input type="checkbox" @bind="_showArchived" /> Show archived boards</label> }
+                @if (OwnsCurrentSet) { <label class="library-check"><input type="checkbox" @bind="_showArchived" /> Show archived boards</label> }
                 <ul class="library-board-list">
                     @foreach (var pair in collection.Boards.Where(pair => (_showArchived || !pair.Value.Archived) && pair.Value.Label.Contains(_search, StringComparison.OrdinalIgnoreCase)).OrderBy(pair => pair.Value.Label, StringComparer.OrdinalIgnoreCase))
                     {
-                        <li><div><strong>@pair.Value.Label</strong><small>@(pair.Value.Archived ? "Archived · can restore" : "Ready · saved in Firebase")</small></div><div class="library-inline-actions"><button class="small-button" disabled="@_busy" @onclick="() => PreviewAsync(pair.Key, pair.Value)">View</button>@if (Boards.Editor.CanEdit) { <button class="small-button" disabled="@_busy" @onclick="() => EditAsync(pair.Key, pair.Value)">Edit</button><button class="text-button" disabled="@_busy" @onclick="() => ArchiveAsync(pair.Key, pair.Value)">@(pair.Value.Archived ? "Restore" : "Archive")</button> }</div></li>
+                        <li><div><strong>@pair.Value.Label</strong><small>@(pair.Value.Archived ? "Archived · can restore" : "Ready · saved in Firebase")</small></div><div class="library-inline-actions"><button class="small-button" disabled="@_busy" @onclick="() => PreviewAsync(pair.Key, pair.Value)">View</button>@if (OwnsCurrentSet) { <button class="small-button" disabled="@_busy" @onclick="() => EditAsync(pair.Key, pair.Value)">Edit</button><button class="text-button" disabled="@_busy" @onclick="() => ArchiveAsync(pair.Key, pair.Value)">@(pair.Value.Archived ? "Restore" : "Archive")</button> }</div></li>
                     }
                 </ul>
                 @if (_preview is not null)
                 {
                     <section class="library-preview"><div class="library-section-heading"><h2>@_preview.Label</h2><button class="small-button" @onclick="() => _preview = null">Close preview</button></div><BoardCardGrid Cards="_preview.Cards" ThemeId="@_printTheme" /></section>
                 }
-                @if (Boards.Editor.CanEdit)
+                @if (OwnsCurrentSet)
                 {
                     <details class="library-import"><summary>Import a board-set backup</summary><p>Choose a Pokeno board-set JSON file. Imports become drafts for review; existing boards are preserved.</p><InputFile OnChange="ReadImportAsync" accept=".json,application/json" />
                         @if (_import is not null) { <p>@_import.Boards.Count layouts from “@_import.Name”. Matching labels will receive an “import” suffix. Review each draft before publishing.</p><button class="small-button" disabled="@_busy" @onclick="ImportAsync">Import as drafts into this set</button> }
@@ -95,7 +75,7 @@
 @code {
     [Parameter] public EventCallback Close { get; set; }
     [Parameter] public string ThemeId { get; set; } = DeckThemeCatalog.DefaultId;
-    private string _email = "", _password = "", _newSetName = "", _setId = "", _search = "", _printTheme = DeckThemeCatalog.DefaultId;
+    private string _newSetName = "", _setId = "", _search = "", _printTheme = DeckThemeCatalog.DefaultId;
     private string? _error, _message;
     private bool _busy, _generate, _showArchived;
     private int _generateCount = 12;
@@ -104,10 +84,11 @@
     private BoardPack? _import;
     private List<BoardDraft> _local = [];
     private BoardSet? CurrentSet => Boards.Sets.FirstOrDefault(set => set.Id == _setId);
+    private bool OwnsCurrentSet => Boards.Editor.CanEdit && CurrentSet?.OwnerUid == Boards.Editor.Uid;
     private string SetName(string id) => Boards.Sets.FirstOrDefault(set => set.Id == id)?.Name ?? "Saved set";
     private List<BoardDraft> CombinedDrafts => Boards.Drafts.Concat(_local).GroupBy(draft => draft.Id)
         .Select(group => group.OrderByDescending(draft => draft.PendingSync).ThenByDescending(draft => draft.UpdatedAt).First()).OrderByDescending(draft => draft.UpdatedAt).ToList();
-    private RenderFragment EditorCredentials => @<div class="library-login"><label class="library-field">Editor email<input type="email" autocomplete="username" @bind="_email" /></label><label class="library-field">Editor password<input type="password" autocomplete="current-password" @bind="_password" /></label></div>;
+    private void SetChanged() { _preview = null; _generate = false; _showArchived = false; _import = null; }
 
     protected override async Task OnInitializedAsync()
     {
@@ -125,11 +106,8 @@
         catch (Exception error) { _error = BoardLibraryService.FriendlyError(error); }
         finally { _busy = false; }
     }
-    private async Task SignInAsync() { await RunAsync(() => Boards.SignInAsync(_email, _password)); _password = ""; _local = await Boards.LocalDraftsAsync(); }
-    private async Task LinkAccountAsync() { await RunAsync(() => Boards.LinkAccountAsync(_email, _password)); _password = ""; }
-    private async Task SignOutAsync() { await RunAsync(() => Boards.SignOutAsync()); _local = []; }
-    private async Task CopyEditorIdAsync() => await RunAsync(async () => { await Rooms.CopyTextAsync(Boards.Editor.Uid); _message = "Editor ID copied."; });
     private async Task CreateSetAsync() => await RunAsync(async () => { _setId = await Boards.CreateSetAsync(_newSetName); _newSetName = ""; });
+    private async Task CopySetAsync() => await RunAsync(async () => { _setId = await Boards.CopySetAsync(_setId); SetChanged(); _message = "Set copied. You can edit this version in this browser; the original is preserved."; });
     private string NextLabel()
     {
         var existing = (CurrentSet?.Boards.Values.Select(board => board.Label) ?? []).Concat(CombinedDrafts.Where(draft => draft.SetId == _setId).Select(draft => draft.Label)).ToHashSet(StringComparer.OrdinalIgnoreCase);

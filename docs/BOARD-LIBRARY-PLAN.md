@@ -35,7 +35,7 @@ The library groups boards into named sets, for example **Our Pokeno set**. Each 
 - An optional nickname and reference thumbnail.
 - A 5×5 preview with ordinary rank and suit labels.
 - A clear **Draft** or **Ready** status in the editor; ordinary callers see published Ready boards.
-- Edit, archive, and copy actions for authorized library editors; archive can be undone.
+- Edit and archive actions for the creating browser, plus **Copy set to edit** for other browsers; archive can be undone.
 
 Editor actions: **Add existing board**, **Generate custom boards**, **Import set**, and **Export backup**. Search by board label or nickname becomes useful as the collection grows.
 
@@ -45,9 +45,9 @@ Firebase Realtime Database is the authoritative home for published board collect
 
 All callers can read and select published boards using the app's existing anonymous authentication. Reading the shared library must not require possession of the original room code or the original editor's phone. Board labels are unique within their set, so the selection identifies both the set and board number.
 
-Recommended edit policy: appointed library editors can create, correct, publish, and archive layouts. Use a persistent Firebase sign-in for editors, such as Google or email/password, so permissions and drafts can be recovered on another device. Playing and selecting a published board continue to use the current anonymous flow. Editor role assignments are maintained through trusted administration and enforced by database rules; clients cannot grant themselves an editor role. Do not embed an administrator password or credential in the public Blazor app.
+Implemented edit policy: anyone can create a set without an account or password. A remembered anonymous Firebase identity owns that set and can create, correct, publish, and archive its layouts in the same browser. Other devices can use the published set or copy it with new IDs to edit their own version. Database rules enforce ownership; neither callers nor visitors can take over another creator's set or board IDs. No additional authentication provider or administrator approval is required.
 
-Private editor drafts are separate from published data. Save draft card values, labels, and progress in Firebase under the editor's identity. A reference photograph stays local in the first release; another device can resume the cloud draft's values without that photograph and can attach a new local reference image.
+Private drafts are separate from published data. Save draft card values, labels, and progress in Firebase under the creating browser's identity. A reference photograph stays local. Reopening the same browser restores its drafts; another device can copy published boards but cannot access private drafts. Clearing browser data loses editing access and draft recovery, while the published library remains available. Keep exported board-set backups.
 
 Publishing creates a new reviewed revision and atomically updates the collection's current-board reference. Existing revisions remain available to active rounds and saved print sets. Concurrent edits must compare the revision they started from and offer a conflict review instead of silently overwriting another editor's correction. Archiving hides a board from new selections while retaining its revisions and active-round references.
 
@@ -87,7 +87,7 @@ The controls should be large enough for thumb use, with suit names and symbols t
 
 If a chosen card already exists elsewhere, keep the current cell unchanged, highlight the other location, and explain it: **Q♥ is already in Row 1, Column 4. Check the photo.** Do not silently move or replace the other card.
 
-Save drafts after every committed edit, first to the local recovery cache and then to the editor's private Firebase draft. **23 of 25 entered** is progress; a save message names whether the edit is confirmed in Firebase or is still waiting on this device. Leaving and reopening on the same device restores the board, reference photo, current position, and draft values. Signing in on another device restores the confirmed cloud draft and position; its reference photograph remains on the original device.
+Save drafts after every committed edit, first to the local recovery cache and then to the browser's private Firebase draft. **23 of 25 entered** is progress; a save message names whether the edit is confirmed in Firebase or is still waiting on this device. Leaving and reopening in the same browser restores the board, reference photo, current position, and draft values. Other devices use published layouts or make their own editable copies.
 
 ### 3. Review and save
 
@@ -126,7 +126,7 @@ Use a versioned board-pack file containing labels and 25-card arrays in row-majo
 
 Import into a temporary review list first. Validate the schema, supported board dimensions, card identities, and duplicates. Summarize label collisions; **Keep both** assigns a new label, while **Replace** is explicit and preserves a recoverable prior revision. An exact layout match should be identified, rather than copied silently.
 
-The same cloud collection can be reused after **End table & start new** and selected directly from another phone. Export/import is for backups, migration, and moving data between separate deployments. An editor uses a persistent sign-in to recover editing rights and private cloud drafts across devices.
+The same cloud collection can be reused after **End table & start new** and selected directly from another phone. Export/import is for backups, migration, and moving data between separate deployments. **Copy set to edit** creates an owned copy on another phone without changing the original or its existing round references.
 
 ### Generate custom themed boards
 
@@ -170,7 +170,7 @@ Publish only the claimed board layout and result to the TV, with the room round,
 - Continue using the existing Blazor WebAssembly app and GitHub Pages hosting.
 - Put board models, validation, normalization, duplicate detection, rotations, layout hashes, and pattern matching in `PokenoGenie.Core`.
 - Use a small JavaScript bridge for camera/image access, browser caching, and the existing Firebase SDK integration.
-- Store authoritative published collections/revisions and private editor drafts in Firebase Realtime Database, independently of rooms and shuffled decks. Keep published collection summaries, immutable layout revisions, editor-private drafts, and trusted editor roles on separately secured paths; a broad read rule must not expose drafts or allow role changes.
+- Store authoritative published collections/revisions and private drafts in Firebase Realtime Database, independently of rooms and shuffled decks. Keep creator-owned collection summaries, permanent board-ID ownership, immutable layout revisions, and private drafts on separately secured paths; a broad read rule must not expose drafts or allow ownership changes.
 - Cache selected collections/revisions, local reference images, and pending draft edits in IndexedDB, with explicit storage-error handling. Local browser data is a recovery cache, and the server remains the authoritative library.
 - Request persistent browser storage where supported for local photos and pending edits, while retaining cloud persistence and optional export backups. Handle server save failures, offline queues, and edit conflicts explicitly.
 - Keep the reusable library separate from room and round data. Store owner-controlled round board references/snapshots and verification displays in the active room. Fetch only selected revisions, and keep photographs out of Firebase and shared room state.
@@ -185,7 +185,7 @@ Suggested logical records:
 | Local photo | Photo ID, cropped image/thumbnail, board revision, local-only storage |
 | Private cloud draft | Editor ID, board ID, base revision, current cell, pending rank, current edits, update timestamp |
 | Local pending edit | Draft ID, base revision, unconfirmed edits and synchronization state |
-| Library editor role | Persistent user ID and editor permission, maintained through trusted administration |
+| Board ownership | Permanent board ID, collection ID, creating browser's anonymous user ID |
 | Saved print set | Collection ID, exact board IDs/revisions, print theme and format |
 | Round board | Room, round, board ID/revision, immutable 25-cell snapshot, optional player/seat |
 | Verification result | Room, round, pattern ID, draw count, board ID/revision, matched cells, missing cards, eligibility status |
@@ -194,7 +194,7 @@ Do not store deck-theme image paths in board layouts. Ranks and suits remain cor
 
 ## Delivery sequence
 
-1. **Entry and shared library:** persistent editor sign-in and database rules, published collections available to every room, two-tap picker, photo reference/alignment, correction/undo, local recovery plus private cloud drafts, review/publication and revision conflicts, save-next workflow, collection import/export, and bulk-text entry. Include generated themed layouts and saved printable sets when that option is approved. Test with actual board photos and users.
+1. **Entry and shared library:** remembered anonymous ownership and database rules, published collections available to every room, copy-to-edit on another browser, two-tap picker, photo reference/alignment, correction/undo, local recovery plus private cloud drafts, review/publication and revision conflicts, save-next workflow, collection import/export, and bulk-text entry. Include generated themed layouts and saved printable sets when that option is approved. Test with actual board photos and users.
 2. **Quick verification:** round assignments and immutable snapshots, all-pattern checks in C#, caller result screen, synchronized TV display, reload recovery, and stale-result rejection.
 3. **Recognition trial:** run on-device rank/suit recognition on the actual board set, measure correction effort, and ship it only if it reduces entry effort without hiding errors.
 4. **Optional conveniences:** printable identifiers/QR labels and recognition of already-entered board layouts. These follow a reliable library and backup workflow.
@@ -205,10 +205,10 @@ Do not store deck-theme image paths in board layouts. Ranks and suits remain cor
 - A changed rank/suit, undo, cell jump, and rotation all update the correct cells.
 - Missing/invalid cards and duplicates prevent a Ready save and identify the exact cells.
 - A duplicate attempt never overwrites a different cell.
-- Closing/reloading midway restores the draft and current position; an editor on another device can resume the last server-confirmed draft values. A failed local or server save does not report cloud success.
+- Closing/reloading midway in the same browser restores the draft and current position. Another device can copy published layouts for editing but cannot read private drafts. A failed local or server save does not report cloud success.
 - Capture denial or an unreadable image still allows manual entry.
 - A published set is directly selectable in separate rooms and simultaneous games on different phones. Ending any room, changing caller, or clearing one browser's data leaves the server library intact.
-- Only authorized editors can publish or archive boards. Ordinary anonymous callers can read published layouts but cannot read private drafts, overwrite boards, or grant editor permissions. Verify these boundaries with the Firebase rules emulator.
+- Anonymous visitors can create their own sets and copy published layouts. Only the creating browser can publish or archive that set's boards; other visitors cannot read its private drafts, overwrite it, take ownership, or inject revisions under its board IDs. Verify these boundaries with the Firebase rules emulator.
 - Concurrent edits preserve both editors' work for explicit conflict resolution; a later revision does not replace a round's frozen layout or change a saved print set.
 - Offline edits are labelled pending and cannot become a shared Ready board until the server accepts them. Reconnection resolves the current revision before publishing.
 - Exporting and importing into another deployment reconstructs labels, revisions, and layouts without requiring photographs.

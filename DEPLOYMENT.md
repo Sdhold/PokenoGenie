@@ -73,31 +73,30 @@ The caller identity is stored in that browser's local data. Clearing its site da
 
 ## Shared board library setup
 
-Publish the updated `database.rules.json` before deploying this feature. The shared records use `boardSets`, immutable `boardRevisions`, private `boardDrafts`, and administrator-managed `boardEditors`, independently of game rooms. Do not loosen the rules to allow arbitrary library edits.
+Publish the updated `database.rules.json` before deploying this feature. The shared records use creator-owned `boardSets`, permanent `boardOwners`, immutable `boardRevisions`, and private `boardDrafts`, independently of game rooms.
 
-### Approve your first editor
+### Open the library without a login
 
 You can open the library directly at `https://sdhold.github.io/PokenoGenie/?view=boards` to manage boards without opening or pausing a caller room. The caller's **Board library** button also opens it, pausing that caller's active round first.
 
-1. On your caller phone, open **Board library → Editor sign-in / setup → Administrator: approve this device**. Copy the displayed editor ID. This is a separate identity from your caller table.
-2. In your Firebase project's **Realtime Database → Data**, add a top-level `boardEditors` object if it does not exist. Inside it add a child whose key is that exact editor ID and whose value is the Boolean **true**. Preserve existing roles and room data. Only an administrator can grant this permission; the website cannot grant it to itself.
-3. The phone should show **Library editor access ✓**. You can now create a set, add boards, and publish reviewed layouts. Published boards can be selected by every room and device using this deployment.
-4. For recovery and editing on another phone, enable **Authentication → Sign-in method → Email/Password** in Firebase. Use the password provider, without enabling email-link sign-in. Return to **Library editor access** in the app and enter your own editor email and password, then choose **Save editor login**. Account linking keeps the approved ID. Never put the password into source files, database records, or GitHub secrets.
-5. On another device, use **Editor sign-in / setup → Sign in to edit** with that login. Reading and using published boards requires no editor login. Signing in/out of editing does not change the caller room identity.
+1. Keep **Anonymous** authentication enabled. No other sign-in provider, password, or administrator approval is required.
+2. Open the library and create a named set. A separate anonymous Firebase identity is remembered in that browser, preserving the caller room's identity. You can enter, generate, publish, correct, and archive your own boards immediately.
+3. Every room and device can use the published sets. On another device, choose **Copy set to edit** to create an editable version with new board IDs. This preserves the original set and any rounds using it.
+4. Use **Export backup** regularly. Clearing browser data or using a different browser loses the original editing identity and access to its private drafts; published boards remain in Firebase. Copy the published set or import an exported backup into a new set to continue editing.
 
-You can alternatively create a dedicated Email/Password user in Firebase Authentication, approve that user's UID under `boardEditors`, and sign in through the app. Approve additional editors individually. Removing their `boardEditors/<uid>` flag revokes library editing while preserving published boards.
+The rules enforce creator ownership and keep drafts private. An open visitor can create their own set but cannot change another creator's boards, archive them, take ownership, or write revisions under their board IDs. Anyone with the URL can view published board labels/layouts, so use labels intended to be shared.
 
 ### Enter, reuse, and verify a board
 
 1. Create a named set. Choose **Add existing board**, give it the physical board's number, and enter cards from top left to bottom right with rank then suit. The picker advances automatically. Row tabs and a full review grid let you correct a middle cell without moving other entries. **Fix a skipped space** previews the shift before applying it; Undo restores it.
-2. Optionally attach an uncovered board photo. Rotate it and move the four crop edges to match the card grid. This first version assumes a flat, aligned photograph; perspective correction and OCR remain future work. The photo stays in that device's IndexedDB. Another device can resume the confirmed cloud draft's card values after editor sign-in, but needs a new local photo if desired.
+2. Optionally attach an uncovered board photo. Rotate it and move the four crop edges to match the card grid. This first version assumes a flat, aligned photograph; perspective correction and OCR remain future work. The photo stays in that device's IndexedDB. Reopening the same browser restores drafts and local photos; another device can copy published boards but cannot access unfinished private drafts.
 3. Check all 25 cards and the top orientation in **Review all 25 cards**, confirm the checkbox, and choose **Save to shared library**. Drafts are private to their editor and cannot be used for wins. An offline local save is labelled waiting to sync and is not a published board.
 4. Optionally choose **Generate custom boards**, review/publish each draft, and select a theme before **Print / Save PDF**. The preview prints exact saved revisions and identifies the board/version. Export a board pack for a portable backup. Import into a selected set creates reviewable drafts and never replaces existing layouts automatically.
 5. Choose the set under **Board set for this round** before shuffling. If you did not choose one, **Pause / verify Pokeno** offers **Use this set for this round**. This locks its current published board versions for that round.
 6. Select the physical board number and **Check board for a win**. Test an incomplete shape, then a complete one. Both screens should agree on called cells, missing cards, and the selected pattern. A winning board shows a themed graphic; changing the deck theme updates the celebration. Try **Return TV to called cards**, resume, end, new round, and TV reload. A stale check from another round/count/pattern must not appear.
 7. In a second room on another device, confirm the same published set appears. Edit a board in the library and verify the first room keeps its frozen revision. Opening a new table or clearing one browser's data must leave the shared library intact.
 
-Board-check records contain a validated reference and a copy of its saved layout, never a trusted `isWinner` flag. C# on the phone and the lightweight ES5 TV checker independently calculate the result using the room's called cards. Database rules bind checks to the caller, frozen revision, phase, round, pattern, and count. Editor permissions do not grant access to other callers' private decks.
+Board-check records contain a validated reference and a copy of its saved layout, never a trusted `isWinner` flag. C# on the phone and the lightweight ES5 TV checker independently calculate the result using the room's called cards. Database rules bind checks to the caller, frozen revision, phase, round, pattern, and count. Creating a board set does not grant access to other callers' private decks.
 
 When changing the generated library rules, edit `tools/generate-board-rules.mjs`, run `node tools/generate-board-rules.mjs`, and run the emulator tests before publishing the resulting `database.rules.json`. Run `node tools/generate-winner-art.mjs` after changing themed artwork to refresh the nine bundled winner graphics.
 

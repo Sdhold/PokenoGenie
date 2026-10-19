@@ -1,12 +1,12 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
-import { browserLocalPersistence, connectAuthEmulator, EmailAuthProvider, getAuth, linkWithCredential,
-  onAuthStateChanged, setPersistence, signInAnonymously, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+import { browserLocalPersistence, connectAuthEmulator, getAuth,
+  onAuthStateChanged, setPersistence, signInAnonymously } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
 import { connectDatabaseEmulator, get, getDatabase, onValue, ref, runTransaction, serverTimestamp, set } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-database.js";
 import { libraryContext } from "./firebase-bridge.js?v=8";
 import { loadLocalDrafts, storeLocalDraft, removeLocalDraft } from "./board-photo.js?v=1";
 
 let callback, editorAuth, editorDb, editorUser, canEdit = false;
-let stopSets, stopRole, stopDrafts, stopAuth, stopRound, stopCheck;
+let stopSets, stopDrafts, stopAuth, stopRound, stopCheck;
 const id = () => crypto.randomUUID().replaceAll("-", "");
 const key = value => typeof value === "string" && /^[a-zA-Z0-9_-]{1,64}$/.test(value);
 const card = value => typeof value === "string" && /^(A|[2-9]|10|J|Q|K)[SHDC]$/.test(value);
@@ -18,7 +18,7 @@ function online() {
 }
 function editor() {
   online();
-  if (!canEdit || !editorUser) throw new Error("Library editor access is required to change shared boards.");
+  if (!canEdit || !editorUser) throw new Error("The board library is still connecting. Try again shortly.");
 }
 function validCards(cards) {
   if (!Array.isArray(cards) || cards.length !== 25 || !cards.every(card) || new Set(cards).size !== 25)
@@ -31,7 +31,7 @@ function label(value) {
 }
 function map(value) { return value && typeof value === "object" ? value : {}; }
 function normalizeSet(setId, value) {
-  return { id: setId, name: value.name, version: value.version, boards: map(value.boards) };
+  return { id: setId, name: value.name, ownerUid: value.ownerUid || "", version: value.version, boards: map(value.boards) };
 }
 
 export async function initializeLibrary(reference) {
@@ -62,23 +62,16 @@ export async function initializeEditor() {
   stopAuth?.();
   stopAuth = onAuthStateChanged(editorAuth, user => {
     editorUser = user;
-    canEdit = false;
-    stopRole?.(); stopDrafts?.();
+    canEdit = !!user;
+    stopDrafts?.();
     notify("OnLibraryDrafts", []);
-    const sendEditor = () => notify("OnLibraryEditor", {
-      uid: user?.uid || "", email: user?.email || "", isAnonymous: !!user?.isAnonymous, canEdit
+    notify("OnLibraryEditor", {
+      uid: user?.uid || "", canEdit
     });
-    sendEditor();
     if (!user) return;
-    stopRole = onValue(ref(editorDb, `boardEditors/${user.uid}`), snapshot => {
-      canEdit = snapshot.val() === true;
-      sendEditor();
-      stopDrafts?.();
-      if (canEdit) stopDrafts = onValue(ref(editorDb, `boardDrafts/${user.uid}`), drafts => {
-        notify("OnLibraryDrafts", Object.values(drafts.val() || {}).sort((a, b) => b.updatedAt - a.updatedAt));
-      });
-      else notify("OnLibraryDrafts", []);
-    });
+    stopDrafts = onValue(ref(editorDb, `boardDrafts/${user.uid}`), drafts => {
+      notify("OnLibraryDrafts", Object.values(drafts.val() || {}).sort((a, b) => b.updatedAt - a.updatedAt));
+    }, error => notify("OnLibraryError", "Your drafts could not be loaded. " + error.code));
   });
 }
 
@@ -87,30 +80,11 @@ export async function refreshLibrary() {
   const snapshot = await get(ref(context.database, "boardSets"));
   notify("OnLibrarySets", Object.entries(snapshot.val() || {}).map(([setId, value]) => normalizeSet(setId, value)));
 }
-export async function signInEditor(email, password) {
-  online();
-  try { await signInWithEmailAndPassword(editorAuth, email.trim(), password); }
-  catch (error) { throw new Error("Editor sign-in failed. Check the email, password, and Email/Password provider setup."); }
-}
-export async function linkEditor(email, password) {
-  editor();
-  if (!editorAuth.currentUser.isAnonymous) throw new Error("This editor already has a recoverable login.");
-  await linkWithCredential(editorAuth.currentUser, EmailAuthProvider.credential(email.trim(), password));
-  // Account linking preserves the approved editor UID and never changes the caller's identity.
-  editorUser = editorAuth.currentUser;
-  notify("OnLibraryEditor", { uid: editorUser.uid, email: editorUser.email || "", isAnonymous: false, canEdit });
-}
-export async function signOutEditor() {
-  online();
-  await signOut(editorAuth);
-  await signInAnonymously(editorAuth);
-}
-
 export async function createSet(name) {
   editor();
   name = label(name);
   const setId = id();
-  await set(ref(editorDb, `boardSets/${setId}`), { name, version: 1 });
+  await set(ref(editorDb, `boardSets/${setId}`), { name, ownerUid: editorUser.uid, version: 1 });
   return setId;
 }
 
@@ -150,7 +124,10 @@ async function editManifest(setId, change) {
   let stop;
   try {
     await new Promise((resolve, reject) => { stop = onValue(reference, resolve, reject); });
-    const result = await runTransaction(reference, current => current ? change(current) : undefined, { applyLocally: false });
+    const result = await runTransaction(reference, current => {
+      if (current && current.ownerUid !== editorUser.uid) throw new Error("This set belongs to another browser. Copy it to make changes.");
+      return current ? change(current) : undefined;
+    }, { applyLocally: false });
     if (!result.committed) throw new Error("The board changed on another device. Keep this draft and reopen the published board to review the changes.");
   } finally { stop?.(); }
 }
@@ -167,6 +144,7 @@ export async function publishBoard(draft, layoutHash) {
   revision.positions = Object.fromEntries(draft.cards.map((value, index) => [value, String(index)]));
   const manifest = (await get(ref(editorDb, `boardSets/${draft.setId}`))).val();
   if (!manifest) throw new Error("Choose an existing board set.");
+  if (manifest.ownerUid !== editorUser.uid) throw new Error("This set belongs to another browser. Copy it to make changes.");
   const check = current => {
     const boards = map(current.boards);
     if ((boards[draft.boardId]?.revisionId || "") !== draft.baseRevisionId) return false;
@@ -175,6 +153,11 @@ export async function publishBoard(draft, layoutHash) {
     return true;
   };
   if (!check(manifest)) throw new Error("That label/layout already exists, or this board was edited elsewhere. Review the library before publishing.");
+  const ownershipRef = ref(editorDb, `boardOwners/${draft.boardId}`);
+  const ownership = (await get(ownershipRef)).val();
+  if (ownership && (ownership.setId !== draft.setId || ownership.ownerUid !== editorUser.uid))
+    throw new Error("This board belongs to another set. Create a new board or copy the set.");
+  if (!ownership) await set(ownershipRef, { setId: draft.setId, ownerUid: editorUser.uid });
   await set(ref(editorDb, `boardRevisions/${draft.boardId}/${revisionId}`), revision);
   await editManifest(draft.setId, current => check(current) ? {
     ...current, version: current.version + 1,
@@ -278,6 +261,6 @@ export async function printSet(setId, themeId) {
 }
 
 export function disposeLibrary() {
-  [stopSets, stopRole, stopDrafts, stopAuth, stopRound, stopCheck].forEach(stop => stop?.());
+  [stopSets, stopDrafts, stopAuth, stopRound, stopCheck].forEach(stop => stop?.());
   callback = undefined;
 }

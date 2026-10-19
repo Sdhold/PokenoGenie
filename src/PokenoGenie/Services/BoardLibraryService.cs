@@ -22,7 +22,7 @@ public sealed class BoardLibraryService(FirebaseRoomService rooms, IJSRuntime js
     {
         if (_module is not null) return;
         await rooms.InitializeAsync();
-        _module = await js.InvokeAsync<IJSObjectReference>("import", navigation.BaseUri + "js/board-library.js?v=1");
+        _module = await js.InvokeAsync<IJSObjectReference>("import", navigation.BaseUri + "js/board-library.js?v=2");
         _reference = DotNetObjectReference.Create(this);
         await _module.InvokeVoidAsync("initializeLibrary", _reference);
     }
@@ -30,10 +30,20 @@ public sealed class BoardLibraryService(FirebaseRoomService rooms, IJSRuntime js
     public async Task RefreshAsync() => await Module.InvokeVoidAsync("refreshLibrary");
     public async Task OpenEditorAsync() => await Module.InvokeVoidAsync("initializeEditor");
     public async Task WatchRoomAsync(string code) => await Module.InvokeVoidAsync("watchBoards", code);
-    public async Task SignInAsync(string email, string password) => await Module.InvokeVoidAsync("signInEditor", email, password);
-    public async Task LinkAccountAsync(string email, string password) => await Module.InvokeVoidAsync("linkEditor", email, password);
-    public async Task SignOutAsync() => await Module.InvokeVoidAsync("signOutEditor");
     public async Task<string> CreateSetAsync(string name) => await Module.InvokeAsync<string>("createSet", name.Trim());
+
+    public async Task<string> CopySetAsync(string setId)
+    {
+        var source = Sets.FirstOrDefault(set => set.Id == setId) ?? throw new InvalidOperationException("Choose a board set to copy.");
+        var revisions = new List<BoardRevision>();
+        foreach (var pair in source.Boards.Where(pair => !pair.Value.Archived))
+            revisions.Add(await RevisionAsync(pair.Key, pair.Value.RevisionId));
+        var copyId = await CreateSetAsync(source.Name[..Math.Min(source.Name.Length, 53)] + " (copy)");
+        foreach (var board in revisions)
+            await PublishAsync(new() { SetId = copyId, Label = board.Label, Cards = [.. board.Cards] });
+        await RefreshAsync();
+        return copyId;
+    }
     public async Task SaveDraftAsync(BoardDraft draft) => await Module.InvokeVoidAsync("saveDraft", draft);
     public async Task SaveLocalDraftAsync(BoardDraft draft) => await Module.InvokeVoidAsync("saveLocalDraft", draft);
     public async Task<List<BoardDraft>> LocalDraftsAsync() => await Module.InvokeAsync<List<BoardDraft>>("localDrafts");

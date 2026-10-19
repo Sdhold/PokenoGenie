@@ -3,18 +3,18 @@ import { readFileSync, writeFileSync } from "node:fs";
 const document = JSON.parse(readFileSync("database.rules.json", "utf8"));
 const rules = document.rules;
 const validId = value => `${value}.isString() && ${value}.val().matches(/^[a-zA-Z0-9_-]{1,64}$/)`;
-const editor = "auth != null && root.child('boardEditors').child(auth.uid).val() == true";
+const ownsSet = setId => `auth != null && root.child('boardSets').child(${setId}).child('ownerUid').val() == auth.uid`;
 const card = "newData.isString() && newData.val().matches(/^(A|[2-9]|10|J|Q|K)[SHDC]$/)";
 const index = "$index.matches(/^([0-9]|1[0-9]|2[0-4])$/)";
 const fields = values => Object.fromEntries(Object.entries(values).map(([name, value]) => [name, { ".validate": value }]));
 const cards = { ".validate": `newData.hasChildren([${Array.from({ length: 25 }, (_, index) => `'${index}'`).join(",")}])` };
-rules.boardEditors = { "$uid": { ".read": "auth != null && auth.uid == $uid", ".write": false } };
+delete rules.boardEditors;
 rules.boardSets = {
   ".read": "auth != null",
   "$setId": {
-    ".write": `${editor} && $setId.matches(/^[a-zA-Z0-9_-]{1,64}$/) && newData.exists()`,
-    ".validate": "newData.hasChildren(['name','version']) && ((!data.exists() && newData.child('version').val() == 1) || (data.exists() && newData.child('version').val() == data.child('version').val() + 1))",
-    ...fields({ name: "newData.isString() && newData.val().length > 0 && newData.val().length <= 60", version: "newData.isNumber()" }),
+    ".write": "auth != null && $setId.matches(/^[a-zA-Z0-9_-]{1,64}$/) && newData.exists() && ((!data.exists() && newData.child('ownerUid').val() == auth.uid) || (data.child('ownerUid').val() == auth.uid && newData.child('ownerUid').val() == auth.uid))",
+    ".validate": "newData.hasChildren(['name','ownerUid','version']) && ((!data.exists() && newData.child('version').val() == 1) || (data.exists() && newData.child('version').val() == data.child('version').val() + 1))",
+    ...fields({ name: "newData.isString() && newData.val().length > 0 && newData.val().length <= 60", ownerUid: "newData.isString() && newData.val() == auth.uid", version: "newData.isNumber()" }),
     boards: { "$boardId": {
       ".validate": "newData.hasChildren(['label','revisionId','layoutHash','archived']) && root.child('boardRevisions').child($boardId).child(newData.child('revisionId').val()).child('setId').val() == $setId && newData.child('label').val() == root.child('boardRevisions').child($boardId).child(newData.child('revisionId').val()).child('label').val() && newData.child('layoutHash').val() == root.child('boardRevisions').child($boardId).child(newData.child('revisionId').val()).child('layoutHash').val()",
       ...fields({ label: "newData.isString()", revisionId: validId("newData"), layoutHash: "newData.isString()", archived: "newData.isBoolean()" }),
@@ -23,10 +23,21 @@ rules.boardSets = {
     "$other": { ".validate": false }
   }
 };
+// Board IDs are permanent namespaces. A different set cannot inject a revision
+// under an existing board ID, even if its creator owns another shared set.
+rules.boardOwners = {
+  ".read": "auth != null",
+  "$boardId": {
+    ".write": `!data.exists() && newData.exists() && $boardId.matches(/^[a-zA-Z0-9_-]{1,64}$/) && ${ownsSet("newData.child('setId').val()")}`,
+    ".validate": "newData.hasChildren(['setId','ownerUid'])",
+    ...fields({ setId: validId("newData"), ownerUid: "newData.isString() && newData.val() == auth.uid" }),
+    "$other": { ".validate": false }
+  }
+};
 rules.boardRevisions = {
   ".read": "auth != null",
   "$boardId": { "$revisionId": {
-    ".write": `${editor} && !data.exists() && newData.exists() && $boardId.matches(/^[a-zA-Z0-9_-]{1,64}$/) && $revisionId.matches(/^[a-zA-Z0-9_-]{1,64}$/)`,
+    ".write": `${ownsSet("newData.child('setId').val()")} && root.child('boardOwners').child($boardId).child('ownerUid').val() == auth.uid && root.child('boardOwners').child($boardId).child('setId').val() == newData.child('setId').val() && !data.exists() && newData.exists() && $boardId.matches(/^[a-zA-Z0-9_-]{1,64}$/) && $revisionId.matches(/^[a-zA-Z0-9_-]{1,64}$/)`,
     ".validate": "newData.hasChildren(['setId','boardId','revisionId','label','cards','positions','layoutHash','createdBy','createdAt']) && newData.child('boardId').val() == $boardId && newData.child('revisionId').val() == $revisionId && root.child('boardSets').child(newData.child('setId').val()).exists()",
     ...fields({ setId: validId("newData"), boardId: validId("newData"), revisionId: validId("newData"), label: "newData.isString() && newData.val().length > 0 && newData.val().length <= 60", layoutHash: "newData.isString() && newData.val().matches(/^[a-f0-9]{64}$/)", createdBy: "newData.val() == auth.uid", createdAt: "newData.isNumber() && newData.val() <= now && newData.val() >= now - 10000" }),
     cards: { ...cards, "$index": { ".validate": `${index} && ${card} && newData.parent().parent().child('positions').child(newData.val()).val() == $index` } },
@@ -35,9 +46,9 @@ rules.boardRevisions = {
   } }
 };
 rules.boardDrafts = { "$uid": {
-  ".read": `${editor} && auth.uid == $uid`,
+  ".read": "auth != null && auth.uid == $uid",
   "$draftId": {
-    ".write": `${editor} && auth.uid == $uid`,
+    ".write": `auth != null && auth.uid == $uid && (!newData.exists() || (${ownsSet("newData.child('setId').val()")}))`,
     ".validate": "newData.hasChildren(['id','setId','boardId','label','baseRevisionId','cards','currentCell','pendingRank','updatedAt']) && newData.child('id').val() == $draftId && root.child('boardSets').child(newData.child('setId').val()).exists()",
     ...fields({ id: validId("newData"), setId: validId("newData"), boardId: validId("newData"), label: "newData.isString() && newData.val().length <= 60", baseRevisionId: "newData.isString() && (newData.val() == '' || newData.val().matches(/^[a-zA-Z0-9_-]{1,64}$/))", currentCell: "newData.isNumber() && newData.val() >= 0 && newData.val() <= 24 && newData.val() % 1 == 0", pendingRank: "newData.isString() && newData.val().matches(/^(A|[2-9]|10|J|Q|K)?$/)", updatedAt: "newData.isNumber() && newData.val() <= now + 1000" }),
     cards: { ...cards, "$index": { ".validate": `${index} && newData.isString() && (newData.val() == '' || newData.val().matches(/^(A|[2-9]|10|J|Q|K)[SHDC]$/))` } },

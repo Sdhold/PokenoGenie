@@ -8,6 +8,7 @@ public sealed class BoardSet
 {
     public string Id { get; set; } = "";
     public string Name { get; set; } = "";
+    public string OwnerUid { get; set; } = "";
     public int Version { get; set; }
     public Dictionary<string, BoardSummary> Boards { get; set; } = [];
 }
@@ -56,8 +57,6 @@ public sealed class BoardDraft
 public sealed class LibraryEditor
 {
     public string Uid { get; set; } = "";
-    public string Email { get; set; } = "";
-    public bool IsAnonymous { get; set; }
     public bool CanEdit { get; set; }
 }
 

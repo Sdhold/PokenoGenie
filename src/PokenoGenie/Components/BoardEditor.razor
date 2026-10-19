@@ -161,7 +161,7 @@
         {
             await Boards.SaveLocalDraftAsync(snapshot);
             _saveStatus = "Saved on this device — waiting to sync";
-            if (Rooms.IsConnected) { await Boards.SaveDraftAsync(snapshot); _saveStatus = "Draft saved to Firebase · private to your editor login"; }
+            if (Rooms.IsConnected) { await Boards.SaveDraftAsync(snapshot); _saveStatus = "Draft saved to Firebase · private to this browser"; }
         }
         catch (Exception error) { _error = BoardLibraryService.FriendlyError(error); }
         finally { _saveLock.Release(); }

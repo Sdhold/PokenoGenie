@@ -30,13 +30,13 @@ Use **How to use** at the top of the caller screen for a six-step guide to the a
 
 ## Shared boards and quick win checks
 
-Open **Board library** on the caller phone. Published sets are stored in Firebase independently of rooms and are available on every device. Approved editors can enter existing boards with a two-tap rank/suit picker, correct any cell, undo changes, insert a missed space, paste 25 card codes, and save resumable drafts. An optional local photograph can be rotated/cropped and enlarged per cell; there is no automatic image recognition or paid AI call.
+Open **Board library** on the caller phone. Published sets are stored in Firebase independently of rooms and are available on every device. Anyone can create a set without an account or password, enter existing boards with a two-tap rank/suit picker, correct any cell, undo changes, insert a missed space, paste 25 card codes, and save resumable drafts. An optional local photograph can be rotated/cropped and enlarged per cell; there is no automatic image recognition or paid AI call.
 
 Editors can also generate random board drafts, review/publish them, export/import board-pack backups, archive/restore boards, and print the published layouts with any bundled theme. Use the print dialog's **Save as PDF** option for a file. Imported boards remain drafts until reviewed; identical layouts are skipped and label collisions get an import suffix.
 
 Choose a board set before starting a round, or select it the first time you pause to verify. Its layout revisions are then fixed for that round. Tap **Check board for a win** while paused and select the physical board number. The phone checks every allowed mask of the active pattern and identifies a win or the missing cards. A win displays a matching celebration on the TV for all nine themes. **Return TV to called cards**, resuming, or ending clears the result. Checking never advances the deck or ends a round automatically. The caller still confirms the physical board and its orientation.
 
-Editing uses a separate Firebase identity so signing in as a library editor does not change caller ownership. See **Shared board library setup** in [DEPLOYMENT.md](DEPLOYMENT.md) for granting editor access and saving a recoverable editor login. Every caller can use published boards without an editor login.
+Each set can be edited by the browser that created it, using a remembered anonymous Firebase identity separate from caller ownership. Other devices can **Copy set to edit**, while every room can use the original published boards. Clearing browser data loses editing access and private drafts, so keep exported backups; published sets remain available to copy. See **Shared board library setup** in [DEPLOYMENT.md](DEPLOYMENT.md).
 
 ## Solution layout
 
