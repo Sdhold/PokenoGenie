@@ -25,7 +25,10 @@
         <details class="board-photo-settings">
             <summary>@(_photo is null ? "Add an optional reference photo" : "Adjust reference photo")</summary>
             <p>Remove counters, photograph the board flat, and align the crop with the outside edges of the 25 spaces. The photo stays on this device.</p>
-            <label class="photo-upload">Take / choose photo<input type="file" accept="image/*" capture="environment" @ref="_photoInput" @onchange="LoadPhotoAsync" /></label>
+            <div class="photo-source-options">
+                <label class="photo-upload">Choose photo or image file<input type="file" accept="image/*" @ref="_photoInput" @onchange="() => LoadPhotoAsync(_photoInput)" /></label>
+                <label class="photo-upload">Take a new photo<input type="file" accept="image/*" capture="environment" @ref="_cameraInput" @onchange="() => LoadPhotoAsync(_cameraInput)" /></label>
+            </div>
             @if (_photo is not null)
             {
                 <div class="board-photo-alignment"><img src="@_photo.Data" alt="Reference photograph with alignment grid" /><div class="photo-grid" style="left:@(_photo.Left)%;top:@(_photo.Top)%;right:@(100 - _photo.Right)%;bottom:@(100 - _photo.Bottom)%"></div></div>
@@ -82,7 +85,7 @@
     private readonly Stack<BoardDraft> _undo = [];
     private readonly SemaphoreSlim _saveLock = new(1, 1);
     private IJSObjectReference? _photos;
-    private ElementReference _photoInput;
+    private ElementReference _photoInput, _cameraInput;
     private Photo? _photo;
     private string? _cellPhoto, _error;
     private string _saveStatus = "Draft · not published", _paste = "";
@@ -178,9 +181,14 @@
     }
     private async Task CloseAsync() { await ChangedAsync(); await Closed.InvokeAsync(); }
     private async Task UpdatePhotoAsync() { if (_photos is not null) _cellPhoto = await _photos.InvokeAsync<string?>("cellPhoto", Draft.BoardId, Draft.CurrentCell); }
-    private async Task LoadPhotoAsync()
+    private async Task LoadPhotoAsync(ElementReference input)
     {
-        try { _photo = await _photos!.InvokeAsync<Photo?>("loadPhoto", _photoInput, Draft.BoardId); await UpdatePhotoAsync(); }
+        try
+        {
+            var photo = await _photos!.InvokeAsync<Photo?>("loadPhoto", input, Draft.BoardId);
+            if (photo is null) return;
+            _photo = photo; _error = null; await UpdatePhotoAsync();
+        }
         catch (Exception error) { _error = BoardLibraryService.FriendlyError(error); }
     }
     private async Task RotatePhotoAsync()
