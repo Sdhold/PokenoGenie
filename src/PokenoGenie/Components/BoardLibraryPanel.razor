@@ -20,7 +20,28 @@
             var drafts = CombinedDrafts;
             @if (drafts.Count > 0)
             {
-                <section class="library-drafts"><h2>Continue a draft</h2>@foreach (var draft in drafts) { <button class="library-draft" @onclick="() => OpenDraft(draft)"><span><strong>@draft.Label</strong><small>@(draft.Cards.Count(value => PlayingCard.FromId(value) is not null)) / 25 entered · @SetName(draft.SetId)</small></span><span>Continue →</span></button> }</section>
+                <section class="library-drafts">
+                    <h2>Continue a draft</h2>
+                    @foreach (var draft in drafts)
+                    {
+                        <div class="library-draft-row" @key="draft.Id">
+                            <button class="library-draft" disabled="@_busy" @onclick="() => OpenDraft(draft)"><span><strong>@draft.Label</strong><small>@(draft.Cards.Count(value => PlayingCard.FromId(value) is not null)) / 25 entered · @SetName(draft.SetId)</small></span><span>Continue →</span></button>
+                            <button class="text-button" disabled="@_busy" aria-label="Delete draft @draft.Label" @onclick="() => _deleteDraft = draft.Copy()">Delete draft</button>
+                        </div>
+                    }
+                </section>
+            }
+            @if (_deleteDraft is not null)
+            {
+                <section class="library-draft-confirmation" aria-labelledby="delete-draft-title">
+                    <h3 id="delete-draft-title">Delete draft “@_deleteDraft.Label”?</h3>
+                    <p>This removes its unfinished edits from this browser and Firebase. Any published version of the board stays available.</p>
+                    <div class="library-actions"><button class="small-button" disabled="@_busy" @onclick="() => _deleteDraft = null">Keep draft</button><button class="small-button" disabled="@_busy" @onclick="DeleteDraftAsync">Delete draft</button></div>
+                </section>
+            }
+            @if (_deletedDraft is not null)
+            {
+                <div class="library-success" role="status">Draft “@_deletedDraft.Label” deleted. <button class="text-button" disabled="@_busy" @onclick="UndoDeleteAsync">Undo delete</button></div>
             }
             <div class="library-create-set"><label class="library-field">New set name<input maxlength="60" @bind="_newSetName" @bind:event="oninput" placeholder="Our Pokeno set" /></label><button class="small-button" disabled="@(_busy || string.IsNullOrWhiteSpace(_newSetName))" @onclick="CreateSetAsync">Create set</button></div>
         }
@@ -79,7 +100,7 @@
     private string? _error, _message;
     private bool _busy, _generate, _showArchived;
     private int _generateCount = 12;
-    private BoardDraft? _draft;
+    private BoardDraft? _draft, _deleteDraft, _deletedDraft;
     private BoardRevision? _preview;
     private BoardPack? _import;
     private List<BoardDraft> _local = [];
@@ -117,7 +138,22 @@
     {
         _draft = new() { SetId = _setId, Label = NextLabel() }; await Boards.SaveDraftAsync(_draft);
     });
-    private void OpenDraft(BoardDraft draft) { _draft = draft.Copy(); _setId = draft.SetId; _error = null; _message = null; }
+    private void OpenDraft(BoardDraft draft) { _draft = draft.Copy(); _deleteDraft = null; _setId = draft.SetId; _error = null; _message = null; }
+    private async Task DeleteDraftAsync() => await RunAsync(async () =>
+    {
+        if (_deleteDraft is null) return;
+        var deleted = _deleteDraft.Copy();
+        await Boards.DiscardDraftAsync(deleted.Id);
+        _local = await Boards.LocalDraftsAsync();
+        _deletedDraft = deleted; _deleteDraft = null;
+    });
+    private async Task UndoDeleteAsync() => await RunAsync(async () =>
+    {
+        if (_deletedDraft is null) return;
+        await Boards.SaveDraftAsync(_deletedDraft.Copy());
+        _local = await Boards.LocalDraftsAsync();
+        _message = $"Draft “{_deletedDraft.Label}” restored."; _deletedDraft = null;
+    });
     private async Task CloseEditorAsync() { _draft = null; _local = await Boards.LocalDraftsAsync(); }
     private async Task OnSavedAsync(bool next)
     {

@@ -328,6 +328,12 @@ test("drafts are private, can contain empty cells, and are separate from publish
   await assertFails(set(ref(viewer, "boardDrafts/viewer/draft-1"), draft));
   await assertFails(set(ref(editor, "boardDrafts/editor/draft-1"), { ...draft, cards: [...Array(24).fill(""), "Joker"] }));
   assert.equal((await get(ref(viewer, "boardSets/set-1"))).val().boards["board-2"], undefined);
+  await assertFails(set(ref(viewer, "boardDrafts/editor/draft-1"), null));
+  await assertSucceeds(set(ref(editor, "boardDrafts/editor/draft-1"), null));
+  assert.equal((await get(ref(editor, "boardDrafts/editor/draft-1"))).exists(), false);
+  assert.equal((await get(ref(viewer, "boardSets/set-1"))).val().boards["board-1"].revisionId, "revision-1");
+  await assertSucceeds(set(ref(editor, "boardDrafts/editor/draft-1"), draft));
+  assert.deepEqual((await get(ref(editor, "boardDrafts/editor/draft-1/cards"))).val(), draft.cards);
 });
 
 test("another creator can copy layouts with new IDs but cannot take ownership or inject revisions", async () => {
