@@ -7,6 +7,7 @@ const root = new URL("../src/PokenoGenie/wwwroot/", import.meta.url);
 const html = await readFile(new URL("tv.html", root), "utf8");
 const script = await readFile(new URL("js/tv.js", root), "utf8");
 const layoutSource = await readFile(new URL("js/verification-layout.js", root), "utf8");
+const newPatterns = JSON.parse(await readFile(new URL("fixtures/new-patterns.json", import.meta.url), "utf8"));
 const cards = ["S","H","D","C"].flatMap(suit => ["A","2","3","4","5","6","7","8","9","10","J","Q","K"].map(rank => rank+suit));
 
 function harness(initialState = {}) {
@@ -109,11 +110,20 @@ test("verification layout fits up to 52 cards on landscape TVs",()=>{
 test("Royal Cats synchronizes artwork in calling and verification views",()=>{
   const tv=harness(); tv.update("calling",22,"cats");
   assert.equal(tv.elements["display-screen"].attributes["data-deck-theme"],"cats");
-  assert.equal(tv.elements["current-card"].children[0].children[0].src,"cards/cats/9H.svg");
+  assert.equal(tv.elements["current-card"].children[0].children[0].src,"cards/cats/9H.svg?v=2");
   tv.update("paused",22,"cats");
   assert.equal(tv.elements["verification-cards"].children.length,22);
-  assert.equal(tv.elements["verification-cards"].children[0].children[0].children[0].src,"cards/cats/AS.svg");
+  assert.equal(tv.elements["verification-cards"].children[0].children[0].children[0].src,"cards/cats/AS.svg?v=2");
 });
+
+for (const pattern of newPatterns) {
+  test(`TV shows the ${pattern.name} name and exact 5x5 shape`,()=>{
+    const tv=harness({patternId:pattern.id}); tv.update("calling",0);
+    const mask=tv.elements["pattern-grid"].children.map(cell=>cell.className === "filled" ? "#" : ".").join("");
+    assert.equal(tv.elements["pattern-name"].textContent,pattern.name);
+    assert.equal(mask,pattern.rows.join(""));
+  });
+}
 
 test("the caller's guide replaces both TV views and returns to the same round",()=>{
   const tv=harness(); tv.update("calling",22,"cats",true);

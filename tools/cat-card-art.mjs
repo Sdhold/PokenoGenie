@@ -183,7 +183,7 @@ export function catCardSvg(rank, suitCode, suit) {
     main = `${halo}<use xlink:href="#cat-art" x="42" y="${pet ? 73 : 49}" width="166" height="${pet ? 181 : 212}"/>
       <path d="M57 271h136m-125 32h114" stroke="${gold}" stroke-width="1"/>
       <text x="125" y="286" text-anchor="middle" fill="${ink}" font-family="Georgia,serif" font-weight="700" font-size="11.5">${cat.name.toUpperCase()}</text>
-      <text x="125" y="298" text-anchor="middle" fill="${ink}" font-family="Arial,sans-serif" font-size="${pet ? 6.6 : 5.7}" letter-spacing="${pet ? 1.5 : .2}">${pet ? 'ACE • BLACK-TIPPED NOSE' : scene.caption}</text>
+      <text x="125" y="298" text-anchor="middle" fill="${ink}" font-family="Arial,sans-serif" font-size="${pet ? 6.6 : 5.7}" letter-spacing="${pet ? 1.5 : .2}">${pet ? pet.role : scene.caption}</text>
       ${catPaw(115,310,20,gold)}`;
   }
   return shell(`${rank} of ${suitCode} — Royal Cats: ${cat.name}`,cat.id,

@@ -12,6 +12,7 @@ const room = "ABCDEFGH";
 const statePath = `rooms/${room}/state`;
 const themePath = `rooms/${room}/theme`;
 const deckPath = `decks/${room}`;
+const newPatterns = JSON.parse(readFileSync("tests/fixtures/new-patterns.json", "utf8"));
 const cards = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
   .flatMap(rank => ["S", "H", "D", "C"].map(suit => rank + suit));
 
@@ -50,7 +51,7 @@ after(async () => {
   await environment?.cleanup();
 });
 
-async function seedCallingRound(lastDrawAt = 0) {
+async function seedCallingRound(lastDrawAt = 0, patternId = "h") {
   await assertSucceeds(set(ref(owner, statePath), initialState()));
   await assertSucceeds(set(ref(owner, deckPath), {
     ownerUid: "caller", round: 1, cards
@@ -59,7 +60,7 @@ async function seedCallingRound(lastDrawAt = 0) {
   await assertSucceeds(set(ref(owner, statePath), {
     ...created,
     round: 1,
-    patternId: "h",
+    patternId,
     phase: "calling",
     lastDrawAt: 0
   }));
@@ -82,6 +83,18 @@ test("only the creator can write; a viewer can read the display but not the deck
 
   await assertSucceeds(set(ref(owner, deckPath), { ownerUid: "caller", round: 1, cards }));
   assert.equal((await get(ref(owner, deckPath))).val().cards.length, 52);
+});
+
+test("every new winning pattern starts a round and remains locked during play", async () => {
+  for (const pattern of newPatterns) {
+    await environment.clearDatabase();
+    await seedCallingRound(0, pattern.id);
+    const state = (await assertSucceeds(get(ref(viewer, statePath)))).val();
+    assert.equal(state.patternId, pattern.id);
+    assert.equal(state.phase, "calling");
+  }
+  const state = (await get(ref(owner, statePath))).val();
+  await assertFails(set(ref(owner, statePath), { ...state, patternId: "standard", phase: "paused" }));
 });
 
 test("a valid draw advances one card and the three-second rule rejects a rapid draw", async () => {

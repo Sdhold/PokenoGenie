@@ -1,3 +1,4 @@
+using System.Text.Json;
 using PokenoGenie.Core;
 
 namespace PokenoGenie.Tests;
@@ -49,6 +50,26 @@ public class GameRulesTests
         Assert.Equal("3H", state.CurrentCard!.Id);
         Assert.Equal(new[] { "KS", "10D", "QC", "2H" },
             state.PreviousFour.Select(card => card.Id));
+    }
+
+    public static IEnumerable<object[]> NewPatternExamples()
+    {
+        using var document = JsonDocument.Parse(File.ReadAllText(Path.Combine(AppContext.BaseDirectory, "new-patterns.json")));
+        foreach (var example in document.RootElement.EnumerateArray())
+            yield return [example.GetProperty("id").GetString()!, example.GetProperty("name").GetString()!,
+                example.GetProperty("rows").EnumerateArray().Select(row => row.GetString()!).ToArray()];
+    }
+
+    [Theory]
+    [MemberData(nameof(NewPatternExamples))]
+    public void NewPatternsMatchTheirDrawnShapes(string id, string name, string[] rows)
+    {
+        var pattern = Assert.IsType<PatternDefinition>(PatternCatalog.Find(id));
+        var expected = string.Concat(rows).Select((value, index) => (value, index))
+            .Where(cell => cell.value == '#').Select(cell => cell.index).ToArray();
+        Assert.Equal(name, pattern.Name);
+        Assert.Single(pattern.WinningMasks);
+        Assert.Equal(expected, pattern.PreviewMask);
     }
 
     [Fact]

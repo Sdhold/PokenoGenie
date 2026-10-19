@@ -111,6 +111,9 @@ test("Royal Cats keeps the four named pets on their assigned ranks in every suit
       assert.match(art,new RegExp(`data-cat="${id}"`));
       assert.ok(art.includes(name));
       assert.ok(art.includes(marking),`${name} needs the photo's distinguishing markings`);
+      const labels = [...art.matchAll(/<text\b[^>]*>([^<]*)<\/text>/g)].map(match=>match[1]);
+      assert.ok(labels.includes({J:"JACK",Q:"QUEEN",K:"KING",A:"ACE"}[rank]),`${name} needs a plain rank label`);
+      if (rank === "A") assert.deepEqual(labels.filter(label=>label.startsWith("ACE")),["ACE"]);
       if (id === "chip") { assert.match(art,/data-feature="gentle-wink"/); assert.match(art,/data-feature="folded-ear"/); }
       portraits.add(/<symbol id="cat-art"[^>]*>([\s\S]*?)<\/symbol>/.exec(art)?.[1]);
       if (rank !== "A") assert.match(art,/data-portrait="inverted" transform="rotate\(180 125 175\)"/);

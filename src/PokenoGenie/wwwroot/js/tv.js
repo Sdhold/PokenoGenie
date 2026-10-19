@@ -13,9 +13,10 @@
     var themeInFlight = false;
     var codePattern = /^[A-HJ-NP-Z2-9]{8}$/;
     var patternNames = {
-        standard: "Standard bingo", horizontal: "Horizontal line", vertical: "Vertical line",
-        diagonal: "Diagonal line", h: "H", c: "C", x: "X", plus: "Plus",
-        corners: "Four corners", perimeter: "Perimeter", blackout: "Full board"
+        standard: "Standard Pokeno", horizontal: "Horizontal line", vertical: "Vertical line",
+        diagonal: "Diagonal line", h: "H", c: "C", i: "Capital I", s: "S", t: "T", l: "L", u: "U", z: "Z", x: "X", plus: "Plus",
+        corners: "Four corners", diamond: "Diamond", "inner-square": "Inner square", checkerboard: "Checkerboard",
+        perimeter: "Perimeter", blackout: "Full board"
     };
     var suitSymbols = { S: "♠", H: "♥", D: "♦", C: "♣" };
     var suitNames = { S: "Spades", H: "Hearts", D: "Diamonds", C: "Clubs" };
@@ -28,7 +29,7 @@
 
     function cardAsset(themeId, id) {
         var path = themeId === "illustrated" ? "cards/" + id + ".svg" : "cards/" + themeId + "/" + id + ".svg";
-        return path + (themeId === "mopar" ? "?v=2" : "");
+        return path + (themeId === "mopar" || themeId === "cats" ? "?v=2" : "");
     }
 
     function byId(id) { return document.getElementById(id); }
@@ -145,7 +146,7 @@
                 element.className += " art-back";
                 var back = document.createElement("img");
                 back.className = "card-art";
-                back.src = "cards/" + themeId + "/back.svg" + (themeId === "mopar" ? "?v=2" : "");
+                back.src = "cards/" + themeId + "/back.svg" + (themeId === "mopar" || themeId === "cats" ? "?v=2" : "");
                 back.alt = "";
                 back.draggable = false;
                 element.appendChild(back);
@@ -167,9 +168,18 @@
         if (pattern === "diagonal") return row === column;
         if (pattern === "h") return column === 0 || column === 4 || row === 2;
         if (pattern === "c") return row === 0 || row === 4 || column === 0;
+        if (pattern === "i") return row === 0 || row === 4 || column === 2;
+        if (pattern === "s") return row === 0 || row === 2 || row === 4 || (row === 1 && column === 0) || (row === 3 && column === 4);
+        if (pattern === "t") return row === 0 || column === 2;
+        if (pattern === "l") return column === 0 || row === 4;
+        if (pattern === "u") return column === 0 || column === 4 || row === 4;
+        if (pattern === "z") return row === 0 || row === 4 || row + column === 4;
         if (pattern === "x") return row === column || row + column === 4;
         if (pattern === "plus") return row === 2 || column === 2;
         if (pattern === "corners") return (row === 0 || row === 4) && (column === 0 || column === 4);
+        if (pattern === "diamond") return Math.abs(row - 2) + Math.abs(column - 2) === 2;
+        if (pattern === "inner-square") return row >= 1 && row <= 3 && column >= 1 && column <= 3 && (row === 1 || row === 3 || column === 1 || column === 3);
+        if (pattern === "checkerboard") return (row + column) % 2 === 0;
         if (pattern === "perimeter") return row === 0 || row === 4 || column === 0 || column === 4;
         return pattern === "blackout";
     }

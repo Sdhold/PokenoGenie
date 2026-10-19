@@ -38,5 +38,5 @@ public static class DeckThemeCatalog
         return $"cards/{theme.Id}/back.svg" + ArtworkVersion(theme.Id);
     }
 
-    private static string ArtworkVersion(string themeId) => themeId == "mopar" ? "?v=2" : "";
+    private static string ArtworkVersion(string themeId) => themeId is "mopar" or "cats" ? "?v=2" : "";
 }

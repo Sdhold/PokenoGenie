@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\PokenoGenie.Core\PokenoGenie.Core.csproj" />
+    <Content Include="..\fixtures\new-patterns.json" Link="new-patterns.json" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
 </Project>
