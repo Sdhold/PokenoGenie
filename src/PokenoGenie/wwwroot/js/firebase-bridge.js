@@ -28,6 +28,7 @@ let stopOffsetWatch;
 let connected = false;
 let serverOffset = 0;
 let cachedDeck;
+let firebaseConfig;
 
 const statePath = code => `rooms/${code}/state`;
 const themePath = code => `rooms/${code}/theme`;
@@ -58,6 +59,7 @@ function requireOwner(state) {
 export async function initialize(config, dotNetReference) {
   if (auth) return auth.currentUser.uid;
   dotNet = dotNetReference;
+  firebaseConfig = config;
   const app = initializeApp(config);
   auth = getAuth(app);
   const useLocalEmulators = config.useEmulators &&
@@ -84,6 +86,9 @@ export async function initialize(config, dotNetReference) {
   });
   return auth.currentUser.uid;
 }
+
+// Library editing uses a separate Firebase Auth instance, preserving caller ownership.
+export function libraryContext() { return { database, auth, config: firebaseConfig, connected }; }
 
 export function savedRoom() {
   return localStorage.getItem("pokeno.roomCode");
@@ -226,6 +231,9 @@ export async function changePhase(code, targetPhase) {
   const stateReference = ref(database, statePath(code));
   const before = normalizeState((await get(stateReference)).val());
   requireOwner(before);
+  // Clear a celebration before resuming or ending; it must not reappear on a later pause.
+  if (targetPhase === "calling" || targetPhase === "finished")
+    await set(ref(database, `rooms/${code}/verification`), null);
   let missingLocalState = false;
   const update = current => {
     if (!current) {

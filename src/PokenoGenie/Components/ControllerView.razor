@@ -2,17 +2,19 @@
 @using PokenoGenie.Services
 @implements IAsyncDisposable
 @inject FirebaseRoomService Rooms
+@inject BoardLibraryService Boards
 @inject NavigationManager Navigation
 
 <div class="controller-shell" data-deck-theme="@_themeId">
     <header class="app-header">
         <a class="brand" href="@Navigation.BaseUri"><span class="brand-mark">✦</span> POKENO <strong>GENIE</strong></a>
         <div class="header-tools">
+            <button class="howto-button" type="button" disabled="@(_loading || _busy || GuideOpen)" @onclick="OpenLibraryAsync">Board library</button>
             @if (_code is not null)
             {
                 <span class="room-pill">ROOM <strong>@_code</strong></span>
             }
-            @if (!GuideOpen)
+            @if (!GuideOpen && !_libraryOpen)
             {
                 <button class="howto-button" type="button" @ref="_howToButton"
                         disabled="@(_loading || _busy || (OwnsRoom && !Rooms.IsConnected))"
@@ -21,7 +23,11 @@
         </div>
     </header>
 
-    @if (GuideOpen)
+    @if (_libraryOpen)
+    {
+        <BoardLibraryPanel ThemeId="@_themeId" Close="() => _libraryOpen = false" />
+    }
+    else if (GuideOpen)
     {
         <main class="phone-guide" aria-labelledby="howto-title" tabindex="-1" @ref="_guidePanel">
             <div class="guide-toolbar">
@@ -103,6 +109,7 @@
                     <h1>Set the winning shape.</h1>
                     <div class="shuffle-fan @(_shuffling ? "is-shuffling" : "")" aria-hidden="true"><i></i><i></i><i></i></div>
                     <PatternPicker @bind-SelectedId="_selectedPatternId" />
+                    @BoardSetSelection
                     <button class="primary-button" disabled="@(!Rooms.IsConnected || _busy)" @onclick="StartRoundAsync">
                         @(_shuffling ? "Shuffling the deck…" : "Shuffle & start round")
                     </button>
@@ -149,6 +156,11 @@
                         <div class="paused-banner">Round complete. The final card stays visible for verification.</div>
                     }
 
+                    @if (_room.Phase is GamePhase.Paused or GamePhase.Finished)
+                    {
+                        <BoardWinChecker @key="_room.Round" Code="@_code" Room="_room" ThemeId="@_themeId" />
+                    }
+
                     <div class="history-panel">
                         <div class="section-heading"><span>@(_room.Phase is GamePhase.Paused or GamePhase.Finished ? "ALL CALLED CARDS" : "PREVIOUS CARDS")</span><span>@_room.DrawnCount/52</span></div>
                         @if (_room.Phase is GamePhase.Paused or GamePhase.Finished)
@@ -185,6 +197,7 @@
                     <h1>Play it again.</h1>
                     <div class="shuffle-fan @(_shuffling ? "is-shuffling" : "")" aria-hidden="true"><i></i><i></i><i></i></div>
                     <PatternPicker @bind-SelectedId="_selectedPatternId" />
+                    @BoardSetSelection
                     <button class="primary-button" disabled="@(!Rooms.IsConnected || _busy)" @onclick="StartRoundAsync">
                         @(_shuffling ? "Shuffling the deck…" : "Shuffle & start round")
                     </button>
@@ -244,6 +257,8 @@
 
 @code {
     private bool _loading = true;
+    private bool _libraryOpen;
+    private string _selectedBoardSet = "";
     private bool _busy;
     private bool _shuffling;
     private bool _themeBusy;
@@ -271,6 +286,7 @@
         _room.LastDrawAt + 3000 - (DateTimeOffset.UtcNow.ToUnixTimeMilliseconds() + Rooms.ServerOffsetMs)) / 1000.0);
     private bool CanDraw => _room?.Phase == GamePhase.Calling && _room.DrawnCount < 52 &&
         Rooms.IsConnected && !_busy && !GuideOpen && CooldownSeconds == 0;
+    private RenderFragment BoardSetSelection => @<label class="library-field round-board-selection">Board set for this round<select @bind="_selectedBoardSet"><option value="">Choose when verifying</option>@foreach (var set in Boards.Sets.Where(set => set.Boards.Any(pair => !pair.Value.Archived))) { <option value="@set.Id">@set.Name</option> }</select><small>Saved versions stay fixed throughout this round.</small></label>;
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -292,14 +308,17 @@
         Rooms.ThemeChanged += HandleThemeChanged;
         Rooms.ConnectionChanged += HandleConnectionChanged;
         Rooms.ErrorReceived += HandleError;
+        Boards.Changed += HandleBoardsChanged;
         try
         {
             await Rooms.InitializeAsync();
+            await Boards.InitializeAsync();
             var saved = RoomCode.Normalize(await Rooms.GetSavedRoomAsync());
             if (RoomCode.IsValid(saved))
             {
                 _code = saved;
                 await Rooms.WatchRoomAsync(saved);
+                await Boards.WatchRoomAsync(saved);
             }
         }
         catch (Exception error)
@@ -351,6 +370,7 @@
     }
 
     private void HandleConnectionChanged(bool connected) => _ = InvokeAsync(StateHasChanged);
+    private void HandleBoardsChanged() => _ = InvokeAsync(StateHasChanged);
     private void HandleError(string message) { _error = message; _ = InvokeAsync(StateHasChanged); }
 
     private async Task CreateRoomAsync()
@@ -400,6 +420,7 @@
             _localGuideOpen = false;
             await Rooms.SaveRoomAsync(code);
             await Rooms.WatchRoomAsync(code);
+            await Boards.WatchRoomAsync(code);
             return;
         }
         throw new InvalidOperationException("Could not reserve a room code. Try again.");
@@ -414,6 +435,7 @@
         try
         {
             var deck = DeckShuffler.Shuffle();
+            await Boards.PrepareRoundAsync(_code, _selectedBoardSet);
             await Task.Delay(850);
             await Rooms.StartRoundAsync(_code, _selectedPatternId, deck);
         }
@@ -481,6 +503,18 @@
         finally { _busy = false; }
     }
 
+    private async Task OpenLibraryAsync()
+    {
+        if (_busy || _loading) return;
+        // Hold the caller while editing; the TV continues to show the paused game.
+        if (OwnsRoom && _room!.Phase == GamePhase.Calling)
+        {
+            await ChangePhaseAsync(GamePhase.Paused);
+            if (_error is not null) return;
+        }
+        _libraryOpen = true;
+    }
+
     private async Task CopyDisplayLinkAsync()
     {
         try
@@ -499,6 +533,7 @@
         Rooms.ThemeChanged -= HandleThemeChanged;
         Rooms.ConnectionChanged -= HandleConnectionChanged;
         Rooms.ErrorReceived -= HandleError;
+        Boards.Changed -= HandleBoardsChanged;
         _timerCancellation?.Cancel();
         _timer?.Dispose();
         _timerCancellation?.Dispose();

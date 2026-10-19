@@ -1,0 +1,206 @@
+@using PokenoGenie.Core
+@using PokenoGenie.Services
+@using System.Globalization
+@implements IAsyncDisposable
+@inject BoardLibraryService Boards
+@inject FirebaseRoomService Rooms
+@inject IJSRuntime JS
+@inject NavigationManager Navigation
+
+<section class="board-editor" aria-labelledby="board-editor-title">
+    <div class="library-section-heading"><div><span class="eyebrow">@(_review ? "FINAL REVIEW" : "ENTER AN EXISTING BOARD")</span><h2 id="board-editor-title">@Draft.Label</h2></div><span>@Draft.Cards.Count(value => PlayingCard.FromId(value) is not null) / 25 entered</span></div>
+    <label class="library-field">Board label<input maxlength="60" @bind="Draft.Label" @bind:after="ChangedAsync" /></label>
+    @if (_review)
+    {
+        <p>Check every card and the board's top against the physical board. Tap a cell to correct it.</p>
+        @BoardGrid(true)
+        @if (_photo is not null) { <img class="board-review-photo" src="@_photo.Data" alt="Your local reference photograph" /> }
+        @if (Errors.Count > 0) { <p class="library-error" role="alert">@Errors[0]</p> }
+        <label class="library-check"><input type="checkbox" @bind="_confirmed" /> I checked all 25 cards and the board orientation.</label>
+        <div class="action-pair"><button class="secondary-button" @onclick="() => _review = false">Keep editing</button><button class="primary-button" disabled="@(!CanPublish || _publishing)" @onclick="() => PublishAsync(false)">@(_publishing ? "Saving…" : "Save to shared library")</button></div>
+        <button class="secondary-button" disabled="@(!CanPublish || _publishing)" @onclick="() => PublishAsync(true)">Save &amp; add next board</button>
+    }
+    else
+    {
+        <details class="board-photo-settings">
+            <summary>@(_photo is null ? "Add an optional reference photo" : "Adjust reference photo")</summary>
+            <p>Remove counters, photograph the board flat, and align the crop with the outside edges of the 25 spaces. The photo stays on this device.</p>
+            <label class="photo-upload">Take / choose photo<input type="file" accept="image/*" capture="environment" @ref="_photoInput" @onchange="LoadPhotoAsync" /></label>
+            @if (_photo is not null)
+            {
+                <div class="board-photo-alignment"><img src="@_photo.Data" alt="Reference photograph with alignment grid" /><div class="photo-grid" style="left:@(_photo.Left)%;top:@(_photo.Top)%;right:@(100 - _photo.Right)%;bottom:@(100 - _photo.Bottom)%"></div></div>
+                <button class="small-button" @onclick="RotatePhotoAsync">Rotate photo 90°</button>
+                <div class="photo-crop-controls">
+                    <label>Left edge<input type="range" min="0" max="80" @bind="_photo.Left" @bind:after="CropAsync" /></label>
+                    <label>Top edge<input type="range" min="0" max="80" @bind="_photo.Top" @bind:after="CropAsync" /></label>
+                    <label>Right edge<input type="range" min="20" max="100" @bind="_photo.Right" @bind:after="CropAsync" /></label>
+                    <label>Bottom edge<input type="range" min="20" max="100" @bind="_photo.Bottom" @bind:after="CropAsync" /></label>
+                </div>
+            }
+        </details>
+        <div class="board-row-tabs" role="group" aria-label="Choose a board row">
+            @for (var row = 0; row < 5; row++)
+            {
+                var selectedRow = row;
+                <button class="@(Draft.CurrentCell / 5 == row ? "selected" : "")" aria-pressed="@(Draft.CurrentCell / 5 == row)" @onclick="() => SelectCellAsync(selectedRow * 5)">@(row + 1)@(Draft.Cards.Skip(row * 5).Take(5).All(value => PlayingCard.FromId(value) is not null) ? " ✓" : "")</button>
+            }
+        </div>
+        @BoardGrid(false)
+        <div class="board-current-cell"><div><span class="eyebrow">ROW @(Draft.CurrentCell / 5 + 1) · COLUMN @(Draft.CurrentCell % 5 + 1)</span><h3>@(Draft.PendingRank.Length > 0 ? $"Choose the suit for {Draft.PendingRank}" : "Choose the rank")</h3></div>@if (_cellPhoto is not null) { <img src="@_cellPhoto" alt="Enlarged photograph of the selected board cell" /> }</div>
+        @if (Draft.PendingRank.Length == 0)
+        {
+            <div class="board-rank-picker" role="group" aria-label="Card rank">
+                @foreach (var rank in Ranks) { <button aria-label="@($"Rank {rank}")" @onclick="() => ChooseRankAsync(rank)">@rank</button> }
+            </div>
+        }
+        else
+        {
+            <div class="board-suit-picker" role="group" aria-label="Card suit">
+                @foreach (var suit in Suits) { <button class="@(suit.Code is "H" or "D" ? "red-suit" : "")" @onclick="() => ChooseSuitAsync(suit.Code)"><strong>@suit.Symbol</strong> @suit.Name</button> }
+            </div>
+            <button class="small-button" @onclick="ClearRankAsync">Change rank</button>
+        }
+        <div class="board-edit-tools"><button class="small-button" disabled="@(_undo.Count == 0)" @onclick="UndoAsync">Undo</button><button class="small-button" @onclick="RotateBoardAsync">Rotate board 90°</button><button class="small-button" @onclick="() => _showShift = !_showShift">Fix a skipped space</button></div>
+        @if (_showShift)
+        {
+            <div class="board-shift-review"><p>Insert an empty space at Row @(Draft.CurrentCell / 5 + 1), Column @(Draft.CurrentCell % 5 + 1). Entries from here move forward one space. The last value (@CardLabel(Draft.Cards[24])) is removed. Undo can restore everything.</p><div class="action-pair"><button class="secondary-button" @onclick="() => _showShift = false">Cancel</button><button class="secondary-button" @onclick="InsertSpaceAsync">Insert empty space here</button></div></div>
+        }
+        <details><summary>Paste five rows of card codes</summary><p>Use codes such as AS, 10H, QD, KC. Paste exactly 25 cards.</p><textarea class="board-paste" @bind="_paste" rows="5" aria-label="Five rows of card codes"></textarea><button class="small-button" @onclick="PasteAsync">Preview pasted board</button></details>
+        <button class="primary-button" disabled="@(Errors.Count > 0)" @onclick="ReviewAsync">Review all 25 cards</button>
+    }
+    <p class="board-save-status" role="status">@_saveStatus</p>
+    @if (_error is not null) { <p class="library-error" role="alert">@_error</p> }
+    <button class="text-button" disabled="@_publishing" @onclick="CloseAsync">Back to library · keep draft</button>
+</section>
+
+@code {
+    [Parameter, EditorRequired] public BoardDraft Draft { get; set; } = new();
+    [Parameter] public EventCallback<bool> Saved { get; set; }
+    [Parameter] public EventCallback Closed { get; set; }
+    private static readonly string[] Ranks = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
+    private static readonly (string Code, string Symbol, string Name)[] Suits = [("S", "♠", "Spades"), ("H", "♥", "Hearts"), ("D", "♦", "Diamonds"), ("C", "♣", "Clubs")];
+    private readonly Stack<BoardDraft> _undo = [];
+    private readonly SemaphoreSlim _saveLock = new(1, 1);
+    private IJSObjectReference? _photos;
+    private ElementReference _photoInput;
+    private Photo? _photo;
+    private string? _cellPhoto, _error;
+    private string _saveStatus = "Draft · not published", _paste = "";
+    private bool _review, _confirmed, _publishing, _showShift;
+    private IReadOnlyList<string> Errors => BoardLayouts.Validate(Draft.Cards);
+    private bool CanPublish => _confirmed && Errors.Count == 0 && !string.IsNullOrWhiteSpace(Draft.Label) && Rooms.IsConnected && Boards.Editor.CanEdit;
+    private static string CardLabel(string id) => PlayingCard.FromId(id) is { } card ? $"{card.Rank}{card.Suit}" : "Empty";
+
+    protected override async Task OnInitializedAsync()
+    {
+        Rooms.ConnectionChanged += ConnectionChanged;
+        _photos = await JS.InvokeAsync<IJSObjectReference>("import", Navigation.BaseUri + "js/board-photo.js?v=1");
+        try { _photo = await _photos.InvokeAsync<Photo?>("getPhoto", Draft.BoardId); await UpdatePhotoAsync(); }
+        catch (Exception error) { _error = BoardLibraryService.FriendlyError(error); }
+    }
+
+    private RenderFragment BoardGrid(bool all) => builder =>
+    {
+        var seq = 0;
+        builder.OpenElement(seq++, "div"); builder.AddAttribute(seq++, "class", "board-cell-grid" + (all ? " full" : ""));
+        builder.AddAttribute(seq++, "role", "group"); builder.AddAttribute(seq++, "aria-label", all ? "Five by five board" : $"Row {Draft.CurrentCell / 5 + 1}");
+        var start = all ? 0 : Draft.CurrentCell / 5 * 5;
+        for (var index = start; index < (all ? 25 : start + 5); index++)
+        {
+            var cell = index; var value = PlayingCard.FromId(Draft.Cards[index]);
+            builder.OpenElement(seq++, "button"); builder.AddAttribute(seq++, "type", "button");
+            builder.AddAttribute(seq++, "class", $"{(value?.IsRed == true ? "red-suit " : "")}{(index == Draft.CurrentCell ? "selected" : "")}");
+            builder.AddAttribute(seq++, "aria-label", $"Row {index / 5 + 1}, Column {index % 5 + 1}: {CardLabel(Draft.Cards[index])}");
+            builder.AddAttribute(seq++, "onclick", EventCallback.Factory.Create(this, () => SelectCellAsync(cell)));
+            builder.AddContent(seq++, value is null ? "·" : $"{value.Rank}{value.Suit}"); builder.CloseElement();
+        }
+        builder.CloseElement();
+    };
+    private void Snapshot() { _undo.Push(Draft.Copy()); _confirmed = false; _error = null; }
+    private async Task SelectCellAsync(int cell) { Draft.CurrentCell = cell; Draft.PendingRank = ""; _review = false; await UpdatePhotoAsync(); await ChangedAsync(); }
+    private async Task ChooseRankAsync(string rank) { Draft.PendingRank = rank; await ChangedAsync(); }
+    private async Task ClearRankAsync() => await ChooseRankAsync("");
+    private async Task ChooseSuitAsync(string suit)
+    {
+        var value = Draft.PendingRank + suit;
+        if (PlayingCard.FromId(value) is null) return;
+        var duplicate = Draft.Cards.FindIndex(card => card == value);
+        if (duplicate >= 0 && duplicate != Draft.CurrentCell)
+        {
+            _error = $"{CardLabel(value)} is already in Row {duplicate / 5 + 1}, Column {duplicate % 5 + 1}. Change the rank or suit.";
+            return;
+        }
+        Snapshot(); Draft.Cards[Draft.CurrentCell] = value; Draft.PendingRank = "";
+        var next = Enumerable.Range(1, 25).Select(offset => (Draft.CurrentCell + offset) % 25).FirstOrDefault(index => Draft.Cards[index].Length == 0, -1);
+        if (next >= 0) Draft.CurrentCell = next;
+        await UpdatePhotoAsync(); await ChangedAsync();
+    }
+    private async Task UndoAsync()
+    {
+        if (!_undo.TryPop(out var before)) return;
+        Draft.Cards = before.Cards; Draft.CurrentCell = before.CurrentCell; Draft.PendingRank = before.PendingRank;
+        _confirmed = false; _error = null; await UpdatePhotoAsync(); await ChangedAsync();
+    }
+    private async Task RotateBoardAsync() { Snapshot(); Draft.Cards = BoardLayouts.Rotate(Draft.Cards); Draft.PendingRank = ""; await ChangedAsync(); }
+    private async Task InsertSpaceAsync()
+    {
+        Snapshot(); Draft.Cards.Insert(Draft.CurrentCell, ""); Draft.Cards.RemoveAt(25); Draft.PendingRank = ""; _showShift = false; await ChangedAsync();
+    }
+    private async Task PasteAsync()
+    {
+        try { var values = BoardLayouts.Parse(_paste); Snapshot(); Draft.Cards = values; Draft.PendingRank = ""; _review = true; await ChangedAsync(); }
+        catch (Exception error) { _error = BoardLibraryService.FriendlyError(error); }
+    }
+    private void ReviewAsync() { _review = true; _confirmed = false; _error = null; }
+    private async Task ChangedAsync()
+    {
+        _confirmed = false; Draft.UpdatedAt = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
+        var snapshot = Draft.Copy();
+        await _saveLock.WaitAsync();
+        try
+        {
+            await Boards.SaveLocalDraftAsync(snapshot);
+            _saveStatus = "Saved on this device — waiting to sync";
+            if (Rooms.IsConnected) { await Boards.SaveDraftAsync(snapshot); _saveStatus = "Draft saved to Firebase · private to your editor login"; }
+        }
+        catch (Exception error) { _error = BoardLibraryService.FriendlyError(error); }
+        finally { _saveLock.Release(); }
+    }
+    private void ConnectionChanged(bool connected) { if (connected && !_publishing) _ = InvokeAsync(ChangedAsync); }
+    private async Task PublishAsync(bool next)
+    {
+        if (!CanPublish || _publishing) return;
+        _publishing = true; _error = null;
+        await _saveLock.WaitAsync();
+        try { await Boards.PublishAsync(Draft.Copy()); await Saved.InvokeAsync(next); }
+        catch (Exception error) { _error = BoardLibraryService.FriendlyError(error); }
+        finally { _publishing = false; _saveLock.Release(); }
+    }
+    private async Task CloseAsync() { await ChangedAsync(); await Closed.InvokeAsync(); }
+    private async Task UpdatePhotoAsync() { if (_photos is not null) _cellPhoto = await _photos.InvokeAsync<string?>("cellPhoto", Draft.BoardId, Draft.CurrentCell); }
+    private async Task LoadPhotoAsync()
+    {
+        try { _photo = await _photos!.InvokeAsync<Photo?>("loadPhoto", _photoInput, Draft.BoardId); await UpdatePhotoAsync(); }
+        catch (Exception error) { _error = BoardLibraryService.FriendlyError(error); }
+    }
+    private async Task RotatePhotoAsync()
+    {
+        try { _photo = await _photos!.InvokeAsync<Photo?>("rotatePhoto", Draft.BoardId); await UpdatePhotoAsync(); }
+        catch (Exception error) { _error = BoardLibraryService.FriendlyError(error); }
+    }
+    private async Task CropAsync()
+    {
+        try { await _photos!.InvokeVoidAsync("savePhotoCrop", _photo); await UpdatePhotoAsync(); }
+        catch (Exception error) { _error = BoardLibraryService.FriendlyError(error); }
+    }
+    public async ValueTask DisposeAsync() { Rooms.ConnectionChanged -= ConnectionChanged; if (_photos is not null) await _photos.DisposeAsync(); }
+    private sealed class Photo
+    {
+        public string Id { get; set; } = "";
+        public string Data { get; set; } = "";
+        public int Left { get; set; }
+        public int Top { get; set; }
+        public int Right { get; set; } = 100;
+        public int Bottom { get; set; } = 100;
+    }
+}

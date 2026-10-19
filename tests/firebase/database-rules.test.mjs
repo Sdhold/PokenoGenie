@@ -19,6 +19,7 @@ const cards = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
 let environment;
 let owner;
 let viewer;
+let editor;
 
 const initialState = () => ({
   ownerUid: "caller",
@@ -41,6 +42,7 @@ before(async () => {
   });
   owner = environment.authenticatedContext("caller").database();
   viewer = environment.authenticatedContext("viewer").database();
+  editor = environment.authenticatedContext("editor").database();
 });
 
 beforeEach(async () => {
@@ -262,4 +264,102 @@ test("the guide opens and closes during setup, pause and finish without starting
     await assertSucceeds(set(ref(owner, `${statePath}/guideOpen`), false));
     assert.deepEqual((await get(ref(owner, statePath))).val(), expected);
   }
+});
+
+const boardCells = cards.slice(0, 25);
+function revision(overrides = {}) {
+  return { boardId: "board-1", revisionId: "revision-1", setId: "set-1", label: "Board 07", cards: boardCells,
+    positions: Object.fromEntries(boardCells.map((card, index) => [card, String(index)])),
+    layoutHash: "a".repeat(64), createdBy: "editor", createdAt: serverTimestamp(), ...overrides };
+}
+async function seedLibrary() {
+  await environment.withSecurityRulesDisabled(async context => set(ref(context.database(), "boardEditors/editor"), true));
+  await assertSucceeds(set(ref(editor, "boardSets/set-1"), { name: "Our Pokeno set", version: 1 }));
+  await assertSucceeds(set(ref(editor, "boardRevisions/board-1/revision-1"), revision()));
+  await assertSucceeds(set(ref(editor, "boardSets/set-1"), { name: "Our Pokeno set", version: 2,
+    boards: { "board-1": { label: "Board 07", revisionId: "revision-1", layoutHash: "a".repeat(64), archived: false } } }));
+}
+function roundSet(round = 1) {
+  return { round, setId: "set-1", setName: "Our Pokeno set", revisions: { "board-1": "revision-1" }, labels: { "board-1": "Board 07" } };
+}
+function boardCheck(overrides = {}) {
+  return { id: "check-1", round: 1, drawnCount: 0, patternId: "h", boardId: "board-1", revisionId: "revision-1", setId: "set-1", setName: "Our Pokeno set", label: "Board 07", cards: boardCells, checkedAt: serverTimestamp(), ...overrides };
+}
+
+test("the shared library survives rooms and only appointed editors can publish", async () => {
+  await seedLibrary();
+  assert.equal((await assertSucceeds(get(ref(viewer, "boardSets/set-1")))).val().name, "Our Pokeno set");
+  assert.equal((await assertSucceeds(get(ref(owner, "boardRevisions/board-1/revision-1")))).val().cards.length, 25);
+  await assertFails(set(ref(viewer, "boardSets/set-2"), { name: "Forged", version: 1 }));
+  await assertFails(set(ref(viewer, "boardEditors/viewer"), true));
+  await assertFails(get(ref(viewer, "boardEditors/editor")));
+  await assertSucceeds(get(ref(viewer, "boardEditors/viewer")));
+  await assertFails(get(ref(environment.unauthenticatedContext().database(), "boardSets")));
+  await assertSucceeds(set(ref(owner, statePath), initialState()));
+  await assertSucceeds(set(ref(owner, "rooms/JKLMNPQR/state"), initialState()));
+  assert.equal((await get(ref(viewer, "boardSets/set-1"))).val().boards["board-1"].revisionId, "revision-1");
+});
+
+test("published layouts are immutable, contain exactly 25 distinct cards, and cannot point at a foreign set", async () => {
+  await seedLibrary();
+  await assertFails(set(ref(editor, "boardRevisions/board-1/revision-1"), revision({ label: "Changed" })));
+  await assertFails(set(ref(editor, "boardRevisions/board-1/revision-1"), null));
+  const repeated = [...boardCells]; repeated[24] = repeated[0];
+  await assertFails(set(ref(editor, "boardRevisions/board-2/revision-2"), revision({ boardId: "board-2", revisionId: "revision-2", cards: repeated })));
+  await assertFails(set(ref(editor, "boardRevisions/board-2/revision-2"), revision({ boardId: "board-2", revisionId: "revision-2", cards: boardCells.slice(0, 24) })));
+  await assertFails(set(ref(editor, "boardSets/set-2"), { name: "Other", version: 1, boards: { "board-1": { label: "Board 07", revisionId: "revision-1", layoutHash: "a".repeat(64), archived: false } } }));
+  await assertFails(update(ref(editor, "boardSets/set-1"), { name: "Silent concurrent overwrite" }));
+});
+
+test("drafts are private, can contain empty cells, and are separate from published boards", async () => {
+  await seedLibrary();
+  const draft = { id: "draft-1", setId: "set-1", boardId: "board-2", label: "Board 08", baseRevisionId: "", cards: Array(25).fill(""), currentCell: 12, pendingRank: "Q", updatedAt: serverTimestamp() };
+  await assertSucceeds(set(ref(editor, "boardDrafts/editor/draft-1"), draft));
+  await assertSucceeds(get(ref(editor, "boardDrafts/editor")));
+  await assertFails(get(ref(viewer, "boardDrafts/editor")));
+  await assertFails(set(ref(owner, "boardDrafts/editor/draft-1"), draft));
+  await assertFails(set(ref(editor, "boardDrafts/editor/draft-1"), { ...draft, cards: [...Array(24).fill(""), "Joker"] }));
+  assert.equal((await get(ref(viewer, "boardSets/set-1"))).val().boards["board-2"], undefined);
+});
+
+test("the caller pins published board versions once per round; viewers and active draws cannot replace them", async () => {
+  await seedLibrary(); await seedCallingRound();
+  await assertFails(set(ref(owner, `rooms/${room}/boards`), roundSet()));
+  const state = (await get(ref(owner, statePath))).val();
+  await assertSucceeds(set(ref(owner, statePath), { ...state, phase: "paused" }));
+  await assertFails(set(ref(viewer, `rooms/${room}/boards`), roundSet()));
+  await assertSucceeds(set(ref(owner, `rooms/${room}/boards`), roundSet()));
+  await assertSucceeds(get(ref(viewer, `rooms/${room}/boards`)));
+  await assertFails(set(ref(owner, `rooms/${room}/boards`), roundSet()));
+  await assertFails(set(ref(owner, `rooms/${room}/boards/labels/board-1`), "Fake board"));
+  await assertFails(set(ref(owner, `rooms/${room}/boards`), null));
+});
+
+test("a check must reference the pinned board and current paused state, never a claimed winner flag", async () => {
+  await seedLibrary(); await seedCallingRound();
+  const state = (await get(ref(owner, statePath))).val();
+  await assertFails(set(ref(owner, `rooms/${room}/verification`), boardCheck()));
+  await assertSucceeds(set(ref(owner, statePath), { ...state, phase: "paused" }));
+  await assertSucceeds(set(ref(owner, `rooms/${room}/boards`), roundSet()));
+  await assertSucceeds(set(ref(owner, `rooms/${room}/verification`), boardCheck()));
+  await assertSucceeds(get(ref(viewer, `rooms/${room}/verification`)));
+  await assertFails(set(ref(viewer, `rooms/${room}/verification`), boardCheck()));
+  for (const change of [{ round: 2 }, { drawnCount: 5 }, { patternId: "c" }, { label: "Fake winner" }, { isWinner: true }, { cards: [...boardCells].reverse() }])
+    await assertFails(set(ref(owner, `rooms/${room}/verification`), boardCheck(change)));
+  await assertSucceeds(set(ref(owner, `rooms/${room}/verification`), null));
+});
+
+test("new library revisions do not change a pinned round, and future cards cannot be inserted while paused", async () => {
+  await seedLibrary(); await seedCallingRound();
+  const state = (await get(ref(owner, statePath))).val();
+  await assertSucceeds(set(ref(owner, statePath), { ...state, phase: "paused" }));
+  await assertSucceeds(set(ref(owner, `rooms/${room}/boards`), roundSet()));
+  await assertSucceeds(set(ref(editor, "boardRevisions/board-1/revision-2"), revision({ revisionId: "revision-2" })));
+  const collection = (await get(ref(editor, "boardSets/set-1"))).val();
+  collection.version++; collection.boards["board-1"].revisionId = "revision-2";
+  await assertSucceeds(set(ref(editor, "boardSets/set-1"), collection));
+  await assertSucceeds(set(ref(owner, `rooms/${room}/verification`), boardCheck()));
+  await assertFails(set(ref(owner, `rooms/${room}/verification`), boardCheck({ revisionId: "revision-2" })));
+  await assertFails(set(ref(owner, statePath), { ...state, phase: "paused", drawn: cards }));
+  await assertFails(set(ref(owner, statePath), { ...state, phase: "finished", drawn: cards }));
 });

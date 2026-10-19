@@ -11,6 +11,8 @@
     var lastTheme = "illustrated";
     var lastState = null;
     var themeInFlight = false;
+    var checkInFlight = false;
+    var lastCheck = null;
     var codePattern = /^[A-HJ-NP-Z2-9]{8}$/;
     var patternNames = {
         standard: "Standard Pokeno", horizontal: "Horizontal line", vertical: "Vertical line",
@@ -83,6 +85,7 @@
     }
     function signIn(callback) {
         var url = "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=" + encodeURIComponent(config.apiKey);
+        if (localEmulators()) url = "http://127.0.0.1:9099/identitytoolkit.googleapis.com/v1/accounts:signUp?key=" + encodeURIComponent(config.apiKey);
         request("POST", url, JSON.stringify({ returnSecureToken: true }),
             { "Content-Type": "application/json" }, function (status, data) {
                 if (status === 200 && data && data.idToken) {
@@ -95,6 +98,7 @@
         if (!refreshToken) refreshToken = storedRefreshToken();
         if (!refreshToken) { signIn(callback); return; }
         var url = "https://securetoken.googleapis.com/v1/token?key=" + encodeURIComponent(config.apiKey);
+        if (localEmulators()) url = "http://127.0.0.1:9099/securetoken.googleapis.com/v1/token?key=" + encodeURIComponent(config.apiKey);
         var body = "grant_type=refresh_token&refresh_token=" + encodeURIComponent(refreshToken);
         request("POST", url, body, { "Content-Type": "application/x-www-form-urlencoded" },
             function (status, data) {
@@ -110,6 +114,11 @@
     function ensureSignIn(callback) {
         if (token && Date.now() < tokenExpiresAt) callback(null);
         else refreshSignIn(callback);
+    }
+    function localEmulators() { return config.useEmulators === true && (location.hostname === "127.0.0.1" || location.hostname === "localhost"); }
+    function databaseRequest(path) {
+        var base = localEmulators() ? "http://127.0.0.1:9000" : config.databaseURL.replace(/\/$/, "");
+        return base + path + "?" + (localEmulators() ? "ns=" + encodeURIComponent(config.projectId) + "&" : "") + "auth=" + encodeURIComponent(token) + "&_=" + Date.now();
     }
     function schedulePoll(delay) {
         clearTimeout(pollTimer);
@@ -203,12 +212,44 @@
         }
         return cards;
     }
+    function renderBoardCheck(state, themeId, check) {
+        var verdict = window.pokenoBoards.verify(check.cards, drawnCards(state), state.patternId);
+        if (!verdict) return;
+        setText("board-result-eyebrow", verdict.isWinner ? "WINNER · POKENO!" : "BOARD CHECK · NOT A WIN YET");
+        setText("board-result-title", verdict.isWinner ? check.label + " wins!" : check.label + ": " + verdict.missingCards.length + " still needed");
+        setText("board-result-description", verdict.isWinner ? "Every card in the winning shape has been called." : "Missing from the closest allowed winning shape:");
+        setText("board-result-set", check.setName + " · " + patternNames[state.patternId] + " · Round " + state.round);
+        var graphic = byId("winner-graphic");
+        graphic.hidden = !verdict.isWinner;
+        if (verdict.isWinner) graphic.src = "winners/" + themeId + ".svg?v=1";
+        var missing = byId("board-result-missing"); clearChildren(missing);
+        for (var m = 0; m < verdict.missingCards.length; m++) {
+            var needed = cardInfo(verdict.missingCards[m]), chip = document.createElement("span");
+            chip.textContent = needed.rank + needed.suit;
+            if (needed.red) chip.className = "red-suit";
+            missing.appendChild(chip);
+        }
+        var grid = byId("board-result-cards"); clearChildren(grid);
+        for (var i = 0; i < 25; i++) {
+            var info = cardInfo(check.cards[i]), tile = document.createElement("div");
+            var called = verdict.calledCells.indexOf(i) !== -1;
+            tile.className = "board-card-cell" + (verdict.patternCells.indexOf(i) !== -1 ? " pattern-cell" : "") + (called ? " called-cell" : "");
+            tile.setAttribute("aria-label", info.name + (called ? ", called" : ", not called"));
+            tile.appendChild(makeCard(check.cards[i], false, themeId));
+            var value = document.createElement("strong"); value.textContent = info.rank + info.suit;
+            if (info.red) value.className = "red-suit";
+            tile.appendChild(value);
+            if (called) { var marker = document.createElement("span"); marker.className = "board-called-marker"; marker.textContent = "✓"; tile.appendChild(marker); }
+            grid.appendChild(tile);
+        }
+    }
     function render(state, themeId) {
         var cards = drawnCards(state);
         var count = Math.min(Math.max(Number(state.drawnCount) || 0, 0), 52);
         var pattern = patternNames[state.patternId] ? state.patternId : "standard";
         var showingGuide = state.guideOpen === true;
-        var signature = [state.round, state.phase, showingGuide, pattern, count, cards.join(","), themeId].join("|");
+        var checkingBoard = window.pokenoBoards.matches(lastCheck, state);
+        var signature = [state.round, state.phase, showingGuide, pattern, count, cards.join(","), themeId, checkingBoard ? lastCheck.id : ""].join("|");
         showDisplay();
         setText("connection-label", "LIVE FROM THE CALLER'S DEVICE");
         if (signature === lastSignature) return;
@@ -216,8 +257,9 @@
         byId("display-screen").setAttribute("data-deck-theme", themeId);
         var verifying = state.phase === "paused" && !showingGuide;
         byId("display-screen").className = "display-screen" + (verifying ? " is-verifying" : "");
-        byId("calling-display").hidden = verifying || showingGuide;
-        byId("verification-panel").hidden = !verifying;
+        byId("calling-display").hidden = verifying || showingGuide || checkingBoard;
+        byId("verification-panel").hidden = !verifying || checkingBoard;
+        byId("board-result-panel").hidden = !checkingBoard;
         byId("howto-panel").hidden = !showingGuide;
         setText("pattern-name", patternNames[pattern]);
         renderPattern(pattern);
@@ -227,6 +269,7 @@
         var verification = byId("verification-cards");
         clearChildren(verification);
         if (showingGuide) return;
+        if (checkingBoard) { renderBoardCheck(state, themeId, lastCheck); return; }
         if (verifying) {
             for (var calledIndex = 0; calledIndex < cards.length; calledIndex++) {
                 var info = cardInfo(cards[calledIndex]);
@@ -274,11 +317,22 @@
         phase.hidden = state.phase !== "paused" && state.phase !== "finished";
         phase.textContent = state.phase === "paused" ? "PAUSED FOR VERIFICATION" : "ROUND COMPLETE";
     }
+    function pollCheck(requestedCode, expected) {
+        if (checkInFlight || (expected.phase !== "paused" && expected.phase !== "finished")) return;
+        checkInFlight = true;
+        var url = databaseRequest("/rooms/" + requestedCode + "/verification.json");
+        request("GET", url, null, null, function (status, check) {
+            if (requestedCode !== roomCode) return;
+            checkInFlight = false;
+            if (status !== 200 || !lastState || lastState.round !== expected.round || lastState.drawnCount !== expected.drawnCount || lastState.phase !== expected.phase) return;
+            lastCheck = window.pokenoBoards.matches(check, lastState) ? check : null;
+            render(lastState, lastTheme);
+        });
+    }
     function pollTheme(requestedCode) {
         if (themeInFlight) return;
         themeInFlight = true;
-        var databaseUrl = config.databaseURL.replace(/\/$/, "");
-        var url = databaseUrl + "/rooms/" + requestedCode + "/theme.json?auth=" + encodeURIComponent(token) + "&_=" + Date.now();
+        var url = databaseRequest("/rooms/" + requestedCode + "/theme.json");
         request("GET", url, null, null, function (status, themeId) {
             if (requestedCode !== roomCode) return;
             themeInFlight = false;
@@ -298,15 +352,16 @@
                 schedulePoll(5000);
                 return;
             }
-            var databaseUrl = config.databaseURL.replace(/\/$/, "");
-            var url = databaseUrl + "/rooms/" + requestedCode + "/state.json?auth=" + encodeURIComponent(token) + "&_=" + Date.now();
+            var url = databaseRequest("/rooms/" + requestedCode + "/state.json");
             request("GET", url, null, null, function (status, state) {
                 if (requestedCode !== roomCode) return;
                 if (status === 200 && state) {
                     lastState = state;
+                    if (state.phase !== "paused" && state.phase !== "finished") lastCheck = null;
                     render(state, lastTheme);
                     schedulePoll(1500);
                     pollTheme(requestedCode);
+                    pollCheck(requestedCode, state);
                 } else if (status === 200) {
                     showJoin("That table was not found. Check the code on the caller's phone.");
                     schedulePoll(3000);
@@ -335,6 +390,8 @@
         lastSignature = "";
         lastTheme = "illustrated";
         lastState = null;
+        lastCheck = null;
+        checkInFlight = false;
         themeInFlight = false;
         showJoin("Joining room " + roomCode + "…");
         try { history.replaceState(null, "", "tv.html?room=" + encodeURIComponent(roomCode)); } catch (error) { /* The room still works without URL history. */ }
@@ -351,6 +408,8 @@
             lastSignature = "";
             lastTheme = "illustrated";
             lastState = null;
+            lastCheck = null;
+            checkInFlight = false;
             themeInFlight = false;
             clearTimeout(pollTimer);
             byId("room-code").value = "";

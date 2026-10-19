@@ -2,6 +2,7 @@
 @using PokenoGenie.Services
 @implements IAsyncDisposable
 @inject FirebaseRoomService Rooms
+@inject BoardLibraryService Boards
 @inject NavigationManager Navigation
 @inject IJSRuntime JS
 
@@ -45,6 +46,10 @@
         @if (_room.GuideOpen)
         {
             <main class="tv-guide" aria-labelledby="howto-title"><HowToGuide IsTelevision="true" /></main>
+        }
+        else if (Boards.Check is { } check && check.Matches(_room))
+        {
+            <BoardResultDisplay Check="check" Room="_room" ThemeId="@_themeId" />
         }
         else if (_room.Phase == GamePhase.Paused)
         {
@@ -141,7 +146,7 @@
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if (_room?.Phase == GamePhase.Paused && !_room.GuideOpen)
+        if (_room?.Phase == GamePhase.Paused && !_room.GuideOpen && Boards.Check?.Matches(_room) != true)
             await JS.InvokeVoidAsync("pokenoVerificationLayout.fit");
     }
 
@@ -151,15 +156,18 @@
         Rooms.ThemeChanged += HandleThemeChanged;
         Rooms.ConnectionChanged += HandleConnectionChanged;
         Rooms.ErrorReceived += HandleError;
+        Boards.Changed += HandleBoardsChanged;
         try
         {
             await Rooms.InitializeAsync();
+            await Boards.InitializeAsync();
             var code = RoomCode.Normalize(InitialRoomCode);
             if (RoomCode.IsValid(code))
             {
                 _code = code;
                 _entryCode = code;
                 await Rooms.WatchRoomAsync(code);
+                await Boards.WatchRoomAsync(code);
             }
         }
         catch (Exception error) { _setupError = error.Message; }
@@ -179,6 +187,7 @@
         _room = null;
         _code = code;
         await Rooms.WatchRoomAsync(code);
+        await Boards.WatchRoomAsync(code);
         Navigation.NavigateTo(Navigation.BaseUri + "?view=display&room=" + code, replace: true);
     }
 
@@ -195,6 +204,7 @@
     }
 
     private void HandleConnectionChanged(bool connected) => _ = InvokeAsync(StateHasChanged);
+    private void HandleBoardsChanged() => _ = InvokeAsync(StateHasChanged);
     private void HandleError(string message) { _error = message; _ = InvokeAsync(StateHasChanged); }
 
     private async Task EnterFullscreenAsync()
@@ -209,6 +219,7 @@
         Rooms.ThemeChanged -= HandleThemeChanged;
         Rooms.ConnectionChanged -= HandleConnectionChanged;
         Rooms.ErrorReceived -= HandleError;
+        Boards.Changed -= HandleBoardsChanged;
         return ValueTask.CompletedTask;
     }
 }

@@ -7,10 +7,167 @@
         "state": {
           ".read": "auth != null && $code.matches(/^[A-HJ-NP-Z2-9]{8}$/)",
           ".write": "auth != null && $code.matches(/^[A-HJ-NP-Z2-9]{8}$/) && ((!data.exists() && newData.child('ownerUid').val() == auth.uid) || (data.exists() && data.child('ownerUid').val() == auth.uid && newData.child('ownerUid').val() == auth.uid)) && ((newData.child('guideOpen').val() == true) == (data.child('guideOpen').val() == true))",
-          ".validate": "newData.hasChildren(['ownerUid', 'round', 'patternId', 'phase', 'drawnCount', 'lastDrawAt', 'createdAt']) && newData.child('ownerUid').isString() && newData.child('round').isNumber() && newData.child('patternId').isString() && newData.child('phase').isString() && newData.child('drawnCount').isNumber() && newData.child('drawnCount').val() >= 0 && newData.child('drawnCount').val() <= 52 && newData.child('lastDrawAt').isNumber() && newData.child('createdAt').isNumber() && ((!data.exists() && newData.child('guideOpen').val() != true && newData.child('round').val() == 0 && newData.child('phase').val() == 'lobby' && newData.child('patternId').val() == '' && newData.child('drawnCount').val() == 0 && newData.child('lastDrawAt').val() == 0 && newData.child('createdAt').val() <= now && newData.child('createdAt').val() >= now - 10000) || (data.exists() && newData.child('createdAt').val() == data.child('createdAt').val() && ((newData.child('guideOpen').val() != true && data.child('guideOpen').val() != true && newData.child('round').val() == data.child('round').val() + 1 && (data.child('phase').val() == 'lobby' || data.child('phase').val() == 'finished') && newData.child('phase').val() == 'calling' && newData.child('patternId').val().matches(/^(standard|horizontal|vertical|diagonal|h|c|i|s|t|l|u|z|x|plus|corners|diamond|inner-square|checkerboard|perimeter|blackout)$/) && newData.child('drawnCount').val() == 0 && newData.child('lastDrawAt').val() == 0 && root.child('decks').child($code).child('round').val() == newData.child('round').val()) || (newData.child('round').val() == data.child('round').val() && newData.child('patternId').val() == data.child('patternId').val() && data.child('guideOpen').val() != true && newData.child('guideOpen').val() != true && data.child('phase').val() == 'calling' && newData.child('drawnCount').val() == data.child('drawnCount').val() + 1 && now - data.child('lastDrawAt').val() >= 3000 && newData.child('lastDrawAt').val() <= now && newData.child('lastDrawAt').val() >= now - 1000 && ((newData.child('drawnCount').val() < 52 && newData.child('phase').val() == 'calling') || (newData.child('drawnCount').val() == 52 && newData.child('phase').val() == 'finished'))) || (newData.child('round').val() == data.child('round').val() && newData.child('patternId').val() == data.child('patternId').val() && newData.child('drawnCount').val() == data.child('drawnCount').val() && newData.child('lastDrawAt').val() == data.child('lastDrawAt').val() && ((data.child('guideOpen').val() != true && newData.child('guideOpen').val() != true && ((data.child('phase').val() == 'calling' && newData.child('phase').val() == 'paused') || (data.child('phase').val() == 'paused' && (newData.child('phase').val() == 'calling' || newData.child('phase').val() == 'finished')))) || (newData.child('phase').val() == data.child('phase').val() && ((newData.child('guideOpen').val() == true) != (data.child('guideOpen').val() == true))))))))",
+          ".validate": "(newData.hasChildren(['ownerUid', 'round', 'patternId', 'phase', 'drawnCount', 'lastDrawAt', 'createdAt']) && newData.child('ownerUid').isString() && newData.child('round').isNumber() && newData.child('patternId').isString() && newData.child('phase').isString() && newData.child('drawnCount').isNumber() && newData.child('drawnCount').val() >= 0 && newData.child('drawnCount').val() <= 52 && newData.child('lastDrawAt').isNumber() && newData.child('createdAt').isNumber() && ((!data.exists() && newData.child('guideOpen').val() != true && newData.child('round').val() == 0 && newData.child('phase').val() == 'lobby' && newData.child('patternId').val() == '' && newData.child('drawnCount').val() == 0 && newData.child('lastDrawAt').val() == 0 && newData.child('createdAt').val() <= now && newData.child('createdAt').val() >= now - 10000) || (data.exists() && newData.child('createdAt').val() == data.child('createdAt').val() && ((newData.child('guideOpen').val() != true && data.child('guideOpen').val() != true && newData.child('round').val() == data.child('round').val() + 1 && (data.child('phase').val() == 'lobby' || data.child('phase').val() == 'finished') && newData.child('phase').val() == 'calling' && newData.child('patternId').val().matches(/^(standard|horizontal|vertical|diagonal|h|c|i|s|t|l|u|z|x|plus|corners|diamond|inner-square|checkerboard|perimeter|blackout)$/) && newData.child('drawnCount').val() == 0 && newData.child('lastDrawAt').val() == 0 && root.child('decks').child($code).child('round').val() == newData.child('round').val()) || (newData.child('round').val() == data.child('round').val() && newData.child('patternId').val() == data.child('patternId').val() && data.child('guideOpen').val() != true && newData.child('guideOpen').val() != true && data.child('phase').val() == 'calling' && newData.child('drawnCount').val() == data.child('drawnCount').val() + 1 && now - data.child('lastDrawAt').val() >= 3000 && newData.child('lastDrawAt').val() <= now && newData.child('lastDrawAt').val() >= now - 1000 && ((newData.child('drawnCount').val() < 52 && newData.child('phase').val() == 'calling') || (newData.child('drawnCount').val() == 52 && newData.child('phase').val() == 'finished'))) || (newData.child('round').val() == data.child('round').val() && newData.child('patternId').val() == data.child('patternId').val() && newData.child('drawnCount').val() == data.child('drawnCount').val() && newData.child('lastDrawAt').val() == data.child('lastDrawAt').val() && ((data.child('guideOpen').val() != true && newData.child('guideOpen').val() != true && ((data.child('phase').val() == 'calling' && newData.child('phase').val() == 'paused') || (data.child('phase').val() == 'paused' && (newData.child('phase').val() == 'calling' || newData.child('phase').val() == 'finished')))) || (newData.child('phase').val() == data.child('phase').val() && ((newData.child('guideOpen').val() == true) != (data.child('guideOpen').val() == true))))))))) && ((newData.child('drawnCount').val() == 0 && !newData.child('drawn').exists()) || (newData.child('drawnCount').val() > 0 && newData.child('drawn').hasChild('' + (newData.child('drawnCount').val() - 1))))",
           "drawn": {
-            "$index": {
-              ".validate": "newData.isString() && newData.val() == root.child('decks').child($code).child('cards').child($index).val()"
+            "0": {
+              ".validate": "newData.isString() && newData.parent().parent().child('drawnCount').val() > 0 && newData.val() == root.child('decks').child($code).child('cards').child('0').val()"
+            },
+            "1": {
+              ".validate": "newData.isString() && newData.parent().parent().child('drawnCount').val() > 1 && newData.val() == root.child('decks').child($code).child('cards').child('1').val()"
+            },
+            "2": {
+              ".validate": "newData.isString() && newData.parent().parent().child('drawnCount').val() > 2 && newData.val() == root.child('decks').child($code).child('cards').child('2').val()"
+            },
+            "3": {
+              ".validate": "newData.isString() && newData.parent().parent().child('drawnCount').val() > 3 && newData.val() == root.child('decks').child($code).child('cards').child('3').val()"
+            },
+            "4": {
+              ".validate": "newData.isString() && newData.parent().parent().child('drawnCount').val() > 4 && newData.val() == root.child('decks').child($code).child('cards').child('4').val()"
+            },
+            "5": {
+              ".validate": "newData.isString() && newData.parent().parent().child('drawnCount').val() > 5 && newData.val() == root.child('decks').child($code).child('cards').child('5').val()"
+            },
+            "6": {
+              ".validate": "newData.isString() && newData.parent().parent().child('drawnCount').val() > 6 && newData.val() == root.child('decks').child($code).child('cards').child('6').val()"
+            },
+            "7": {
+              ".validate": "newData.isString() && newData.parent().parent().child('drawnCount').val() > 7 && newData.val() == root.child('decks').child($code).child('cards').child('7').val()"
+            },
+            "8": {
+              ".validate": "newData.isString() && newData.parent().parent().child('drawnCount').val() > 8 && newData.val() == root.child('decks').child($code).child('cards').child('8').val()"
+            },
+            "9": {
+              ".validate": "newData.isString() && newData.parent().parent().child('drawnCount').val() > 9 && newData.val() == root.child('decks').child($code).child('cards').child('9').val()"
+            },
+            "10": {
+              ".validate": "newData.isString() && newData.parent().parent().child('drawnCount').val() > 10 && newData.val() == root.child('decks').child($code).child('cards').child('10').val()"
+            },
+            "11": {
+              ".validate": "newData.isString() && newData.parent().parent().child('drawnCount').val() > 11 && newData.val() == root.child('decks').child($code).child('cards').child('11').val()"
+            },
+            "12": {
+              ".validate": "newData.isString() && newData.parent().parent().child('drawnCount').val() > 12 && newData.val() == root.child('decks').child($code).child('cards').child('12').val()"
+            },
+            "13": {
+              ".validate": "newData.isString() && newData.parent().parent().child('drawnCount').val() > 13 && newData.val() == root.child('decks').child($code).child('cards').child('13').val()"
+            },
+            "14": {
+              ".validate": "newData.isString() && newData.parent().parent().child('drawnCount').val() > 14 && newData.val() == root.child('decks').child($code).child('cards').child('14').val()"
+            },
+            "15": {
+              ".validate": "newData.isString() && newData.parent().parent().child('drawnCount').val() > 15 && newData.val() == root.child('decks').child($code).child('cards').child('15').val()"
+            },
+            "16": {
+              ".validate": "newData.isString() && newData.parent().parent().child('drawnCount').val() > 16 && newData.val() == root.child('decks').child($code).child('cards').child('16').val()"
+            },
+            "17": {
+              ".validate": "newData.isString() && newData.parent().parent().child('drawnCount').val() > 17 && newData.val() == root.child('decks').child($code).child('cards').child('17').val()"
+            },
+            "18": {
+              ".validate": "newData.isString() && newData.parent().parent().child('drawnCount').val() > 18 && newData.val() == root.child('decks').child($code).child('cards').child('18').val()"
+            },
+            "19": {
+              ".validate": "newData.isString() && newData.parent().parent().child('drawnCount').val() > 19 && newData.val() == root.child('decks').child($code).child('cards').child('19').val()"
+            },
+            "20": {
+              ".validate": "newData.isString() && newData.parent().parent().child('drawnCount').val() > 20 && newData.val() == root.child('decks').child($code).child('cards').child('20').val()"
+            },
+            "21": {
+              ".validate": "newData.isString() && newData.parent().parent().child('drawnCount').val() > 21 && newData.val() == root.child('decks').child($code).child('cards').child('21').val()"
+            },
+            "22": {
+              ".validate": "newData.isString() && newData.parent().parent().child('drawnCount').val() > 22 && newData.val() == root.child('decks').child($code).child('cards').child('22').val()"
+            },
+            "23": {
+              ".validate": "newData.isString() && newData.parent().parent().child('drawnCount').val() > 23 && newData.val() == root.child('decks').child($code).child('cards').child('23').val()"
+            },
+            "24": {
+              ".validate": "newData.isString() && newData.parent().parent().child('drawnCount').val() > 24 && newData.val() == root.child('decks').child($code).child('cards').child('24').val()"
+            },
+            "25": {
+              ".validate": "newData.isString() && newData.parent().parent().child('drawnCount').val() > 25 && newData.val() == root.child('decks').child($code).child('cards').child('25').val()"
+            },
+            "26": {
+              ".validate": "newData.isString() && newData.parent().parent().child('drawnCount').val() > 26 && newData.val() == root.child('decks').child($code).child('cards').child('26').val()"
+            },
+            "27": {
+              ".validate": "newData.isString() && newData.parent().parent().child('drawnCount').val() > 27 && newData.val() == root.child('decks').child($code).child('cards').child('27').val()"
+            },
+            "28": {
+              ".validate": "newData.isString() && newData.parent().parent().child('drawnCount').val() > 28 && newData.val() == root.child('decks').child($code).child('cards').child('28').val()"
+            },
+            "29": {
+              ".validate": "newData.isString() && newData.parent().parent().child('drawnCount').val() > 29 && newData.val() == root.child('decks').child($code).child('cards').child('29').val()"
+            },
+            "30": {
+              ".validate": "newData.isString() && newData.parent().parent().child('drawnCount').val() > 30 && newData.val() == root.child('decks').child($code).child('cards').child('30').val()"
+            },
+            "31": {
+              ".validate": "newData.isString() && newData.parent().parent().child('drawnCount').val() > 31 && newData.val() == root.child('decks').child($code).child('cards').child('31').val()"
+            },
+            "32": {
+              ".validate": "newData.isString() && newData.parent().parent().child('drawnCount').val() > 32 && newData.val() == root.child('decks').child($code).child('cards').child('32').val()"
+            },
+            "33": {
+              ".validate": "newData.isString() && newData.parent().parent().child('drawnCount').val() > 33 && newData.val() == root.child('decks').child($code).child('cards').child('33').val()"
+            },
+            "34": {
+              ".validate": "newData.isString() && newData.parent().parent().child('drawnCount').val() > 34 && newData.val() == root.child('decks').child($code).child('cards').child('34').val()"
+            },
+            "35": {
+              ".validate": "newData.isString() && newData.parent().parent().child('drawnCount').val() > 35 && newData.val() == root.child('decks').child($code).child('cards').child('35').val()"
+            },
+            "36": {
+              ".validate": "newData.isString() && newData.parent().parent().child('drawnCount').val() > 36 && newData.val() == root.child('decks').child($code).child('cards').child('36').val()"
+            },
+            "37": {
+              ".validate": "newData.isString() && newData.parent().parent().child('drawnCount').val() > 37 && newData.val() == root.child('decks').child($code).child('cards').child('37').val()"
+            },
+            "38": {
+              ".validate": "newData.isString() && newData.parent().parent().child('drawnCount').val() > 38 && newData.val() == root.child('decks').child($code).child('cards').child('38').val()"
+            },
+            "39": {
+              ".validate": "newData.isString() && newData.parent().parent().child('drawnCount').val() > 39 && newData.val() == root.child('decks').child($code).child('cards').child('39').val()"
+            },
+            "40": {
+              ".validate": "newData.isString() && newData.parent().parent().child('drawnCount').val() > 40 && newData.val() == root.child('decks').child($code).child('cards').child('40').val()"
+            },
+            "41": {
+              ".validate": "newData.isString() && newData.parent().parent().child('drawnCount').val() > 41 && newData.val() == root.child('decks').child($code).child('cards').child('41').val()"
+            },
+            "42": {
+              ".validate": "newData.isString() && newData.parent().parent().child('drawnCount').val() > 42 && newData.val() == root.child('decks').child($code).child('cards').child('42').val()"
+            },
+            "43": {
+              ".validate": "newData.isString() && newData.parent().parent().child('drawnCount').val() > 43 && newData.val() == root.child('decks').child($code).child('cards').child('43').val()"
+            },
+            "44": {
+              ".validate": "newData.isString() && newData.parent().parent().child('drawnCount').val() > 44 && newData.val() == root.child('decks').child($code).child('cards').child('44').val()"
+            },
+            "45": {
+              ".validate": "newData.isString() && newData.parent().parent().child('drawnCount').val() > 45 && newData.val() == root.child('decks').child($code).child('cards').child('45').val()"
+            },
+            "46": {
+              ".validate": "newData.isString() && newData.parent().parent().child('drawnCount').val() > 46 && newData.val() == root.child('decks').child($code).child('cards').child('46').val()"
+            },
+            "47": {
+              ".validate": "newData.isString() && newData.parent().parent().child('drawnCount').val() > 47 && newData.val() == root.child('decks').child($code).child('cards').child('47').val()"
+            },
+            "48": {
+              ".validate": "newData.isString() && newData.parent().parent().child('drawnCount').val() > 48 && newData.val() == root.child('decks').child($code).child('cards').child('48').val()"
+            },
+            "49": {
+              ".validate": "newData.isString() && newData.parent().parent().child('drawnCount').val() > 49 && newData.val() == root.child('decks').child($code).child('cards').child('49').val()"
+            },
+            "50": {
+              ".validate": "newData.isString() && newData.parent().parent().child('drawnCount').val() > 50 && newData.val() == root.child('decks').child($code).child('cards').child('50').val()"
+            },
+            "51": {
+              ".validate": "newData.isString() && newData.parent().parent().child('drawnCount').val() > 51 && newData.val() == root.child('decks').child($code).child('cards').child('51').val()"
+            },
+            ".validate": "(newData.parent().child('drawnCount').val() == 1 && newData.hasChildren(['0'])) || (newData.parent().child('drawnCount').val() == 2 && newData.hasChildren(['0','1'])) || (newData.parent().child('drawnCount').val() == 3 && newData.hasChildren(['0','1','2'])) || (newData.parent().child('drawnCount').val() == 4 && newData.hasChildren(['0','1','2','3'])) || (newData.parent().child('drawnCount').val() == 5 && newData.hasChildren(['0','1','2','3','4'])) || (newData.parent().child('drawnCount').val() == 6 && newData.hasChildren(['0','1','2','3','4','5'])) || (newData.parent().child('drawnCount').val() == 7 && newData.hasChildren(['0','1','2','3','4','5','6'])) || (newData.parent().child('drawnCount').val() == 8 && newData.hasChildren(['0','1','2','3','4','5','6','7'])) || (newData.parent().child('drawnCount').val() == 9 && newData.hasChildren(['0','1','2','3','4','5','6','7','8'])) || (newData.parent().child('drawnCount').val() == 10 && newData.hasChildren(['0','1','2','3','4','5','6','7','8','9'])) || (newData.parent().child('drawnCount').val() == 11 && newData.hasChildren(['0','1','2','3','4','5','6','7','8','9','10'])) || (newData.parent().child('drawnCount').val() == 12 && newData.hasChildren(['0','1','2','3','4','5','6','7','8','9','10','11'])) || (newData.parent().child('drawnCount').val() == 13 && newData.hasChildren(['0','1','2','3','4','5','6','7','8','9','10','11','12'])) || (newData.parent().child('drawnCount').val() == 14 && newData.hasChildren(['0','1','2','3','4','5','6','7','8','9','10','11','12','13'])) || (newData.parent().child('drawnCount').val() == 15 && newData.hasChildren(['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14'])) || (newData.parent().child('drawnCount').val() == 16 && newData.hasChildren(['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15'])) || (newData.parent().child('drawnCount').val() == 17 && newData.hasChildren(['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16'])) || (newData.parent().child('drawnCount').val() == 18 && newData.hasChildren(['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17'])) || (newData.parent().child('drawnCount').val() == 19 && newData.hasChildren(['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18'])) || (newData.parent().child('drawnCount').val() == 20 && newData.hasChildren(['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19'])) || (newData.parent().child('drawnCount').val() == 21 && newData.hasChildren(['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20'])) || (newData.parent().child('drawnCount').val() == 22 && newData.hasChildren(['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21'])) || (newData.parent().child('drawnCount').val() == 23 && newData.hasChildren(['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22'])) || (newData.parent().child('drawnCount').val() == 24 && newData.hasChildren(['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23'])) || (newData.parent().child('drawnCount').val() == 25 && newData.hasChildren(['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24'])) || (newData.parent().child('drawnCount').val() == 26 && newData.hasChildren(['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25'])) || (newData.parent().child('drawnCount').val() == 27 && newData.hasChildren(['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26'])) || (newData.parent().child('drawnCount').val() == 28 && newData.hasChildren(['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27'])) || (newData.parent().child('drawnCount').val() == 29 && newData.hasChildren(['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28'])) || (newData.parent().child('drawnCount').val() == 30 && newData.hasChildren(['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29'])) || (newData.parent().child('drawnCount').val() == 31 && newData.hasChildren(['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30'])) || (newData.parent().child('drawnCount').val() == 32 && newData.hasChildren(['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31'])) || (newData.parent().child('drawnCount').val() == 33 && newData.hasChildren(['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32'])) || (newData.parent().child('drawnCount').val() == 34 && newData.hasChildren(['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33'])) || (newData.parent().child('drawnCount').val() == 35 && newData.hasChildren(['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34'])) || (newData.parent().child('drawnCount').val() == 36 && newData.hasChildren(['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35'])) || (newData.parent().child('drawnCount').val() == 37 && newData.hasChildren(['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36'])) || (newData.parent().child('drawnCount').val() == 38 && newData.hasChildren(['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37'])) || (newData.parent().child('drawnCount').val() == 39 && newData.hasChildren(['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38'])) || (newData.parent().child('drawnCount').val() == 40 && newData.hasChildren(['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39'])) || (newData.parent().child('drawnCount').val() == 41 && newData.hasChildren(['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40'])) || (newData.parent().child('drawnCount').val() == 42 && newData.hasChildren(['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','41'])) || (newData.parent().child('drawnCount').val() == 43 && newData.hasChildren(['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','41','42'])) || (newData.parent().child('drawnCount').val() == 44 && newData.hasChildren(['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','41','42','43'])) || (newData.parent().child('drawnCount').val() == 45 && newData.hasChildren(['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','41','42','43','44'])) || (newData.parent().child('drawnCount').val() == 46 && newData.hasChildren(['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','41','42','43','44','45'])) || (newData.parent().child('drawnCount').val() == 47 && newData.hasChildren(['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','41','42','43','44','45','46'])) || (newData.parent().child('drawnCount').val() == 48 && newData.hasChildren(['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','41','42','43','44','45','46','47'])) || (newData.parent().child('drawnCount').val() == 49 && newData.hasChildren(['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','41','42','43','44','45','46','47','48'])) || (newData.parent().child('drawnCount').val() == 50 && newData.hasChildren(['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','41','42','43','44','45','46','47','48','49'])) || (newData.parent().child('drawnCount').val() == 51 && newData.hasChildren(['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','41','42','43','44','45','46','47','48','49','50'])) || (newData.parent().child('drawnCount').val() == 52 && newData.hasChildren(['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','41','42','43','44','45','46','47','48','49','50','51']))",
+            "$other": {
+              ".validate": false
             }
           },
           "guideOpen": {
@@ -22,6 +179,77 @@
           ".read": "auth != null && $code.matches(/^[A-HJ-NP-Z2-9]{8}$/) && root.child('rooms').child($code).child('state').exists()",
           ".write": "auth != null && $code.matches(/^[A-HJ-NP-Z2-9]{8}$/) && root.child('rooms').child($code).child('state').child('ownerUid').val() == auth.uid",
           ".validate": "newData.isString() && newData.val().matches(/^(illustrated|midnight|sunburst|mopar|dart1969|harrypotter|starwars|lordoftherings|cats)$/)"
+        },
+        "boards": {
+          ".read": "auth != null && root.child('rooms').child($code).child('state').exists()",
+          ".write": "auth != null && root.child('rooms').child($code).child('state').child('ownerUid').val() == auth.uid && root.child('rooms').child($code).child('state').child('guideOpen').val() != true && (((!newData.exists() || newData.child('round').val() == root.child('rooms').child($code).child('state').child('round').val() + 1) && (root.child('rooms').child($code).child('state').child('phase').val() == 'lobby' || root.child('rooms').child($code).child('state').child('phase').val() == 'finished')) || (newData.child('round').val() == root.child('rooms').child($code).child('state').child('round').val() && (!data.exists() || data.child('round').val() != root.child('rooms').child($code).child('state').child('round').val()) && (root.child('rooms').child($code).child('state').child('phase').val() == 'paused' || root.child('rooms').child($code).child('state').child('phase').val() == 'finished')))",
+          ".validate": "newData.hasChildren(['round','setId','setName','revisions','labels']) && newData.child('setName').val() == root.child('boardSets').child(newData.child('setId').val()).child('name').val() && newData.child('revisions').hasChildren()",
+          "round": {
+            ".validate": "newData.isNumber() && newData.val() > 0 && newData.val() % 1 == 0"
+          },
+          "setId": {
+            ".validate": "newData.isString() && newData.val().matches(/^[a-zA-Z0-9_-]{1,64}$/)"
+          },
+          "setName": {
+            ".validate": "newData.isString()"
+          },
+          "revisions": {
+            "$boardId": {
+              ".validate": "newData.isString() && newData.val() == root.child('boardSets').child(newData.parent().parent().child('setId').val()).child('boards').child($boardId).child('revisionId').val() && root.child('boardSets').child(newData.parent().parent().child('setId').val()).child('boards').child($boardId).child('archived').val() != true && newData.parent().parent().child('labels').child($boardId).val() == root.child('boardRevisions').child($boardId).child(newData.val()).child('label').val()"
+            }
+          },
+          "labels": {
+            "$boardId": {
+              ".validate": "newData.isString() && newData.parent().parent().child('revisions').child($boardId).exists()"
+            }
+          },
+          "$other": {
+            ".validate": false
+          }
+        },
+        "verification": {
+          ".read": "auth != null && root.child('rooms').child($code).child('state').exists()",
+          ".write": "auth != null && root.child('rooms').child($code).child('state').child('ownerUid').val() == auth.uid && (!newData.exists() || (root.child('rooms').child($code).child('state').child('guideOpen').val() != true && (root.child('rooms').child($code).child('state').child('phase').val() == 'paused' || root.child('rooms').child($code).child('state').child('phase').val() == 'finished')))",
+          ".validate": "newData.hasChildren(['id','round','patternId','drawnCount','setId','setName','boardId','revisionId','label','cards','checkedAt']) && newData.child('round').val() == root.child('rooms').child($code).child('state').child('round').val() && newData.child('drawnCount').val() == root.child('rooms').child($code).child('state').child('drawnCount').val() && newData.child('patternId').val() == root.child('rooms').child($code).child('state').child('patternId').val() && root.child('rooms').child($code).child('boards').child('round').val() == root.child('rooms').child($code).child('state').child('round').val() && newData.child('setId').val() == root.child('rooms').child($code).child('boards').child('setId').val() && newData.child('setName').val() == root.child('rooms').child($code).child('boards').child('setName').val() && newData.child('revisionId').val() == root.child('rooms').child($code).child('boards').child('revisions').child(newData.child('boardId').val()).val() && newData.child('label').val() == root.child('boardRevisions').child(newData.child('boardId').val()).child(newData.child('revisionId').val()).child('label').val()",
+          "id": {
+            ".validate": "newData.isString() && newData.val().matches(/^[a-zA-Z0-9_-]{1,64}$/)"
+          },
+          "round": {
+            ".validate": "newData.isNumber()"
+          },
+          "patternId": {
+            ".validate": "newData.isString()"
+          },
+          "drawnCount": {
+            ".validate": "newData.isNumber()"
+          },
+          "setId": {
+            ".validate": "newData.isString() && newData.val().matches(/^[a-zA-Z0-9_-]{1,64}$/)"
+          },
+          "setName": {
+            ".validate": "newData.isString()"
+          },
+          "boardId": {
+            ".validate": "newData.isString() && newData.val().matches(/^[a-zA-Z0-9_-]{1,64}$/)"
+          },
+          "revisionId": {
+            ".validate": "newData.isString() && newData.val().matches(/^[a-zA-Z0-9_-]{1,64}$/)"
+          },
+          "label": {
+            ".validate": "newData.isString()"
+          },
+          "checkedAt": {
+            ".validate": "newData.isNumber() && newData.val() <= now && newData.val() >= now - 10000"
+          },
+          "cards": {
+            ".validate": "newData.hasChildren(['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24'])",
+            "$index": {
+              ".validate": "$index.matches(/^([0-9]|1[0-9]|2[0-4])$/) && newData.isString() && newData.val() == root.child('boardRevisions').child(newData.parent().parent().child('boardId').val()).child(newData.parent().parent().child('revisionId').val()).child('cards').child($index).val()"
+            }
+          },
+          "$other": {
+            ".validate": false
+          }
         }
       }
     },
@@ -33,6 +261,135 @@
         "cards": {
           "$index": {
             ".validate": "newData.isString() && newData.val().matches(/^(A|[2-9]|10|J|Q|K)[SHDC]$/)"
+          }
+        }
+      }
+    },
+    "boardEditors": {
+      "$uid": {
+        ".read": "auth != null && auth.uid == $uid",
+        ".write": false
+      }
+    },
+    "boardSets": {
+      ".read": "auth != null",
+      "$setId": {
+        ".write": "auth != null && root.child('boardEditors').child(auth.uid).val() == true && $setId.matches(/^[a-zA-Z0-9_-]{1,64}$/) && newData.exists()",
+        ".validate": "newData.hasChildren(['name','version']) && ((!data.exists() && newData.child('version').val() == 1) || (data.exists() && newData.child('version').val() == data.child('version').val() + 1))",
+        "name": {
+          ".validate": "newData.isString() && newData.val().length > 0 && newData.val().length <= 60"
+        },
+        "version": {
+          ".validate": "newData.isNumber()"
+        },
+        "boards": {
+          "$boardId": {
+            ".validate": "newData.hasChildren(['label','revisionId','layoutHash','archived']) && root.child('boardRevisions').child($boardId).child(newData.child('revisionId').val()).child('setId').val() == $setId && newData.child('label').val() == root.child('boardRevisions').child($boardId).child(newData.child('revisionId').val()).child('label').val() && newData.child('layoutHash').val() == root.child('boardRevisions').child($boardId).child(newData.child('revisionId').val()).child('layoutHash').val()",
+            "label": {
+              ".validate": "newData.isString()"
+            },
+            "revisionId": {
+              ".validate": "newData.isString() && newData.val().matches(/^[a-zA-Z0-9_-]{1,64}$/)"
+            },
+            "layoutHash": {
+              ".validate": "newData.isString()"
+            },
+            "archived": {
+              ".validate": "newData.isBoolean()"
+            },
+            "$other": {
+              ".validate": false
+            }
+          }
+        },
+        "$other": {
+          ".validate": false
+        }
+      }
+    },
+    "boardRevisions": {
+      ".read": "auth != null",
+      "$boardId": {
+        "$revisionId": {
+          ".write": "auth != null && root.child('boardEditors').child(auth.uid).val() == true && !data.exists() && newData.exists() && $boardId.matches(/^[a-zA-Z0-9_-]{1,64}$/) && $revisionId.matches(/^[a-zA-Z0-9_-]{1,64}$/)",
+          ".validate": "newData.hasChildren(['setId','boardId','revisionId','label','cards','positions','layoutHash','createdBy','createdAt']) && newData.child('boardId').val() == $boardId && newData.child('revisionId').val() == $revisionId && root.child('boardSets').child(newData.child('setId').val()).exists()",
+          "setId": {
+            ".validate": "newData.isString() && newData.val().matches(/^[a-zA-Z0-9_-]{1,64}$/)"
+          },
+          "boardId": {
+            ".validate": "newData.isString() && newData.val().matches(/^[a-zA-Z0-9_-]{1,64}$/)"
+          },
+          "revisionId": {
+            ".validate": "newData.isString() && newData.val().matches(/^[a-zA-Z0-9_-]{1,64}$/)"
+          },
+          "label": {
+            ".validate": "newData.isString() && newData.val().length > 0 && newData.val().length <= 60"
+          },
+          "layoutHash": {
+            ".validate": "newData.isString() && newData.val().matches(/^[a-f0-9]{64}$/)"
+          },
+          "createdBy": {
+            ".validate": "newData.val() == auth.uid"
+          },
+          "createdAt": {
+            ".validate": "newData.isNumber() && newData.val() <= now && newData.val() >= now - 10000"
+          },
+          "cards": {
+            ".validate": "newData.hasChildren(['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24'])",
+            "$index": {
+              ".validate": "$index.matches(/^([0-9]|1[0-9]|2[0-4])$/) && newData.isString() && newData.val().matches(/^(A|[2-9]|10|J|Q|K)[SHDC]$/) && newData.parent().parent().child('positions').child(newData.val()).val() == $index"
+            }
+          },
+          "positions": {
+            ".validate": "newData.hasChildren()",
+            "$card": {
+              ".validate": "$card.matches(/^(A|[2-9]|10|J|Q|K)[SHDC]$/) && newData.isString() && newData.val().matches(/^([0-9]|1[0-9]|2[0-4])$/) && newData.parent().parent().child('cards').child(newData.val()).val() == $card"
+            }
+          },
+          "$other": {
+            ".validate": false
+          }
+        }
+      }
+    },
+    "boardDrafts": {
+      "$uid": {
+        ".read": "auth != null && root.child('boardEditors').child(auth.uid).val() == true && auth.uid == $uid",
+        "$draftId": {
+          ".write": "auth != null && root.child('boardEditors').child(auth.uid).val() == true && auth.uid == $uid",
+          ".validate": "newData.hasChildren(['id','setId','boardId','label','baseRevisionId','cards','currentCell','pendingRank','updatedAt']) && newData.child('id').val() == $draftId && root.child('boardSets').child(newData.child('setId').val()).exists()",
+          "id": {
+            ".validate": "newData.isString() && newData.val().matches(/^[a-zA-Z0-9_-]{1,64}$/)"
+          },
+          "setId": {
+            ".validate": "newData.isString() && newData.val().matches(/^[a-zA-Z0-9_-]{1,64}$/)"
+          },
+          "boardId": {
+            ".validate": "newData.isString() && newData.val().matches(/^[a-zA-Z0-9_-]{1,64}$/)"
+          },
+          "label": {
+            ".validate": "newData.isString() && newData.val().length <= 60"
+          },
+          "baseRevisionId": {
+            ".validate": "newData.isString() && (newData.val() == '' || newData.val().matches(/^[a-zA-Z0-9_-]{1,64}$/))"
+          },
+          "currentCell": {
+            ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 24 && newData.val() % 1 == 0"
+          },
+          "pendingRank": {
+            ".validate": "newData.isString() && newData.val().matches(/^(A|[2-9]|10|J|Q|K)?$/)"
+          },
+          "updatedAt": {
+            ".validate": "newData.isNumber() && newData.val() <= now + 1000"
+          },
+          "cards": {
+            ".validate": "newData.hasChildren(['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24'])",
+            "$index": {
+              ".validate": "$index.matches(/^([0-9]|1[0-9]|2[0-4])$/) && newData.isString() && (newData.val() == '' || newData.val().matches(/^(A|[2-9]|10|J|Q|K)[SHDC]$/))"
+            }
+          },
+          "$other": {
+            ".validate": false
           }
         }
       }

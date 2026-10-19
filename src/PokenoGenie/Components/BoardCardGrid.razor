@@ -1,0 +1,21 @@
+@using PokenoGenie.Core
+
+<div class="board-card-grid" role="group" aria-label="Saved five by five Pokeno board">
+    @for (var index = 0; index < Cards.Count; index++)
+    {
+        var card = PlayingCard.FromId(Cards[index]);
+        <div class="board-card-cell @(PatternCells.Contains(index) ? "pattern-cell" : "") @(CalledCells.Contains(index) ? "called-cell" : "")"
+             aria-label="@($"Row {index / 5 + 1}, Column {index % 5 + 1}: {card?.AccessibleName}{(CalledCells.Contains(index) ? ", called" : ", not called")}")">
+            <PlayingCardView Card="card" ThemeId="@ThemeId" />
+            <strong class="@(card?.IsRed == true ? "red-suit" : "")">@card?.Rank@card?.Suit</strong>
+            @if (CalledCells.Contains(index)) { <span class="board-called-marker" aria-hidden="true">✓</span> }
+        </div>
+    }
+</div>
+
+@code {
+    [Parameter, EditorRequired] public IReadOnlyList<string> Cards { get; set; } = [];
+    [Parameter] public string ThemeId { get; set; } = DeckThemeCatalog.DefaultId;
+    [Parameter] public IReadOnlyCollection<int> PatternCells { get; set; } = [];
+    [Parameter] public IReadOnlyCollection<int> CalledCells { get; set; } = [];
+}

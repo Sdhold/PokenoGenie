@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/verification.css?v=1">
     <link rel="stylesheet" href="css/deck-backgrounds.css?v=3">
     <link rel="stylesheet" href="css/howto.css?v=1">
+    <link rel="stylesheet" href="css/boards.css?v=1">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
 </head>
 <body>
@@ -54,6 +55,17 @@
             <div id="verification-grid-wrap" class="verification-grid-wrap"><ol id="verification-cards" class="verification-grid" aria-label="All called cards in draw order"></ol></div>
             <p id="verification-empty" class="verification-empty" hidden>No cards have been drawn yet.</p>
         </main>
+        <main id="board-result-panel" class="board-result-display" aria-labelledby="board-result-title" hidden>
+            <div class="board-result-heading">
+                <span id="board-result-eyebrow" class="verification-eyebrow">CHECKING A SAVED BOARD</span>
+                <img id="winner-graphic" class="winner-graphic" alt="Themed Pokeno winner celebration" hidden>
+                <h1 id="board-result-title"></h1>
+                <p id="board-result-description"></p>
+                <div id="board-result-missing" class="board-missing-cards"></div>
+                <p id="board-result-set"></p>
+            </div>
+            <div class="board-result-layout"><div id="board-result-cards" class="board-card-grid" role="group" aria-label="Checked board with called cards and winning shape"></div><p class="board-result-legend">Gold outlines the checked shape · ✓ means called</p></div>
+        </main>
         <main id="howto-panel" class="tv-guide" aria-labelledby="howto-title" hidden>
             <div class="howto-intro">
                 <span class="howto-eyebrow">YOUR GAME NIGHT GUIDE</span>
@@ -64,7 +76,7 @@
                 <li><span class="howto-step-number" aria-hidden="true">01</span><div><h2>Connect the two screens</h2><p>On the phone, tap <strong>Create a table</strong>. On the TV, open this site's <strong>tv.html</strong> page and enter the phone's eight-character room code.</p></div></li>
                 <li><span class="howto-step-number" aria-hidden="true">02</span><div><h2>Pick the winning shape</h2><p>Choose a pattern and check its 5×5 preview. Tap <strong>Shuffle &amp; start round</strong> for a fresh 52-card deck. The pattern stays fixed until the round ends.</p></div></li>
                 <li><span class="howto-step-number" aria-hidden="true">03</span><div><h2>Draw, call, and mark</h2><p>Tap <strong>Draw card</strong> and call its rank and suit. Players mark matching cards on their boards. Wait three seconds between draws. The TV shows the current card and previous four.</p></div></li>
-                <li><span class="howto-step-number" aria-hidden="true">04</span><div><h2>Someone calls “Pokeno!”</h2><p>Tap <strong>Pause / verify Pokeno</strong> to show all called cards on both screens. Check the player's physical board and winning shape. Then choose <strong>Resume drawing</strong> or <strong>End round</strong>.</p></div></li>
+                <li><span class="howto-step-number" aria-hidden="true">04</span><div><h2>Someone calls “Pokeno!”</h2><p>Tap <strong>Pause / verify Pokeno</strong>. Select the saved set and physical board number, then <strong>Check board for a win</strong>. A winning shape is highlighted on both screens with a themed TV celebration. Confirm the physical board, then <strong>Resume drawing</strong> or <strong>End round</strong>. Use <strong>Board library</strong> to enter or generate boards before play.</p></div></li>
                 <li><span class="howto-step-number" aria-hidden="true">05</span><div><h2>Make the table yours</h2><p>Choose a look in <strong>Card deck</strong>. The cards and background change on the phone and TV together. Your round, pattern, and called cards stay the same.</p></div></li>
                 <li><span class="howto-step-number" aria-hidden="true">06</span><div><h2>Play another round</h2><p>After ending a round, pick a pattern and shuffle again using the same code. Pass the caller phone to the next person. <strong>End table &amp; start new</strong> creates a new code and resets the round count.</p></div></li>
             </ol>
@@ -78,6 +90,7 @@
     </div>
     <noscript>This TV display needs JavaScript. Please enable it in the TV browser.</noscript>
     <script src="js/verification-layout.js?v=1"></script>
-    <script src="js/tv.js?v=10"></script>
+    <script src="js/board-verification.js?v=1"></script>
+    <script src="js/tv.js?v=11"></script>
 </body>
 </html>

@@ -1,0 +1,58 @@
+@using PokenoGenie.Core
+@using PokenoGenie.Services
+@implements IDisposable
+@inject BoardLibraryService Boards
+@inject FirebaseRoomService Rooms
+
+<section class="board-win-checker" aria-labelledby="board-check-title">
+    <span class="eyebrow">CHECK A SAVED BOARD</span><h2 id="board-check-title">Did this board win?</h2>
+    @if (Pinned is null)
+    {
+        <p>Choose the physical board's set. Its current layouts will stay fixed for this round.</p>
+        <label class="library-field">Board set<select @bind="_setId"><option value="">Choose a set</option>@foreach (var set in Boards.Sets.Where(set => set.Boards.Any(pair => !pair.Value.Archived))) { <option value="@set.Id">@set.Name</option> }</select></label>
+        <button class="secondary-button" disabled="@(_busy || !Rooms.IsConnected || _setId.Length == 0)" @onclick="PinAsync">Use this set for this round</button>
+        @if (!Boards.Sets.Any(set => set.Boards.Any(pair => !pair.Value.Archived))) { <p>No published boards yet. Open Board library to add your set.</p> }
+    }
+    else
+    {
+        <p class="board-set-lock">@Pinned.SetName · saved versions locked for Round @Room.Round</p>
+        <label class="library-field">Physical board number<select @bind="_boardId"><option value="">Choose a board</option>@foreach (var pair in Pinned.Labels.OrderBy(pair => pair.Value)) { <option value="@pair.Key">@pair.Value</option> }</select></label>
+        <button class="primary-button" disabled="@(_busy || !Rooms.IsConnected || _boardId.Length == 0)" @onclick="CheckAsync">@(_busy ? "Checking…" : "Check board for a win")</button>
+    }
+    @if (Boards.Check is { } check && check.Matches(Room))
+    {
+        var verdict = BoardLayouts.Check(check.Cards, Room.Drawn, Room.PatternId);
+        <div class="board-check-result @(verdict.IsWinner ? "winner" : "incomplete")" role="alert" aria-live="assertive">
+            <span class="eyebrow">@(verdict.IsWinner ? "POKENO!" : "NOT A WIN YET")</span><h3>@(verdict.IsWinner ? $"{check.Label} wins!" : $"{check.Label}: {verdict.MissingCards.Length} still needed")</h3>
+            <p>@(verdict.IsWinner ? "Every card in the winning shape has been called. The TV is celebrating! Confirm this is the player's physical board." : "These cards are missing from the closest allowed winning shape:")</p>
+            @if (!verdict.IsWinner) { <div class="board-missing-cards">@foreach (var value in verdict.MissingCards) { var card = PlayingCard.FromId(value)!; <span class="@(card.IsRed ? "red-suit" : "")">@card.Rank@card.Suit</span> }</div> }
+            <BoardCardGrid Cards="check.Cards" ThemeId="@ThemeId" PatternCells="verdict.PatternCells" CalledCells="verdict.CalledCells" />
+            <p class="fine-print">Gold outlines the checked shape. ✓ means that card was called.</p>
+            <button class="secondary-button" disabled="@(_busy || !Rooms.IsConnected)" @onclick="ClearAsync">Return TV to called cards</button>
+        </div>
+    }
+    @if (_error is not null) { <p class="library-error" role="alert">@_error</p> }
+</section>
+
+@code {
+    [Parameter, EditorRequired] public string Code { get; set; } = "";
+    [Parameter, EditorRequired] public RoomState Room { get; set; } = new();
+    [Parameter] public string ThemeId { get; set; } = DeckThemeCatalog.DefaultId;
+    private string _setId = "", _boardId = "";
+    private bool _busy;
+    private string? _error;
+    private RoundBoards? Pinned => Boards.RoundBoards?.Round == Room.Round ? Boards.RoundBoards : null;
+    protected override void OnInitialized() { Boards.Changed += Changed; }
+    private void Changed() => _ = InvokeAsync(StateHasChanged);
+    private async Task RunAsync(Func<Task> action)
+    {
+        _busy = true; _error = null;
+        try { await action(); }
+        catch (Exception error) { _error = BoardLibraryService.FriendlyError(error); }
+        finally { _busy = false; }
+    }
+    private async Task PinAsync() => await RunAsync(() => Boards.SelectRoundSetAsync(Code, _setId));
+    private async Task CheckAsync() => await RunAsync(() => Boards.CheckAsync(Code, _boardId));
+    private async Task ClearAsync() => await RunAsync(() => Boards.ClearCheckAsync(Code));
+    public void Dispose() { Boards.Changed -= Changed; }
+}

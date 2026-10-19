@@ -7,6 +7,7 @@ const root = new URL("../src/PokenoGenie/wwwroot/", import.meta.url);
 const html = await readFile(new URL("tv.html", root), "utf8");
 const script = await readFile(new URL("js/tv.js", root), "utf8");
 const layoutSource = await readFile(new URL("js/verification-layout.js", root), "utf8");
+const boardSource = await readFile(new URL("js/board-verification.js", root), "utf8");
 const newPatterns = JSON.parse(await readFile(new URL("fixtures/new-patterns.json", import.meta.url), "utf8"));
 const cards = ["S","H","D","C"].flatMap(suit => ["A","2","3","4","5","6","7","8","9","10","J","Q","K"].map(rank => rank+suit));
 
@@ -22,7 +23,7 @@ function harness(initialState = {}) {
   }
   const elements = Object.fromEntries([...html.matchAll(/\bid="([^"]+)"/g)].map(match=>[match[1],node()]));
   let state = { round:1, phase:"calling", patternId:"h", drawnCount:0, drawn:[], ...initialState };
-  let theme = "starwars", fitCalls = 0, timerId = 0;
+  let theme = "starwars", fitCalls = 0, timerId = 0, check = null;
   const pending = new Map();
   class Request {
     open(method,url) { this.url=url; }
@@ -33,6 +34,7 @@ function harness(initialState = {}) {
       else if (this.url.includes("identitytoolkit")) result={idToken:"fixture",refreshToken:"fixture",expiresIn:3600};
       else if (this.url.includes("/state.json")) result=state;
       else if (this.url.includes("/theme.json")) result=theme;
+      else if (this.url.includes("/verification.json")) result=check;
       else throw new Error(`Unexpected request: ${this.url}`);
       this.status=200; this.readyState=4; this.responseText=JSON.stringify(result); this.onreadystatechange();
     }
@@ -43,10 +45,12 @@ function harness(initialState = {}) {
     location:{search:"?room=ABCDEFGH"},history:{replaceState(){}},sessionStorage:{getItem(){return null;},setItem(){}},
     XMLHttpRequest:Request,setTimeout:callback=>{pending.set(++timerId,callback);return timerId;},clearTimeout:id=>pending.delete(id)
   };
+  vm.runInNewContext(boardSource,context);
   vm.runInNewContext(script,context);
   return {
     elements,
     get fitCalls() { return fitCalls; },
+    setCheck(value) { check=value; },
     update(phase,count,nextTheme=theme,guideOpen=state.guideOpen === true) {
       state={...state,phase,drawnCount:count,drawn:cards.slice(0,count),guideOpen}; theme=nextTheme;
       const [id,callback]=pending.entries().next().value;
@@ -163,5 +167,55 @@ test("every alternate deck bundles a self-contained matching background",async()
     assert.match(scene,/viewBox="0 0 1600 900"/);
     assert.ok(scene.includes(`data-deck="${id}"`));
     assert.doesNotMatch(scene,/(?:href|src)="https?:/);
+  }
+});
+
+test("a real winning board shows a themed celebration; an incomplete board and stale checks never celebrate",()=>{
+  const tv=harness({patternId:"horizontal"});
+  const check={id:"check-1",round:1,drawnCount:5,patternId:"horizontal",cards:cards.slice(0,25),label:"Board 07",setName:"Our set"};
+  tv.setCheck(check); tv.update("paused",5,"cats");
+  assert.equal(tv.elements["board-result-panel"].hidden,false);
+  assert.equal(tv.elements["verification-panel"].hidden,true);
+  assert.equal(tv.elements["winner-graphic"].hidden,false);
+  assert.equal(tv.elements["winner-graphic"].src,"winners/cats.svg?v=1");
+  assert.equal(tv.elements["board-result-title"].textContent,"Board 07 wins!");
+  assert.equal(tv.elements["board-result-cards"].children.length,25);
+  assert.equal(tv.elements["board-result-cards"].children.filter(cell=>cell.className.includes("pattern-cell")).length,5);
+  tv.update("paused",5,"starwars");
+  assert.equal(tv.elements["winner-graphic"].src,"winners/starwars.svg?v=1");
+  tv.setCheck({...check,id:"check-2",drawnCount:4}); tv.update("paused",4);
+  assert.equal(tv.elements["winner-graphic"].hidden,true);
+  assert.equal(tv.elements["board-result-missing"].children.length,1);
+  tv.setCheck(check); tv.update("paused",6);
+  assert.equal(tv.elements["board-result-panel"].hidden,true);
+  assert.equal(tv.elements["verification-panel"].hidden,false);
+  tv.update("calling",6);
+  assert.equal(tv.elements["board-result-panel"].hidden,true);
+});
+
+test("clearing a board check restores history, guide holds the result, and reload restores the current valid check",()=>{
+  const tv=harness({patternId:"standard"});
+  const check={id:"check",round:1,drawnCount:5,patternId:"standard",cards:cards.slice(0,25),label:"Board 01",setName:"Family"};
+  tv.setCheck(check); tv.update("paused",5);
+  assert.equal(tv.elements["board-result-panel"].hidden,false);
+  tv.update("paused",5,"cats",true);
+  assert.equal(tv.elements["board-result-panel"].hidden,true);
+  assert.equal(tv.elements["howto-panel"].hidden,false);
+  tv.update("paused",5,"cats",false);
+  assert.equal(tv.elements["board-result-panel"].hidden,false);
+  tv.setCheck(null); tv.update("paused",5);
+  assert.equal(tv.elements["board-result-panel"].hidden,true);
+  assert.equal(tv.elements["verification-cards"].children.length,5);
+  const reloaded=harness({patternId:"standard"}); reloaded.setCheck(check); reloaded.update("paused",5,"mopar");
+  assert.equal(reloaded.elements["winner-graphic"].src,"winners/mopar.svg?v=1");
+});
+
+test("every theme has a matching self-contained winner graphic",async()=>{
+  for(const theme of ["illustrated","midnight","sunburst","mopar","dart1969","harrypotter","starwars","lordoftherings","cats"]) {
+    const art=await readFile(new URL(`winners/${theme}.svg`,root),"utf8");
+    assert.ok(art.includes(`data-deck="${theme}"`));
+    assert.match(art,/POKENO!/);
+    assert.doesNotMatch(art,/(?:href|src)="https?:/);
+    assert.equal((art.match(/data:image\/svg\+xml;base64/g)||[]).length,4);
   }
 });

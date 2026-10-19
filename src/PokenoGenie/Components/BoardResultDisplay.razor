@@ -1,0 +1,23 @@
+@using PokenoGenie.Core
+
+@if (Check.Matches(Room))
+{
+    var verdict = BoardLayouts.Check(Check.Cards, Room.Drawn, Room.PatternId);
+    <main class="board-result-display" aria-labelledby="board-result-title">
+        <div class="board-result-heading">
+            <span class="verification-eyebrow">@(verdict.IsWinner ? "WINNER · POKENO!" : "BOARD CHECK · NOT A WIN YET")</span>
+            @if (verdict.IsWinner) { <img class="winner-graphic" src="@($"winners/{DeckThemeCatalog.FindOrDefault(ThemeId).Id}.svg?v=1")" alt="Themed Pokeno winner celebration" /> }
+            <h1 id="board-result-title">@(verdict.IsWinner ? $"{Check.Label} wins!" : $"{Check.Label}: {verdict.MissingCards.Length} still needed")</h1>
+            <p>@(verdict.IsWinner ? "Every card in the winning shape has been called." : "Missing from the closest allowed winning shape:")</p>
+            @if (!verdict.IsWinner) { <div class="board-missing-cards">@foreach (var value in verdict.MissingCards) { var card = PlayingCard.FromId(value)!; <span class="@(card.IsRed ? "red-suit" : "")">@card.Rank@card.Suit</span> }</div> }
+            <p>@Check.SetName · @PatternCatalog.Find(Room.PatternId)?.Name · Round @Room.Round</p>
+        </div>
+        <div class="board-result-layout"><BoardCardGrid Cards="Check.Cards" ThemeId="@ThemeId" PatternCells="verdict.PatternCells" CalledCells="verdict.CalledCells" /><p class="board-result-legend">Gold outlines the checked shape · ✓ means called</p></div>
+    </main>
+}
+
+@code {
+    [Parameter, EditorRequired] public BoardCheck Check { get; set; } = new();
+    [Parameter, EditorRequired] public RoomState Room { get; set; } = new();
+    [Parameter] public string ThemeId { get; set; } = DeckThemeCatalog.DefaultId;
+}
