@@ -10,6 +10,7 @@ public sealed class BoardSet
     public string Name { get; set; } = "";
     public string OwnerUid { get; set; } = "";
     public int Version { get; set; }
+    public bool Deleted { get; set; }
     public Dictionary<string, BoardSummary> Boards { get; set; } = [];
 }
 

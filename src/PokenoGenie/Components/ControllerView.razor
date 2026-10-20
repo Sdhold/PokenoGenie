@@ -286,7 +286,7 @@
         _room.LastDrawAt + 3000 - (DateTimeOffset.UtcNow.ToUnixTimeMilliseconds() + Rooms.ServerOffsetMs)) / 1000.0);
     private bool CanDraw => _room?.Phase == GamePhase.Calling && _room.DrawnCount < 52 &&
         Rooms.IsConnected && !_busy && !GuideOpen && CooldownSeconds == 0;
-    private RenderFragment BoardSetSelection => @<label class="library-field round-board-selection">Board set for this round<select @bind="_selectedBoardSet"><option value="">Choose when verifying</option>@foreach (var set in Boards.Sets.Where(set => set.Boards.Any(pair => !pair.Value.Archived))) { <option value="@set.Id">@set.Name</option> }</select><small>Saved versions stay fixed throughout this round.</small></label>;
+    private RenderFragment BoardSetSelection => @<label class="library-field round-board-selection">Board set for this round<select @bind="_selectedBoardSet"><option value="">Choose when verifying</option>@foreach (var set in Boards.ActiveSets.Where(set => set.Boards.Any(pair => !pair.Value.Archived))) { <option value="@set.Id">@set.Name</option> }</select><small>Saved versions stay fixed throughout this round.</small></label>;
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -370,7 +370,11 @@
     }
 
     private void HandleConnectionChanged(bool connected) => _ = InvokeAsync(StateHasChanged);
-    private void HandleBoardsChanged() => _ = InvokeAsync(StateHasChanged);
+    private void HandleBoardsChanged() => _ = InvokeAsync(() =>
+    {
+        if (_selectedBoardSet.Length > 0 && !Boards.ActiveSets.Any(set => set.Id == _selectedBoardSet)) _selectedBoardSet = "";
+        StateHasChanged();
+    });
     private void HandleError(string message) { _error = message; _ = InvokeAsync(StateHasChanged); }
 
     private async Task CreateRoomAsync()

@@ -39,29 +39,52 @@
                     <div class="library-actions"><button class="small-button" disabled="@_busy" @onclick="() => _deleteDraft = null">Keep draft</button><button class="small-button" disabled="@_busy" @onclick="DeleteDraftAsync">Delete draft</button></div>
                 </section>
             }
-            @if (_deletedDraft is not null)
+            @if (_deletedDraft is not null && IsActiveSet(_deletedDraft.SetId))
             {
                 <div class="library-success" role="status">Draft “@_deletedDraft.Label” deleted. <button class="text-button" disabled="@_busy" @onclick="UndoDeleteAsync">Undo delete</button></div>
+            }
+            @if (_deletedSetId is not null)
+            {
+                <div class="library-success" role="status">Set “@_deletedSetName” deleted. <button class="text-button" disabled="@_busy" @onclick="() => RestoreSetAsync(_deletedSetId)">Undo delete set</button></div>
             }
             <div class="library-create-set"><label class="library-field">New set name<input maxlength="60" @bind="_newSetName" @bind:event="oninput" placeholder="Our Pokeno set" /></label><button class="small-button" disabled="@(_busy || string.IsNullOrWhiteSpace(_newSetName))" @onclick="CreateSetAsync">Create set</button></div>
         }
 
-        @if (Boards.Sets.Count == 0)
+        @if (Boards.Sets.Any(set => set.Deleted && set.OwnerUid == Boards.Editor.Uid))
         {
-            <div class="library-empty"><h2>No boards yet.</h2><p>Create a set above and enter your boards. Once published, every room can select them.</p></div>
+            <label class="library-check"><input type="checkbox" @bind="_showDeletedSets" @bind:after="SetVisibilityChanged" /> Show deleted sets</label>
+        }
+        @if (VisibleSets.Count == 0)
+        {
+            <div class="library-empty"><h2>No active board sets.</h2><p>Create a set above and enter your boards. Once published, every room can select them.</p></div>
         }
         else
         {
-            <label class="library-field">Board set<select @bind="_setId" @bind:after="SetChanged"><option value="">Choose a set</option>@foreach (var set in Boards.Sets) { <option value="@set.Id">@set.Name (@set.Boards.Count(pair => !pair.Value.Archived) boards)</option> }</select></label>
+            <label class="library-field">Board set<select @bind="_setId" @bind:after="SetChanged"><option value="">Choose a set</option>@foreach (var set in VisibleSets) { <option value="@set.Id">@set.Name@(set.Deleted ? " · deleted" : "") (@set.Boards.Count(pair => !pair.Value.Archived) boards)</option> }</select></label>
             @if (CurrentSet is { } collection)
             {
+                @if (collection.Deleted)
+                {
+                    <section class="library-draft-confirmation"><h2>This set is deleted.</h2><p>Restore it to use its boards and continue its drafts.</p><button class="small-button" disabled="@_busy" @onclick="() => RestoreSetAsync(collection.Id)">Restore set</button></section>
+                }
+                else
+                {
                 <p class="fine-print">@(OwnsCurrentSet ? "Your set · you can edit it in this browser." : "Shared set · copy it to edit your own version.")</p>
                 <div class="library-actions">
                     @if (OwnsCurrentSet) { <button class="primary-button" disabled="@_busy" @onclick="AddBoardAsync">Add existing board</button><button class="secondary-button" disabled="@_busy" @onclick="() => _generate = !_generate">Generate custom boards</button> }
                     else { <button class="primary-button" disabled="@(_busy || !Boards.Editor.CanEdit)" @onclick="CopySetAsync">Copy set to edit</button> }
                     <button class="small-button" disabled="@_busy" @onclick="ExportAsync">Export backup</button>
                     <button class="small-button" disabled="@(_busy || !collection.Boards.Any(pair => !pair.Value.Archived))" @onclick="PrintAsync">Print / Save PDF</button>
+                    @if (OwnsCurrentSet) { <button class="text-button" disabled="@_busy" aria-label="Delete set @collection.Name" @onclick="() => _deleteSet = collection">Delete set</button> }
                 </div>
+                @if (_deleteSet is not null)
+                {
+                    <section class="library-draft-confirmation" aria-labelledby="delete-set-title">
+                        <h3 id="delete-set-title">Delete set “@_deleteSet.Name”?</h3>
+                        <p>This removes the set and its drafts from the library and new round choices. You can recover them with Show deleted sets. Rounds already using its boards keep their saved versions.</p>
+                        <div class="library-actions"><button class="small-button" disabled="@_busy" @onclick="() => _deleteSet = null">Keep set</button><button class="small-button" disabled="@_busy" @onclick="DeleteSetAsync">Delete set</button></div>
+                    </section>
+                }
                 <label class="library-field">Print theme<select @bind="_printTheme">@foreach (var theme in DeckThemeCatalog.All) { <option value="@theme.Id">@theme.Name</option> }</select></label>
                 @if (_generate && OwnsCurrentSet)
                 {
@@ -85,6 +108,7 @@
                         @if (_import is not null) { <p>@_import.Boards.Count layouts from “@_import.Name”. Matching labels will receive an “import” suffix. Review each draft before publishing.</p><button class="small-button" disabled="@_busy" @onclick="ImportAsync">Import as drafts into this set</button> }
                     </details>
                 }
+                }
             }
         }
     }
@@ -98,27 +122,45 @@
     [Parameter] public string ThemeId { get; set; } = DeckThemeCatalog.DefaultId;
     private string _newSetName = "", _setId = "", _search = "", _printTheme = DeckThemeCatalog.DefaultId;
     private string? _error, _message;
-    private bool _busy, _generate, _showArchived;
+    private string? _deletedSetId, _deletedSetName;
+    private bool _busy, _generate, _showArchived, _showDeletedSets;
     private int _generateCount = 12;
     private BoardDraft? _draft, _deleteDraft, _deletedDraft;
     private BoardRevision? _preview;
     private BoardPack? _import;
     private List<BoardDraft> _local = [];
-    private BoardSet? CurrentSet => Boards.Sets.FirstOrDefault(set => set.Id == _setId);
+    private BoardSet? _deleteSet;
+    private List<BoardSet> VisibleSets => Boards.Sets.Where(set => !set.Deleted || (_showDeletedSets && set.OwnerUid == Boards.Editor.Uid)).ToList();
+    private BoardSet? CurrentSet => VisibleSets.FirstOrDefault(set => set.Id == _setId);
     private bool OwnsCurrentSet => Boards.Editor.CanEdit && CurrentSet?.OwnerUid == Boards.Editor.Uid;
+    private bool IsActiveSet(string id) => Boards.ActiveSets.Any(set => set.Id == id);
     private string SetName(string id) => Boards.Sets.FirstOrDefault(set => set.Id == id)?.Name ?? "Saved set";
-    private List<BoardDraft> CombinedDrafts => Boards.Drafts.Concat(_local).GroupBy(draft => draft.Id)
+    private List<BoardDraft> CombinedDrafts => Boards.Drafts.Concat(_local).Where(draft => IsActiveSet(draft.SetId)).GroupBy(draft => draft.Id)
         .Select(group => group.OrderByDescending(draft => draft.PendingSync).ThenByDescending(draft => draft.UpdatedAt).First()).OrderByDescending(draft => draft.UpdatedAt).ToList();
-    private void SetChanged() { _preview = null; _generate = false; _showArchived = false; _import = null; }
+    private void SetChanged() { _preview = null; _generate = false; _showArchived = false; _import = null; _deleteSet = null; }
+    private void SetVisibilityChanged()
+    {
+        if (!VisibleSets.Any(set => set.Id == _setId)) _setId = VisibleSets.FirstOrDefault()?.Id ?? "";
+        SetChanged();
+    }
 
     protected override async Task OnInitializedAsync()
     {
         _printTheme = DeckThemeCatalog.FindOrDefault(ThemeId).Id;
         Boards.Changed += Changed;
         await RunAsync(async () => { await Boards.InitializeAsync(); await Boards.OpenEditorAsync(); _local = await Boards.LocalDraftsAsync(); });
-        _setId = Boards.Sets.FirstOrDefault()?.Id ?? "";
+        _setId = VisibleSets.FirstOrDefault()?.Id ?? "";
     }
-    private void Changed() => _ = InvokeAsync(() => { if (_setId.Length == 0) _setId = Boards.Sets.FirstOrDefault()?.Id ?? ""; StateHasChanged(); });
+    private void Changed() => _ = InvokeAsync(() =>
+    {
+        if (!VisibleSets.Any(set => set.Id == _setId)) { _setId = VisibleSets.FirstOrDefault()?.Id ?? ""; SetChanged(); }
+        if (_draft is not null && Boards.Sets.Any(set => set.Id == _draft.SetId && set.Deleted))
+        {
+            _draft = null; _message = "This set was deleted. Restore it to continue its drafts.";
+        }
+        if (_deleteDraft is not null && !IsActiveSet(_deleteDraft.SetId)) _deleteDraft = null;
+        StateHasChanged();
+    });
     private async Task RunAsync(Func<Task> action)
     {
         if (_busy) return;
@@ -127,8 +169,24 @@
         catch (Exception error) { _error = BoardLibraryService.FriendlyError(error); }
         finally { _busy = false; }
     }
-    private async Task CreateSetAsync() => await RunAsync(async () => { _setId = await Boards.CreateSetAsync(_newSetName); _newSetName = ""; });
+    private async Task CreateSetAsync() => await RunAsync(async () => { _setId = await Boards.CreateSetAsync(_newSetName); _newSetName = ""; SetChanged(); });
     private async Task CopySetAsync() => await RunAsync(async () => { _setId = await Boards.CopySetAsync(_setId); SetChanged(); _message = "Set copied. You can edit this version in this browser; the original is preserved."; });
+    private async Task DeleteSetAsync() => await RunAsync(async () =>
+    {
+        if (_deleteSet is null) return;
+        var deleted = _deleteSet;
+        await Boards.SetDeletedAsync(deleted.Id, true);
+        _deletedSetId = deleted.Id; _deletedSetName = deleted.Name;
+        _setId = Boards.ActiveSets.FirstOrDefault(set => set.Id != deleted.Id)?.Id ?? "";
+        _deleteDraft = null; SetChanged();
+    });
+    private async Task RestoreSetAsync(string setId) => await RunAsync(async () =>
+    {
+        await Boards.SetDeletedAsync(setId, false);
+        _local = await Boards.LocalDraftsAsync();
+        _setId = setId; _deletedSetId = null; _deletedSetName = null; SetChanged();
+        _message = "Set restored. Its boards and drafts are available again.";
+    });
     private string NextLabel()
     {
         var existing = (CurrentSet?.Boards.Values.Select(board => board.Label) ?? []).Concat(CombinedDrafts.Where(draft => draft.SetId == _setId).Select(draft => draft.Label)).ToHashSet(StringComparer.OrdinalIgnoreCase);

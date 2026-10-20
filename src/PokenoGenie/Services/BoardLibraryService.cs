@@ -12,6 +12,7 @@ public sealed class BoardLibraryService(FirebaseRoomService rooms, IJSRuntime js
     public event Action? Changed;
     public LibraryEditor Editor { get; private set; } = new();
     public List<BoardSet> Sets { get; private set; } = [];
+    public IEnumerable<BoardSet> ActiveSets => Sets.Where(set => !set.Deleted);
     public List<BoardDraft> Drafts { get; private set; } = [];
     public RoundBoards? RoundBoards { get; private set; }
     public BoardCheck? Check { get; private set; }
@@ -22,7 +23,7 @@ public sealed class BoardLibraryService(FirebaseRoomService rooms, IJSRuntime js
     {
         if (_module is not null) return;
         await rooms.InitializeAsync();
-        _module = await js.InvokeAsync<IJSObjectReference>("import", navigation.BaseUri + "js/board-library.js?v=2");
+        _module = await js.InvokeAsync<IJSObjectReference>("import", navigation.BaseUri + "js/board-library.js?v=3");
         _reference = DotNetObjectReference.Create(this);
         await _module.InvokeVoidAsync("initializeLibrary", _reference);
     }
@@ -34,7 +35,7 @@ public sealed class BoardLibraryService(FirebaseRoomService rooms, IJSRuntime js
 
     public async Task<string> CopySetAsync(string setId)
     {
-        var source = Sets.FirstOrDefault(set => set.Id == setId) ?? throw new InvalidOperationException("Choose a board set to copy.");
+        var source = ActiveSets.FirstOrDefault(set => set.Id == setId) ?? throw new InvalidOperationException("Choose an active board set to copy.");
         var revisions = new List<BoardRevision>();
         foreach (var pair in source.Boards.Where(pair => !pair.Value.Archived))
             revisions.Add(await RevisionAsync(pair.Key, pair.Value.RevisionId));
@@ -60,6 +61,11 @@ public sealed class BoardLibraryService(FirebaseRoomService rooms, IJSRuntime js
 
     public async Task ArchiveAsync(string setId, string boardId, string revisionId, bool archived) =>
         await Module.InvokeVoidAsync("archiveBoard", setId, boardId, revisionId, archived);
+    public async Task SetDeletedAsync(string setId, bool deleted)
+    {
+        await Module.InvokeVoidAsync("setDeleted", setId, deleted);
+        await RefreshAsync();
+    }
     public async Task SelectRoundSetAsync(string code, string setId) => await Module.InvokeVoidAsync("selectRoundSet", code, setId);
     public async Task PrepareRoundAsync(string code, string setId) => await Module.InvokeVoidAsync("selectRoundSet", code, setId, true);
     public async Task CheckAsync(string code, string boardId) => await Module.InvokeVoidAsync("checkBoard", code, boardId);

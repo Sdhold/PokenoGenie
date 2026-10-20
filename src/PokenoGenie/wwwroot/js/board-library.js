@@ -31,7 +31,7 @@ function label(value) {
 }
 function map(value) { return value && typeof value === "object" ? value : {}; }
 function normalizeSet(setId, value) {
-  return { id: setId, name: value.name, ownerUid: value.ownerUid || "", version: value.version, boards: map(value.boards) };
+  return { id: setId, name: value.name, ownerUid: value.ownerUid || "", version: value.version, deleted: value.deleted === true, boards: map(value.boards) };
 }
 
 export async function initializeLibrary(reference) {
@@ -117,7 +117,7 @@ export async function getRevision(boardId, revisionId) {
   return result;
 }
 
-async function editManifest(setId, change) {
+async function editManifest(setId, change, allowDeleted = false) {
   const reference = ref(editorDb, `boardSets/${setId}`);
   // Keep a listener alive for this Auth instance. A one-off get does not retain
   // a transaction cache when only the separate caller instance watches the set.
@@ -126,6 +126,7 @@ async function editManifest(setId, change) {
     await new Promise((resolve, reject) => { stop = onValue(reference, resolve, reject); });
     const result = await runTransaction(reference, current => {
       if (current && current.ownerUid !== editorUser.uid) throw new Error("This set belongs to another browser. Copy it to make changes.");
+      if (current?.deleted && !allowDeleted) throw new Error("This set was deleted. Restore it in the library before editing.");
       return current ? change(current) : undefined;
     }, { applyLocally: false });
     if (!result.committed) throw new Error("The board changed on another device. Keep this draft and reopen the published board to review the changes.");
@@ -145,6 +146,7 @@ export async function publishBoard(draft, layoutHash) {
   const manifest = (await get(ref(editorDb, `boardSets/${draft.setId}`))).val();
   if (!manifest) throw new Error("Choose an existing board set.");
   if (manifest.ownerUid !== editorUser.uid) throw new Error("This set belongs to another browser. Copy it to make changes.");
+  if (manifest.deleted) throw new Error("This set was deleted. Restore it in the library before editing.");
   const check = current => {
     const boards = map(current.boards);
     if ((boards[draft.boardId]?.revisionId || "") !== draft.baseRevisionId) return false;
@@ -175,6 +177,11 @@ export async function archiveBoard(setId, boardId, revisionId, archived) {
     } : undefined;
   });
 }
+export async function setDeleted(setId, deleted) {
+  editor();
+  if (!key(setId) || typeof deleted !== "boolean") throw new Error("Choose a valid board set.");
+  await editManifest(setId, current => ({ ...current, version: current.version + 1, deleted }), true);
+}
 
 export function watchBoards(code) {
   stopRound?.(); stopCheck?.();
@@ -190,6 +197,7 @@ export async function selectRoundSet(code, setId, nextRound = false) {
   if (nextRound && !setId) { await set(ref(context.database, `rooms/${code}/boards`), null); return; }
   const collection = (await get(ref(context.database, `boardSets/${setId}`))).val();
   if (!collection) throw new Error("Choose a board set from the library.");
+  if (collection.deleted) throw new Error("This set was deleted. Choose another set or restore it in the library.");
   const entries = Object.entries(map(collection.boards)).filter(([, board]) => !board.archived);
   if (!entries.length) throw new Error("Publish at least one board in this set first.");
   const snapshot = { round: state.round + (nextRound ? 1 : 0), setId, setName: collection.name,

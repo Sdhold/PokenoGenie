@@ -38,6 +38,8 @@ Choose a board set before starting a round, or select it the first time you paus
 
 Each set can be edited by the browser that created it, using a remembered anonymous Firebase identity separate from caller ownership. Other devices can **Copy set to edit**, while every room can use the original published boards. Clearing browser data loses editing access and private drafts, so keep exported backups; published sets remain available to copy. See **Shared board library setup** in [DEPLOYMENT.md](DEPLOYMENT.md).
 
+The creating browser can **Delete set** with confirmation. This hides it and its drafts from the library and new rounds while retaining data for recovery and ongoing-round checks. Use **Undo delete set**, or **Show deleted sets → Restore set** later, to bring it back.
+
 ## Solution layout
 
 - `src/PokenoGenie` — responsive Blazor caller interface, Firebase browser bridge, and lightweight TV display.

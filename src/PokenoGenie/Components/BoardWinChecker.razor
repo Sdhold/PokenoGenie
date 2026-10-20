@@ -9,9 +9,9 @@
     @if (Pinned is null)
     {
         <p>Choose the physical board's set. Its current layouts will stay fixed for this round.</p>
-        <label class="library-field">Board set<select @bind="_setId"><option value="">Choose a set</option>@foreach (var set in Boards.Sets.Where(set => set.Boards.Any(pair => !pair.Value.Archived))) { <option value="@set.Id">@set.Name</option> }</select></label>
+        <label class="library-field">Board set<select @bind="_setId"><option value="">Choose a set</option>@foreach (var set in Boards.ActiveSets.Where(set => set.Boards.Any(pair => !pair.Value.Archived))) { <option value="@set.Id">@set.Name</option> }</select></label>
         <button class="secondary-button" disabled="@(_busy || !Rooms.IsConnected || _setId.Length == 0)" @onclick="PinAsync">Use this set for this round</button>
-        @if (!Boards.Sets.Any(set => set.Boards.Any(pair => !pair.Value.Archived))) { <p>No published boards yet. Open Board library to add your set.</p> }
+        @if (!Boards.ActiveSets.Any(set => set.Boards.Any(pair => !pair.Value.Archived))) { <p>No published boards yet. Open Board library to add your set.</p> }
     }
     else
     {
@@ -43,7 +43,11 @@
     private string? _error;
     private RoundBoards? Pinned => Boards.RoundBoards?.Round == Room.Round ? Boards.RoundBoards : null;
     protected override void OnInitialized() { Boards.Changed += Changed; }
-    private void Changed() => _ = InvokeAsync(StateHasChanged);
+    private void Changed() => _ = InvokeAsync(() =>
+    {
+        if (_setId.Length > 0 && !Boards.ActiveSets.Any(set => set.Id == _setId)) _setId = "";
+        StateHasChanged();
+    });
     private async Task RunAsync(Func<Task> action)
     {
         _busy = true; _error = null;

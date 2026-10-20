@@ -86,6 +86,12 @@ You can open the library directly at `https://sdhold.github.io/PokenoGenie/?view
 
 The rules enforce creator ownership and keep drafts private. An open visitor can create their own set but cannot change another creator's boards, archive them, take ownership, or write revisions under their board IDs. Anyone with the URL can view published board labels/layouts, so use labels intended to be shared.
 
+### Delete or restore a set
+
+In the browser that created the set, select it under **Board library → Board set**, choose **Delete set**, and confirm. **Keep set** cancels. Deleted sets and their drafts disappear from normal library lists and cannot be selected for new rounds. Existing rounds retain their locked board versions and can still verify wins.
+
+**Undo delete set** restores the latest deletion while the library stays open. To restore later, enable **Show deleted sets**, select the deleted set, then **Restore set**. The deletion flag is stored in Firebase, so it survives reloads and affects every room. Published versions, private drafts, and local reference photos are retained for restoration; deleting a set does not permanently purge its data. Only its creating browser can delete or restore it, and an internet connection is required.
+
 ### Enter, reuse, and verify a board
 
 1. Create a named set. Choose **Add existing board**, give it the physical board's number, and enter cards from top left to bottom right with rank then suit. The picker advances automatically. Row tabs and a full review grid let you correct a middle cell without moving other entries. **Fix a skipped space** previews the shift before applying it; Undo restores it.

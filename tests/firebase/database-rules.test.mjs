@@ -352,6 +352,41 @@ test("another creator can copy layouts with new IDs but cannot take ownership or
   assert.equal((await get(ref(viewer, "boardSets/set-1"))).val().boards["board-1"].archived, false);
 });
 
+test("only the creator can delete or restore a set, preserving boards and private drafts", async () => {
+  await seedLibrary();
+  const draft = { id: "draft-1", setId: "set-1", boardId: "board-2", label: "Board 08", baseRevisionId: "", cards: Array(25).fill(""), currentCell: 12, pendingRank: "Q", updatedAt: serverTimestamp() };
+  await assertSucceeds(set(ref(editor, "boardDrafts/editor/draft-1"), draft));
+  await assertFails(update(ref(viewer, "boardSets/set-1"), { deleted: true, version: 3 }));
+  await assertFails(update(ref(editor, "boardSets/set-1"), { deleted: "yes", version: 3 }));
+  await assertFails(update(ref(editor, "boardSets/set-1"), { deleted: true }));
+  await assertSucceeds(update(ref(editor, "boardSets/set-1"), { deleted: true, version: 3 }));
+  assert.equal((await get(ref(viewer, "boardSets/set-1"))).val().deleted, true);
+  assert.deepEqual((await get(ref(viewer, "boardRevisions/board-1/revision-1/cards"))).val(), boardCells);
+  assert.equal((await get(ref(editor, "boardDrafts/editor/draft-1"))).val().currentCell, 12);
+  await assertFails(set(ref(editor, "boardDrafts/editor/draft-1"), { ...draft, currentCell: 13 }));
+  await assertFails(set(ref(editor, "boardOwners/board-3"), { setId: "set-1", ownerUid: "editor" }));
+  await assertFails(set(ref(editor, "boardRevisions/board-1/revision-2"), revision({ revisionId: "revision-2" })));
+  await assertFails(update(ref(viewer, "boardSets/set-1"), { deleted: false, version: 4 }));
+  await assertSucceeds(update(ref(editor, "boardSets/set-1"), { deleted: false, version: 4 }));
+  await assertSucceeds(set(ref(editor, "boardDrafts/editor/draft-1"), draft));
+  await assertSucceeds(set(ref(editor, "boardRevisions/board-1/revision-2"), revision({ revisionId: "revision-2" })));
+  assert.equal((await get(ref(owner, "boardSets/set-1"))).val().boards["board-1"].revisionId, "revision-1");
+});
+
+test("a deleted set cannot join a new round, while an already pinned round can still verify its boards", async () => {
+  await seedLibrary(); await seedCallingRound();
+  const state = (await get(ref(owner, statePath))).val();
+  await assertSucceeds(set(ref(owner, statePath), { ...state, phase: "paused" }));
+  await assertSucceeds(set(ref(owner, `rooms/${room}/boards`), roundSet()));
+  await assertSucceeds(update(ref(editor, "boardSets/set-1"), { deleted: true, version: 3 }));
+  await assertSucceeds(set(ref(owner, `rooms/${room}/verification`), boardCheck()));
+  assert.deepEqual((await get(ref(viewer, `rooms/${room}/verification/cards`))).val(), boardCells);
+  await assertSucceeds(set(ref(owner, "rooms/JKLMNPQR/state"), initialState()));
+  await assertFails(set(ref(owner, "rooms/JKLMNPQR/boards"), roundSet()));
+  await assertSucceeds(update(ref(editor, "boardSets/set-1"), { deleted: false, version: 4 }));
+  await assertSucceeds(set(ref(owner, "rooms/JKLMNPQR/boards"), roundSet()));
+});
+
 test("the caller pins published board versions once per round; viewers and active draws cannot replace them", async () => {
   await seedLibrary(); await seedCallingRound();
   await assertFails(set(ref(owner, `rooms/${room}/boards`), roundSet()));

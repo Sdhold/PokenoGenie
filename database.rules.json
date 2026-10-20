@@ -183,7 +183,7 @@
         "boards": {
           ".read": "auth != null && root.child('rooms').child($code).child('state').exists()",
           ".write": "auth != null && root.child('rooms').child($code).child('state').child('ownerUid').val() == auth.uid && root.child('rooms').child($code).child('state').child('guideOpen').val() != true && (((!newData.exists() || newData.child('round').val() == root.child('rooms').child($code).child('state').child('round').val() + 1) && (root.child('rooms').child($code).child('state').child('phase').val() == 'lobby' || root.child('rooms').child($code).child('state').child('phase').val() == 'finished')) || (newData.child('round').val() == root.child('rooms').child($code).child('state').child('round').val() && (!data.exists() || data.child('round').val() != root.child('rooms').child($code).child('state').child('round').val()) && (root.child('rooms').child($code).child('state').child('phase').val() == 'paused' || root.child('rooms').child($code).child('state').child('phase').val() == 'finished')))",
-          ".validate": "newData.hasChildren(['round','setId','setName','revisions','labels']) && newData.child('setName').val() == root.child('boardSets').child(newData.child('setId').val()).child('name').val() && newData.child('revisions').hasChildren()",
+          ".validate": "newData.hasChildren(['round','setId','setName','revisions','labels']) && root.child('boardSets').child(newData.child('setId').val()).child('deleted').val() != true && newData.child('setName').val() == root.child('boardSets').child(newData.child('setId').val()).child('name').val() && newData.child('revisions').hasChildren()",
           "round": {
             ".validate": "newData.isNumber() && newData.val() > 0 && newData.val() % 1 == 0"
           },
@@ -279,6 +279,9 @@
         "version": {
           ".validate": "newData.isNumber()"
         },
+        "deleted": {
+          ".validate": "newData.isBoolean()"
+        },
         "boards": {
           "$boardId": {
             ".validate": "newData.hasChildren(['label','revisionId','layoutHash','archived']) && root.child('boardRevisions').child($boardId).child(newData.child('revisionId').val()).child('setId').val() == $setId && newData.child('label').val() == root.child('boardRevisions').child($boardId).child(newData.child('revisionId').val()).child('label').val() && newData.child('layoutHash').val() == root.child('boardRevisions').child($boardId).child(newData.child('revisionId').val()).child('layoutHash').val()",
@@ -308,7 +311,7 @@
       ".read": "auth != null",
       "$boardId": {
         "$revisionId": {
-          ".write": "auth != null && root.child('boardSets').child(newData.child('setId').val()).child('ownerUid').val() == auth.uid && root.child('boardOwners').child($boardId).child('ownerUid').val() == auth.uid && root.child('boardOwners').child($boardId).child('setId').val() == newData.child('setId').val() && !data.exists() && newData.exists() && $boardId.matches(/^[a-zA-Z0-9_-]{1,64}$/) && $revisionId.matches(/^[a-zA-Z0-9_-]{1,64}$/)",
+          ".write": "auth != null && root.child('boardSets').child(newData.child('setId').val()).child('ownerUid').val() == auth.uid && root.child('boardSets').child(newData.child('setId').val()).child('deleted').val() != true && root.child('boardOwners').child($boardId).child('ownerUid').val() == auth.uid && root.child('boardOwners').child($boardId).child('setId').val() == newData.child('setId').val() && !data.exists() && newData.exists() && $boardId.matches(/^[a-zA-Z0-9_-]{1,64}$/) && $revisionId.matches(/^[a-zA-Z0-9_-]{1,64}$/)",
           ".validate": "newData.hasChildren(['setId','boardId','revisionId','label','cards','positions','layoutHash','createdBy','createdAt']) && newData.child('boardId').val() == $boardId && newData.child('revisionId').val() == $revisionId && root.child('boardSets').child(newData.child('setId').val()).exists()",
           "setId": {
             ".validate": "newData.isString() && newData.val().matches(/^[a-zA-Z0-9_-]{1,64}$/)"
@@ -353,7 +356,7 @@
       "$uid": {
         ".read": "auth != null && auth.uid == $uid",
         "$draftId": {
-          ".write": "auth != null && auth.uid == $uid && (!newData.exists() || (auth != null && root.child('boardSets').child(newData.child('setId').val()).child('ownerUid').val() == auth.uid))",
+          ".write": "auth != null && auth.uid == $uid && (!newData.exists() || (auth != null && root.child('boardSets').child(newData.child('setId').val()).child('ownerUid').val() == auth.uid && root.child('boardSets').child(newData.child('setId').val()).child('deleted').val() != true))",
           ".validate": "newData.hasChildren(['id','setId','boardId','label','baseRevisionId','cards','currentCell','pendingRank','updatedAt']) && newData.child('id').val() == $draftId && root.child('boardSets').child(newData.child('setId').val()).exists()",
           "id": {
             ".validate": "newData.isString() && newData.val().matches(/^[a-zA-Z0-9_-]{1,64}$/)"
@@ -394,7 +397,7 @@
     "boardOwners": {
       ".read": "auth != null",
       "$boardId": {
-        ".write": "!data.exists() && newData.exists() && $boardId.matches(/^[a-zA-Z0-9_-]{1,64}$/) && auth != null && root.child('boardSets').child(newData.child('setId').val()).child('ownerUid').val() == auth.uid",
+        ".write": "!data.exists() && newData.exists() && $boardId.matches(/^[a-zA-Z0-9_-]{1,64}$/) && auth != null && root.child('boardSets').child(newData.child('setId').val()).child('ownerUid').val() == auth.uid && root.child('boardSets').child(newData.child('setId').val()).child('deleted').val() != true",
         ".validate": "newData.hasChildren(['setId','ownerUid'])",
         "setId": {
           ".validate": "newData.isString() && newData.val().matches(/^[a-zA-Z0-9_-]{1,64}$/)"
