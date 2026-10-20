@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 250 350" role="img" aria-label="7 of D — Halloween: Dancing Skeleton" data-deck="halloween" data-character="dancing-skeleton">
+    <defs><symbol id="pip" viewBox="0 0 32 32"><g fill="#ae604d"><path d="M16 1 30 16 16 31 2 16Z"/></g></symbol><linearGradient id="artifact-gold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f4e3ac"/><stop offset=".28" stop-color="#d3aa53"/><stop offset=".55" stop-color="#f8e7ae"/><stop offset=".8" stop-color="#b48c3e"/><stop offset="1" stop-color="#e5c373"/></linearGradient><symbol id="character" data-character="dancing-skeleton" viewBox="0 0 200 240"><circle cx="102" cy="118" r="80" fill="#c9b5bc" opacity=".2"/><ellipse cx="100" cy="225" rx="78" ry="7" fill="#8d7792" opacity=".14"/><g stroke="#463b52" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><g fill="none"><path d="M65 133 36 160 19 132M135 134 159 162 182 133M100 119v68M97 186l-23 17-20 10M103 186l23 19 25 8" stroke="#463b52" stroke-width="14"/><path d="M65 133 36 160 19 132M135 134 159 162 182 133M100 119v68M97 186l-23 17-20 10M103 186l23 19 25 8" stroke="#dedcca" stroke-width="10"/></g>
+    <path d="M68 62q31-22 62 0l9 29-17 18-1 17H80l-2-17-16-19Z" fill="#e8e3d2"/>
+    <ellipse cx="84" cy="88" rx="10" ry="13" fill="#6b6276"/><ellipse cx="118" cy="88" rx="10" ry="13" fill="#6b6276"/><path d="m99 100-6 10h13Z" fill="#8f7f8d"/>
+    <path d="M82 119h37m-28-4v10m10-10v10m10-10v10" fill="none"/>
+    <path d="M95 136q-34-17-32 2 3 16 33 12m8-14q33-17 31 2-4 16-32 12m-9 1q-30-10-25 7 7 13 26 6m9-13q29-10 25 7-7 13-26 6m-19 13 15-7 16 7-4 15H89Z" fill="#dedcca"/>
+    <path d="m15 122-4-12m9 16v-16m155 13 3-14m4 17 9-12" stroke="#dedcca" stroke-width="5"/></g></symbol></defs>
+    <rect width="250" height="350" rx="11" fill="#f1e5d7"/>
+    <rect x="4" y="4" width="242" height="342" rx="8" fill="none" stroke="#b18a5c" stroke-width="2"/>
+    <rect x="9" y="9" width="232" height="332" rx="5" fill="none" stroke="#b18a5c" stroke-width=".7" opacity=".65"/>
+    <rect x="47" y="40" width="156" height="270" rx="70" fill="#cab6c3" opacity=".33"/>
+    <circle cx="171" cy="83" r="25" fill="#d7ba80" opacity=".24"/>
+    <path d="M48 257q72-39 155-11m-149-8 5-67m0 16-10-11m10 28 13-16m119 53-4-74m0 25-12-15" fill="none" stroke="#ac8e9d" stroke-width="1.5" opacity=".35"/>
+    <g fill="#ab956c" opacity=".35"><circle cx="169" cy="205" r="1.2"/><circle cx="58" cy="258" r="0.65"/><circle cx="95" cy="101" r="0.65"/><circle cx="132" cy="154" r="0.65"/><circle cx="169" cy="207" r="1.2"/><circle cx="58" cy="260" r="0.65"/><circle cx="95" cy="103" r="0.65"/><circle cx="132" cy="156" r="0.65"/><circle cx="169" cy="209" r="1.2"/><circle cx="58" cy="52" r="0.65"/><circle cx="95" cy="105" r="0.65"/><circle cx="132" cy="158" r="0.65"/><circle cx="169" cy="211" r="1.2"/><circle cx="58" cy="54" r="0.65"/><circle cx="95" cy="107" r="0.65"/><circle cx="132" cy="160" r="0.65"/><circle cx="169" cy="213" r="1.2"/><circle cx="58" cy="56" r="0.65"/></g><g data-motif="spiderweb-and-bats" fill="none" stroke="#a08b9e" stroke-width="1.15">
+    <path d="M38 76v201m174-201v201M28 78l16 30m-17-12 18 9m-17 4 17 3m-6-30q-4 12-13 13m15 0q-3 11-14 13M222 271l-16-30m17 12-18-9m18-4-17-3m6 31q4-12 13-13m-15 0q3-11 14-13"/>
+    <path d="m29 180q5-10 10-3 5-7 10 3l-8-2-2 5-2-5Zm173-20q5-10 10-3 5-7 10 3l-8-2-2 5-2-5Z" fill="#8d7b98" stroke="none"/>
+  </g>
+    <text x="125" y="26" text-anchor="middle" fill="#594559" font-family="Georgia,serif" font-weight="700" font-size="9" letter-spacing="1.3">HALLOWEEN</text>
+    <g fill="#ae604d" text-anchor="middle"><text x="22" y="31" font-family="Georgia,serif" font-weight="700" font-size="29">7</text><use xlink:href="#pip" x="13" y="38" width="18" height="18"/></g><g transform="rotate(180 125 175)"><g fill="#ae604d" text-anchor="middle"><text x="22" y="31" font-family="Georgia,serif" font-weight="700" font-size="29">7</text><use xlink:href="#pip" x="13" y="38" width="18" height="18"/></g></g>
+    <g id="main-art"><use xlink:href="#character" x="42" y="48" width="166" height="216"/>
+      <path d="M57 273h136m-125 31h114" stroke="#b18a5c" stroke-width="1"/>
+      <text x="125" y="288" text-anchor="middle" fill="#594559" font-family="Georgia,serif" font-weight="700" font-size="11.5">DANCING SKELETON</text>
+      <text x="125" y="300" text-anchor="middle" fill="#594559" font-family="Arial,sans-serif" font-size="6.5" letter-spacing=".3">RATTLE THE NIGHT AWAY</text>
+      <path d="m125 309 13 13-13 13-13-13Z" fill="#cab6c3" stroke="#b18a5c" stroke-width="1"/>
+      <text x="125" y="327" text-anchor="middle" fill="#ae604d" font-family="Georgia,serif" font-weight="700" font-size="15">7</text></g>
+  </svg>

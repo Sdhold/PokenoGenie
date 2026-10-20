@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 250 350" role="img" aria-label="J of S — Christmas: Workshop Elf" data-deck="christmas" data-character="workshop-elf">
+    <defs><symbol id="pip" viewBox="0 0 32 32"><g fill="#39574a"><path d="M16 2C11 10 3 13 3 21c0 5 4 8 8 8 2 0 4-1 5-3 1 2 3 3 5 3 4 0 8-3 8-8 0-8-8-11-13-19Z"/><path d="M13 25h6l4 6H9Z"/></g></symbol><linearGradient id="artifact-gold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f4e3ac"/><stop offset=".28" stop-color="#d3aa53"/><stop offset=".55" stop-color="#f8e7ae"/><stop offset=".8" stop-color="#b48c3e"/><stop offset="1" stop-color="#e5c373"/></linearGradient><symbol id="character" data-character="workshop-elf" viewBox="0 0 200 240"><circle cx="101" cy="120" r="80" fill="#b5c9b3" opacity=".18"/><ellipse cx="100" cy="226" rx="79" ry="7" fill="#718b77" opacity=".13"/><path d="M22 238q-4-60 44-73l34 12 34-12q42 16 43 73Z" fill="#668d77" stroke="#3d554c" stroke-width="2.3"/>
+    <path d="M85 137v30q15 15 30 0v-30" fill="#e7be97" stroke="#99735d" stroke-width="1.7"/>
+    <path d="m72 91-23-16 11 33 15 6m53-23 23-16-11 33-15 6" fill="#e7be97" stroke="#99735d" stroke-width="2"/>
+    <path d="M72 87Q72 54 100 53q29 1 28 34l-2 36q-3 21-22 31-22-9-25-31Z" fill="#e7be97" stroke="#99735d" stroke-width="1.8"/>
+    <path d="M77 85q3-24 23-25-17 14-16 50l3 23q-12-12-10-48Z" fill="#fff2d5" opacity=".2"/>
+    <path d="m79 91 13-2m16 0 13 2" stroke="#9a6b48" stroke-width="2.2" stroke-linecap="round"/>
+    <path d="M79 100q8-7 14 0-7 6-14 0Zm28 0q8-7 14 0-7 6-14 0Z" fill="#fff5e6" stroke="#765c50" stroke-width="1"/>
+    <circle cx="87" cy="100" r="3.2" fill="#75968b"/><circle cx="114" cy="100" r="3.2" fill="#75968b"/>
+    <circle cx="87" cy="100" r="1.5" fill="#1c2830"/><circle cx="114" cy="100" r="1.5" fill="#1c2830"/>
+    <path d="m101 103-4 14 7 2" fill="none" stroke="#ab7960" stroke-width="1.6" stroke-linecap="round"/>
+    <path d="M92 131q8 2 16-1" fill="none" stroke="#8d594e" stroke-width="2" stroke-linecap="round"/>
+
+
+    <path d="M79 114h1m7 2h1m24 0h1m6-2h1" stroke="#af7754" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M70 87q-5-31 30-36 31 0 30 37l-12-19-11 11-9-9-16 14Z" fill="#a7794e" stroke="#3d554c" stroke-width="1.7"/>
+    <path d="M65 67q9-34 49-46l14 21 26 7-29 20Z" fill="#6c9078" stroke="#3d554c" stroke-width="2"/><path d="M62 75q37-17 73-2" stroke="#bb7360" stroke-width="12" fill="none" stroke-linecap="round"/><circle cx="153" cy="50" r="9" fill="#d8c486"/>
+    <path d="m73 164 12 28 15-18 15 18 13-28m-27 27v46" fill="#c7b47a" stroke="#3d554c" stroke-width="1.5"/>
+    <circle cx="101" cy="208" r="4" fill="#bb6a5e"/><circle cx="101" cy="226" r="4" fill="#bb6a5e"/>
+    <path d="M153 238V145q0-26 18-26 20 0 18 22" stroke="#e5dcc1" stroke-width="10" fill="none" stroke-linecap="round"/><path d="m149 167 9 5m-9 16 9 5m-9 16 9 5m-7-70 9 5m2-23 8 7" stroke="#b76b5f" stroke-width="4"/></symbol></defs>
+    <rect width="250" height="350" rx="11" fill="#f4efdc"/>
+    <rect x="4" y="4" width="242" height="342" rx="8" fill="none" stroke="#b09a5d" stroke-width="2"/>
+    <rect x="9" y="9" width="232" height="332" rx="5" fill="none" stroke="#b09a5d" stroke-width=".7" opacity=".65"/>
+    <rect x="47" y="40" width="156" height="270" rx="70" fill="#c1cfb4" opacity=".33"/>
+    <circle cx="168" cy="79" r="24" fill="#c7bb8a" opacity=".18"/>
+    <path d="M49 261q62-31 152-3m-151-16 16-32 15 32m85 7 16-34 17 34" fill="none" stroke="#8ca58a" opacity=".25" stroke-width="1.4"/>
+    <g fill="#8fa189" opacity=".35"><circle cx="60" cy="256" r="1.2"/><circle cx="97" cy="99" r="0.65"/><circle cx="134" cy="152" r="0.65"/><circle cx="171" cy="205" r="0.65"/><circle cx="60" cy="258" r="1.2"/><circle cx="97" cy="101" r="0.65"/><circle cx="134" cy="154" r="0.65"/><circle cx="171" cy="207" r="0.65"/><circle cx="60" cy="260" r="1.2"/><circle cx="97" cy="103" r="0.65"/><circle cx="134" cy="156" r="0.65"/><circle cx="171" cy="209" r="0.65"/><circle cx="60" cy="52" r="1.2"/><circle cx="97" cy="105" r="0.65"/><circle cx="134" cy="158" r="0.65"/><circle cx="171" cy="211" r="0.65"/><circle cx="60" cy="54" r="1.2"/><circle cx="97" cy="107" r="0.65"/></g><g data-motif="candy-cane-and-holly" fill="none" stroke-linecap="round">
+    <path d="M38 276V95q0-17 11-17m163-2v181q0 17-11 17" stroke="#b4ad8d" stroke-width="5"/>
+    <path d="M38 276V95q0-17 11-17m163-2v181q0 17-11 17" stroke="#ad6b60" stroke-width="3.5" stroke-dasharray="7 8"/>
+    <path d="m34 153-10-14 13 1 8-9 1 14 10 8-15 3Zm182 44 10 14-13-1-8 9-1-14-10-8 15-3Z" fill="#86a081" stroke="#647e6b" stroke-width="1"/>
+    <g fill="#b56961" stroke="none"><circle cx="38" cy="154" r="3"/><circle cx="44" cy="157" r="3"/><circle cx="212" cy="196" r="3"/><circle cx="206" cy="193" r="3"/></g>
+  </g>
+    <text x="125" y="26" text-anchor="middle" fill="#3c5a4c" font-family="Georgia,serif" font-weight="700" font-size="9" letter-spacing="1.3">CHRISTMAS</text>
+    <g fill="#39574a" text-anchor="middle"><text x="22" y="31" font-family="Georgia,serif" font-weight="700" font-size="29">J</text><use xlink:href="#pip" x="13" y="38" width="18" height="18"/></g><g transform="rotate(180 125 175)"><g fill="#39574a" text-anchor="middle"><text x="22" y="31" font-family="Georgia,serif" font-weight="700" font-size="29">J</text><use xlink:href="#pip" x="13" y="38" width="18" height="18"/></g></g>
+    <g id="main-art"><g data-portrait="upright"><use xlink:href="#character" x="43" y="37" width="164" height="143"/></g>
+      <g data-portrait="inverted" transform="rotate(180 125 175)"><use xlink:href="#character" x="43" y="37" width="164" height="143"/></g>
+      <path d="M42 161h166v32H42Z" fill="#f4efdc" stroke="#b09a5d" stroke-width="1.5"/>
+      <text x="125" y="175" text-anchor="middle" fill="#3c5a4c" font-family="Georgia,serif" font-weight="700" font-size="10.8">WORKSHOP ELF</text>
+      <text x="125" y="186" text-anchor="middle" fill="#3c5a4c" font-family="Arial,sans-serif" font-size="6.1" letter-spacing=".8">JACK • A LITTLE HOLIDAY HELPER</text></g>
+  </svg>

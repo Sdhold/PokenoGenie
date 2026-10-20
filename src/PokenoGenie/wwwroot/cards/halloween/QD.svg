@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 250 350" role="img" aria-label="Q of D — Halloween: Moonlight Witch" data-deck="halloween" data-character="moonlight-witch">
+    <defs><symbol id="pip" viewBox="0 0 32 32"><g fill="#ae604d"><path d="M16 1 30 16 16 31 2 16Z"/></g></symbol><linearGradient id="artifact-gold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f4e3ac"/><stop offset=".28" stop-color="#d3aa53"/><stop offset=".55" stop-color="#f8e7ae"/><stop offset=".8" stop-color="#b48c3e"/><stop offset="1" stop-color="#e5c373"/></linearGradient><symbol id="character" data-character="moonlight-witch" viewBox="0 0 200 240"><circle cx="102" cy="118" r="80" fill="#c9b5bc" opacity=".2"/><ellipse cx="100" cy="225" rx="78" ry="7" fill="#8d7792" opacity=".14"/><path d="M58 193q-8-31 3-64-14-64 17-84 28-19 49 1 27 17 11 76 16 39 7 72l-30-22-30 4Z" fill="#66516f" stroke="#26313c" stroke-width="2"/>
+    <path d="M72 68q-15 32-3 71-13 24-5 44m66-117q13 35 1 77 13 25 7 42" fill="none" stroke="#b39092" stroke-width="3" opacity=".65"/><path d="M25 238q0-61 44-74l30 16 32-16q42 17 46 74Z" fill="#788d77" stroke="#463b52" stroke-width="2.5"/>
+    <path d="M85 137v30q15 15 30 0v-30" fill="#e7bf9d" stroke="#99735d" stroke-width="1.7"/>
+    <ellipse cx="72" cy="105" rx="7" ry="12" fill="#e7bf9d"/><ellipse cx="128" cy="105" rx="7" ry="12" fill="#e7bf9d"/>
+    <path d="M77 87Q72 54 100 53q29 1 24 34l-2 36q-3 24-22 29-22-9-25-31Z" fill="#e7bf9d" stroke="#99735d" stroke-width="1.8"/>
+    <path d="M77 85q3-24 23-25-17 14-16 50l3 23q-12-12-10-48Z" fill="#fff2d5" opacity=".2"/>
+    <path d="m79 91 13-2m16 0 13 2" stroke="#66516f" stroke-width="2.2" stroke-linecap="round"/>
+    <path d="M79 100q8-7 14 0-7 6-14 0Zm28 0q8-7 14 0-7 6-14 0Z" fill="#fff5e6" stroke="#765c50" stroke-width="1"/>
+    <circle cx="87" cy="100" r="3.2" fill="#719084"/><circle cx="114" cy="100" r="3.2" fill="#719084"/>
+    <circle cx="87" cy="100" r="1.5" fill="#1c2830"/><circle cx="114" cy="100" r="1.5" fill="#1c2830"/>
+    <path d="m101 103-4 14 7 2" fill="none" stroke="#ab7960" stroke-width="1.6" stroke-linecap="round"/>
+    <path d="M92 131q8 4 16-1" fill="none" stroke="#a75b5c" stroke-width="2" stroke-linecap="round"/>
+
+
+    <path d="M76 66Q57 91 67 142l-9 39q20-8 20-36L76 66Zm47-2q23 26 10 77l12 43q-23-10-23-40Z" fill="#66516f" stroke="#26313c" stroke-width="1.7"/>
+    <path d="M70 91q-6 27 3 46m56-46q7 29-2 46" fill="none" stroke="#ad8e9a" stroke-width="2"/>
+    <path d="m52 75 37-62q11-20 17-4l12 22 19 43Z" fill="#64516e" stroke="#463b52" stroke-width="2.4"/>
+    <path d="M35 79q65-24 130 0-65 19-130 0Z" fill="#735e7c" stroke="#463b52" stroke-width="2.4"/>
+    <path d="M70 58h60" stroke="#c4925c" stroke-width="9"/><rect x="93" y="51" width="16" height="13" rx="1" fill="none" stroke="#ead099" stroke-width="2"/>
+    <path d="m78 168 22 24 22-24m-22 24v44" fill="none" stroke="#d1b17d" stroke-width="2"/>
+    <path d="m157 234 8-131m-16 137 16-36 15 36" stroke="#a47c54" stroke-width="5" fill="none"/>
+    <path d="m153 215 25 1m-26 8 28 1" stroke="#d2b27d" stroke-width="2"/></symbol></defs>
+    <rect width="250" height="350" rx="11" fill="#f1e5d7"/>
+    <rect x="4" y="4" width="242" height="342" rx="8" fill="none" stroke="#b18a5c" stroke-width="2"/>
+    <rect x="9" y="9" width="232" height="332" rx="5" fill="none" stroke="#b18a5c" stroke-width=".7" opacity=".65"/>
+    <rect x="47" y="40" width="156" height="270" rx="70" fill="#cab6c3" opacity=".33"/>
+    <circle cx="171" cy="83" r="25" fill="#d7ba80" opacity=".24"/>
+    <path d="M48 257q72-39 155-11m-149-8 5-67m0 16-10-11m10 28 13-16m119 53-4-74m0 25-12-15" fill="none" stroke="#ac8e9d" stroke-width="1.5" opacity=".35"/>
+    <g fill="#ab956c" opacity=".35"><circle cx="86" cy="80" r="1.2"/><circle cx="123" cy="133" r="0.65"/><circle cx="160" cy="186" r="0.65"/><circle cx="197" cy="239" r="0.65"/><circle cx="86" cy="82" r="1.2"/><circle cx="123" cy="135" r="0.65"/><circle cx="160" cy="188" r="0.65"/><circle cx="197" cy="241" r="0.65"/><circle cx="86" cy="84" r="1.2"/><circle cx="123" cy="137" r="0.65"/><circle cx="160" cy="190" r="0.65"/><circle cx="197" cy="243" r="0.65"/><circle cx="86" cy="86" r="1.2"/><circle cx="123" cy="139" r="0.65"/><circle cx="160" cy="192" r="0.65"/><circle cx="197" cy="245" r="0.65"/><circle cx="86" cy="88" r="1.2"/><circle cx="123" cy="141" r="0.65"/></g><g data-motif="spiderweb-and-bats" fill="none" stroke="#a08b9e" stroke-width="1.15">
+    <path d="M38 76v201m174-201v201M28 78l16 30m-17-12 18 9m-17 4 17 3m-6-30q-4 12-13 13m15 0q-3 11-14 13M222 271l-16-30m17 12-18-9m18-4-17-3m6 31q4-12 13-13m-15 0q3-11 14-13"/>
+    <path d="m29 180q5-10 10-3 5-7 10 3l-8-2-2 5-2-5Zm173-20q5-10 10-3 5-7 10 3l-8-2-2 5-2-5Z" fill="#8d7b98" stroke="none"/>
+  </g>
+    <text x="125" y="26" text-anchor="middle" fill="#594559" font-family="Georgia,serif" font-weight="700" font-size="9" letter-spacing="1.3">HALLOWEEN</text>
+    <g fill="#ae604d" text-anchor="middle"><text x="22" y="31" font-family="Georgia,serif" font-weight="700" font-size="29">Q</text><use xlink:href="#pip" x="13" y="38" width="18" height="18"/></g><g transform="rotate(180 125 175)"><g fill="#ae604d" text-anchor="middle"><text x="22" y="31" font-family="Georgia,serif" font-weight="700" font-size="29">Q</text><use xlink:href="#pip" x="13" y="38" width="18" height="18"/></g></g>
+    <g id="main-art"><g data-portrait="upright"><use xlink:href="#character" x="43" y="37" width="164" height="143"/></g>
+      <g data-portrait="inverted" transform="rotate(180 125 175)"><use xlink:href="#character" x="43" y="37" width="164" height="143"/></g>
+      <path d="M42 161h166v32H42Z" fill="#f1e5d7" stroke="#b18a5c" stroke-width="1.5"/>
+      <text x="125" y="175" text-anchor="middle" fill="#594559" font-family="Georgia,serif" font-weight="700" font-size="10.8">MOONLIGHT WITCH</text>
+      <text x="125" y="186" text-anchor="middle" fill="#594559" font-family="Arial,sans-serif" font-size="6.1" letter-spacing=".8">QUEEN • A LITTLE AUTUMN MAGIC</text></g>
+  </svg>

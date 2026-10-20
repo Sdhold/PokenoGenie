@@ -23,7 +23,7 @@ public sealed class BoardLibraryService(FirebaseRoomService rooms, IJSRuntime js
     {
         if (_module is not null) return;
         await rooms.InitializeAsync();
-        _module = await js.InvokeAsync<IJSObjectReference>("import", navigation.BaseUri + "js/board-library.js?v=4");
+        _module = await js.InvokeAsync<IJSObjectReference>("import", navigation.BaseUri + "js/board-library.js?v=5");
         _reference = DotNetObjectReference.Create(this);
         await _module.InvokeVoidAsync("initializeLibrary", _reference);
     }

@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 250 350" role="img" aria-label="5 of H — Halloween: Patch Scarecrow" data-deck="halloween" data-character="patch-scarecrow">
+    <defs><symbol id="pip" viewBox="0 0 32 32"><g fill="#ae604d"><path d="M16 29 3.5 16C-2 9 3 2 10 3c3 0 5 2 6 4 1-2 3-4 6-4 7-1 12 6 6.5 13Z"/></g></symbol><linearGradient id="artifact-gold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f4e3ac"/><stop offset=".28" stop-color="#d3aa53"/><stop offset=".55" stop-color="#f8e7ae"/><stop offset=".8" stop-color="#b48c3e"/><stop offset="1" stop-color="#e5c373"/></linearGradient><symbol id="character" data-character="patch-scarecrow" viewBox="0 0 200 240"><circle cx="102" cy="118" r="80" fill="#c9b5bc" opacity=".2"/><ellipse cx="100" cy="225" rx="78" ry="7" fill="#8d7792" opacity=".14"/><g stroke="#463b52" stroke-width="2.2" stroke-linejoin="round"><path d="M27 150h146v15H27Z" fill="#967955"/><path d="m70 131-33 6-21 29 19 8 21-18 11 51h67l10-50 23 15 17-15-29-23-24-4Z" fill="#a66e59"/>
+    <path d="m80 207-11 24m47-24 14 24" stroke="#b29c68" stroke-width="10"/>
+    <path d="M67 78q33-22 65 1l-5 44-29 16-27-18Z" fill="#d2ba87"/><path d="m77 96 12 12m0-12-12 12m32-12 12 12m0-12-12 12m-30 11 20 4 18-6" fill="none"/>
+    <path d="m101 105-8 9 13 3Z" fill="#b7815d"/>
+    <path d="m56 79 16-30 50-11 23 40Z" fill="#aa8a56"/><path d="M40 86q60-26 120 0-60 11-120 0Z" fill="#c6a56d"/><path d="m63 68 72-8" stroke="#735b4b" stroke-width="6"/>
+    <path d="m47 162-11 15m18-14-8 18m99-18 8 18m-1-20 10 15" stroke="#dac18b"/><path d="M91 172h23v25H91Z" fill="#6c8680"/><path d="m84 131 16 14 16-15-6 30-10-10-11 10Z" fill="#d9bb81"/></g></symbol></defs>
+    <rect width="250" height="350" rx="11" fill="#f1e5d7"/>
+    <rect x="4" y="4" width="242" height="342" rx="8" fill="none" stroke="#b18a5c" stroke-width="2"/>
+    <rect x="9" y="9" width="232" height="332" rx="5" fill="none" stroke="#b18a5c" stroke-width=".7" opacity=".65"/>
+    <rect x="47" y="40" width="156" height="270" rx="70" fill="#cab6c3" opacity=".33"/>
+    <circle cx="171" cy="83" r="25" fill="#d7ba80" opacity=".24"/>
+    <path d="M48 257q72-39 155-11m-149-8 5-67m0 16-10-11m10 28 13-16m119 53-4-74m0 25-12-15" fill="none" stroke="#ac8e9d" stroke-width="1.5" opacity=".35"/>
+    <g fill="#ab956c" opacity=".35"><circle cx="130" cy="154" r="1.2"/><circle cx="167" cy="207" r="0.65"/><circle cx="56" cy="260" r="0.65"/><circle cx="93" cy="103" r="0.65"/><circle cx="130" cy="156" r="1.2"/><circle cx="167" cy="209" r="0.65"/><circle cx="56" cy="52" r="0.65"/><circle cx="93" cy="105" r="0.65"/><circle cx="130" cy="158" r="1.2"/><circle cx="167" cy="211" r="0.65"/><circle cx="56" cy="54" r="0.65"/><circle cx="93" cy="107" r="0.65"/><circle cx="130" cy="160" r="1.2"/><circle cx="167" cy="213" r="0.65"/><circle cx="56" cy="56" r="0.65"/><circle cx="93" cy="109" r="0.65"/><circle cx="130" cy="162" r="1.2"/><circle cx="167" cy="215" r="0.65"/></g><g data-motif="spiderweb-and-bats" fill="none" stroke="#a08b9e" stroke-width="1.15">
+    <path d="M38 76v201m174-201v201M28 78l16 30m-17-12 18 9m-17 4 17 3m-6-30q-4 12-13 13m15 0q-3 11-14 13M222 271l-16-30m17 12-18-9m18-4-17-3m6 31q4-12 13-13m-15 0q3-11 14-13"/>
+    <path d="m29 180q5-10 10-3 5-7 10 3l-8-2-2 5-2-5Zm173-20q5-10 10-3 5-7 10 3l-8-2-2 5-2-5Z" fill="#8d7b98" stroke="none"/>
+  </g>
+    <text x="125" y="26" text-anchor="middle" fill="#594559" font-family="Georgia,serif" font-weight="700" font-size="9" letter-spacing="1.3">HALLOWEEN</text>
+    <g fill="#ae604d" text-anchor="middle"><text x="22" y="31" font-family="Georgia,serif" font-weight="700" font-size="29">5</text><use xlink:href="#pip" x="13" y="38" width="18" height="18"/></g><g transform="rotate(180 125 175)"><g fill="#ae604d" text-anchor="middle"><text x="22" y="31" font-family="Georgia,serif" font-weight="700" font-size="29">5</text><use xlink:href="#pip" x="13" y="38" width="18" height="18"/></g></g>
+    <g id="main-art"><use xlink:href="#character" x="42" y="48" width="166" height="216"/>
+      <path d="M57 273h136m-125 31h114" stroke="#b18a5c" stroke-width="1"/>
+      <text x="125" y="288" text-anchor="middle" fill="#594559" font-family="Georgia,serif" font-weight="700" font-size="11.5">PATCH SCARECROW</text>
+      <text x="125" y="300" text-anchor="middle" fill="#594559" font-family="Arial,sans-serif" font-size="6.5" letter-spacing=".3">GUARDIAN OF THE HARVEST</text>
+      <path d="m125 309 13 13-13 13-13-13Z" fill="#cab6c3" stroke="#b18a5c" stroke-width="1"/>
+      <text x="125" y="327" text-anchor="middle" fill="#ae604d" font-family="Georgia,serif" font-weight="700" font-size="15">5</text></g>
+  </svg>

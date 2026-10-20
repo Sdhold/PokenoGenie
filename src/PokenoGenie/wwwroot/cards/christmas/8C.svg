@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 250 350" role="img" aria-label="8 of C — Christmas: Santa's Sleigh" data-deck="christmas" data-character="sleigh">
+    <defs><symbol id="pip" viewBox="0 0 32 32"><g fill="#39574a"><circle cx="16" cy="8" r="6.5"/><circle cx="8" cy="19" r="6.5"/><circle cx="24" cy="19" r="6.5"/><path d="M13 20h6l4 11H9Z"/></g></symbol><linearGradient id="artifact-gold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f4e3ac"/><stop offset=".28" stop-color="#d3aa53"/><stop offset=".55" stop-color="#f8e7ae"/><stop offset=".8" stop-color="#b48c3e"/><stop offset="1" stop-color="#e5c373"/></linearGradient><symbol id="character" data-character="sleigh" viewBox="0 0 200 240"><circle cx="101" cy="120" r="80" fill="#b5c9b3" opacity=".18"/><ellipse cx="100" cy="226" rx="79" ry="7" fill="#718b77" opacity=".13"/><g stroke="#3d554c" stroke-width="2.3" stroke-linejoin="round">
+    <path d="M44 134V90h41v53m9-1V68h38v74m9 4v-40h32v43" fill="#d4bb80"/>
+    <path d="M63 91v47m-19-28h41m28-41v74m-19-52h38m25 15v40m-15-22h31" stroke="#a45c59" stroke-width="5"/>
+    <path d="M24 127q17 41 100 26l13-30q13-25 36-16-21 12-20 40l-10 39H44l-15-34Z" fill="#b9675e"/>
+    <path d="m43 150 9 22h77l11-31m-89 44-10 19m93-19 6 19M23 206h130q32 0 29-23" fill="none" stroke="#cfb778" stroke-width="6"/>
+    <path d="M58 157q25 19 65 0" fill="none" stroke="#e4c88a" stroke-width="2"/>
+    <path transform="translate(102 168) scale(0.5)" d="m0-14 4 10 11 1-8 7 3 11-10-6-10 6 3-11-8-7 11-1Z" fill="#dbbd77" stroke="#9d844d" stroke-width="1.3"/><path d="M26 207q-20-3-16-22" stroke="#cbb57c" stroke-width="5" fill="none"/>
+  </g></symbol></defs>
+    <rect width="250" height="350" rx="11" fill="#f4efdc"/>
+    <rect x="4" y="4" width="242" height="342" rx="8" fill="none" stroke="#b09a5d" stroke-width="2"/>
+    <rect x="9" y="9" width="232" height="332" rx="5" fill="none" stroke="#b09a5d" stroke-width=".7" opacity=".65"/>
+    <rect x="47" y="40" width="156" height="270" rx="70" fill="#c1cfb4" opacity=".33"/>
+    <circle cx="168" cy="79" r="24" fill="#c7bb8a" opacity=".18"/>
+    <path d="M49 261q62-31 152-3m-151-16 16-32 15 32m85 7 16-34 17 34" fill="none" stroke="#8ca58a" opacity=".25" stroke-width="1.4"/>
+    <g fill="#8fa189" opacity=".35"><circle cx="195" cy="239" r="1.2"/><circle cx="84" cy="82" r="0.65"/><circle cx="121" cy="135" r="0.65"/><circle cx="158" cy="188" r="0.65"/><circle cx="195" cy="241" r="1.2"/><circle cx="84" cy="84" r="0.65"/><circle cx="121" cy="137" r="0.65"/><circle cx="158" cy="190" r="0.65"/><circle cx="195" cy="243" r="1.2"/><circle cx="84" cy="86" r="0.65"/><circle cx="121" cy="139" r="0.65"/><circle cx="158" cy="192" r="0.65"/><circle cx="195" cy="245" r="1.2"/><circle cx="84" cy="88" r="0.65"/><circle cx="121" cy="141" r="0.65"/><circle cx="158" cy="194" r="0.65"/><circle cx="195" cy="247" r="1.2"/><circle cx="84" cy="90" r="0.65"/></g><g data-motif="candy-cane-and-holly" fill="none" stroke-linecap="round">
+    <path d="M38 276V95q0-17 11-17m163-2v181q0 17-11 17" stroke="#b4ad8d" stroke-width="5"/>
+    <path d="M38 276V95q0-17 11-17m163-2v181q0 17-11 17" stroke="#ad6b60" stroke-width="3.5" stroke-dasharray="7 8"/>
+    <path d="m34 153-10-14 13 1 8-9 1 14 10 8-15 3Zm182 44 10 14-13-1-8 9-1-14-10-8 15-3Z" fill="#86a081" stroke="#647e6b" stroke-width="1"/>
+    <g fill="#b56961" stroke="none"><circle cx="38" cy="154" r="3"/><circle cx="44" cy="157" r="3"/><circle cx="212" cy="196" r="3"/><circle cx="206" cy="193" r="3"/></g>
+  </g>
+    <text x="125" y="26" text-anchor="middle" fill="#3c5a4c" font-family="Georgia,serif" font-weight="700" font-size="9" letter-spacing="1.3">CHRISTMAS</text>
+    <g fill="#39574a" text-anchor="middle"><text x="22" y="31" font-family="Georgia,serif" font-weight="700" font-size="29">8</text><use xlink:href="#pip" x="13" y="38" width="18" height="18"/></g><g transform="rotate(180 125 175)"><g fill="#39574a" text-anchor="middle"><text x="22" y="31" font-family="Georgia,serif" font-weight="700" font-size="29">8</text><use xlink:href="#pip" x="13" y="38" width="18" height="18"/></g></g>
+    <g id="main-art"><use xlink:href="#character" x="42" y="48" width="166" height="216"/>
+      <path d="M57 273h136m-125 31h114" stroke="#b09a5d" stroke-width="1"/>
+      <text x="125" y="288" text-anchor="middle" fill="#3c5a4c" font-family="Georgia,serif" font-weight="700" font-size="11.5">SANTA'S SLEIGH</text>
+      <text x="125" y="300" text-anchor="middle" fill="#3c5a4c" font-family="Arial,sans-serif" font-size="6.5" letter-spacing=".3">SPECIAL DELIVERY TONIGHT</text>
+      <path d="m125 309 13 13-13 13-13-13Z" fill="#c1cfb4" stroke="#b09a5d" stroke-width="1"/>
+      <text x="125" y="327" text-anchor="middle" fill="#39574a" font-family="Georgia,serif" font-weight="700" font-size="15">8</text></g>
+  </svg>

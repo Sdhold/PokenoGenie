@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 250 350" role="img" aria-label="7 of C — FriendsGiving: Pumpkin Pie" data-deck="friendsgiving" data-character="harvest-pie">
+    <defs><symbol id="pip" viewBox="0 0 32 32"><g fill="#58465e"><circle cx="16" cy="8" r="6.5"/><circle cx="8" cy="19" r="6.5"/><circle cx="24" cy="19" r="6.5"/><path d="M13 20h6l4 11H9Z"/></g></symbol><linearGradient id="artifact-gold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f4e3ac"/><stop offset=".28" stop-color="#d3aa53"/><stop offset=".55" stop-color="#f8e7ae"/><stop offset=".8" stop-color="#b48c3e"/><stop offset="1" stop-color="#e5c373"/></linearGradient><symbol id="character" data-character="harvest-pie" viewBox="0 0 200 240"><circle cx="101" cy="118" r="80" fill="#c4afbb" opacity=".2"/><ellipse cx="101" cy="226" rx="79" ry="7" fill="#9b806f" opacity=".13"/><g stroke="#554452" stroke-width="2.2" stroke-linejoin="round"><ellipse cx="99" cy="179" rx="85" ry="22" fill="#d8c5a4"/>
+    <path d="M29 133h141l-13 39q-57 22-114 0Z" fill="#c39360"/><ellipse cx="100" cy="132" rx="73" ry="27" fill="#c88c53"/>
+    <ellipse cx="100" cy="130" rx="62" ry="19" fill="#b97947"/><path d="M31 132q9 12 16-1 8 12 16-1 8 13 16 0 8 13 16 0 8 13 16 0 8 13 16 0 8 13 16 0 8 13 16 0 8 13 14-2" fill="none" stroke="#dfb67b" stroke-width="6"/>
+    <path d="M80 126q-13-13 0-17-7-17 11-16-4-16 10-20 12 15 5 22 19-1 14 14 14 4 0 17Z" fill="#eadcba"/>
+    <path d="m94 52 4-7m7 7 4-7m-61 39 8 5m87-9 8 5" stroke="#b49464" stroke-width="2.5"/>
+    <path d="m36 179-21 24m21-16-12-10m119 17 25 15" fill="none" stroke="#aca98f" stroke-width="3"/>
+  </g></symbol></defs>
+    <rect width="250" height="350" rx="11" fill="#f5ead8"/>
+    <rect x="4" y="4" width="242" height="342" rx="8" fill="none" stroke="#b28b55" stroke-width="2"/>
+    <rect x="9" y="9" width="232" height="332" rx="5" fill="none" stroke="#b28b55" stroke-width=".7" opacity=".65"/>
+    <rect x="47" y="40" width="156" height="270" rx="70" fill="#ccb5b8" opacity=".33"/>
+    <path d="M61 227V94q0-23 21-23h88q21 0 21 23v133M67 122h118m-60-45v147" fill="none" stroke="#a28caa" stroke-width="1.3" opacity=".25"/>
+    <g fill="#b59a70" opacity=".35"><circle cx="182" cy="222" r="1.2"/><circle cx="71" cy="65" r="0.65"/><circle cx="108" cy="118" r="0.65"/><circle cx="145" cy="171" r="0.65"/><circle cx="182" cy="224" r="1.2"/><circle cx="71" cy="67" r="0.65"/><circle cx="108" cy="120" r="0.65"/><circle cx="145" cy="173" r="0.65"/><circle cx="182" cy="226" r="1.2"/><circle cx="71" cy="69" r="0.65"/><circle cx="108" cy="122" r="0.65"/><circle cx="145" cy="175" r="0.65"/><circle cx="182" cy="228" r="1.2"/><circle cx="71" cy="71" r="0.65"/><circle cx="108" cy="124" r="0.65"/><circle cx="145" cy="177" r="0.65"/><circle cx="182" cy="230" r="1.2"/><circle cx="71" cy="73" r="0.65"/></g><g data-motif="friends-dots-and-harvest" fill="none" stroke="#ac8b62" stroke-width="1.2">
+    <path d="M38 79q-11 95 0 194m174-194q11 95 0 194"/>
+    <path d="m38 105q-15-6-13-17 17 0 13 17Zm174 0q15-6 13-17-17 0-13 17Z" fill="#bb8466"/><path d="m38 152q-15-6-13-17 17 0 13 17Zm174 0q15-6 13-17-17 0-13 17Z" fill="#c19766"/><path d="m38 199q-15-6-13-17 17 0 13 17Zm174 0q15-6 13-17-17 0-13 17Z" fill="#bb8466"/><path d="m38 246q-15-6-13-17 17 0 13 17Zm174 0q15-6 13-17-17 0-13 17Z" fill="#c19766"/>
+    <circle cx="38" cy="118" r="2" fill="#b96260" stroke="none"/><circle cx="212" cy="216" r="2" fill="#d1b66b" stroke="none"/><circle cx="38" cy="126" r="2" fill="#6e8f9d" stroke="none"/><circle cx="212" cy="224" r="2" fill="#6e8f9d" stroke="none"/><circle cx="38" cy="134" r="2" fill="#d1b66b" stroke="none"/><circle cx="212" cy="232" r="2" fill="#b96260" stroke="none"/>
+  </g>
+    <text x="125" y="26" text-anchor="middle" fill="#5c4659" font-family="Georgia,serif" font-weight="700" font-size="9" letter-spacing="1.3">FRIENDSGIVING</text>
+    <g fill="#58465e" text-anchor="middle"><text x="22" y="31" font-family="Georgia,serif" font-weight="700" font-size="29">7</text><use xlink:href="#pip" x="13" y="38" width="18" height="18"/></g><g transform="rotate(180 125 175)"><g fill="#58465e" text-anchor="middle"><text x="22" y="31" font-family="Georgia,serif" font-weight="700" font-size="29">7</text><use xlink:href="#pip" x="13" y="38" width="18" height="18"/></g></g>
+    <g id="main-art"><use xlink:href="#character" x="42" y="48" width="166" height="216"/>
+      <path d="M57 273h136m-125 31h114" stroke="#b28b55" stroke-width="1"/>
+      <text x="125" y="288" text-anchor="middle" fill="#5c4659" font-family="Georgia,serif" font-weight="700" font-size="11.5">PUMPKIN PIE</text>
+      <text x="125" y="300" text-anchor="middle" fill="#5c4659" font-family="Arial,sans-serif" font-size="6.5" letter-spacing=".3">A SLICE OF THANKSGIVING</text>
+      <path d="m125 309 13 13-13 13-13-13Z" fill="#ccb5b8" stroke="#b28b55" stroke-width="1"/>
+      <text x="125" y="327" text-anchor="middle" fill="#58465e" font-family="Georgia,serif" font-weight="700" font-size="15">7</text></g>
+  </svg>

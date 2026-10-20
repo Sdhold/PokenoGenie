@@ -22,7 +22,10 @@ public static class DeckThemeCatalog
         new("cats", "Royal Cats", "Binx, Autumn, Chip, and Anya, with playful cat scenes", "KS"),
         new("route66", "Route 66", "Classic cruisers, hot rods, neon diners, and the open highway", "KS"),
         new("dinosaurs", "Dinosaurs", "T. rex, Triceratops, Velociraptor, and a prehistoric valley", "KS"),
-        new("pokemon", "Pokémon", "Pikachu, Ninetales, Charizard, and a Poké Ball Ace", "JS")
+        new("pokemon", "Pokémon", "Pikachu, Ninetales, Charizard, and a Poké Ball Ace", "JS"),
+        new("halloween", "Halloween", "Friendly frights, a moonlight witch, pumpkins, and a haunted house", "QS"),
+        new("christmas", "Christmas", "Santa, Mrs. Claus, an elf, and cozy winter scenes", "KS"),
+        new("friendsgiving", "FriendsGiving", "The six Friends, Thanksgiving treats, and an orange couch", "QH")
     ];
 
     public static DeckTheme FindOrDefault(string? id) =>

@@ -2,6 +2,7 @@ import { middleEarthCast, middleEarthPortrait } from "./character-art/middle-ear
 import { wizardingCast, wizardingPortrait } from "./character-art/wizarding-world.mjs";
 import { galaxyCast, galaxyPortrait } from "./character-art/galaxy.mjs";
 import { adventureThemes } from "./adventure-card-art.mjs";
+import { seasonalThemes } from "./seasonal-card-art.mjs";
 
 export const storyThemes = {
   harrypotter: {
@@ -16,7 +17,8 @@ export const storyThemes = {
     name: "Lord of the Rings", title: "LORD OF THE RINGS", background: "#edf0dc", panel: "#c9d6bc", ink: "#31554a", gold: "#aa8f4e", red: "#9f4e43", black: "#284e47",
     cast: middleEarthCast, portrait: middleEarthPortrait, courts: { K: "aragorn", Q: "arwen", J: "frodo" }, ace: { id: "onering", name: "The One Ring", role: "One ring to rule them all" }
   },
-  ...adventureThemes
+  ...adventureThemes,
+  ...seasonalThemes
 };
 const suits = ["S", "H", "D", "C"];
 function escape(value) { return value.replaceAll("&", "&amp;").replaceAll('"', "&quot;").replaceAll("<", "&lt;"); }
@@ -158,7 +160,7 @@ export function storyBackSvg(themeId) {
     <text x="125" y="${themeId==="lordoftherings"?49:60}" text-anchor="middle" fill="${theme.ink}" font-family="${themeId==="starwars"?"Arial,sans-serif":"Georgia,serif"}" font-weight="700" font-size="${themeId==="harrypotter"?21:19}" letter-spacing="1.4">${title}</text>
     <use xlink:href="#artifact" x="33" y="79" width="184" height="191"/>
     <path d="M62 278h126" stroke="${theme.gold}" stroke-width="1.5"/>
-    <text x="125" y="296" text-anchor="middle" fill="${theme.ink}" font-family="Arial,sans-serif" font-size="7.2" letter-spacing="1.7">${theme.collection ?? (themeId==="harrypotter"?"WIZARDING":themeId==="starwars"?"GALACTIC":"MIDDLE-EARTH")} COLLECTION</text>
+    <text x="125" y="296" text-anchor="middle" fill="${theme.ink}" font-family="Arial,sans-serif" font-size="7.2" letter-spacing="1.7">${escape(theme.collection ?? (themeId==="harrypotter"?"WIZARDING":themeId==="starwars"?"GALACTIC":"MIDDLE-EARTH"))} COLLECTION</text>
     <g fill="${theme.gold}"><path d="m125 306 4 8-4 8-4-8Z"/><circle cx="105" cy="314" r="2"/><circle cx="145" cy="314" r="2"/></g>
   </svg>\n`.replace(/[\t ]+$/gm,"");
 }

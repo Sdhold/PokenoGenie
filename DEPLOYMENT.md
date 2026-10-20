@@ -106,12 +106,12 @@ In the browser that created the set, select it under **Board library → Board s
 
 Board-check records contain a validated reference and a copy of its saved layout, never a trusted `isWinner` flag. C# on the phone and the lightweight ES5 TV checker independently calculate the result using the room's called cards. Database rules bind checks to the caller, frozen revision, phase, round, pattern, and count. Creating a board set does not grant access to other callers' private decks.
 
-When changing the generated library rules or allowed theme IDs, edit `tools/generate-board-rules.mjs`, run `node tools/generate-board-rules.mjs`, and run the emulator tests before publishing the resulting `database.rules.json`. Run `node tools/generate-winner-art.mjs` after generating cards and backgrounds to refresh the twelve bundled winner graphics.
+When changing the generated library rules or allowed theme IDs, edit `tools/generate-board-rules.mjs`, run `node tools/generate-board-rules.mjs`, and run the emulator tests before publishing the resulting `database.rules.json`. Run `node tools/generate-winner-art.mjs` after generating cards and backgrounds to refresh the fifteen bundled winner graphics.
 
 ### Additional deck and completed-round checks
 
-- On a narrow phone, swipe the single row under **Card deck** to reach **Route 66**, **Dinosaurs**, and **Pokémon**. All twelve themes must be reachable without horizontal page overflow. Keyboard users can Tab through the same buttons; the focused option scrolls into view.
-- Switch to each new deck during calling and while paused. Both screens must show its own card faces and scenery without changing the count or draw order. Check a winning board and confirm the celebration matches the theme. Printable saved boards should use the selected theme too.
+- On a narrow phone, **Card deck** initially shows the original nine decks as a 3×3 grid. Scroll down inside that grid for **Route 66**, **Dinosaurs**, **Pokémon**, **Halloween**, **Christmas**, and **FriendsGiving**. Its height stays at three rows (457 CSS pixels including gaps/padding); all fifteen themes must be reachable without horizontal page overflow. Keyboard users can focus the grid and use Page Down/arrow keys, or Tab through its buttons.
+- Switch to each new deck during calling and while paused. Both screens must show its own card faces and scenery without changing the count or draw order. Check a winning board and confirm the celebration matches the theme. Printable saved boards should use the selected theme too. Halloween uses friendly spooky characters; Christmas uses Santa, Mrs. Claus and an elf; FriendsGiving combines the six Friends characters with Thanksgiving food and familiar show props.
 - After the 52nd draw, the TV should automatically show all 52 cards with **Round complete**, the last card outlined in gold, and no split current/previous-four view. Reload the TV and open/close the guide; the full deck should remain. Starting another round should restore the normal calling view with an empty history. Manually ending an earlier round shows its called cards in the same way.
 
 ## Tests and free-tier limits

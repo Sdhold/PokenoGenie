@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 250 350" role="img" aria-label="6 of S — FriendsGiving: Central Perk Coffee" data-deck="friendsgiving" data-character="central-perk-coffee">
+    <defs><symbol id="pip" viewBox="0 0 32 32"><g fill="#58465e"><path d="M16 2C11 10 3 13 3 21c0 5 4 8 8 8 2 0 4-1 5-3 1 2 3 3 5 3 4 0 8-3 8-8 0-8-8-11-13-19Z"/><path d="M13 25h6l4 6H9Z"/></g></symbol><linearGradient id="artifact-gold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f4e3ac"/><stop offset=".28" stop-color="#d3aa53"/><stop offset=".55" stop-color="#f8e7ae"/><stop offset=".8" stop-color="#b48c3e"/><stop offset="1" stop-color="#e5c373"/></linearGradient><symbol id="character" data-character="central-perk-coffee" viewBox="0 0 200 240"><circle cx="101" cy="118" r="80" fill="#c4afbb" opacity=".2"/><ellipse cx="101" cy="226" rx="79" ry="7" fill="#9b806f" opacity=".13"/><g data-motif="central-perk-coffee" stroke="#554452" stroke-width="2.2">
+    <ellipse cx="97" cy="192" rx="77" ry="17" fill="#d8c6a0"/><path d="M41 101h110l-11 71q-40 35-85 0Z" fill="#758f7b"/>
+    <path d="M149 116q45-8 35 29-8 28-39 18m3-35q24-8 23 10-1 15-22 14" fill="none" stroke="#75917e" stroke-width="8"/>
+    <ellipse cx="96" cy="102" rx="55" ry="13" fill="#ecddbd"/><ellipse cx="96" cy="104" rx="46" ry="8" fill="#795b47"/>
+    <path d="M78 87q-22-20-7-37m29 37q-21-23-3-47m27 47q-19-16-6-33" fill="none" stroke="#b99a80" stroke-width="3"/>
+    <ellipse cx="97" cy="143" rx="39" ry="22" fill="#efe1bd" stroke="#b28a61" stroke-width="1.5"/>
+    <text x="97" y="139" fill="#ae675b" stroke="none" text-anchor="middle" font-family="Georgia,serif" font-size="10" font-weight="700">CENTRAL</text><text x="97" y="155" fill="#557b65" stroke="none" text-anchor="middle" font-family="Georgia,serif" font-size="16" font-weight="700">PERK</text>
+    <path d="m46 191 31 10 27-1m26-4 29-8" fill="none" stroke="#ad9273"/>
+  </g></symbol></defs>
+    <rect width="250" height="350" rx="11" fill="#f5ead8"/>
+    <rect x="4" y="4" width="242" height="342" rx="8" fill="none" stroke="#b28b55" stroke-width="2"/>
+    <rect x="9" y="9" width="232" height="332" rx="5" fill="none" stroke="#b28b55" stroke-width=".7" opacity=".65"/>
+    <rect x="47" y="40" width="156" height="270" rx="70" fill="#ccb5b8" opacity=".33"/>
+    <path d="M61 227V94q0-23 21-23h88q21 0 21 23v133M67 122h118m-60-45v147" fill="none" stroke="#a28caa" stroke-width="1.3" opacity=".25"/>
+    <g fill="#b59a70" opacity=".35"><circle cx="130" cy="154" r="1.2"/><circle cx="167" cy="207" r="0.65"/><circle cx="56" cy="260" r="0.65"/><circle cx="93" cy="103" r="0.65"/><circle cx="130" cy="156" r="1.2"/><circle cx="167" cy="209" r="0.65"/><circle cx="56" cy="52" r="0.65"/><circle cx="93" cy="105" r="0.65"/><circle cx="130" cy="158" r="1.2"/><circle cx="167" cy="211" r="0.65"/><circle cx="56" cy="54" r="0.65"/><circle cx="93" cy="107" r="0.65"/><circle cx="130" cy="160" r="1.2"/><circle cx="167" cy="213" r="0.65"/><circle cx="56" cy="56" r="0.65"/><circle cx="93" cy="109" r="0.65"/><circle cx="130" cy="162" r="1.2"/><circle cx="167" cy="215" r="0.65"/></g><g data-motif="friends-dots-and-harvest" fill="none" stroke="#ac8b62" stroke-width="1.2">
+    <path d="M38 79q-11 95 0 194m174-194q11 95 0 194"/>
+    <path d="m38 105q-15-6-13-17 17 0 13 17Zm174 0q15-6 13-17-17 0-13 17Z" fill="#bb8466"/><path d="m38 152q-15-6-13-17 17 0 13 17Zm174 0q15-6 13-17-17 0-13 17Z" fill="#c19766"/><path d="m38 199q-15-6-13-17 17 0 13 17Zm174 0q15-6 13-17-17 0-13 17Z" fill="#bb8466"/><path d="m38 246q-15-6-13-17 17 0 13 17Zm174 0q15-6 13-17-17 0-13 17Z" fill="#c19766"/>
+    <circle cx="38" cy="118" r="2" fill="#b96260" stroke="none"/><circle cx="212" cy="216" r="2" fill="#d1b66b" stroke="none"/><circle cx="38" cy="126" r="2" fill="#6e8f9d" stroke="none"/><circle cx="212" cy="224" r="2" fill="#6e8f9d" stroke="none"/><circle cx="38" cy="134" r="2" fill="#d1b66b" stroke="none"/><circle cx="212" cy="232" r="2" fill="#b96260" stroke="none"/>
+  </g>
+    <text x="125" y="26" text-anchor="middle" fill="#5c4659" font-family="Georgia,serif" font-weight="700" font-size="9" letter-spacing="1.3">FRIENDSGIVING</text>
+    <g fill="#58465e" text-anchor="middle"><text x="22" y="31" font-family="Georgia,serif" font-weight="700" font-size="29">6</text><use xlink:href="#pip" x="13" y="38" width="18" height="18"/></g><g transform="rotate(180 125 175)"><g fill="#58465e" text-anchor="middle"><text x="22" y="31" font-family="Georgia,serif" font-weight="700" font-size="29">6</text><use xlink:href="#pip" x="13" y="38" width="18" height="18"/></g></g>
+    <g id="main-art"><use xlink:href="#character" x="42" y="48" width="166" height="216"/>
+      <path d="M57 273h136m-125 31h114" stroke="#b28b55" stroke-width="1"/>
+      <text x="125" y="288" text-anchor="middle" fill="#5c4659" font-family="Georgia,serif" font-weight="700" font-size="11.5">CENTRAL PERK COFFEE</text>
+      <text x="125" y="300" text-anchor="middle" fill="#5c4659" font-family="Arial,sans-serif" font-size="6.5" letter-spacing=".3">ONE MORE CUP WITH FRIENDS</text>
+      <path d="m125 309 13 13-13 13-13-13Z" fill="#ccb5b8" stroke="#b28b55" stroke-width="1"/>
+      <text x="125" y="327" text-anchor="middle" fill="#58465e" font-family="Georgia,serif" font-weight="700" font-size="15">6</text></g>
+  </svg>

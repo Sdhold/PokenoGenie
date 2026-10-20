@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 250 350" role="img" aria-label="9 of S — Christmas: Winter Robin" data-deck="christmas" data-character="winter-robin">
+    <defs><symbol id="pip" viewBox="0 0 32 32"><g fill="#39574a"><path d="M16 2C11 10 3 13 3 21c0 5 4 8 8 8 2 0 4-1 5-3 1 2 3 3 5 3 4 0 8-3 8-8 0-8-8-11-13-19Z"/><path d="M13 25h6l4 6H9Z"/></g></symbol><linearGradient id="artifact-gold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f4e3ac"/><stop offset=".28" stop-color="#d3aa53"/><stop offset=".55" stop-color="#f8e7ae"/><stop offset=".8" stop-color="#b48c3e"/><stop offset="1" stop-color="#e5c373"/></linearGradient><symbol id="character" data-character="winter-robin" viewBox="0 0 200 240"><circle cx="101" cy="120" r="80" fill="#b5c9b3" opacity=".18"/><ellipse cx="100" cy="226" rx="79" ry="7" fill="#718b77" opacity=".13"/><g stroke="#3d554c" stroke-width="2.2" stroke-linejoin="round"><path d="m22 196 156-13m-121 10-8-28m91 20 18-22" fill="none" stroke="#9c7b53" stroke-width="6"/>
+    <path d="M72 156q-28-21-48-1l32 18 34-2m11 5-7 17m22-18 6 16" fill="#8b7d61"/>
+    <path d="M65 135q6-29 32-33-10-30 21-41 26-5 34 21l-9 32q20 36-13 58-41 22-65-11Z" fill="#a19472"/>
+    <path d="M88 113q22-18 51 3 16 31-7 48-29 18-44-9Z" fill="#b87058" stroke="none"/>
+    <path d="M74 123q-20 27 9 39l21-24Z" fill="#7d7a62"/><path d="m82 138 10 6m-13 2 9 5m60-59 21 5-22 7" fill="#d4b77b"/>
+    <circle cx="133" cy="82" r="4" fill="#3d554c"/>
+    <path d="m36 180-17-19 20 1 9-16 3 21 18 8-21 4m98-8 8-22 8 17 20-4-11 17 8 16-21-5" fill="#6e9274"/>
+    <g fill="#b96b5b"><circle cx="45" cy="179" r="5"/><circle cx="52" cy="184" r="5"/><circle cx="159" cy="181" r="5"/><circle cx="166" cy="185" r="5"/></g></g></symbol></defs>
+    <rect width="250" height="350" rx="11" fill="#f4efdc"/>
+    <rect x="4" y="4" width="242" height="342" rx="8" fill="none" stroke="#b09a5d" stroke-width="2"/>
+    <rect x="9" y="9" width="232" height="332" rx="5" fill="none" stroke="#b09a5d" stroke-width=".7" opacity=".65"/>
+    <rect x="47" y="40" width="156" height="270" rx="70" fill="#c1cfb4" opacity=".33"/>
+    <circle cx="168" cy="79" r="24" fill="#c7bb8a" opacity=".18"/>
+    <path d="M49 261q62-31 152-3m-151-16 16-32 15 32m85 7 16-34 17 34" fill="none" stroke="#8ca58a" opacity=".25" stroke-width="1.4"/>
+    <g fill="#8fa189" opacity=".35"><circle cx="169" cy="205" r="1.2"/><circle cx="58" cy="258" r="0.65"/><circle cx="95" cy="101" r="0.65"/><circle cx="132" cy="154" r="0.65"/><circle cx="169" cy="207" r="1.2"/><circle cx="58" cy="260" r="0.65"/><circle cx="95" cy="103" r="0.65"/><circle cx="132" cy="156" r="0.65"/><circle cx="169" cy="209" r="1.2"/><circle cx="58" cy="52" r="0.65"/><circle cx="95" cy="105" r="0.65"/><circle cx="132" cy="158" r="0.65"/><circle cx="169" cy="211" r="1.2"/><circle cx="58" cy="54" r="0.65"/><circle cx="95" cy="107" r="0.65"/><circle cx="132" cy="160" r="0.65"/><circle cx="169" cy="213" r="1.2"/><circle cx="58" cy="56" r="0.65"/></g><g data-motif="candy-cane-and-holly" fill="none" stroke-linecap="round">
+    <path d="M38 276V95q0-17 11-17m163-2v181q0 17-11 17" stroke="#b4ad8d" stroke-width="5"/>
+    <path d="M38 276V95q0-17 11-17m163-2v181q0 17-11 17" stroke="#ad6b60" stroke-width="3.5" stroke-dasharray="7 8"/>
+    <path d="m34 153-10-14 13 1 8-9 1 14 10 8-15 3Zm182 44 10 14-13-1-8 9-1-14-10-8 15-3Z" fill="#86a081" stroke="#647e6b" stroke-width="1"/>
+    <g fill="#b56961" stroke="none"><circle cx="38" cy="154" r="3"/><circle cx="44" cy="157" r="3"/><circle cx="212" cy="196" r="3"/><circle cx="206" cy="193" r="3"/></g>
+  </g>
+    <text x="125" y="26" text-anchor="middle" fill="#3c5a4c" font-family="Georgia,serif" font-weight="700" font-size="9" letter-spacing="1.3">CHRISTMAS</text>
+    <g fill="#39574a" text-anchor="middle"><text x="22" y="31" font-family="Georgia,serif" font-weight="700" font-size="29">9</text><use xlink:href="#pip" x="13" y="38" width="18" height="18"/></g><g transform="rotate(180 125 175)"><g fill="#39574a" text-anchor="middle"><text x="22" y="31" font-family="Georgia,serif" font-weight="700" font-size="29">9</text><use xlink:href="#pip" x="13" y="38" width="18" height="18"/></g></g>
+    <g id="main-art"><use xlink:href="#character" x="42" y="48" width="166" height="216"/>
+      <path d="M57 273h136m-125 31h114" stroke="#b09a5d" stroke-width="1"/>
+      <text x="125" y="288" text-anchor="middle" fill="#3c5a4c" font-family="Georgia,serif" font-weight="700" font-size="11.5">WINTER ROBIN</text>
+      <text x="125" y="300" text-anchor="middle" fill="#3c5a4c" font-family="Arial,sans-serif" font-size="6.5" letter-spacing=".3">A SONG AMONG THE HOLLY</text>
+      <path d="m125 309 13 13-13 13-13-13Z" fill="#c1cfb4" stroke="#b09a5d" stroke-width="1"/>
+      <text x="125" y="327" text-anchor="middle" fill="#39574a" font-family="Georgia,serif" font-weight="700" font-size="15">9</text></g>
+  </svg>

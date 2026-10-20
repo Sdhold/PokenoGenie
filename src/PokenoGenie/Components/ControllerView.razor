@@ -209,8 +209,8 @@
                     <div><span class="eyebrow">CARD DECK</span><h2 id="deck-theme-heading">Choose a look.</h2></div>
                     <p>Changes the cards and background on your phone and TV. The round stays as it is.</p>
                 </div>
-                <p id="deck-theme-hint" class="deck-theme-hint"><strong>@DeckThemeCatalog.FindOrDefault(_themeId).Name</strong><span>Swipe or scroll · @DeckThemeCatalog.All.Count decks →</span></p>
-                <div class="deck-theme-options" role="group" aria-label="Deck themes" aria-describedby="deck-theme-hint">
+                <p id="deck-theme-hint" class="deck-theme-hint"><strong>@DeckThemeCatalog.FindOrDefault(_themeId).Name</strong><span>Scroll down · @DeckThemeCatalog.All.Count decks ↓</span></p>
+                <div class="deck-theme-options" role="group" aria-label="Deck themes" aria-describedby="deck-theme-hint" tabindex="0">
                     @foreach (var theme in DeckThemeCatalog.All)
                     {
                         <button class="deck-theme-option @(theme.Id == _themeId ? "selected" : "")"
@@ -218,7 +218,14 @@
                                 disabled="@(!Rooms.IsConnected || _busy || _themeBusy)"
                                 @onclick="() => SelectThemeAsync(theme.Id)">
                             <img src="@theme.PreviewPath" alt="" draggable="false" />
-                            <strong>@theme.Name</strong>
+                            @if (theme.Id == "friendsgiving")
+                            {
+                                <strong>Friends<wbr />Giving</strong>
+                            }
+                            else
+                            {
+                                <strong>@theme.Name</strong>
+                            }
                         </button>
                     }
                 </div>

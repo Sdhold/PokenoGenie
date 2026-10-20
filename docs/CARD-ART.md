@@ -60,7 +60,7 @@ The Jack, Queen and King portraits are mirrored like the other character courts.
 
 ## Route 66, Dinosaurs, and Pokémon
 
-These three collections use original, bundled SVG illustrations with the same outlined shapes, cream card faces, muted colors, mirrored courts, readable suit/rank corners, and integrated number-card scenes as the existing story decks. No paid service, external image URL, or runtime artwork generator is needed. The phone picker scrolls horizontally in one compact row.
+These three collections use original, bundled SVG illustrations with the same outlined shapes, cream card faces, muted colors, mirrored courts, readable suit/rank corners, and integrated number-card scenes as the existing story decks. No paid service, external image URL, or runtime artwork generator is needed. The phone picker shows three columns and three rows, then scrolls vertically for additional decks.
 
 | Collection | Jack | Queen | King | Ace |
 | --- | --- | --- | --- | --- |
@@ -71,6 +71,18 @@ These three collections use original, bundled SVG illustrations with the same ou
 Each collection also has nine supporting illustrations rotated across ranks 2–10 and the four suits. Route 66 includes pickups, a woody wagon, a camper bus, a delivery van, a hauler, a sedan, a muscle coupe, a roadster, and a motorcycle, with different body geometry. Dinosaur silhouettes include plates, armor, a club tail, a long neck, a sail, a crest, and a domed skull. Pokémon includes Bulbasaur, Squirtle, Eevee, Jigglypuff, Psyduck, Meowth, Snorlax, Gengar, and Dragonite; the borders follow the pictured character with lightning, flames, water, leaves, or other decorative trails. Ninetales has nine drawn tails; Charizard has teal wing membranes and a flame tail; Pikachu has black ear tips and a lightning-bolt tail.
 
 The source modules are `tools/character-art/route66.mjs`, `dinosaurs.mjs`, and `pokemon.mjs`. `tools/adventure-card-art.mjs` supplies their palettes, themed frames, object aces, and scenery. Regenerate cards, backgrounds, and winner art in that order.
+
+## Halloween, Christmas, and FriendsGiving
+
+The seasonal collections use the same native SVG style, mirrored courts, and standard corner suits. Each includes 52 faces, a back, a 1600×900 background, and a matching winner graphic. Sources live in `tools/character-art/halloween.mjs`, `christmas.mjs`, `friendsgiving.mjs`, and `tools/seasonal-card-art.mjs`.
+
+| Collection | Jack | Queen | King | Ace |
+| --- | --- | --- | --- | --- |
+| Halloween | Trick-or-Treater | Moonlight Witch | Count Midnight | Jack-o'-Lantern |
+| Christmas | Workshop Elf | Mrs. Claus | Santa Claus | Decorated Christmas tree |
+| FriendsGiving | Joey Tribbiani | Monica Geller | Chandler Bing | Turkey with sunglasses and a fez, inside a gold frame |
+
+Halloween's nine number-card illustrations include a ghost, cat, skeleton, spider, bat, mummy, scarecrow, haunted house, and cauldron. Christmas includes a snowman, reindeer, nutcracker, gingerbread friend, snow globe, stocking, sleigh, robin, and gingerbread house. FriendsGiving combines Rachel, Phoebe, and Ross with the orange couch, Central Perk coffee, pumpkin pie, a layered trifle, foosball, and a gravy boat. Together with the courts, all six Friends appear in the collection. Decorative borders use spiderwebs/bats, candy canes/holly, or colored dots/autumn leaves respectively.
 
 ## Matching backgrounds
 
@@ -87,5 +99,8 @@ Every alternate deck has a bundled 1600 × 900 SVG background shared by the call
 - **Route 66:** red rock mesas at dusk, a winding highway, a neon diner, and the deck's classic vehicle illustrations.
 - **Dinosaurs:** a prehistoric river valley, volcano, ferns, and Brachiosaurus, Stegosaurus, and Triceratops.
 - **Pokémon:** a meadow at blue hour, a distant stadium, a Poké Ball, Pikachu, Bulbasaur, and Squirtle.
+- **Halloween:** a harvest moon, bats, twisted trees, a friendly haunted house, and glowing pumpkins.
+- **Christmas:** a snowy cottage, lit tree, forest, sleigh, and falling snow.
+- **FriendsGiving:** a purple apartment door with a gold frame, café window, orange couch, and shared Thanksgiving table.
 
 Run `node tools/generate-deck-backgrounds.mjs` to regenerate them after generating card art. The automotive backgrounds reuse the deck's existing vehicle symbols. The assets are in `src/PokenoGenie/wwwroot/backgrounds/`; their colors and overlays are controlled by `css/deck-backgrounds.css`.

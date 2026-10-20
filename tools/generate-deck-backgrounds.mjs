@@ -3,6 +3,7 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { catBackgroundSvg } from "./cat-card-art.mjs";
 import { adventureThemes, adventureBackgroundSvg } from "./adventure-card-art.mjs";
+import { seasonalThemes, seasonalBackgroundSvg } from "./seasonal-card-art.mjs";
 
 const root = new URL("../src/PokenoGenie/wwwroot/", import.meta.url);
 const output = new URL("backgrounds/", root);
@@ -99,4 +100,5 @@ for (const theme of ["mopar","dart1969"]) {
 }
 await writeFile(new URL("cats.svg",output),catBackgroundSvg());
 for (const id of Object.keys(adventureThemes)) await writeFile(new URL(`${id}.svg`,output),adventureBackgroundSvg(id));
-console.log("Generated eleven bundled deck backgrounds; Illustrated keeps its green table.");
+for (const id of Object.keys(seasonalThemes)) await writeFile(new URL(`${id}.svg`,output),seasonalBackgroundSvg(id));
+console.log("Generated fourteen bundled deck backgrounds; Illustrated keeps its green table.");

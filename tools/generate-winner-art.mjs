@@ -13,7 +13,10 @@ const themes = {
   cats: ["A purrfect Pokeno!", "#153b39", "#edc68d"],
   route66: ["Next stop: Pokeno!", "#233c49", "#edc28b"],
   dinosaurs: ["A roaring Pokeno!", "#244b4d", "#d9d5a0"],
-  pokemon: ["A winning evolution!", "#233c5b", "#f0d68e"]
+  pokemon: ["A winning evolution!", "#233c5b", "#f0d68e"],
+  halloween: ["A spooktacular Pokeno!", "#302b48", "#edc58d"],
+  christmas: ["A very merry Pokeno!", "#213f43", "#e4d4a1"],
+  friendsgiving: ["Good friends. Great Pokeno!", "#4a3e55", "#e6c18b"]
 };
 for (const [theme, [caption, color, gold]] of Object.entries(themes)) {
   const background = theme === "illustrated" ? "" : (await readFile(new URL(`backgrounds/${theme}.svg`, root), "utf8")).replace(/<svg\b/, '<svg x="0" y="0" width="1000" height="600"');

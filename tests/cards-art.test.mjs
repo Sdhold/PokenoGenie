@@ -6,7 +6,7 @@ const directory = new URL("../src/PokenoGenie/wwwroot/cards/", import.meta.url);
 const ranks = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
 const suits = ["S", "H", "D", "C"];
 const traditionalDirectories = [directory, ...["midnight", "sunburst", "mopar", "dart1969"].map(id => new URL(`${id}/`, directory))];
-const storyIds = ["harrypotter", "starwars", "lordoftherings", "route66", "dinosaurs", "pokemon"];
+const storyIds = ["harrypotter", "starwars", "lordoftherings", "route66", "dinosaurs", "pokemon", "halloween", "christmas", "friendsgiving"];
 const themeDirectories = [...traditionalDirectories, ...[...storyIds,"cats"].map(id => new URL(`${id}/`, directory))];
 
 test("every theme has 52 self-contained SVG faces", async () => {
@@ -56,7 +56,10 @@ test("story decks have named, mirrored character courts and themed object aces",
     lordoftherings: { K: "aragorn", Q: "arwen", J: "frodo", A: "onering" },
     route66: { K: "finned-cruiser", Q: "sunset-convertible", J: "hot-rod", A: "route66-shield" },
     dinosaurs: { K: "tyrannosaurus", Q: "triceratops", J: "velociraptor", A: "dinosaur-egg" },
-    pokemon: { K: "charizard", Q: "ninetales", J: "pikachu", A: "pokeball" }
+    pokemon: { K: "charizard", Q: "ninetales", J: "pikachu", A: "pokeball" },
+    halloween: { K: "count-midnight", Q: "moonlight-witch", J: "trick-or-treater", A: "jack-o-lantern" },
+    christmas: { K: "santa", Q: "mrs-claus", J: "workshop-elf", A: "christmas-tree" },
+    friendsgiving: { K: "chandler", Q: "monica", J: "joey", A: "thanksgiving-turkey" }
   };
   for (const [themeId, characters] of Object.entries(expected)) {
     const numberCharacters = new Set();

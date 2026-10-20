@@ -10,6 +10,9 @@
 [data-deck-theme="route66"] { background-color: #233c49; background-image: linear-gradient(90deg, #172b3c22, #172b3c88, #172b3c22), url("../backgrounds/route66.svg"); }
 [data-deck-theme="dinosaurs"] { background-color: #244b4d; background-image: linear-gradient(90deg, #102f2e22, #102f2e88, #102f2e22), url("../backgrounds/dinosaurs.svg"); }
 [data-deck-theme="pokemon"] { background-color: #233c5b; background-image: linear-gradient(90deg, #13283f22, #13283f88, #13283f22), url("../backgrounds/pokemon.svg"); }
+[data-deck-theme="halloween"] { background-color: #302b48; background-image: linear-gradient(90deg, #211e3522, #211e3588, #211e3522), url("../backgrounds/halloween.svg"); }
+[data-deck-theme="christmas"] { background-color: #213f43; background-image: linear-gradient(90deg, #102d3022, #102d3088, #102d3022), url("../backgrounds/christmas.svg"); }
+[data-deck-theme="friendsgiving"] { background-color: #4a3e55; background-image: linear-gradient(90deg, #29263b22, #29263b88, #29263b22), url("../backgrounds/friendsgiving.svg"); }
 [data-deck-theme] { background-position: center center; background-repeat: no-repeat; background-size: cover; }
 .controller-shell[data-deck-theme] { background-attachment: fixed; }
 

@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 250 350" role="img" aria-label="5 of D — FriendsGiving: Rachel Green" data-deck="friendsgiving" data-character="rachel">
+    <defs><symbol id="pip" viewBox="0 0 32 32"><g fill="#a65a4e"><path d="M16 1 30 16 16 31 2 16Z"/></g></symbol><linearGradient id="artifact-gold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f4e3ac"/><stop offset=".28" stop-color="#d3aa53"/><stop offset=".55" stop-color="#f8e7ae"/><stop offset=".8" stop-color="#b48c3e"/><stop offset="1" stop-color="#e5c373"/></linearGradient><symbol id="character" data-character="rachel" viewBox="0 0 200 240"><circle cx="101" cy="118" r="80" fill="#c4afbb" opacity=".2"/><ellipse cx="101" cy="226" rx="79" ry="7" fill="#9b806f" opacity=".13"/><path d="M58 193q-8-31 3-64-14-64 17-84 28-19 49 1 27 17 11 76 16 39 7 72l-30-22-30 4Z" fill="#9b7454" stroke="#26313c" stroke-width="2"/>
+    <path d="M72 68q-15 32-3 71-13 24-5 44m66-117q13 35 1 77 13 25 7 42" fill="none" stroke="#c5a06b" stroke-width="3" opacity=".65"/><path d="M18 238q-3-60 36-73l30-11 16 15 16-15 31 11q39 14 37 73Z" fill="#7c9691" stroke="#554452" stroke-width="2.3"/>
+    <path d="m83 155 17 15 17-15-2 28-15 14-16-14Z" fill="#d9c3a6" stroke="#554452" stroke-width="1.4"/>
+    <path d="M77 166q24 25 48 0" fill="none" stroke="#c2b59a" stroke-width="3"/>
+    <path d="m42 194-6 42m121-42 7 42" fill="none" stroke="#554452" stroke-width="1.5" opacity=".5"/><path d="M85 137v30q15 15 30 0v-30" fill="#e9c3a4" stroke="#99735d" stroke-width="1.7"/>
+    <ellipse cx="72" cy="105" rx="7" ry="12" fill="#e9c3a4"/><ellipse cx="128" cy="105" rx="7" ry="12" fill="#e9c3a4"/>
+    <path d="M77 87Q72 54 100 53q29 1 24 34l-2 36q-3 24-22 29-22-9-25-31Z" fill="#e9c3a4" stroke="#99735d" stroke-width="1.8"/>
+    <path d="M77 85q3-24 23-25-17 14-16 50l3 23q-12-12-10-48Z" fill="#fff2d5" opacity=".2"/>
+    <path d="m79 91 13-2m16 0 13 2" stroke="#9b7454" stroke-width="2.2" stroke-linecap="round"/>
+    <path d="M79 100q8-7 14 0-7 6-14 0Zm28 0q8-7 14 0-7 6-14 0Z" fill="#fff5e6" stroke="#765c50" stroke-width="1"/>
+    <circle cx="87" cy="100" r="3.2" fill="#829982"/><circle cx="114" cy="100" r="3.2" fill="#829982"/>
+    <circle cx="87" cy="100" r="1.5" fill="#1c2830"/><circle cx="114" cy="100" r="1.5" fill="#1c2830"/>
+    <path d="m101 103-4 14 7 2" fill="none" stroke="#ab7960" stroke-width="1.6" stroke-linecap="round"/>
+    <path d="M92 131q8 4 16-1" fill="none" stroke="#a75b5c" stroke-width="2" stroke-linecap="round"/>
+
+
+
+    <path d="M67 89q-8-38 31-42 39 0 38 42l-19-23-17-9-17 22-9 28-8 39-12 15 10-37Z" fill="#a67f58" stroke="#554452" stroke-width="1.7"/>
+    <path d="M82 67q-15 23-12 58l-9 30m49-94q27 18 18 55l12 34m-63-48-8 31m56-30 9 31" fill="none" stroke="#cba776" stroke-width="2.4"/>
+    <path d="M78 165q24 25 46 0m-25 18v53" fill="none" stroke="#d9c8a5" stroke-width="2"/>
+    <circle cx="99" cy="195" r="2" fill="#e4d3ad"/><circle cx="99" cy="212" r="2" fill="#e4d3ad"/>
+    <path d="M135 200h31l-5 27h-21Z" fill="#d9cfac" stroke="#554452" stroke-width="1.5"/><path d="M138 211h26m-25 7h24" stroke="#b66e60" stroke-width="4"/></symbol></defs>
+    <rect width="250" height="350" rx="11" fill="#f5ead8"/>
+    <rect x="4" y="4" width="242" height="342" rx="8" fill="none" stroke="#b28b55" stroke-width="2"/>
+    <rect x="9" y="9" width="232" height="332" rx="5" fill="none" stroke="#b28b55" stroke-width=".7" opacity=".65"/>
+    <rect x="47" y="40" width="156" height="270" rx="70" fill="#ccb5b8" opacity=".33"/>
+    <path d="M61 227V94q0-23 21-23h88q21 0 21 23v133M67 122h118m-60-45v147" fill="none" stroke="#a28caa" stroke-width="1.3" opacity=".25"/>
+    <g fill="#b59a70" opacity=".35"><circle cx="143" cy="171" r="1.2"/><circle cx="180" cy="224" r="0.65"/><circle cx="69" cy="67" r="0.65"/><circle cx="106" cy="120" r="0.65"/><circle cx="143" cy="173" r="1.2"/><circle cx="180" cy="226" r="0.65"/><circle cx="69" cy="69" r="0.65"/><circle cx="106" cy="122" r="0.65"/><circle cx="143" cy="175" r="1.2"/><circle cx="180" cy="228" r="0.65"/><circle cx="69" cy="71" r="0.65"/><circle cx="106" cy="124" r="0.65"/><circle cx="143" cy="177" r="1.2"/><circle cx="180" cy="230" r="0.65"/><circle cx="69" cy="73" r="0.65"/><circle cx="106" cy="126" r="0.65"/><circle cx="143" cy="179" r="1.2"/><circle cx="180" cy="232" r="0.65"/></g><g data-motif="friends-dots-and-harvest" fill="none" stroke="#ac8b62" stroke-width="1.2">
+    <path d="M38 79q-11 95 0 194m174-194q11 95 0 194"/>
+    <path d="m38 105q-15-6-13-17 17 0 13 17Zm174 0q15-6 13-17-17 0-13 17Z" fill="#bb8466"/><path d="m38 152q-15-6-13-17 17 0 13 17Zm174 0q15-6 13-17-17 0-13 17Z" fill="#c19766"/><path d="m38 199q-15-6-13-17 17 0 13 17Zm174 0q15-6 13-17-17 0-13 17Z" fill="#bb8466"/><path d="m38 246q-15-6-13-17 17 0 13 17Zm174 0q15-6 13-17-17 0-13 17Z" fill="#c19766"/>
+    <circle cx="38" cy="118" r="2" fill="#b96260" stroke="none"/><circle cx="212" cy="216" r="2" fill="#d1b66b" stroke="none"/><circle cx="38" cy="126" r="2" fill="#6e8f9d" stroke="none"/><circle cx="212" cy="224" r="2" fill="#6e8f9d" stroke="none"/><circle cx="38" cy="134" r="2" fill="#d1b66b" stroke="none"/><circle cx="212" cy="232" r="2" fill="#b96260" stroke="none"/>
+  </g>
+    <text x="125" y="26" text-anchor="middle" fill="#5c4659" font-family="Georgia,serif" font-weight="700" font-size="9" letter-spacing="1.3">FRIENDSGIVING</text>
+    <g fill="#a65a4e" text-anchor="middle"><text x="22" y="31" font-family="Georgia,serif" font-weight="700" font-size="29">5</text><use xlink:href="#pip" x="13" y="38" width="18" height="18"/></g><g transform="rotate(180 125 175)"><g fill="#a65a4e" text-anchor="middle"><text x="22" y="31" font-family="Georgia,serif" font-weight="700" font-size="29">5</text><use xlink:href="#pip" x="13" y="38" width="18" height="18"/></g></g>
+    <g id="main-art"><use xlink:href="#character" x="42" y="48" width="166" height="216"/>
+      <path d="M57 273h136m-125 31h114" stroke="#b28b55" stroke-width="1"/>
+      <text x="125" y="288" text-anchor="middle" fill="#5c4659" font-family="Georgia,serif" font-weight="700" font-size="11.5">RACHEL GREEN</text>
+      <text x="125" y="300" text-anchor="middle" fill="#5c4659" font-family="Arial,sans-serif" font-size="6.5" letter-spacing=".3">BRINGING SOMETHING MEMORABLE</text>
+      <path d="m125 309 13 13-13 13-13-13Z" fill="#ccb5b8" stroke="#b28b55" stroke-width="1"/>
+      <text x="125" y="327" text-anchor="middle" fill="#a65a4e" font-family="Georgia,serif" font-weight="700" font-size="15">5</text></g>
+  </svg>

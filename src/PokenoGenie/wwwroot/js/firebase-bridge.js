@@ -33,7 +33,7 @@ let firebaseConfig;
 const statePath = code => `rooms/${code}/state`;
 const themePath = code => `rooms/${code}/theme`;
 const deckPath = code => `decks/${code}`;
-const themeIds = new Set(["illustrated", "midnight", "sunburst", "mopar", "dart1969", "harrypotter", "starwars", "lordoftherings", "cats", "route66", "dinosaurs", "pokemon"]);
+const themeIds = new Set(["illustrated", "midnight", "sunburst", "mopar", "dart1969", "harrypotter", "starwars", "lordoftherings", "cats", "route66", "dinosaurs", "pokemon", "halloween", "christmas", "friendsgiving"]);
 
 function notify(method, value) {
   dotNet?.invokeMethodAsync(method, value).catch(() => {});

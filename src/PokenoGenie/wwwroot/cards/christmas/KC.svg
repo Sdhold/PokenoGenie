@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 250 350" role="img" aria-label="K of C — Christmas: Santa Claus" data-deck="christmas" data-character="santa">
+    <defs><symbol id="pip" viewBox="0 0 32 32"><g fill="#39574a"><circle cx="16" cy="8" r="6.5"/><circle cx="8" cy="19" r="6.5"/><circle cx="24" cy="19" r="6.5"/><path d="M13 20h6l4 11H9Z"/></g></symbol><linearGradient id="artifact-gold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f4e3ac"/><stop offset=".28" stop-color="#d3aa53"/><stop offset=".55" stop-color="#f8e7ae"/><stop offset=".8" stop-color="#b48c3e"/><stop offset="1" stop-color="#e5c373"/></linearGradient><symbol id="character" data-character="santa" viewBox="0 0 200 240"><circle cx="101" cy="120" r="80" fill="#b5c9b3" opacity=".18"/><ellipse cx="100" cy="226" rx="79" ry="7" fill="#718b77" opacity=".13"/><path d="M15 238q-1-62 37-75l33-10 16 14 17-14 35 12q35 13 35 73Z" fill="#b4615b" stroke="#3d554c" stroke-width="2.4"/>
+    <path d="M48 172q52 36 105 0m-54 11v55m-77-25h28m102 0h27" fill="none" stroke="#e7dfc8" stroke-width="13"/>
+    <path d="M85 137v30q15 15 30 0v-30" fill="#e5b697" stroke="#99735d" stroke-width="1.7"/>
+    <ellipse cx="72" cy="105" rx="7" ry="12" fill="#e5b697"/><ellipse cx="128" cy="105" rx="7" ry="12" fill="#e5b697"/>
+    <path d="M72 87Q72 54 100 53q29 1 28 34l-2 36q-3 21-22 31-22-9-25-31Z" fill="#e5b697" stroke="#99735d" stroke-width="1.8"/>
+    <path d="M77 85q3-24 23-25-17 14-16 50l3 23q-12-12-10-48Z" fill="#fff2d5" opacity=".2"/>
+    <path d="m79 91 13-2m16 0 13 2" stroke="#d4d7c4" stroke-width="3" stroke-linecap="round"/>
+    <path d="M79 100q8-7 14 0-7 6-14 0Zm28 0q8-7 14 0-7 6-14 0Z" fill="#fff5e6" stroke="#765c50" stroke-width="1"/>
+    <circle cx="87" cy="100" r="3.2" fill="#71918b"/><circle cx="114" cy="100" r="3.2" fill="#71918b"/>
+    <circle cx="87" cy="100" r="1.5" fill="#1c2830"/><circle cx="114" cy="100" r="1.5" fill="#1c2830"/>
+    <path d="m101 103-4 14 7 2" fill="none" stroke="#ab7960" stroke-width="1.6" stroke-linecap="round"/>
+    <path d="M92 131q8 2 16-1" fill="none" stroke="#8d594e" stroke-width="2" stroke-linecap="round"/>
+    <path d="m78 109 12 2m22 0 11-3m-40 13-2 9m37-9 2 8m-30 9 8 2" fill="none" stroke="#ac8571" stroke-width="1.2"/>
+
+
+    <path d="M66 116q12 9 24 11l10-2 12 2q14 0 24-11l-4 40-11 27-21 15-23-16-10-28Z" fill="#e2e0cc" stroke="#3d554c" stroke-width="1.8"/>
+    <path d="M76 116q6 16 13 12l11-3 11 3q8 3 13-12l-1 30q-4 39-23 63-19-6-23-63Z" fill="#e6e2d0" stroke="#26313c" stroke-width="1.6"/>
+    <path d="m88 140 8 43m17-45-1 37" stroke="#ede2c5" stroke-width="1.5" opacity=".32"/>
+    <path d="M83 127q8-10 17-2 10-8 18 2l-12 7-6-4-6 4Z" fill="#e6e2d0" stroke="#26313c" stroke-width="1.3"/><path d="M76 101q10 13 21 0m7 0q10 13 21 0m-28 1h7" fill="none" stroke="#a6b7c1" stroke-width="2.5"/><circle cx="101" cy="113" r="8" fill="#d69d87"/>
+    <path d="M68 71q11-44 52-43 34 2 35 35l-16 10q-1-26-27-26L128 71Z" fill="#b8635c" stroke="#3d554c" stroke-width="2"/>
+    <path d="M65 73q36-13 69 0" stroke="#e8e2cc" stroke-width="14" fill="none" stroke-linecap="round"/><circle cx="151" cy="72" r="12" fill="#e8e2cc" stroke="#3d554c" stroke-width="1.5"/>
+    <path d="M27 226h146v12H27Z" fill="#45534c"/><rect x="86" y="220" width="28" height="18" rx="2" fill="none" stroke="#d9be7e" stroke-width="4"/></symbol></defs>
+    <rect width="250" height="350" rx="11" fill="#f4efdc"/>
+    <rect x="4" y="4" width="242" height="342" rx="8" fill="none" stroke="#b09a5d" stroke-width="2"/>
+    <rect x="9" y="9" width="232" height="332" rx="5" fill="none" stroke="#b09a5d" stroke-width=".7" opacity=".65"/>
+    <rect x="47" y="40" width="156" height="270" rx="70" fill="#c1cfb4" opacity=".33"/>
+    <circle cx="168" cy="79" r="24" fill="#c7bb8a" opacity=".18"/>
+    <path d="M49 261q62-31 152-3m-151-16 16-32 15 32m85 7 16-34 17 34" fill="none" stroke="#8ca58a" opacity=".25" stroke-width="1.4"/>
+    <g fill="#8fa189" opacity=".35"><circle cx="99" cy="97" r="1.2"/><circle cx="136" cy="150" r="0.65"/><circle cx="173" cy="203" r="0.65"/><circle cx="62" cy="256" r="0.65"/><circle cx="99" cy="99" r="1.2"/><circle cx="136" cy="152" r="0.65"/><circle cx="173" cy="205" r="0.65"/><circle cx="62" cy="258" r="0.65"/><circle cx="99" cy="101" r="1.2"/><circle cx="136" cy="154" r="0.65"/><circle cx="173" cy="207" r="0.65"/><circle cx="62" cy="260" r="0.65"/><circle cx="99" cy="103" r="1.2"/><circle cx="136" cy="156" r="0.65"/><circle cx="173" cy="209" r="0.65"/><circle cx="62" cy="52" r="0.65"/><circle cx="99" cy="105" r="1.2"/><circle cx="136" cy="158" r="0.65"/></g><g data-motif="candy-cane-and-holly" fill="none" stroke-linecap="round">
+    <path d="M38 276V95q0-17 11-17m163-2v181q0 17-11 17" stroke="#b4ad8d" stroke-width="5"/>
+    <path d="M38 276V95q0-17 11-17m163-2v181q0 17-11 17" stroke="#ad6b60" stroke-width="3.5" stroke-dasharray="7 8"/>
+    <path d="m34 153-10-14 13 1 8-9 1 14 10 8-15 3Zm182 44 10 14-13-1-8 9-1-14-10-8 15-3Z" fill="#86a081" stroke="#647e6b" stroke-width="1"/>
+    <g fill="#b56961" stroke="none"><circle cx="38" cy="154" r="3"/><circle cx="44" cy="157" r="3"/><circle cx="212" cy="196" r="3"/><circle cx="206" cy="193" r="3"/></g>
+  </g>
+    <text x="125" y="26" text-anchor="middle" fill="#3c5a4c" font-family="Georgia,serif" font-weight="700" font-size="9" letter-spacing="1.3">CHRISTMAS</text>
+    <g fill="#39574a" text-anchor="middle"><text x="22" y="31" font-family="Georgia,serif" font-weight="700" font-size="29">K</text><use xlink:href="#pip" x="13" y="38" width="18" height="18"/></g><g transform="rotate(180 125 175)"><g fill="#39574a" text-anchor="middle"><text x="22" y="31" font-family="Georgia,serif" font-weight="700" font-size="29">K</text><use xlink:href="#pip" x="13" y="38" width="18" height="18"/></g></g>
+    <g id="main-art"><g data-portrait="upright"><use xlink:href="#character" x="43" y="37" width="164" height="143"/></g>
+      <g data-portrait="inverted" transform="rotate(180 125 175)"><use xlink:href="#character" x="43" y="37" width="164" height="143"/></g>
+      <path d="M42 161h166v32H42Z" fill="#f4efdc" stroke="#b09a5d" stroke-width="1.5"/>
+      <text x="125" y="175" text-anchor="middle" fill="#3c5a4c" font-family="Georgia,serif" font-weight="700" font-size="10.8">SANTA CLAUS</text>
+      <text x="125" y="186" text-anchor="middle" fill="#3c5a4c" font-family="Arial,sans-serif" font-size="6.1" letter-spacing=".8">KING • A VERY MERRY CALLER</text></g>
+  </svg>
