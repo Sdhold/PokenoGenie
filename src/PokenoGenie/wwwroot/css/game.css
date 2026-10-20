@@ -152,6 +152,8 @@ a { color: inherit; }
 .deck-theme-option:focus-visible { outline: 3px solid #fff0bf; outline-offset: -5px; }
 .deck-theme-option img { display: block; width: 55px; height: 77px; border-radius: 4px; box-shadow: 0 5px 10px #061b1a88; }
 .deck-theme-option strong { max-width: 100%; font-size: .75rem; line-height: 1.25; letter-spacing: .01em; overflow-wrap: anywhere; }
+.deck-theme-option.deck-theme-long-name { gap: 6px; padding-block: 8px; }
+.deck-theme-option.deck-theme-long-name strong { font-size: .66rem; line-height: 1.1; letter-spacing: 0; }
 .display-join-panel { display: flex; flex-direction: column; gap: 4px; border: 1px solid #d5c18b55; border-radius: 15px; padding: 20px; margin-top: 22px; }
 .display-join-panel h2 { font-family: Georgia, serif; font-size: 1.5rem; font-weight: 500; margin: 6px 0; }
 .display-join-panel p { color: #c5d2c4; line-height: 1.45; margin: 4px 0 12px; }

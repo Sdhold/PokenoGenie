@@ -6,6 +6,7 @@ import path from "node:path";
 import { automotiveBackSvg, automotiveCardSvg } from "./automotive-card-art.mjs";
 import { storyBackSvg, storyCardSvg, storyThemes } from "./story-card-art.mjs";
 import { catBackSvg, catCardSvg } from "./cat-card-art.mjs";
+import { mcphersonBackSvg, mcphersonCardSvg } from "./mcpherson-card-art.mjs";
 
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../src/PokenoGenie/wwwroot/cards");
@@ -201,4 +202,11 @@ for (const suitCode of Object.keys(suits)) {
   }
 }
 await writeFile(path.join(root, "cats", "back.svg"), catBackSvg(), "utf8");
+await mkdir(path.join(root, "mcpherson"), { recursive: true });
+for (const suitCode of Object.keys(suits)) {
+  for (const rank of ranks) {
+    await writeFile(path.join(root, "mcpherson", `${rank}${suitCode}.svg`), mcphersonCardSvg(rank, suitCode, suits[suitCode]), "utf8");
+  }
+}
+await writeFile(path.join(root, "mcpherson", "back.svg"), mcphersonBackSvg(), "utf8");
 console.log(`Generated ${ranks.length * Object.keys(suits).length} faces per deck in ${root}`);

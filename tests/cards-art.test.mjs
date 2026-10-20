@@ -7,7 +7,7 @@ const ranks = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
 const suits = ["S", "H", "D", "C"];
 const traditionalDirectories = [directory, ...["midnight", "sunburst", "mopar", "dart1969"].map(id => new URL(`${id}/`, directory))];
 const storyIds = ["harrypotter", "starwars", "lordoftherings", "route66", "dinosaurs", "pokemon", "halloween", "christmas", "friendsgiving"];
-const themeDirectories = [...traditionalDirectories, ...[...storyIds,"cats"].map(id => new URL(`${id}/`, directory))];
+const themeDirectories = [...traditionalDirectories, ...[...storyIds,"cats","mcpherson"].map(id => new URL(`${id}/`, directory))];
 
 test("every theme has 52 self-contained SVG faces", async () => {
   const expected = suits.flatMap(suit => ranks.map(rank => `${rank}${suit}.svg`)).sort();
@@ -148,6 +148,42 @@ test("Royal Cats keeps the four named pets on their assigned ranks in every suit
   assert.equal(scenes.size,9,"The number cards need varied cat scenes");
   const back = await readFile(new URL("cats/back.svg",directory),"utf8");
   for (const [id] of Object.values(assigned)) assert.match(back,new RegExp(`xlink:href="#pet-${id}"`));
+});
+
+test("McPherson pets keep the requested ranks, photo markings and plain name labels", async () => {
+  const assigned = { A:["pitter","PITTER","tan-floppy-ears"], J:["quinn","QUINN","black-face"], Q:["clementine","CLEMENTINE","orange-tabby-white-blaze"], K:["diamond","DIAMOND","cream-flame-points"] };
+  const scenes = new Set(), portraits = new Set();
+  for (const suit of suits) {
+    for (const rank of ranks) {
+      const art = await readFile(new URL(`mcpherson/${rank}${suit}.svg`,directory),"utf8");
+      if (assigned[rank]) {
+        const [id,name,marking] = assigned[rank];
+        assert.match(art,new RegExp(`data-character="${id}"`));
+        assert.match(art,new RegExp(`data-pet="${id}"`));
+        assert.ok(art.includes(marking));
+        const labels = [...art.matchAll(/<text\b[^>]*>([^<]*)<\/text>/g)].map(match=>match[1]);
+        assert.deepEqual(labels.filter(label=>!['MCPHERSON','MAGICAL FOREST',rank].includes(label)),[name,{A:'ACE',J:'JACK',Q:'QUEEN',K:'KING'}[rank]]);
+        portraits.add(/<symbol id="forest-art"[^>]*>([\s\S]*?)<\/symbol>/.exec(art)?.[1]);
+        if (rank !== "A") assert.match(art,/data-portrait="inverted" transform="rotate\(180 125 175\)"/);
+        if (id === "pitter") assert.match(art,/data-feature="broad-dog-muzzle"/);
+        if (id === "diamond") { assert.match(art,/data-feature="pink-freckled-nose"/); assert.match(art,/fill="#83acbd"/); }
+        if (id === "quinn") { assert.match(art,/data-marking="white-bib-and-paws"/); assert.match(art,/data-feature="long-white-whiskers"/); }
+      } else {
+        scenes.add(/data-scene="([^"]+)"/.exec(art)?.[1]);
+        assert.match(art,/data-animal="cat"|data-animal="dog"/);
+      }
+    }
+  }
+  assert.equal(portraits.size,4);
+  assert.equal(scenes.size,9);
+  for (const file of [...suits.flatMap(suit=>ranks.map(rank=>`cards/mcpherson/${rank}${suit}.svg`)),"cards/mcpherson/back.svg","backgrounds/mcpherson.svg"]) {
+    const art = await readFile(new URL(`../src/PokenoGenie/wwwroot/${file}`,import.meta.url),"utf8");
+    const ids = [...art.matchAll(/\bid="([^"]+)"/g)].map(match=>match[1]);
+    assert.equal(ids.length,new Set(ids).size,`${file}: duplicate SVG IDs`);
+    for (const reference of art.matchAll(/(?:xlink:href="#|url\(#)([^"\)]+)/g)) assert.ok(ids.includes(reference[1]),`${file}: ${reference[1]}`);
+    if (!file.match(/\/[A-Z0-9]+\.svg$/)) for (const [id] of Object.values(assigned)) assert.ok(art.includes(`xlink:href="#pet-${id}"`));
+    assert.doesNotMatch(art,/<image\b/,"Use original illustrations, never bundle the reference photographs");
+  }
 });
 
 test("alternate decks have distinct art and a matching back", async () => {

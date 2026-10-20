@@ -84,6 +84,21 @@ The seasonal collections use the same native SVG style, mirrored courts, and sta
 
 Halloween's nine number-card illustrations include a ghost, cat, skeleton, spider, bat, mummy, scarecrow, haunted house, and cauldron. Christmas includes a snowman, reindeer, nutcracker, gingerbread friend, snow globe, stocking, sleigh, robin, and gingerbread house. FriendsGiving combines Rachel, Phoebe, and Ross with the orange couch, Central Perk coffee, pumpkin pie, a layered trifle, foosball, and a gravy boat. Together with the courts, all six Friends appear in the collection. Decorative borders use spiderwebs/bats, candy canes/holly, or colored dots/autumn leaves respectively.
 
+## McPherson Magical Forest
+
+The collection uses new original SVG pet portraits drawn from the four supplied McPherson photographs. Their final assignments, confirmed by the user, are the same in every suit:
+
+| Rank | Pet | Photo details retained in the illustration |
+| --- | --- | --- |
+| King | Diamond | Cream-white cat, pale flame points, blue eyes, pink freckled nose, and upright ears. |
+| Ace | Pitter | Cream-white dog, tan floppy ears, round dark eyes, broad muzzle, and brown nose. |
+| Queen | Clementine | Orange tabby cat, white face blaze, muzzle, chest, and socks, with a pink nose. |
+| Jack | Quinn | Black-faced tuxedo cat, green eyes, black nose, white bib and paws, and long white whiskers. |
+
+Each face names the pet with a plain rank label. Court portraits are mirrored. Diamond wears a leaf crown, Clementine a flower tiara, and Pitter and Quinn have woodland collars. Number cards use nine integrated cat/dog scenes: mushroom meadow, lantern trail, spellbook, moonlit creek, treehouse, crystals, ferns, an enchanted door, and a starlight nap. Standard corner ranks and suits remain readable from both ends.
+
+`tools/mcpherson-card-art.mjs` contains the editable portraits, scenes, back, and background. The back and enchanted woodland background show all four pets. The winner graphic uses the same four named card faces. The original reference photos (`IMG_20261020_154108.jpg`, `IMG_20261020_155902.jpg`, `IMG_20261020_154115.jpg`, and `IMG_20261020_154119.jpg`) stay local and are not published. No paid service or runtime image generation is used.
+
 ## Matching backgrounds
 
 Every alternate deck has a bundled 1600 × 900 SVG background shared by the caller, Blazor display, and lightweight TV display. The caller's shuffle and drawing panels also show the selected scenery behind the deck, with light labels and contrasting controls. The Illustrated deck retains its original green table and cream panels. Backgrounds follow the card collection automatically, including during verification; no external image service is used.
@@ -102,5 +117,6 @@ Every alternate deck has a bundled 1600 × 900 SVG background shared by the call
 - **Halloween:** a harvest moon, bats, twisted trees, a friendly haunted house, and glowing pumpkins.
 - **Christmas:** a snowy cottage, lit tree, forest, sleigh, and falling snow.
 - **FriendsGiving:** a purple apartment door with a gold frame, café window, orange couch, and shared Thanksgiving table.
+- **McPherson Magical Forest:** an enchanted woodland, glowing doorway, fireflies, mushrooms, ferns, and Diamond, Pitter, Clementine, and Quinn.
 
 Run `node tools/generate-deck-backgrounds.mjs` to regenerate them after generating card art. The automotive backgrounds reuse the deck's existing vehicle symbols. The assets are in `src/PokenoGenie/wwwroot/backgrounds/`; their colors and overlays are controlled by `css/deck-backgrounds.css`.

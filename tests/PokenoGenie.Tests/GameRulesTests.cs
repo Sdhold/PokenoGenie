@@ -9,7 +9,7 @@ public class GameRulesTests
     public void NewDecksUseTheirOwnArtworkAndUnknownThemesFallBackSafely()
     {
         Assert.Equal(DeckThemeCatalog.All.Count, DeckThemeCatalog.All.Select(theme => theme.Id).Distinct().Count());
-        foreach (var id in new[] { "route66", "dinosaurs", "pokemon", "halloween", "christmas", "friendsgiving" })
+        foreach (var id in new[] { "route66", "dinosaurs", "pokemon", "halloween", "christmas", "friendsgiving", "mcpherson" })
         {
             var theme = DeckThemeCatalog.FindOrDefault(id);
             Assert.Equal(id, theme.Id);

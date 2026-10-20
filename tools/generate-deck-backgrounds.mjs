@@ -2,6 +2,7 @@
 // so background cars and cards always depict the same models.
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { catBackgroundSvg } from "./cat-card-art.mjs";
+import { mcphersonBackgroundSvg } from "./mcpherson-card-art.mjs";
 import { adventureThemes, adventureBackgroundSvg } from "./adventure-card-art.mjs";
 import { seasonalThemes, seasonalBackgroundSvg } from "./seasonal-card-art.mjs";
 
@@ -99,6 +100,7 @@ for (const theme of ["mopar","dart1969"]) {
   await writeFile(new URL(`${theme}.svg`,output),svg(theme,blue?'Blue 1969 Dodge Dart in a chrome and blue garage':'MOPAR garage with Charger, Challenger, Cuda and Superbird',scene,defs));
 }
 await writeFile(new URL("cats.svg",output),catBackgroundSvg());
+await writeFile(new URL("mcpherson.svg",output),mcphersonBackgroundSvg());
 for (const id of Object.keys(adventureThemes)) await writeFile(new URL(`${id}.svg`,output),adventureBackgroundSvg(id));
 for (const id of Object.keys(seasonalThemes)) await writeFile(new URL(`${id}.svg`,output),seasonalBackgroundSvg(id));
-console.log("Generated fourteen bundled deck backgrounds; Illustrated keeps its green table.");
+console.log("Generated fifteen bundled deck backgrounds; Illustrated keeps its green table.");

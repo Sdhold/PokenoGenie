@@ -141,7 +141,7 @@ test("the 52nd draw opens the full deck, survives reload and the guide, then cle
   assert.equal(tv.elements["current-name"].textContent,"Waiting for the first draw");
 });
 
-for (const theme of ["route66","dinosaurs","pokemon","halloween","christmas","friendsgiving"]) {
+for (const theme of ["route66","dinosaurs","pokemon","halloween","christmas","friendsgiving","mcpherson"]) {
   test(`${theme} keeps live cards, full history and winner art synchronized`,()=>{
     const tv=harness({patternId:"horizontal"}); tv.update("calling",5,theme);
     assert.equal(tv.elements["display-screen"].attributes["data-deck-theme"],theme);
@@ -211,7 +211,7 @@ test("a TV reload restores an open guide, including setup and finished tables",(
 });
 
 test("every alternate deck bundles a self-contained matching background",async()=>{
-  for (const id of ["midnight","sunburst","mopar","dart1969","harrypotter","starwars","lordoftherings","cats","route66","dinosaurs","pokemon","halloween","christmas","friendsgiving"]) {
+  for (const id of ["midnight","sunburst","mopar","dart1969","harrypotter","starwars","lordoftherings","cats","route66","dinosaurs","pokemon","halloween","christmas","friendsgiving","mcpherson"]) {
     const scene=await readFile(new URL(`backgrounds/${id}.svg`,root),"utf8");
     assert.match(scene,/viewBox="0 0 1600 900"/);
     assert.ok(scene.includes(`data-deck="${id}"`));
@@ -260,7 +260,7 @@ test("clearing a board check restores history, guide holds the result, and reloa
 });
 
 test("every theme has a matching self-contained winner graphic",async()=>{
-  for(const theme of ["illustrated","midnight","sunburst","mopar","dart1969","harrypotter","starwars","lordoftherings","cats","route66","dinosaurs","pokemon","halloween","christmas","friendsgiving"]) {
+  for(const theme of ["illustrated","midnight","sunburst","mopar","dart1969","harrypotter","starwars","lordoftherings","cats","route66","dinosaurs","pokemon","halloween","christmas","friendsgiving","mcpherson"]) {
     const art=await readFile(new URL(`winners/${theme}.svg`,root),"utf8");
     assert.ok(art.includes(`data-deck="${theme}"`));
     assert.match(art,/POKENO!/);

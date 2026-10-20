@@ -25,7 +25,8 @@ public static class DeckThemeCatalog
         new("pokemon", "Pokémon", "Pikachu, Ninetales, Charizard, and a Poké Ball Ace", "JS"),
         new("halloween", "Halloween", "Friendly frights, a moonlight witch, pumpkins, and a haunted house", "QS"),
         new("christmas", "Christmas", "Santa, Mrs. Claus, an elf, and cozy winter scenes", "KS"),
-        new("friendsgiving", "FriendsGiving", "The six Friends, Thanksgiving treats, and an orange couch", "QH")
+        new("friendsgiving", "FriendsGiving", "The six Friends, Thanksgiving treats, and an orange couch", "QH"),
+        new("mcpherson", "McPherson Magical Forest", "Diamond, Pitter, Clementine, and Quinn in an enchanted woodland", "AH")
     ];
 
     public static DeckTheme FindOrDefault(string? id) =>

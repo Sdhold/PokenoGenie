@@ -213,14 +213,18 @@
                 <div class="deck-theme-options" role="group" aria-label="Deck themes" aria-describedby="deck-theme-hint" tabindex="0">
                     @foreach (var theme in DeckThemeCatalog.All)
                     {
-                        <button class="deck-theme-option @(theme.Id == _themeId ? "selected" : "")"
-                                type="button" aria-pressed="@(theme.Id == _themeId ? "true" : "false")" title="@theme.Description"
+                        <button class="deck-theme-option @(theme.Id == "mcpherson" ? "deck-theme-long-name" : "") @(theme.Id == _themeId ? "selected" : "")"
+                                type="button" aria-label="@theme.Name" aria-pressed="@(theme.Id == _themeId ? "true" : "false")" title="@theme.Description"
                                 disabled="@(!Rooms.IsConnected || _busy || _themeBusy)"
                                 @onclick="() => SelectThemeAsync(theme.Id)">
                             <img src="@theme.PreviewPath" alt="" draggable="false" />
                             @if (theme.Id == "friendsgiving")
                             {
                                 <strong>Friends<wbr />Giving</strong>
+                            }
+                            else if (theme.Id == "mcpherson")
+                            {
+                                <strong>McPherson<br />Magical Forest</strong>
                             }
                             else
                             {
