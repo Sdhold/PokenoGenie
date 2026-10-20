@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 250 350" role="img" aria-label="6 of D — Pokémon: Squirtle" data-deck="pokemon" data-character="squirtle">
+    <defs><symbol id="pip" viewBox="0 0 32 32"><g fill="#ae5152"><path d="M16 1 30 16 16 31 2 16Z"/></g></symbol><linearGradient id="artifact-gold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f4e3ac"/><stop offset=".28" stop-color="#d3aa53"/><stop offset=".55" stop-color="#f8e7ae"/><stop offset=".8" stop-color="#b48c3e"/><stop offset="1" stop-color="#e5c373"/></linearGradient><symbol id="character" data-character="squirtle" viewBox="0 0 200 240"><g stroke="#3b4c5b" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="101" cy="120" r="83" fill="#9bbfc4" opacity=".18" stroke="none"/>
+    <path d="M23 65h11m-5-5v11m137 120h10m-5-5v10" stroke="#9bbfc4" opacity=".7"/>
+    <ellipse cx="101" cy="220" rx="78" ry="7" fill="#9bbfc4" opacity=".3" stroke="none"/>
+    <path d="M137 169q44-7 37-35-8-22-27-10-12 14 4 18 14 0 9-10" fill="#82b8bc" data-feature="curl-tail"/>
+    <ellipse cx="108" cy="151" rx="44" ry="47" fill="#a67a55"/><path d="M91 112q30-7 48 25l-5 42-27 16-29-27Z" fill="#bd9568"/>
+    <path d="m99 122 22 14-1 27-23 12-17-20m43-20 13-4m-14 33 11 9m-35 3 2 15" fill="none" stroke="#775d4a"/>
+    <path d="m80 132-33 17 1 16 33-13m52 24 12 19-6 12-28-10-5-20m-20-1-15 22-16-2-3-10 17-23" fill="#82b8bc"/>
+    <ellipse cx="86" cy="152" rx="27" ry="35" fill="#e5cd95"/><path d="M62 147h49m-47 13h46m-41 13h34m-20-51v61" fill="none" stroke="#b19e73"/>
+    <path d="M52 81q21-29 50-16 26 15 16 42-8 24-36 23-30 2-39-22Z" fill="#88bfc0"/>
+    <ellipse cx="64" cy="94" rx="5" ry="9" fill="#795c72"/><ellipse cx="62.5" cy="91" rx="1.7000000000000002" ry="2.5200000000000005" fill="#fff9e6" stroke="none"/><ellipse cx="101" cy="93" rx="5" ry="9" fill="#795c72"/><ellipse cx="99.5" cy="90" rx="1.7000000000000002" ry="2.5200000000000005" fill="#fff9e6" stroke="none"/><path d="m66 111q19 12 32-2" fill="none"/>
+    <path d="m40 58q-17 22 0 28 17-6 0-28Z" fill="#a6d0ce" stroke="none" opacity=".7"/>
+  </g></symbol></defs>
+    <rect width="250" height="350" rx="11" fill="#f4efdc"/>
+    <rect x="4" y="4" width="242" height="342" rx="8" fill="none" stroke="#b49a51" stroke-width="2"/>
+    <rect x="9" y="9" width="232" height="332" rx="5" fill="none" stroke="#b49a51" stroke-width=".7" opacity=".65"/>
+    <rect x="47" y="40" width="156" height="270" rx="70" fill="#cbd6cc" opacity=".33"/>
+    <g fill="none" stroke="#8b9fa3" opacity=".2">
+  <circle cx="125" cy="161" r="74"/><circle cx="125" cy="161" r="57"/><path d="M51 161h148"/>
+  <path d="m164 63 3-6 3 6 6 3-6 3-3 6-3-6-6-3Z"/><path d="m75 118 3-6 3 6 6 3-6 3-3 6-3-6-6-3Z"/><path d="m116 173 3-6 3 6 6 3-6 3-3 6-3-6-6-3Z"/><path d="m157 228 3-6 3 6 6 3-6 3-3 6-3-6-6-3Z"/></g><g data-motif="water-trails" fill="none" stroke="#699da8" stroke-width="1.6"><path d="M39 78q-13 22 0 43t0 43 0 43 0 43v25m172-197q13 22 0 43t0 43 0 43 0 43v25"/><circle cx="38" cy="86" r="4"/><circle cx="212" cy="265" r="4"/></g>
+    <text x="125" y="26" text-anchor="middle" fill="#3c5368" font-family="Georgia,serif" font-weight="700" font-size="9" letter-spacing="1.3">POKÉMON</text>
+    <g fill="#ae5152" text-anchor="middle"><text x="22" y="31" font-family="Georgia,serif" font-weight="700" font-size="29">6</text><use xlink:href="#pip" x="13" y="38" width="18" height="18"/></g><g transform="rotate(180 125 175)"><g fill="#ae5152" text-anchor="middle"><text x="22" y="31" font-family="Georgia,serif" font-weight="700" font-size="29">6</text><use xlink:href="#pip" x="13" y="38" width="18" height="18"/></g></g>
+    <g id="main-art"><use xlink:href="#character" x="42" y="48" width="166" height="216"/>
+      <path d="M57 273h136m-125 31h114" stroke="#b49a51" stroke-width="1"/>
+      <text x="125" y="288" text-anchor="middle" fill="#3c5368" font-family="Georgia,serif" font-weight="700" font-size="11.5">SQUIRTLE</text>
+      <text x="125" y="300" text-anchor="middle" fill="#3c5368" font-family="Arial,sans-serif" font-size="6.5" letter-spacing=".3">MAKE A SPLASH</text>
+      <path d="m125 309 13 13-13 13-13-13Z" fill="#cbd6cc" stroke="#b49a51" stroke-width="1"/>
+      <text x="125" y="327" text-anchor="middle" fill="#ae5152" font-family="Georgia,serif" font-weight="700" font-size="15">6</text></g>
+  </svg>

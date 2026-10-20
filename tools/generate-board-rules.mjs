@@ -2,6 +2,8 @@ import { readFileSync, writeFileSync } from "node:fs";
 
 const document = JSON.parse(readFileSync("database.rules.json", "utf8"));
 const rules = document.rules;
+const themeIds = ["illustrated", "midnight", "sunburst", "mopar", "dart1969", "harrypotter", "starwars", "lordoftherings", "cats", "route66", "dinosaurs", "pokemon"];
+rules.rooms.$code.theme[".validate"] = `newData.isString() && newData.val().matches(/^(${themeIds.join("|")})$/)`;
 const validId = value => `${value}.isString() && ${value}.val().matches(/^[a-zA-Z0-9_-]{1,64}$/)`;
 const ownsSet = setId => `auth != null && root.child('boardSets').child(${setId}).child('ownerUid').val() == auth.uid`;
 const ownsActiveSet = setId => `${ownsSet(setId)} && root.child('boardSets').child(${setId}).child('deleted').val() != true`;

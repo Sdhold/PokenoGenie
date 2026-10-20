@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1600 900" role="img" aria-label="Route 66 at dusk: red rock mesas, a neon diner, classic cars and the open highway" data-deck="route66"><defs><linearGradient id="road-sky" x2="0" y2="1"><stop stop-color="#243d54"/><stop offset=".55" stop-color="#956d61"/><stop offset="1" stop-color="#343f4c"/></linearGradient>
+    <symbol id="cruiser" viewBox="0 0 200 240"><circle cx="103" cy="77" r="57" fill="#eccb8e" opacity=".48"/>
+    <path d="M4 122 24 100h24l10-24h29l12 25 24-12h24l9 22 38-6v59H4Z" fill="#c68463" opacity=".38"/>
+    <path d="M5 192q98-26 190 0v31H5Z" fill="#385360"/><path d="M42 211h25m20 0h25m20 0h25" stroke="#ebcd8d" stroke-width="3"/>
+    <ellipse cx="100" cy="183" rx="91" ry="7" fill="#2e424b" opacity=".2"/>
+    <g fill="#6c8d7b"><path d="M17 132v-37h5v15h7V97h4v18H22v17Zm166 0V80h4v22h7V88h4v19h-11v25Z"/></g><g transform="translate(42 57) scale(0.24)" data-motif="route-66-shield">
+    <path d="M-65-65Q-33-49 0-66 33-49 65-65l-4 39q-2 17 8 27-9 37-35 57L0 81l-34-23Q-60 38-69 1q10-10 8-27Z" fill="#faf0d8" stroke="#354c53" stroke-width="5"/>
+    <path d="M-55-52Q-25-40 0-53 25-40 55-52l-4 29q-1 15 7 25-10 31-32 46L0 67l-26-19Q-48 33-58 2q8-10 7-25Z" fill="none" stroke="#354c53" stroke-width="2"/>
+    <text y="-18" text-anchor="middle" fill="#354c53" font-family="Arial,sans-serif" font-weight="700" font-size="15" letter-spacing="3">ROUTE</text>
+    <path d="M-45-7h90" stroke="#354c53" stroke-width="2"/>
+    <text y="45" text-anchor="middle" fill="#354c53" font-family="Georgia,serif" font-weight="700" font-size="62">66</text>
+  </g><g data-vehicle="finned-cruiser" stroke="#354e55" stroke-width="2" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M55 128 76 99q5-5 15-5h34l28 34Z" fill="#b8dbce"/>
+    <path d="M55 128 76 99q5-5 15-5h34l28 34Z" fill="#91b4b6" opacity=".6"/>
+    <path d="M12 132 29 126h126l31-25 6 45-6 23H18l-8-17Z" fill="#57aaa6"/>
+    <path d="M17 160h167v9H17Z" fill="#6c8b8a" opacity=".2" stroke="none"/>
+    <g fill="none" stroke-width="1.5"><path d="m19 140 150 4 17-31-4 43H20Z" fill="#f0e3bc"/><path d="M27 151h135m-86-21v29m45-29v29"/><path d="m173 122 11-13v21" fill="#ba4545"/></g>
+    <path d="M12 164h21m135 0h22" stroke="#dae1d0" stroke-width="5"/>
+    <path d="M14 142h9m153 0h9" stroke="#f8e5b3" stroke-width="4"/>
+    <g><circle cx="45" cy="169" r="19" fill="#293f46"/><circle cx="45" cy="169" r="14" fill="#e8dfc7"/><circle cx="45" cy="169" r="10" fill="#8aabae" stroke="#38555a" stroke-width="1.5"/><circle cx="45" cy="169" r="3" fill="#f4e8ce"/></g><g><circle cx="156" cy="169" r="19" fill="#293f46"/><circle cx="156" cy="169" r="14" fill="#e8dfc7"/><circle cx="156" cy="169" r="10" fill="#8aabae" stroke="#38555a" stroke-width="1.5"/><circle cx="156" cy="169" r="3" fill="#f4e8ce"/></g>
+  </g></symbol><symbol id="pickup" viewBox="0 0 200 240"><circle cx="103" cy="77" r="57" fill="#eccb8e" opacity=".48"/>
+    <path d="M4 122 24 100h24l10-24h29l12 25 24-12h24l9 22 38-6v59H4Z" fill="#c68463" opacity=".38"/>
+    <path d="M5 192q98-26 190 0v31H5Z" fill="#385360"/><path d="M42 211h25m20 0h25m20 0h25" stroke="#ebcd8d" stroke-width="3"/>
+    <ellipse cx="100" cy="183" rx="91" ry="7" fill="#2e424b" opacity=".2"/>
+    <g fill="#6c8d7b"><path d="M17 132v-37h5v15h7V97h4v18H22v17Zm166 0V80h4v22h7V88h4v19h-11v25Z"/></g><g transform="translate(42 57) scale(0.24)" data-motif="route-66-shield">
+    <path d="M-65-65Q-33-49 0-66 33-49 65-65l-4 39q-2 17 8 27-9 37-35 57L0 81l-34-23Q-60 38-69 1q10-10 8-27Z" fill="#faf0d8" stroke="#354c53" stroke-width="5"/>
+    <path d="M-55-52Q-25-40 0-53 25-40 55-52l-4 29q-1 15 7 25-10 31-32 46L0 67l-26-19Q-48 33-58 2q8-10 7-25Z" fill="none" stroke="#354c53" stroke-width="2"/>
+    <text y="-18" text-anchor="middle" fill="#354c53" font-family="Arial,sans-serif" font-weight="700" font-size="15" letter-spacing="3">ROUTE</text>
+    <path d="M-45-7h90" stroke="#354c53" stroke-width="2"/>
+    <text y="45" text-anchor="middle" fill="#354c53" font-family="Georgia,serif" font-weight="700" font-size="62">66</text>
+  </g><g data-vehicle="stepside-pickup" stroke="#354e55" stroke-width="2" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M63 134 70 95h49l10 39Z" fill="#c2d7af"/>
+    <path d="M63 134 70 95h49l10 39Z" fill="#91b4b6" opacity=".6"/>
+    <path d="M15 138h36l11-11h68v-16h54v46l-7 13H19l-8-17Z" fill="#6c9b83"/>
+    <path d="M17 160h167v9H17Z" fill="#6c8b8a" opacity=".2" stroke="none"/>
+    <g fill="none" stroke-width="1.5"><path d="M132 116h47v27h-47Z" fill="#a88659"/><path d="M140 118v23m12-23v23m12-23v23M68 138v23m55-25v25M20 151h31m86-1h38"/></g>
+    <path d="M12 164h21m135 0h22" stroke="#dae1d0" stroke-width="5"/>
+    <path d="M14 142h9m153 0h9" stroke="#f8e5b3" stroke-width="4"/>
+    <g><circle cx="45" cy="169" r="19" fill="#293f46"/><circle cx="45" cy="169" r="14" fill="#e8dfc7"/><circle cx="45" cy="169" r="10" fill="#8aabae" stroke="#38555a" stroke-width="1.5"/><circle cx="45" cy="169" r="3" fill="#f4e8ce"/></g><g><circle cx="156" cy="169" r="19" fill="#293f46"/><circle cx="156" cy="169" r="14" fill="#e8dfc7"/><circle cx="156" cy="169" r="10" fill="#8aabae" stroke="#38555a" stroke-width="1.5"/><circle cx="156" cy="169" r="3" fill="#f4e8ce"/></g>
+  </g></symbol></defs>
+    <rect width="1600" height="900" fill="url(#road-sky)"/><circle cx="1270" cy="186" r="115" fill="#d9a278" opacity=".55"/>
+    <path d="M0 472 73 400h78l28-125h137l43 117 87 23 68 80 104-19 55-116h121l34-92h157l47 133 127 34 90-94h144l71 145 96-27v300H0Z" fill="#805b50"/>
+    <path d="M0 501 105 466l119 52 79-55 110 73 138-23 135 37 156-56 111 43 129-36 167 48 102-53 149 40v364H0Z" fill="#3c535a"/>
+    <path d="M0 900q432-258 792-337 170-39 74-98 237 46 29 115Q677 664 565 900Z" fill="#233c49"/>
+    <path d="M830 483q115 40-22 84Q448 693 310 900" fill="none" stroke="#d7b27b" stroke-width="4"/>
+    <path d="M822 491q71 36-38 78Q441 700 286 900" fill="none" stroke="#c69d66" stroke-width="3" stroke-dasharray="23 24"/>
+    <path d="M0 751q260-103 533-33m537-67q278-99 530 21" fill="none" stroke="#6c7770" stroke-width="2"/>
+    <g transform="translate(1160 480)"><path d="M0 0h272v147H0Z" fill="#2f4650" stroke="#9c8870" stroke-width="3"/><path d="M-15 0 26-42h202l58 42Z" fill="#ac6a53"/>
+      <path d="M13 17h246v12H13Z" fill="#d6b176"/><g fill="#b6c1ac"><path d="M17 48h60v57H17Zm81 0h60v57H98Zm81 0h61v57h-61Z"/></g>
+      <path d="M0 128h272m-246 0v19m22-19v19m22-19v19m22-19v19m22-19v19m22-19v19m22-19v19m22-19v19m22-19v19m22-19v19m22-19v19" stroke="#cfb08a" stroke-width="5"/>
+      <path d="M35-50v-91h188v91" fill="#263e4a" stroke="#e2b981" stroke-width="4"/><text x="129" y="-105" text-anchor="middle" fill="#e9ba83" font-family="Georgia,serif" font-size="27" letter-spacing="6">DINER</text><text x="129" y="-65" text-anchor="middle" fill="#d2dfd0" font-family="Georgia,serif" font-weight="700" font-size="35">66</text>
+    </g>
+    <g transform="translate(42 210)"><path d="M121 100v360" stroke="#95aaa8" stroke-width="9"/><g transform="translate(121 100) scale(1.15)" data-motif="route-66-shield">
+    <path d="M-65-65Q-33-49 0-66 33-49 65-65l-4 39q-2 17 8 27-9 37-35 57L0 81l-34-23Q-60 38-69 1q10-10 8-27Z" fill="#faf0d8" stroke="#354c53" stroke-width="5"/>
+    <path d="M-55-52Q-25-40 0-53 25-40 55-52l-4 29q-1 15 7 25-10 31-32 46L0 67l-26-19Q-48 33-58 2q8-10 7-25Z" fill="none" stroke="#354c53" stroke-width="2"/>
+    <text y="-18" text-anchor="middle" fill="#354c53" font-family="Arial,sans-serif" font-weight="700" font-size="15" letter-spacing="3">ROUTE</text>
+    <path d="M-45-7h90" stroke="#354c53" stroke-width="2"/>
+    <text y="45" text-anchor="middle" fill="#354c53" font-family="Georgia,serif" font-weight="700" font-size="62">66</text>
+  </g></g>
+    <use xlink:href="#cruiser" x="1140" y="610" width="330" height="270"/><use xlink:href="#pickup" x="48" y="625" width="310" height="255"/>
+    <circle cx="31" cy="63" r="2" fill="#e7c79a" opacity=".3"/><circle cx="204" cy="152" r="1" fill="#e7c79a" opacity=".3"/><circle cx="377" cy="241" r="1" fill="#e7c79a" opacity=".3"/><circle cx="550" cy="330" r="1" fill="#e7c79a" opacity=".3"/><circle cx="723" cy="419" r="1" fill="#e7c79a" opacity=".3"/><circle cx="896" cy="508" r="1" fill="#e7c79a" opacity=".3"/><circle cx="1069" cy="597" r="1" fill="#e7c79a" opacity=".3"/><circle cx="1242" cy="686" r="1" fill="#e7c79a" opacity=".3"/><circle cx="1415" cy="775" r="1" fill="#e7c79a" opacity=".3"/><circle cx="1588" cy="4" r="2" fill="#e7c79a" opacity=".3"/><circle cx="161" cy="93" r="1" fill="#e7c79a" opacity=".3"/><circle cx="334" cy="182" r="1" fill="#e7c79a" opacity=".3"/><circle cx="507" cy="271" r="1" fill="#e7c79a" opacity=".3"/><circle cx="680" cy="360" r="1" fill="#e7c79a" opacity=".3"/><circle cx="853" cy="449" r="1" fill="#e7c79a" opacity=".3"/><circle cx="1026" cy="538" r="1" fill="#e7c79a" opacity=".3"/><circle cx="1199" cy="627" r="1" fill="#e7c79a" opacity=".3"/><circle cx="1372" cy="716" r="1" fill="#e7c79a" opacity=".3"/><circle cx="1545" cy="805" r="2" fill="#e7c79a" opacity=".3"/><circle cx="118" cy="34" r="1" fill="#e7c79a" opacity=".3"/><circle cx="291" cy="123" r="1" fill="#e7c79a" opacity=".3"/><circle cx="464" cy="212" r="1" fill="#e7c79a" opacity=".3"/><circle cx="637" cy="301" r="1" fill="#e7c79a" opacity=".3"/><circle cx="810" cy="390" r="1" fill="#e7c79a" opacity=".3"/><circle cx="983" cy="479" r="1" fill="#e7c79a" opacity=".3"/><circle cx="1156" cy="568" r="1" fill="#e7c79a" opacity=".3"/><circle cx="1329" cy="657" r="1" fill="#e7c79a" opacity=".3"/><circle cx="1502" cy="746" r="2" fill="#e7c79a" opacity=".3"/><circle cx="75" cy="835" r="1" fill="#e7c79a" opacity=".3"/><circle cx="248" cy="64" r="1" fill="#e7c79a" opacity=".3"/><circle cx="421" cy="153" r="1" fill="#e7c79a" opacity=".3"/><circle cx="594" cy="242" r="1" fill="#e7c79a" opacity=".3"/><circle cx="767" cy="331" r="1" fill="#e7c79a" opacity=".3"/><circle cx="940" cy="420" r="1" fill="#e7c79a" opacity=".3"/><circle cx="1113" cy="509" r="1" fill="#e7c79a" opacity=".3"/><circle cx="1286" cy="598" r="1" fill="#e7c79a" opacity=".3"/><circle cx="1459" cy="687" r="2" fill="#e7c79a" opacity=".3"/><circle cx="32" cy="776" r="1" fill="#e7c79a" opacity=".3"/><circle cx="205" cy="5" r="1" fill="#e7c79a" opacity=".3"/><circle cx="378" cy="94" r="1" fill="#e7c79a" opacity=".3"/><circle cx="551" cy="183" r="1" fill="#e7c79a" opacity=".3"/><circle cx="724" cy="272" r="1" fill="#e7c79a" opacity=".3"/><circle cx="897" cy="361" r="1" fill="#e7c79a" opacity=".3"/><circle cx="1070" cy="450" r="1" fill="#e7c79a" opacity=".3"/><circle cx="1243" cy="539" r="1" fill="#e7c79a" opacity=".3"/><circle cx="1416" cy="628" r="2" fill="#e7c79a" opacity=".3"/><circle cx="1589" cy="717" r="1" fill="#e7c79a" opacity=".3"/><circle cx="162" cy="806" r="1" fill="#e7c79a" opacity=".3"/><circle cx="335" cy="35" r="1" fill="#e7c79a" opacity=".3"/><circle cx="508" cy="124" r="1" fill="#e7c79a" opacity=".3"/><circle cx="681" cy="213" r="1" fill="#e7c79a" opacity=".3"/><circle cx="854" cy="302" r="1" fill="#e7c79a" opacity=".3"/><circle cx="1027" cy="391" r="1" fill="#e7c79a" opacity=".3"/><circle cx="1200" cy="480" r="1" fill="#e7c79a" opacity=".3"/><circle cx="1373" cy="569" r="2" fill="#e7c79a" opacity=".3"/><circle cx="1546" cy="658" r="1" fill="#e7c79a" opacity=".3"/><circle cx="119" cy="747" r="1" fill="#e7c79a" opacity=".3"/><circle cx="292" cy="836" r="1" fill="#e7c79a" opacity=".3"/><circle cx="465" cy="65" r="1" fill="#e7c79a" opacity=".3"/><circle cx="638" cy="154" r="1" fill="#e7c79a" opacity=".3"/></svg>

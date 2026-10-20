@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 250 350" role="img" aria-label="Pokémon card back" data-deck="pokemon">
+    <defs><linearGradient id="artifact-gold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f4e3ac"/><stop offset=".28" stop-color="#d3aa53"/><stop offset=".55" stop-color="#f8e7ae"/><stop offset=".8" stop-color="#b48c3e"/><stop offset="1" stop-color="#e5c373"/></linearGradient><symbol id="artifact" data-artifact="pokeball" viewBox="0 0 200 240"><g data-motif="poke-ball" stroke="#3b4c5b" stroke-width="3">
+    <circle cx="100" cy="119" r="88" fill="#d9c78b" opacity=".17" stroke="none"/>
+    <path d="m29 54 9 2-3 9m132 110 10 3-4 10m-133-5 6-2 2 7m113-123 6-3 4 7" fill="none" stroke="#b5a46d"/>
+    <circle cx="100" cy="123" r="69" fill="#f3eedc"/>
+    <path d="M31 123a69 69 0 0 1 138 0Z" fill="#c96b61"/>
+    <path d="M40 117a60 60 0 0 1 104-34" fill="none" stroke="#e7b09a" stroke-width="7" stroke-linecap="round"/>
+    <path d="M39 145a64 64 0 0 0 118 8" fill="none" stroke="#c6cfbd" stroke-width="6" stroke-linecap="round"/>
+    <path d="M32 123h136" stroke-width="12"/>
+    <circle cx="100" cy="123" r="22" fill="#eff0db" stroke-width="6"/><circle cx="100" cy="123" r="12" fill="#d5ded1" stroke-width="1.5"/>
+    <path d="M49 209q51-15 102 0m-85 7q34-8 68 0" fill="none" stroke="#b4b795" stroke-width="1.5"/>
+  </g></symbol></defs>
+    <rect width="250" height="350" rx="11" fill="#f4efdc"/>
+    <rect x="7" y="7" width="236" height="336" rx="8" fill="none" stroke="#b49a51" stroke-width="3"/>
+    <rect x="15" y="15" width="220" height="320" rx="5" fill="none" stroke="#b49a51" stroke-width="1"/>
+    <g fill="none" stroke="#8b9fa3" opacity=".2">
+  <circle cx="125" cy="161" r="74"/><circle cx="125" cy="161" r="57"/><path d="M51 161h148"/>
+  <path d="m164 63 3-6 3 6 6 3-6 3-3 6-3-6-6-3Z"/><path d="m75 118 3-6 3 6 6 3-6 3-3 6-3-6-6-3Z"/><path d="m116 173 3-6 3 6 6 3-6 3-3 6-3-6-6-3Z"/><path d="m157 228 3-6 3 6 6 3-6 3-3 6-3-6-6-3Z"/></g><g data-motif="electric-trails" fill="none" stroke="#b69743" stroke-width="2"><path d="m39 76-5 35 10-4-12 49 12-3-10 51 10-3-6 74m174-199 5 35-10-4 12 49-12-3 10 51-10-3 6 74"/></g>
+    <text x="125" y="60" text-anchor="middle" fill="#3c5368" font-family="Georgia,serif" font-weight="700" font-size="19" letter-spacing="1.4">POKÉMON</text>
+    <use xlink:href="#artifact" x="33" y="79" width="184" height="191"/>
+    <path d="M62 278h126" stroke="#b49a51" stroke-width="1.5"/>
+    <text x="125" y="296" text-anchor="middle" fill="#3c5368" font-family="Arial,sans-serif" font-size="7.2" letter-spacing="1.7">POKÉMON COLLECTION</text>
+    <g fill="#b49a51"><path d="m125 306 4 8-4 8-4-8Z"/><circle cx="105" cy="314" r="2"/><circle cx="145" cy="314" r="2"/></g>
+  </svg>

@@ -2,7 +2,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/fireba
 import { browserLocalPersistence, connectAuthEmulator, getAuth,
   onAuthStateChanged, setPersistence, signInAnonymously } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
 import { connectDatabaseEmulator, get, getDatabase, onValue, ref, runTransaction, serverTimestamp, set } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-database.js";
-import { libraryContext } from "./firebase-bridge.js?v=8";
+import { libraryContext } from "./firebase-bridge.js?v=9";
 import { loadLocalDrafts, storeLocalDraft, removeLocalDraft } from "./board-photo.js?v=1";
 
 let callback, editorAuth, editorDb, editorUser, canEdit = false;
@@ -244,7 +244,7 @@ export async function exportSet(setId) {
 const escape = value => String(value).replace(/[&<>"']/g, character => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[character]));
 export async function printSet(setId, themeId) {
   online();
-  if (!["illustrated", "midnight", "sunburst", "mopar", "dart1969", "harrypotter", "starwars", "lordoftherings", "cats"].includes(themeId))
+  if (!["illustrated", "midnight", "sunburst", "mopar", "dart1969", "harrypotter", "starwars", "lordoftherings", "cats", "route66", "dinosaurs", "pokemon"].includes(themeId))
     throw new Error("Choose a valid print theme.");
   const popup = window.open("", "_blank");
   if (!popup) throw new Error("Allow the print preview popup, then try again.");

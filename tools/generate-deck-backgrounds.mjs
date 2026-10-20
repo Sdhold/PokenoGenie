@@ -2,6 +2,7 @@
 // so background cars and cards always depict the same models.
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { catBackgroundSvg } from "./cat-card-art.mjs";
+import { adventureThemes, adventureBackgroundSvg } from "./adventure-card-art.mjs";
 
 const root = new URL("../src/PokenoGenie/wwwroot/", import.meta.url);
 const output = new URL("backgrounds/", root);
@@ -97,4 +98,5 @@ for (const theme of ["mopar","dart1969"]) {
   await writeFile(new URL(`${theme}.svg`,output),svg(theme,blue?'Blue 1969 Dodge Dart in a chrome and blue garage':'MOPAR garage with Charger, Challenger, Cuda and Superbird',scene,defs));
 }
 await writeFile(new URL("cats.svg",output),catBackgroundSvg());
-console.log("Generated eight bundled deck backgrounds; Illustrated keeps its green table.");
+for (const id of Object.keys(adventureThemes)) await writeFile(new URL(`${id}.svg`,output),adventureBackgroundSvg(id));
+console.log("Generated eleven bundled deck backgrounds; Illustrated keeps its green table.");

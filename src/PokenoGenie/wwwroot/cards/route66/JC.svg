@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 250 350" role="img" aria-label="J of C — Route 66: Hot Rod" data-deck="route66" data-character="hot-rod">
+    <defs><symbol id="pip" viewBox="0 0 32 32"><g fill="#304c56"><circle cx="16" cy="8" r="6.5"/><circle cx="8" cy="19" r="6.5"/><circle cx="24" cy="19" r="6.5"/><path d="M13 20h6l4 11H9Z"/></g></symbol><linearGradient id="artifact-gold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f4e3ac"/><stop offset=".28" stop-color="#d3aa53"/><stop offset=".55" stop-color="#f8e7ae"/><stop offset=".8" stop-color="#b48c3e"/><stop offset="1" stop-color="#e5c373"/></linearGradient><symbol id="character" data-character="hot-rod" viewBox="0 0 200 240"><circle cx="103" cy="77" r="57" fill="#eccb8e" opacity=".48"/>
+    <path d="M4 122 24 100h24l10-24h29l12 25 24-12h24l9 22 38-6v59H4Z" fill="#c68463" opacity=".38"/>
+    <path d="M5 192q98-26 190 0v31H5Z" fill="#385360"/><path d="M42 211h25m20 0h25m20 0h25" stroke="#ebcd8d" stroke-width="3"/>
+    <ellipse cx="100" cy="183" rx="91" ry="7" fill="#2e424b" opacity=".2"/>
+    <g fill="#6c8d7b"><path d="M17 132v-37h5v15h7V97h4v18H22v17Zm166 0V80h4v22h7V88h4v19h-11v25Z"/></g><g transform="translate(42 57) scale(0.24)" data-motif="route-66-shield">
+    <path d="M-65-65Q-33-49 0-66 33-49 65-65l-4 39q-2 17 8 27-9 37-35 57L0 81l-34-23Q-60 38-69 1q10-10 8-27Z" fill="#faf0d8" stroke="#354c53" stroke-width="5"/>
+    <path d="M-55-52Q-25-40 0-53 25-40 55-52l-4 29q-1 15 7 25-10 31-32 46L0 67l-26-19Q-48 33-58 2q8-10 7-25Z" fill="none" stroke="#354c53" stroke-width="2"/>
+    <text y="-18" text-anchor="middle" fill="#354c53" font-family="Arial,sans-serif" font-weight="700" font-size="15" letter-spacing="3">ROUTE</text>
+    <path d="M-45-7h90" stroke="#354c53" stroke-width="2"/>
+    <text y="45" text-anchor="middle" fill="#354c53" font-family="Georgia,serif" font-weight="700" font-size="62">66</text>
+  </g><g data-vehicle="hot-rod" stroke="#354e55" stroke-width="2" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M82 130 88 94h40l18 36Z" fill="#eec19a"/>
+    <path d="M82 130 88 94h40l18 36Z" fill="#91b4b6" opacity=".6"/>
+    <path d="M20 142h37v-22h24l7 14h64l29 10 5 18H20Z" fill="#b95545"/>
+    <path d="M17 160h167v9H17Z" fill="#6c8b8a" opacity=".2" stroke="none"/>
+    <g fill="none" stroke-width="1.5"><path d="M28 134v19m9-24v24m10-24v24" stroke="#b6c8c2" stroke-width="5"/><path d="m93 139 17 6-10 6 25 3-14-12 27 4-12 8" fill="#edbf64" stroke="none"/><path d="M20 163h167"/></g>
+    <path d="M12 164h21m135 0h22" stroke="#dae1d0" stroke-width="5"/>
+    <path d="M14 142h9m153 0h9" stroke="#f8e5b3" stroke-width="4"/>
+    <g><circle cx="45" cy="169" r="17" fill="#293f46"/><circle cx="45" cy="169" r="12" fill="#e8dfc7"/><circle cx="45" cy="169" r="8" fill="#8aabae" stroke="#38555a" stroke-width="1.5"/><circle cx="45" cy="169" r="3" fill="#f4e8ce"/></g><g><circle cx="156" cy="169" r="23" fill="#293f46"/><circle cx="156" cy="169" r="18" fill="#e8dfc7"/><circle cx="156" cy="169" r="14" fill="#8aabae" stroke="#38555a" stroke-width="1.5"/><circle cx="156" cy="169" r="3" fill="#f4e8ce"/></g>
+  </g></symbol></defs>
+    <rect width="250" height="350" rx="11" fill="#f5ecd6"/>
+    <rect x="4" y="4" width="242" height="342" rx="8" fill="none" stroke="#b08350" stroke-width="2"/>
+    <rect x="9" y="9" width="232" height="332" rx="5" fill="none" stroke="#b08350" stroke-width=".7" opacity=".65"/>
+    <rect x="47" y="40" width="156" height="270" rx="70" fill="#dcc3a1" opacity=".33"/>
+    <circle cx="160" cy="83" r="30" fill="#dfb477" opacity=".22"/>
+  <path d="M47 208v-56l20-7 8-24h23l13 27 25-11h27l13 27 27 6v38Z" fill="#bc7e5f" opacity=".16"/>
+  <path d="M56 269 111 217h28l55 52m-69-43v10m0 9v14" fill="none" stroke="#b99263" stroke-width="1.2" opacity=".35"/><g data-motif="highway-stripes" fill="none" stroke-linecap="round">
+    <path d="M39 74v202m172-202v202" stroke="#718c8d" stroke-width="3"/>
+    <path d="M39 78v198m172-198v198" stroke="#e4c27d" stroke-width="1.5" stroke-dasharray="10 9"/>
+    <path d="m36 71 3-6 3 6m166 208 3 6 3-6" stroke="#b96d55" stroke-width="2"/>
+  </g>
+    <text x="125" y="26" text-anchor="middle" fill="#365760" font-family="Georgia,serif" font-weight="700" font-size="9" letter-spacing="1.3">ROUTE 66</text>
+    <g fill="#304c56" text-anchor="middle"><text x="22" y="31" font-family="Georgia,serif" font-weight="700" font-size="29">J</text><use xlink:href="#pip" x="13" y="38" width="18" height="18"/></g><g transform="rotate(180 125 175)"><g fill="#304c56" text-anchor="middle"><text x="22" y="31" font-family="Georgia,serif" font-weight="700" font-size="29">J</text><use xlink:href="#pip" x="13" y="38" width="18" height="18"/></g></g>
+    <g id="main-art"><g data-portrait="upright"><use xlink:href="#character" x="43" y="37" width="164" height="143"/></g>
+      <g data-portrait="inverted" transform="rotate(180 125 175)"><use xlink:href="#character" x="43" y="37" width="164" height="143"/></g>
+      <path d="M42 161h166v32H42Z" fill="#f5ecd6" stroke="#b08350" stroke-width="1.5"/>
+      <text x="125" y="175" text-anchor="middle" fill="#365760" font-family="Georgia,serif" font-weight="700" font-size="10.8">HOT ROD</text>
+      <text x="125" y="186" text-anchor="middle" fill="#365760" font-family="Arial,sans-serif" font-size="6.1" letter-spacing=".8">JACK • A LITTLE ROADSIDE THUNDER</text></g>
+  </svg>

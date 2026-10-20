@@ -6,7 +6,7 @@ const directory = new URL("../src/PokenoGenie/wwwroot/cards/", import.meta.url);
 const ranks = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
 const suits = ["S", "H", "D", "C"];
 const traditionalDirectories = [directory, ...["midnight", "sunburst", "mopar", "dart1969"].map(id => new URL(`${id}/`, directory))];
-const storyIds = ["harrypotter", "starwars", "lordoftherings"];
+const storyIds = ["harrypotter", "starwars", "lordoftherings", "route66", "dinosaurs", "pokemon"];
 const themeDirectories = [...traditionalDirectories, ...[...storyIds,"cats"].map(id => new URL(`${id}/`, directory))];
 
 test("every theme has 52 self-contained SVG faces", async () => {
@@ -53,7 +53,10 @@ test("story decks have named, mirrored character courts and themed object aces",
   const expected = {
     harrypotter: { K: "dumbledore", Q: "mcgonagall", J: "harry", A: "snitch" },
     starwars: { K: "vader", Q: "leia", J: "luke", A: "deathstar" },
-    lordoftherings: { K: "aragorn", Q: "arwen", J: "frodo", A: "onering" }
+    lordoftherings: { K: "aragorn", Q: "arwen", J: "frodo", A: "onering" },
+    route66: { K: "finned-cruiser", Q: "sunset-convertible", J: "hot-rod", A: "route66-shield" },
+    dinosaurs: { K: "tyrannosaurus", Q: "triceratops", J: "velociraptor", A: "dinosaur-egg" },
+    pokemon: { K: "charizard", Q: "ninetales", J: "pikachu", A: "pokeball" }
   };
   for (const [themeId, characters] of Object.entries(expected)) {
     const numberCharacters = new Set();
@@ -99,6 +102,19 @@ test("Star Wars force users have character-colored lightsaber borders", async ()
   const han = await readFile(new URL("starwars/6S.svg", directory), "utf8");
   assert.match(han, /data-character="han"/);
   assert.match(han, /data-motif="starship-panels"/);
+});
+
+test("Pokémon courts retain their signature silhouettes and themed border art", async()=>{
+  const pikachu=await readFile(new URL("pokemon/JS.svg",directory),"utf8");
+  assert.match(pikachu,/data-feature="lightning-tail"/);
+  assert.match(pikachu,/data-feature="black-ear-tips"/);
+  assert.match(pikachu,/data-motif="electric-trails"/);
+  const ninetales=await readFile(new URL("pokemon/QH.svg",directory),"utf8");
+  assert.equal((ninetales.match(/data-tail="[1-9]"/g)||[]).length,9);
+  const charizard=await readFile(new URL("pokemon/KS.svg",directory),"utf8");
+  assert.match(charizard,/data-feature="teal-wings"/);
+  assert.match(charizard,/data-feature="flame-tail"/);
+  assert.match(charizard,/data-motif="flame-trails"/);
 });
 
 test("Royal Cats keeps the four named pets on their assigned ranks in every suit", async () => {

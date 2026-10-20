@@ -6,6 +6,21 @@ namespace PokenoGenie.Tests;
 public class GameRulesTests
 {
     [Fact]
+    public void NewDecksUseTheirOwnArtworkAndUnknownThemesFallBackSafely()
+    {
+        Assert.Equal(DeckThemeCatalog.All.Count, DeckThemeCatalog.All.Select(theme => theme.Id).Distinct().Count());
+        foreach (var id in new[] { "route66", "dinosaurs", "pokemon" })
+        {
+            var theme = DeckThemeCatalog.FindOrDefault(id);
+            Assert.Equal(id, theme.Id);
+            Assert.Equal($"cards/{id}/AS.svg", DeckThemeCatalog.CardPath(id, "AS"));
+            Assert.Equal($"cards/{id}/back.svg", DeckThemeCatalog.BackPath(id));
+            Assert.StartsWith($"cards/{id}/", theme.PreviewPath);
+        }
+        Assert.Equal("cards/AS.svg", DeckThemeCatalog.CardPath("missing", "AS"));
+    }
+
+    [Fact]
     public void EveryShuffleContainsEachCardExactlyOnce()
     {
         var expected = PlayingCard.All.Select(card => card.Id).Order().ToArray();

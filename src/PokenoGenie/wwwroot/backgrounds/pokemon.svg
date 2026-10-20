@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1600 900" role="img" aria-label="Pokémon meadow at blue hour with a distant stadium, Pikachu, Bulbasaur and Squirtle" data-deck="pokemon"><defs><linearGradient id="pokemon-sky" x2="0" y2="1"><stop stop-color="#233c5b"/><stop offset=".65" stop-color="#6c8c95"/><stop offset="1" stop-color="#2e5c61"/></linearGradient>
+    <symbol id="pikachu" viewBox="0 0 200 240"><g stroke="#3b4c5b" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="101" cy="120" r="83" fill="#e7cf7e" opacity=".18" stroke="none"/>
+    <path d="M23 65h11m-5-5v11m137 120h10m-5-5v10" stroke="#e7cf7e" opacity=".7"/>
+    <ellipse cx="101" cy="220" rx="78" ry="7" fill="#e7cf7e" opacity=".3" stroke="none"/>
+    <path d="m137 158 20-34-18-10 24-43 24 15-25 20 18 14-31 42 12 9-18 19Z" fill="#edcb69" data-feature="lightning-tail"/>
+    <path d="m84 78-9-44-17-19-2 29 11 42m43-9 20-46 24-13-9 31-20 38" fill="#edcb69"/>
+    <path d="m58 16 17 18 4 19-20-9Zm94 3-8 29-16 13 2-29Z" fill="#354655" stroke="none" data-feature="black-ear-tips"/>
+    <path d="M66 120q-6 30-6 52l-17 21 8 12 31-10 18 2 23 11 17-6-11-22 2-60Z" fill="#edcb69"/>
+    <path d="m65 132-22 21 3 12 11-6 19-16m47-9 22 17-2 13-13-4-12-16" fill="#edcb69"/>
+    <path d="M62 82q39-24 69 2l9 26-6 21q-36 26-72 1l-8-25Z" fill="#f0cf6f"/>
+    <ellipse cx="78" cy="105" rx="6" ry="9" fill="#263b49"/><ellipse cx="76.5" cy="102" rx="2.04" ry="2.5200000000000005" fill="#fff9e6" stroke="none"/><ellipse cx="117" cy="105" rx="6" ry="9" fill="#263b49"/><ellipse cx="115.5" cy="102" rx="2.04" ry="2.5200000000000005" fill="#fff9e6" stroke="none"/><circle cx="66" cy="122" r="10" fill="#c96858" stroke="none"/><circle cx="130" cy="121" r="10" fill="#c96858" stroke="none"/>
+    <path d="m94 115 5 3 5-3m-17 11q6 9 12 0 7 9 12-1" fill="none"/>
+    <path d="m74 172 11 5m-10 3 9 4m30-12 11 6m-12 0 10 7" stroke="#a9844c" stroke-width="5"/><path d="m153 54-15 26h12l-10 24 29-34h-15l12-16Z" fill="#e9c667" stroke="none" opacity=".65"/>
+  </g></symbol><symbol id="bulbasaur" viewBox="0 0 200 240"><g stroke="#3b4c5b" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="101" cy="120" r="83" fill="#a4bea0" opacity=".18" stroke="none"/>
+    <path d="M23 65h11m-5-5v11m137 120h10m-5-5v10" stroke="#a4bea0" opacity=".7"/>
+    <ellipse cx="101" cy="220" rx="78" ry="7" fill="#a4bea0" opacity=".3" stroke="none"/>
+    <g data-feature="plant-bulb"><path d="M73 126Q40 82 68 47l25 13 20-36 20 37 30-10q18 39-17 75Z" fill="#68935f"/>
+    <path d="M113 31v87M70 54q22 18 38 65m51-58q-22 24-39 57" fill="none" stroke="#3f7051"/></g>
+    <path d="M57 130q41-33 83-10l20 29-8 43h-23l-6-25-26 4-5 25H68l-4-25-20-12Z" fill="#7dac9c"/>
+    <path d="M33 130 31 98l24 13 28-7 22 8 13 32-10 27-24 13-40-6-20-21Z" fill="#8ab6a5"/>
+    <path d="m36 110 15 11-13 6m62-4 9 20-15-4" fill="#4a8176" stroke="none"/>
+    <path d="m42 139 18-7 1 24-18 1Zm32-5 18 5-2 19-17-2Z" fill="#b35960"/><path d="M51 137v11m31-9v11" stroke="#fff1cf" stroke-width="3"/>
+    <path d="m45 163 32 2m-27-3 4 7m17-5-4 6" fill="none"/>
+    <g fill="#44796e" stroke="none"><path d="m52 119 10 3-5 9-9-3Zm25-3 12 6-10 8-9-6Zm46 21 12-6 7 12-12 5Zm-20 24 9-9 9 11-11 6Z"/></g>
+    <path d="m73 188 4-6 4 6m51-3 4-6 4 6" fill="#eee2b9"/>
+  </g></symbol><symbol id="squirtle" viewBox="0 0 200 240"><g stroke="#3b4c5b" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="101" cy="120" r="83" fill="#9bbfc4" opacity=".18" stroke="none"/>
+    <path d="M23 65h11m-5-5v11m137 120h10m-5-5v10" stroke="#9bbfc4" opacity=".7"/>
+    <ellipse cx="101" cy="220" rx="78" ry="7" fill="#9bbfc4" opacity=".3" stroke="none"/>
+    <path d="M137 169q44-7 37-35-8-22-27-10-12 14 4 18 14 0 9-10" fill="#82b8bc" data-feature="curl-tail"/>
+    <ellipse cx="108" cy="151" rx="44" ry="47" fill="#a67a55"/><path d="M91 112q30-7 48 25l-5 42-27 16-29-27Z" fill="#bd9568"/>
+    <path d="m99 122 22 14-1 27-23 12-17-20m43-20 13-4m-14 33 11 9m-35 3 2 15" fill="none" stroke="#775d4a"/>
+    <path d="m80 132-33 17 1 16 33-13m52 24 12 19-6 12-28-10-5-20m-20-1-15 22-16-2-3-10 17-23" fill="#82b8bc"/>
+    <ellipse cx="86" cy="152" rx="27" ry="35" fill="#e5cd95"/><path d="M62 147h49m-47 13h46m-41 13h34m-20-51v61" fill="none" stroke="#b19e73"/>
+    <path d="M52 81q21-29 50-16 26 15 16 42-8 24-36 23-30 2-39-22Z" fill="#88bfc0"/>
+    <ellipse cx="64" cy="94" rx="5" ry="9" fill="#795c72"/><ellipse cx="62.5" cy="91" rx="1.7000000000000002" ry="2.5200000000000005" fill="#fff9e6" stroke="none"/><ellipse cx="101" cy="93" rx="5" ry="9" fill="#795c72"/><ellipse cx="99.5" cy="90" rx="1.7000000000000002" ry="2.5200000000000005" fill="#fff9e6" stroke="none"/><path d="m66 111q19 12 32-2" fill="none"/>
+    <path d="m40 58q-17 22 0 28 17-6 0-28Z" fill="#a6d0ce" stroke="none" opacity=".7"/>
+  </g></symbol></defs>
+    <rect width="1600" height="900" fill="url(#pokemon-sky)"/><circle cx="1310" cy="154" r="94" fill="#d5c89c" opacity=".4"/>
+    <path d="M0 550 188 370l131 94 176-184 220 255 162-130 180 116 221-219 322 245v353H0Z" fill="#536f7e"/>
+    <path d="M0 611q383-228 817-51 392-130 783-16v356H0Z" fill="#3a6964"/>
+    <g transform="translate(998 400)" opacity=".5"><ellipse cx="0" cy="0" rx="176" ry="40" fill="#b0b8a5" stroke="#334f62" stroke-width="5"/><path d="M-176 0v63q176 75 352 0V0q-176 72-352 0Z" fill="#607c81" stroke="#334f62" stroke-width="4"/><ellipse rx="131" ry="24" fill="#42696c"/>
+      <path d="M-169 16v43m24-36v43m25-36v44m25-37v44m25-39v44m25-40v44m25-42v44m25-44v44m25-46v44m25-47v44m25-48v43m25-50v42m25-51v42m25-53v41" stroke="#aeb5a0" stroke-width="3"/>
+      <circle cy="50" r="18" fill="#c7b6a0" stroke="#334f62" stroke-width="4"/><path d="M-17 50h34" stroke="#334f62" stroke-width="5"/><circle cy="50" r="6" fill="#c3cec0" stroke="#334f62" stroke-width="3"/>
+    </g>
+    <path d="M0 764q290-161 636-23t964-47v206H0Z" fill="#234d4c"/>
+    <g fill="#294f52"><path d="M22 653v-103h-37l55-98 53 98h-36v103Z" transform="translate(0 0)"/><path d="M147 653v-103h-37l55-98 53 98h-36v103Z" transform="translate(0 34)"/><path d="M282 653v-103h-37l55-98 53 98h-36v103Z" transform="translate(0 68)"/><path d="M1252 653v-103h-37l55-98 53 98h-36v103Z" transform="translate(0 0)"/><path d="M1402 653v-103h-37l55-98 53 98h-36v103Z" transform="translate(0 34)"/><path d="M1542 653v-103h-37l55-98 53 98h-36v103Z" transform="translate(0 68)"/></g>
+    <use xlink:href="#pikachu" x="45" y="568" width="290" height="330" opacity=".85"/><use xlink:href="#bulbasaur" x="1230" y="640" width="300" height="270" opacity=".8"/><use xlink:href="#squirtle" x="1080" y="670" width="220" height="250" opacity=".75"/>
+    <g transform="translate(110 120) scale(.75)" opacity=".65"><g data-motif="poke-ball" stroke="#3b4c5b" stroke-width="3">
+    <circle cx="100" cy="119" r="88" fill="#d9c78b" opacity=".17" stroke="none"/>
+    <path d="m29 54 9 2-3 9m132 110 10 3-4 10m-133-5 6-2 2 7m113-123 6-3 4 7" fill="none" stroke="#b5a46d"/>
+    <circle cx="100" cy="123" r="69" fill="#f3eedc"/>
+    <path d="M31 123a69 69 0 0 1 138 0Z" fill="#c96b61"/>
+    <path d="M40 117a60 60 0 0 1 104-34" fill="none" stroke="#e7b09a" stroke-width="7" stroke-linecap="round"/>
+    <path d="M39 145a64 64 0 0 0 118 8" fill="none" stroke="#c6cfbd" stroke-width="6" stroke-linecap="round"/>
+    <path d="M32 123h136" stroke-width="12"/>
+    <circle cx="100" cy="123" r="22" fill="#eff0db" stroke-width="6"/><circle cx="100" cy="123" r="12" fill="#d5ded1" stroke-width="1.5"/>
+    <path d="M49 209q51-15 102 0m-85 7q34-8 68 0" fill="none" stroke="#b4b795" stroke-width="1.5"/>
+  </g></g>
+    <circle cx="31" cy="63" r="2" fill="#e7d49b" opacity=".3"/><circle cx="204" cy="152" r="1" fill="#e7d49b" opacity=".3"/><circle cx="377" cy="241" r="1" fill="#e7d49b" opacity=".3"/><circle cx="550" cy="330" r="1" fill="#e7d49b" opacity=".3"/><circle cx="723" cy="419" r="1" fill="#e7d49b" opacity=".3"/><circle cx="896" cy="508" r="1" fill="#e7d49b" opacity=".3"/><circle cx="1069" cy="597" r="1" fill="#e7d49b" opacity=".3"/><circle cx="1242" cy="686" r="1" fill="#e7d49b" opacity=".3"/><circle cx="1415" cy="775" r="1" fill="#e7d49b" opacity=".3"/><circle cx="1588" cy="4" r="2" fill="#e7d49b" opacity=".3"/><circle cx="161" cy="93" r="1" fill="#e7d49b" opacity=".3"/><circle cx="334" cy="182" r="1" fill="#e7d49b" opacity=".3"/><circle cx="507" cy="271" r="1" fill="#e7d49b" opacity=".3"/><circle cx="680" cy="360" r="1" fill="#e7d49b" opacity=".3"/><circle cx="853" cy="449" r="1" fill="#e7d49b" opacity=".3"/><circle cx="1026" cy="538" r="1" fill="#e7d49b" opacity=".3"/><circle cx="1199" cy="627" r="1" fill="#e7d49b" opacity=".3"/><circle cx="1372" cy="716" r="1" fill="#e7d49b" opacity=".3"/><circle cx="1545" cy="805" r="2" fill="#e7d49b" opacity=".3"/><circle cx="118" cy="34" r="1" fill="#e7d49b" opacity=".3"/><circle cx="291" cy="123" r="1" fill="#e7d49b" opacity=".3"/><circle cx="464" cy="212" r="1" fill="#e7d49b" opacity=".3"/><circle cx="637" cy="301" r="1" fill="#e7d49b" opacity=".3"/><circle cx="810" cy="390" r="1" fill="#e7d49b" opacity=".3"/><circle cx="983" cy="479" r="1" fill="#e7d49b" opacity=".3"/><circle cx="1156" cy="568" r="1" fill="#e7d49b" opacity=".3"/><circle cx="1329" cy="657" r="1" fill="#e7d49b" opacity=".3"/><circle cx="1502" cy="746" r="2" fill="#e7d49b" opacity=".3"/><circle cx="75" cy="835" r="1" fill="#e7d49b" opacity=".3"/><circle cx="248" cy="64" r="1" fill="#e7d49b" opacity=".3"/><circle cx="421" cy="153" r="1" fill="#e7d49b" opacity=".3"/><circle cx="594" cy="242" r="1" fill="#e7d49b" opacity=".3"/><circle cx="767" cy="331" r="1" fill="#e7d49b" opacity=".3"/><circle cx="940" cy="420" r="1" fill="#e7d49b" opacity=".3"/><circle cx="1113" cy="509" r="1" fill="#e7d49b" opacity=".3"/><circle cx="1286" cy="598" r="1" fill="#e7d49b" opacity=".3"/><circle cx="1459" cy="687" r="2" fill="#e7d49b" opacity=".3"/><circle cx="32" cy="776" r="1" fill="#e7d49b" opacity=".3"/><circle cx="205" cy="5" r="1" fill="#e7d49b" opacity=".3"/><circle cx="378" cy="94" r="1" fill="#e7d49b" opacity=".3"/><circle cx="551" cy="183" r="1" fill="#e7d49b" opacity=".3"/><circle cx="724" cy="272" r="1" fill="#e7d49b" opacity=".3"/><circle cx="897" cy="361" r="1" fill="#e7d49b" opacity=".3"/><circle cx="1070" cy="450" r="1" fill="#e7d49b" opacity=".3"/><circle cx="1243" cy="539" r="1" fill="#e7d49b" opacity=".3"/><circle cx="1416" cy="628" r="2" fill="#e7d49b" opacity=".3"/><circle cx="1589" cy="717" r="1" fill="#e7d49b" opacity=".3"/><circle cx="162" cy="806" r="1" fill="#e7d49b" opacity=".3"/><circle cx="335" cy="35" r="1" fill="#e7d49b" opacity=".3"/><circle cx="508" cy="124" r="1" fill="#e7d49b" opacity=".3"/><circle cx="681" cy="213" r="1" fill="#e7d49b" opacity=".3"/><circle cx="854" cy="302" r="1" fill="#e7d49b" opacity=".3"/><circle cx="1027" cy="391" r="1" fill="#e7d49b" opacity=".3"/><circle cx="1200" cy="480" r="1" fill="#e7d49b" opacity=".3"/><circle cx="1373" cy="569" r="2" fill="#e7d49b" opacity=".3"/><circle cx="1546" cy="658" r="1" fill="#e7d49b" opacity=".3"/><circle cx="119" cy="747" r="1" fill="#e7d49b" opacity=".3"/><circle cx="292" cy="836" r="1" fill="#e7d49b" opacity=".3"/><circle cx="465" cy="65" r="1" fill="#e7d49b" opacity=".3"/><circle cx="638" cy="154" r="1" fill="#e7d49b" opacity=".3"/></svg>

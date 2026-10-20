@@ -19,7 +19,10 @@ public static class DeckThemeCatalog
         new("harrypotter", "Harry Potter", "Hogwarts characters, wand magic, and the Golden Snitch", "JH"),
         new("starwars", "Star Wars", "Characters, lightsabers, droids, and the Death Star", "KS"),
         new("lordoftherings", "Lord of the Rings", "Aragorn, Arwen, Frodo, and the One Ring", "KS"),
-        new("cats", "Royal Cats", "Binx, Autumn, Chip, and Anya, with playful cat scenes", "KS")
+        new("cats", "Royal Cats", "Binx, Autumn, Chip, and Anya, with playful cat scenes", "KS"),
+        new("route66", "Route 66", "Classic cruisers, hot rods, neon diners, and the open highway", "KS"),
+        new("dinosaurs", "Dinosaurs", "T. rex, Triceratops, Velociraptor, and a prehistoric valley", "KS"),
+        new("pokemon", "Pokémon", "Pikachu, Ninetales, Charizard, and a Poké Ball Ace", "JS")
     ];
 
     public static DeckTheme FindOrDefault(string? id) =>

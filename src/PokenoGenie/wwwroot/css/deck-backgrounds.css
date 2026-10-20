@@ -7,6 +7,9 @@
 [data-deck-theme="starwars"] { background-color: #0b1728; background-image: linear-gradient(90deg, #07132211, #07132266, #07132211), url("../backgrounds/starwars.svg"); }
 [data-deck-theme="lordoftherings"] { background-color: #172d32; background-image: linear-gradient(90deg, #11272a11, #11272a77, #11272a11), url("../backgrounds/lordoftherings.svg"); }
 [data-deck-theme="cats"] { background-color: #153b39; background-image: linear-gradient(90deg, #0a252522, #0a252588, #0a252522), url("../backgrounds/cats.svg"); }
+[data-deck-theme="route66"] { background-color: #233c49; background-image: linear-gradient(90deg, #172b3c22, #172b3c88, #172b3c22), url("../backgrounds/route66.svg"); }
+[data-deck-theme="dinosaurs"] { background-color: #244b4d; background-image: linear-gradient(90deg, #102f2e22, #102f2e88, #102f2e22), url("../backgrounds/dinosaurs.svg"); }
+[data-deck-theme="pokemon"] { background-color: #233c5b; background-image: linear-gradient(90deg, #13283f22, #13283f88, #13283f22), url("../backgrounds/pokemon.svg"); }
 [data-deck-theme] { background-position: center center; background-repeat: no-repeat; background-size: cover; }
 .controller-shell[data-deck-theme] { background-attachment: fixed; }
 

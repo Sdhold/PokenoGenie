@@ -27,7 +27,7 @@
         "6": "Six", "7": "Seven", "8": "Eight", "9": "Nine", "10": "Ten",
         J: "Jack", Q: "Queen", K: "King"
     };
-    var themeIds = { illustrated: true, midnight: true, sunburst: true, mopar: true, dart1969: true, harrypotter: true, starwars: true, lordoftherings: true, cats: true };
+    var themeIds = { illustrated: true, midnight: true, sunburst: true, mopar: true, dart1969: true, harrypotter: true, starwars: true, lordoftherings: true, cats: true, route66: true, dinosaurs: true, pokemon: true };
 
     function cardAsset(themeId, id) {
         var path = themeId === "illustrated" ? "cards/" + id + ".svg" : "cards/" + themeId + "/" + id + ".svg";
@@ -255,7 +255,7 @@
         if (signature === lastSignature) return;
         lastSignature = signature;
         byId("display-screen").setAttribute("data-deck-theme", themeId);
-        var verifying = state.phase === "paused" && !showingGuide;
+        var verifying = (state.phase === "paused" || state.phase === "finished") && !showingGuide;
         byId("display-screen").className = "display-screen" + (verifying ? " is-verifying" : "");
         byId("calling-display").hidden = verifying || showingGuide || checkingBoard;
         byId("verification-panel").hidden = !verifying || checkingBoard;
@@ -271,6 +271,8 @@
         if (showingGuide) return;
         if (checkingBoard) { renderBoardCheck(state, themeId, lastCheck); return; }
         if (verifying) {
+            setText("verification-eyebrow", (state.phase === "finished" ? "ROUND COMPLETE" : "PAUSED") + " · ALL CALLED CARDS");
+            setText("verification-title", state.phase === "finished" ? "The round is complete." : "Verify the win.");
             for (var calledIndex = 0; calledIndex < cards.length; calledIndex++) {
                 var info = cardInfo(cards[calledIndex]);
                 var latest = calledIndex === cards.length - 1;

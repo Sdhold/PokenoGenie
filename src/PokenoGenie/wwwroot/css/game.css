@@ -135,13 +135,21 @@ a { color: inherit; }
 .history-grid { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 14px; max-height: 240px; overflow-y: auto; }
 .history-chip { font-size: .95rem; padding: 6px 9px; }
 .history-chip small { font-family: "Segoe UI", Arial, sans-serif; font-size: .65rem; color: #718076; }
-.deck-theme-panel { margin-top: 22px; padding: 20px; border: 1px solid #d5c18b55; border-radius: 15px; }
+.deck-theme-panel { min-width: 0; margin-top: 22px; padding: 20px; border: 1px solid #d5c18b55; border-radius: 15px; }
 .deck-theme-heading { display: flex; align-items: end; justify-content: space-between; gap: 15px; }
 .deck-theme-heading h2 { font: 500 1.5rem Georgia, serif; margin: 6px 0 0; }
 .deck-theme-heading p { max-width: 23ch; color: #c5d2c4; font-size: .8rem; line-height: 1.4; margin: 0; }
-.deck-theme-options { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-top: 17px; }
+.deck-theme-hint { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 8px; color: #c5d2c4; font-size: .75rem; line-height: 1.5; margin: 15px 0 5px; }
+.deck-theme-hint span { white-space: nowrap; }
+.deck-theme-hint strong { color: #f3d293; }
+.deck-theme-options { display: grid; grid-auto-flow: column; grid-auto-columns: 116px; gap: 10px; max-width: 100%; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x proximity; scrollbar-width: thin; scrollbar-color: #d6b981 #15362f; padding: 4px 3px 12px; }
+.deck-theme-options::-webkit-scrollbar { height: 7px; }
+.deck-theme-options::-webkit-scrollbar-track { background: #15362f; border-radius: 5px; }
+.deck-theme-options::-webkit-scrollbar-thumb { background: #d6b981; border-radius: 5px; }
 .deck-theme-option { min-width: 0; min-height: 143px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 9px; padding: 10px 5px; border: 2px solid #d7c69d66; border-radius: 12px; background: #fffbef10; color: #f8f1df; }
 .deck-theme-option.selected { border-color: #eac580; background: #eac58022; box-shadow: 0 0 0 2px #eac58033; }
+.deck-theme-option { scroll-snap-align: start; }
+.deck-theme-option:focus-visible { outline: 3px solid #fff0bf; outline-offset: -5px; }
 .deck-theme-option img { display: block; width: 55px; height: 77px; border-radius: 4px; box-shadow: 0 5px 10px #061b1a88; }
 .deck-theme-option strong { font-size: .75rem; letter-spacing: .01em; }
 .display-join-panel { display: flex; flex-direction: column; gap: 4px; border: 1px solid #d5c18b55; border-radius: 15px; padding: 20px; margin-top: 22px; }

@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 250 350" role="img" aria-label="4 of C — Pokémon: Eevee" data-deck="pokemon" data-character="eevee">
+    <defs><symbol id="pip" viewBox="0 0 32 32"><g fill="#354c62"><circle cx="16" cy="8" r="6.5"/><circle cx="8" cy="19" r="6.5"/><circle cx="24" cy="19" r="6.5"/><path d="M13 20h6l4 11H9Z"/></g></symbol><linearGradient id="artifact-gold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f4e3ac"/><stop offset=".28" stop-color="#d3aa53"/><stop offset=".55" stop-color="#f8e7ae"/><stop offset=".8" stop-color="#b48c3e"/><stop offset="1" stop-color="#e5c373"/></linearGradient><symbol id="character" data-character="eevee" viewBox="0 0 200 240"><g stroke="#3b4c5b" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="101" cy="120" r="83" fill="#cdbd9d" opacity=".18" stroke="none"/>
+    <path d="M23 65h11m-5-5v11m137 120h10m-5-5v10" stroke="#cdbd9d" opacity=".7"/>
+    <ellipse cx="101" cy="220" rx="78" ry="7" fill="#cdbd9d" opacity=".3" stroke="none"/>
+    <path d="M123 164q44-22 58-2l-9 30-30 10-20-17Z" fill="#ac7b56"/><path d="m157 158 24 4-9 30-14 4-8-12 9-8-9-7Z" fill="#ecdbaf"/>
+    <path d="M65 143q34-23 61-3l7 41-7 28h-19l-7-25-13 25H66l7-28Z" fill="#b4895e"/>
+    <path d="m53 137 16-23 26 7 23-7 20 23-15 8 10 11-16 3 1 17-20-9-16 13-8-19-21 1 9-17Z" fill="#ebd9ad" data-feature="cream-ruff"/>
+    <path d="M62 94 36 66 30 20q37 12 49 61m34 0q9-50 45-62l-7 48-24 28" fill="#b88c61"/>
+    <path d="m39 34 5 30 21 19Q61 53 39 34m109 0-5 30-20 19q4-30 25-49" fill="#654f47"/>
+    <path d="M60 85q35-18 66 0l14 29-12 25-30 12-35-15-13-24Z" fill="#c0966a"/>
+    <ellipse cx="76" cy="107" rx="6" ry="10" fill="#554a44"/><ellipse cx="74.5" cy="104" rx="2.04" ry="2.8000000000000003" fill="#fff9e6" stroke="none"/><ellipse cx="117" cy="106" rx="6" ry="10" fill="#554a44"/><ellipse cx="115.5" cy="103" rx="2.04" ry="2.8000000000000003" fill="#fff9e6" stroke="none"/><path d="m92 119 7 3 6-4m-19 14q7 6 13-1 7 6 13-2" fill="none"/>
+    <path d="M70 204h12m28 0h13" fill="none"/>
+  </g></symbol></defs>
+    <rect width="250" height="350" rx="11" fill="#f4efdc"/>
+    <rect x="4" y="4" width="242" height="342" rx="8" fill="none" stroke="#b49a51" stroke-width="2"/>
+    <rect x="9" y="9" width="232" height="332" rx="5" fill="none" stroke="#b49a51" stroke-width=".7" opacity=".65"/>
+    <rect x="47" y="40" width="156" height="270" rx="70" fill="#cbd6cc" opacity=".33"/>
+    <g fill="none" stroke="#8b9fa3" opacity=".2">
+  <circle cx="125" cy="161" r="74"/><circle cx="125" cy="161" r="57"/><path d="M51 161h148"/>
+  <path d="m151 63 3-6 3 6 6 3-6 3-3 6-3-6-6-3Z"/><path d="m62 118 3-6 3 6 6 3-6 3-3 6-3-6-6-3Z"/><path d="m103 173 3-6 3 6 6 3-6 3-3 6-3-6-6-3Z"/><path d="m144 228 3-6 3 6 6 3-6 3-3 6-3-6-6-3Z"/></g><g data-motif="normal-trails" fill="none" stroke="#a5a174" stroke-width="1.4"><path d="M39 79q-13 50 0 99t0 99m172-198q13 50 0 99t0 99"/><path d="m39 96 3 7-3 7-3-7Zm172 0 3 7-3 7-3-7Z"/><path d="m39 146 3 7-3 7-3-7Zm172 0 3 7-3 7-3-7Z"/><path d="m39 196 3 7-3 7-3-7Zm172 0 3 7-3 7-3-7Z"/><path d="m39 246 3 7-3 7-3-7Zm172 0 3 7-3 7-3-7Z"/></g>
+    <text x="125" y="26" text-anchor="middle" fill="#3c5368" font-family="Georgia,serif" font-weight="700" font-size="9" letter-spacing="1.3">POKÉMON</text>
+    <g fill="#354c62" text-anchor="middle"><text x="22" y="31" font-family="Georgia,serif" font-weight="700" font-size="29">4</text><use xlink:href="#pip" x="13" y="38" width="18" height="18"/></g><g transform="rotate(180 125 175)"><g fill="#354c62" text-anchor="middle"><text x="22" y="31" font-family="Georgia,serif" font-weight="700" font-size="29">4</text><use xlink:href="#pip" x="13" y="38" width="18" height="18"/></g></g>
+    <g id="main-art"><use xlink:href="#character" x="42" y="48" width="166" height="216"/>
+      <path d="M57 273h136m-125 31h114" stroke="#b49a51" stroke-width="1"/>
+      <text x="125" y="288" text-anchor="middle" fill="#3c5368" font-family="Georgia,serif" font-weight="700" font-size="11.5">EEVEE</text>
+      <text x="125" y="300" text-anchor="middle" fill="#3c5368" font-family="Arial,sans-serif" font-size="6.5" letter-spacing=".3">ENDLESS POSSIBILITIES</text>
+      <path d="m125 309 13 13-13 13-13-13Z" fill="#cbd6cc" stroke="#b49a51" stroke-width="1"/>
+      <text x="125" y="327" text-anchor="middle" fill="#354c62" font-family="Georgia,serif" font-weight="700" font-size="15">4</text></g>
+  </svg>

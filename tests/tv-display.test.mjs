@@ -93,8 +93,11 @@ test("empty and maximum histories, theme changes and paused reloads render safel
   const reloaded=harness(); reloaded.update("paused",51,"harrypotter");
   assert.equal(reloaded.elements["verification-cards"].children.length,51);
   reloaded.update("finished",52);
-  assert.equal(reloaded.elements["verification-panel"].hidden,true);
-  assert.equal(reloaded.elements["phase-label"].textContent,"ROUND COMPLETE");
+  assert.equal(reloaded.elements["verification-panel"].hidden,false);
+  assert.equal(reloaded.elements["calling-display"].hidden,true);
+  assert.equal(reloaded.elements["verification-cards"].children.length,52);
+  assert.equal(reloaded.elements["verification-title"].textContent,"The round is complete.");
+  assert.equal(reloaded.elements["verification-eyebrow"].textContent,"ROUND COMPLETE · ALL CALLED CARDS");
 });
 
 test("verification layout fits up to 52 cards on landscape TVs",()=>{
@@ -110,6 +113,52 @@ test("verification layout fits up to 52 cards on landscape TVs",()=>{
     }
   }
 });
+
+test("the 52nd draw opens the full deck, survives reload and the guide, then clears for a new round",()=>{
+  const tv=harness(); tv.update("calling",51);
+  assert.equal(tv.elements["calling-display"].hidden,false);
+  tv.update("finished",52,"pokemon");
+  function assertFullDeck(screen) {
+    assert.equal(screen.elements["calling-display"].hidden,true);
+    assert.equal(screen.elements["verification-panel"].hidden,false);
+    const tiles=screen.elements["verification-cards"].children;
+    assert.equal(tiles.length,52);
+    assert.equal(new Set(tiles.map(tile=>tile.children[0].attributes["aria-label"])).size,52);
+    assert.equal(tiles[51].attributes["aria-label"],"Draw 52: King of Clubs, latest card");
+    assert.equal(tiles[51].children[0].children[0].src,"cards/pokemon/KC.svg");
+    assert.equal(screen.elements["draw-count"].textContent,"52 / 52");
+    assert.ok(screen.fitCalls>0);
+  }
+  assertFullDeck(tv);
+  const reloaded=harness({phase:"finished",drawnCount:52,drawn:cards}); reloaded.update("finished",52,"pokemon");
+  assertFullDeck(reloaded);
+  tv.update("finished",52,"pokemon",true);
+  assert.equal(tv.elements["howto-panel"].hidden,false);
+  tv.update("finished",52,"pokemon",false); assertFullDeck(tv);
+  tv.update("calling",0);
+  assert.equal(tv.elements["verification-panel"].hidden,true);
+  assert.equal(tv.elements["verification-cards"].children.length,0);
+  assert.equal(tv.elements["current-name"].textContent,"Waiting for the first draw");
+});
+
+for (const theme of ["route66","dinosaurs","pokemon"]) {
+  test(`${theme} keeps live cards, full history and winner art synchronized`,()=>{
+    const tv=harness({patternId:"horizontal"}); tv.update("calling",5,theme);
+    assert.equal(tv.elements["display-screen"].attributes["data-deck-theme"],theme);
+    assert.equal(tv.elements["current-card"].children[0].children[0].src,`cards/${theme}/5S.svg`);
+    assert.equal(tv.elements["previous-cards"].children.length,4);
+    tv.update("paused",5);
+    assert.equal(tv.elements["verification-cards"].children.length,5);
+    assert.equal(tv.elements["verification-cards"].children[0].children[0].children[0].src,`cards/${theme}/AS.svg`);
+    tv.setCheck({id:"win",round:1,drawnCount:5,patternId:"horizontal",cards:cards.slice(0,25),label:"Board 01",setName:"Test"});
+    tv.update("paused",5);
+    assert.equal(tv.elements["winner-graphic"].hidden,false);
+    assert.equal(tv.elements["winner-graphic"].src,`winners/${theme}.svg?v=1`);
+    tv.setCheck(null); tv.update("finished",52);
+    assert.equal(tv.elements["verification-cards"].children.length,52);
+    assert.equal(tv.elements["board-result-panel"].hidden,true);
+  });
+}
 
 test("Royal Cats synchronizes artwork in calling and verification views",()=>{
   const tv=harness(); tv.update("calling",22,"cats");
@@ -157,12 +206,12 @@ test("a TV reload restores an open guide, including setup and finished tables",(
     assert.equal(tv.elements["howto-panel"].hidden,false);
     tv.update(phase,phase === "lobby" ? 0 : 5,"starwars",false);
     assert.equal(tv.elements["howto-panel"].hidden,true);
-    assert.equal(tv.elements["verification-panel"].hidden,phase !== "paused");
+    assert.equal(tv.elements["verification-panel"].hidden,phase !== "paused" && phase !== "finished");
   }
 });
 
 test("every alternate deck bundles a self-contained matching background",async()=>{
-  for (const id of ["midnight","sunburst","mopar","dart1969","harrypotter","starwars","lordoftherings","cats"]) {
+  for (const id of ["midnight","sunburst","mopar","dart1969","harrypotter","starwars","lordoftherings","cats","route66","dinosaurs","pokemon"]) {
     const scene=await readFile(new URL(`backgrounds/${id}.svg`,root),"utf8");
     assert.match(scene,/viewBox="0 0 1600 900"/);
     assert.ok(scene.includes(`data-deck="${id}"`));
@@ -211,7 +260,7 @@ test("clearing a board check restores history, guide holds the result, and reloa
 });
 
 test("every theme has a matching self-contained winner graphic",async()=>{
-  for(const theme of ["illustrated","midnight","sunburst","mopar","dart1969","harrypotter","starwars","lordoftherings","cats"]) {
+  for(const theme of ["illustrated","midnight","sunburst","mopar","dart1969","harrypotter","starwars","lordoftherings","cats","route66","dinosaurs","pokemon"]) {
     const art=await readFile(new URL(`winners/${theme}.svg`,root),"utf8");
     assert.ok(art.includes(`data-deck="${theme}"`));
     assert.match(art,/POKENO!/);

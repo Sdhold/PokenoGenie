@@ -10,7 +10,10 @@ const themes = {
   harrypotter: ["A magical Pokeno!", "#20283d", "#ecd297"],
   starwars: ["The cards are with you", "#0b1728", "#a9dcf9"],
   lordoftherings: ["One board to win them all", "#172d32", "#e5ce87"],
-  cats: ["A purrfect Pokeno!", "#153b39", "#edc68d"]
+  cats: ["A purrfect Pokeno!", "#153b39", "#edc68d"],
+  route66: ["Next stop: Pokeno!", "#233c49", "#edc28b"],
+  dinosaurs: ["A roaring Pokeno!", "#244b4d", "#d9d5a0"],
+  pokemon: ["A winning evolution!", "#233c5b", "#f0d68e"]
 };
 for (const [theme, [caption, color, gold]] of Object.entries(themes)) {
   const background = theme === "illustrated" ? "" : (await readFile(new URL(`backgrounds/${theme}.svg`, root), "utf8")).replace(/<svg\b/, '<svg x="0" y="0" width="1000" height="600"');

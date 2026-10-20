@@ -6,7 +6,7 @@
 @inject NavigationManager Navigation
 @inject IJSRuntime JS
 
-<div class="display-shell @(_room?.Phase == GamePhase.Paused && !_room.GuideOpen ? "is-verifying" : "")" data-deck-theme="@_themeId">
+<div class="display-shell @(ShowCalledCards && !_room!.GuideOpen ? "is-verifying" : "")" data-deck-theme="@_themeId">
     @if (_loading)
     {
         <div class="display-entry"><span class="spinner"></span><p>Connecting to the table…</p></div>
@@ -51,11 +51,11 @@
         {
             <BoardResultDisplay Check="check" Room="_room" ThemeId="@_themeId" />
         }
-        else if (_room.Phase == GamePhase.Paused)
+        else if (ShowCalledCards)
         {
             <main class="verification-panel" aria-labelledby="verification-title">
                 <div class="verification-heading">
-                    <div><span class="verification-eyebrow">PAUSED · ALL CALLED CARDS</span><h1 id="verification-title">Verify the win.</h1></div>
+                    <div><span class="verification-eyebrow">@(_room.Phase == GamePhase.Finished ? "ROUND COMPLETE" : "PAUSED") · ALL CALLED CARDS</span><h1 id="verification-title">@(_room.Phase == GamePhase.Finished ? "The round is complete." : "Verify the win.")</h1></div>
                     <p>First drawn → last drawn · Gold marks the latest card</p>
                 </div>
                 @if (_room.Drawn.Count == 0)
@@ -143,10 +143,11 @@
     private RoomState? _room;
     private string _themeId = DeckThemeCatalog.DefaultId;
     private PatternDefinition CurrentPattern => PatternCatalog.Find(_room?.PatternId) ?? PatternCatalog.All[0];
+    private bool ShowCalledCards => _room?.Phase is GamePhase.Paused or GamePhase.Finished;
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if (_room?.Phase == GamePhase.Paused && !_room.GuideOpen && Boards.Check?.Matches(_room) != true)
+        if (ShowCalledCards && !_room!.GuideOpen && Boards.Check?.Matches(_room) != true)
             await JS.InvokeVoidAsync("pokenoVerificationLayout.fit");
     }
 

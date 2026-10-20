@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 250 350" role="img" aria-label="K of C — Pokémon: Charizard" data-deck="pokemon" data-character="charizard">
+    <defs><symbol id="pip" viewBox="0 0 32 32"><g fill="#354c62"><circle cx="16" cy="8" r="6.5"/><circle cx="8" cy="19" r="6.5"/><circle cx="24" cy="19" r="6.5"/><path d="M13 20h6l4 11H9Z"/></g></symbol><linearGradient id="artifact-gold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f4e3ac"/><stop offset=".28" stop-color="#d3aa53"/><stop offset=".55" stop-color="#f8e7ae"/><stop offset=".8" stop-color="#b48c3e"/><stop offset="1" stop-color="#e5c373"/></linearGradient><symbol id="character" data-character="charizard" viewBox="0 0 200 240"><g stroke="#3b4c5b" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="101" cy="120" r="83" fill="#e2b37f" opacity=".18" stroke="none"/>
+    <path d="M23 65h11m-5-5v11m137 120h10m-5-5v10" stroke="#e2b37f" opacity=".7"/>
+    <ellipse cx="101" cy="220" rx="78" ry="7" fill="#e2b37f" opacity=".3" stroke="none"/>
+    <g data-feature="teal-wings"><path d="M86 118Q48 62 12 40l7 84 24-10 20 26Zm32-3q29-55 65-82l-4 88-23-12-16 30Z" fill="#c17c4c"/>
+    <path d="M72 115Q43 71 22 58l7 55 15-10 19 24Zm55-3q25-43 46-61l-4 59-15-12-15 27Z" fill="#528d96"/></g>
+    <path d="M127 178q46 25 48-21l-7-15 13 8q20 59-40 53l-18-7" fill="#cf8c52"/>
+    <path d="m173 154-9-12 6-14-1-17 13 11 6-13 6 19-1 18-12 14Z" fill="#df9c4e" data-feature="flame-tail"/><path d="m178 150-4-12 8-15 7 16-8 15Z" fill="#f3d478" stroke="none"/>
+    <path d="M83 109q-18 30-18 63l-14 29 10 10 26-9 12-18 9 2 14 22 25 2 3-13-15-27q1-44-18-62Z" fill="#d59456"/>
+    <ellipse cx="102" cy="160" rx="24" ry="38" fill="#e8ca8a" stroke="none"/>
+    <path d="M81 106 74 56l14 10 18-9 18 11 2-21 11 30-9 30-17 13-24-7Z" fill="#d59456"/>
+    <path d="m88 91 9 6 21-2 11 5-8 11-27-2Z" fill="#eacb93"/>
+    <path d="m83 123-28 21-11-6-8 5 12 14 24-9m51-24 24 19 8-7 9 5-12 15-20-8" fill="#d59456"/>
+    <path d="m56 206 8-6 4 7 6-7 4 6m49 0 6-6 4 7 7-7" fill="#f3e6bd"/>
+    <path d="m86 80 13 4m11 0 11-6m-26 19 26 3" fill="none"/><ellipse cx="94" cy="87" rx="3.2" ry="4.5" fill="#477d87"/><ellipse cx="92.5" cy="84" rx="1.4" ry="2" fill="#fff9e6" stroke="none"/><ellipse cx="115" cy="86" rx="3.2" ry="4.5" fill="#477d87"/><ellipse cx="113.5" cy="83" rx="1.4" ry="2" fill="#fff9e6" stroke="none"/>
+  </g></symbol></defs>
+    <rect width="250" height="350" rx="11" fill="#f4efdc"/>
+    <rect x="4" y="4" width="242" height="342" rx="8" fill="none" stroke="#b49a51" stroke-width="2"/>
+    <rect x="9" y="9" width="232" height="332" rx="5" fill="none" stroke="#b49a51" stroke-width=".7" opacity=".65"/>
+    <rect x="47" y="40" width="156" height="270" rx="70" fill="#cbd6cc" opacity=".33"/>
+    <g fill="none" stroke="#8b9fa3" opacity=".2">
+  <circle cx="125" cy="161" r="74"/><circle cx="125" cy="161" r="57"/><path d="M51 161h148"/>
+  <path d="m125 63 3-6 3 6 6 3-6 3-3 6-3-6-6-3Z"/><path d="m166 118 3-6 3 6 6 3-6 3-3 6-3-6-6-3Z"/><path d="m77 173 3-6 3 6 6 3-6 3-3 6-3-6-6-3Z"/><path d="m118 228 3-6 3 6 6 3-6 3-3 6-3-6-6-3Z"/></g><g data-motif="flame-trails" fill="#dfb47e" stroke="#b98858" stroke-width="1.1"><path d="M38 275q-14-17-5-38l7-20 1 19 8-9-6 31q-3 9-5 17Zm0-62q-11-16-3-31l6-16 1 19 5-6q2 22-9 34Zm0-57q-10-18 0-38l3 17 4-6q5 17-7 27Zm0-54q-8-12 2-25l2 10 4-3q2 14-8 18Z"/><path transform="rotate(180 125 175)" d="M38 275q-14-17-5-38l7-20 1 19 8-9-6 31q-3 9-5 17Zm0-62q-11-16-3-31l6-16 1 19 5-6q2 22-9 34Zm0-57q-10-18 0-38l3 17 4-6q5 17-7 27Zm0-54q-8-12 2-25l2 10 4-3q2 14-8 18Z"/></g>
+    <text x="125" y="26" text-anchor="middle" fill="#3c5368" font-family="Georgia,serif" font-weight="700" font-size="9" letter-spacing="1.3">POKÉMON</text>
+    <g fill="#354c62" text-anchor="middle"><text x="22" y="31" font-family="Georgia,serif" font-weight="700" font-size="29">K</text><use xlink:href="#pip" x="13" y="38" width="18" height="18"/></g><g transform="rotate(180 125 175)"><g fill="#354c62" text-anchor="middle"><text x="22" y="31" font-family="Georgia,serif" font-weight="700" font-size="29">K</text><use xlink:href="#pip" x="13" y="38" width="18" height="18"/></g></g>
+    <g id="main-art"><g data-portrait="upright"><use xlink:href="#character" x="43" y="37" width="164" height="143"/></g>
+      <g data-portrait="inverted" transform="rotate(180 125 175)"><use xlink:href="#character" x="43" y="37" width="164" height="143"/></g>
+      <path d="M42 161h166v32H42Z" fill="#f4efdc" stroke="#b49a51" stroke-width="1.5"/>
+      <text x="125" y="175" text-anchor="middle" fill="#3c5368" font-family="Georgia,serif" font-weight="700" font-size="10.8">CHARIZARD</text>
+      <text x="125" y="186" text-anchor="middle" fill="#3c5368" font-family="Arial,sans-serif" font-size="6.1" letter-spacing=".8">KING • FIRE ON THE HORIZON</text></g>
+  </svg>

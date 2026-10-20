@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 250 350" role="img" aria-label="2 of C — Pokémon: Bulbasaur" data-deck="pokemon" data-character="bulbasaur">
+    <defs><symbol id="pip" viewBox="0 0 32 32"><g fill="#354c62"><circle cx="16" cy="8" r="6.5"/><circle cx="8" cy="19" r="6.5"/><circle cx="24" cy="19" r="6.5"/><path d="M13 20h6l4 11H9Z"/></g></symbol><linearGradient id="artifact-gold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f4e3ac"/><stop offset=".28" stop-color="#d3aa53"/><stop offset=".55" stop-color="#f8e7ae"/><stop offset=".8" stop-color="#b48c3e"/><stop offset="1" stop-color="#e5c373"/></linearGradient><symbol id="character" data-character="bulbasaur" viewBox="0 0 200 240"><g stroke="#3b4c5b" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="101" cy="120" r="83" fill="#a4bea0" opacity=".18" stroke="none"/>
+    <path d="M23 65h11m-5-5v11m137 120h10m-5-5v10" stroke="#a4bea0" opacity=".7"/>
+    <ellipse cx="101" cy="220" rx="78" ry="7" fill="#a4bea0" opacity=".3" stroke="none"/>
+    <g data-feature="plant-bulb"><path d="M73 126Q40 82 68 47l25 13 20-36 20 37 30-10q18 39-17 75Z" fill="#68935f"/>
+    <path d="M113 31v87M70 54q22 18 38 65m51-58q-22 24-39 57" fill="none" stroke="#3f7051"/></g>
+    <path d="M57 130q41-33 83-10l20 29-8 43h-23l-6-25-26 4-5 25H68l-4-25-20-12Z" fill="#7dac9c"/>
+    <path d="M33 130 31 98l24 13 28-7 22 8 13 32-10 27-24 13-40-6-20-21Z" fill="#8ab6a5"/>
+    <path d="m36 110 15 11-13 6m62-4 9 20-15-4" fill="#4a8176" stroke="none"/>
+    <path d="m42 139 18-7 1 24-18 1Zm32-5 18 5-2 19-17-2Z" fill="#b35960"/><path d="M51 137v11m31-9v11" stroke="#fff1cf" stroke-width="3"/>
+    <path d="m45 163 32 2m-27-3 4 7m17-5-4 6" fill="none"/>
+    <g fill="#44796e" stroke="none"><path d="m52 119 10 3-5 9-9-3Zm25-3 12 6-10 8-9-6Zm46 21 12-6 7 12-12 5Zm-20 24 9-9 9 11-11 6Z"/></g>
+    <path d="m73 188 4-6 4 6m51-3 4-6 4 6" fill="#eee2b9"/>
+  </g></symbol></defs>
+    <rect width="250" height="350" rx="11" fill="#f4efdc"/>
+    <rect x="4" y="4" width="242" height="342" rx="8" fill="none" stroke="#b49a51" stroke-width="2"/>
+    <rect x="9" y="9" width="232" height="332" rx="5" fill="none" stroke="#b49a51" stroke-width=".7" opacity=".65"/>
+    <rect x="47" y="40" width="156" height="270" rx="70" fill="#cbd6cc" opacity=".33"/>
+    <g fill="none" stroke="#8b9fa3" opacity=".2">
+  <circle cx="125" cy="161" r="74"/><circle cx="125" cy="161" r="57"/><path d="M51 161h148"/>
+  <path d="m125 63 3-6 3 6 6 3-6 3-3 6-3-6-6-3Z"/><path d="m166 118 3-6 3 6 6 3-6 3-3 6-3-6-6-3Z"/><path d="m77 173 3-6 3 6 6 3-6 3-3 6-3-6-6-3Z"/><path d="m118 228 3-6 3 6 6 3-6 3-3 6-3-6-6-3Z"/></g><g data-motif="leaf-trails" fill="none" stroke="#78947a" stroke-width="1.3">
+    <path d="M39 79q-8 89 0 197m172-197q8 89 0 197"/>
+    <path d="m38 92q-15-6-13-16 13 0 13 16 14-4 13-15-12 2-13 15m174 0q15-6 13-16-13 0-13 16-14-4-13-15 12 2 13 15" fill="#a4b796"/><path d="m38 116q-15-6-13-16 13 0 13 16 14-4 13-15-12 2-13 15m174 0q15-6 13-16-13 0-13 16-14-4-13-15 12 2 13 15" fill="#a4b796"/><path d="m38 140q-15-6-13-16 13 0 13 16 14-4 13-15-12 2-13 15m174 0q15-6 13-16-13 0-13 16-14-4-13-15 12 2 13 15" fill="#a4b796"/><path d="m38 164q-15-6-13-16 13 0 13 16 14-4 13-15-12 2-13 15m174 0q15-6 13-16-13 0-13 16-14-4-13-15 12 2 13 15" fill="#a4b796"/><path d="m38 188q-15-6-13-16 13 0 13 16 14-4 13-15-12 2-13 15m174 0q15-6 13-16-13 0-13 16-14-4-13-15 12 2 13 15" fill="#a4b796"/><path d="m38 212q-15-6-13-16 13 0 13 16 14-4 13-15-12 2-13 15m174 0q15-6 13-16-13 0-13 16-14-4-13-15 12 2 13 15" fill="#a4b796"/><path d="m38 236q-15-6-13-16 13 0 13 16 14-4 13-15-12 2-13 15m174 0q15-6 13-16-13 0-13 16-14-4-13-15 12 2 13 15" fill="#a4b796"/><path d="m38 260q-15-6-13-16 13 0 13 16 14-4 13-15-12 2-13 15m174 0q15-6 13-16-13 0-13 16-14-4-13-15 12 2 13 15" fill="#a4b796"/>
+  </g>
+    <text x="125" y="26" text-anchor="middle" fill="#3c5368" font-family="Georgia,serif" font-weight="700" font-size="9" letter-spacing="1.3">POKÉMON</text>
+    <g fill="#354c62" text-anchor="middle"><text x="22" y="31" font-family="Georgia,serif" font-weight="700" font-size="29">2</text><use xlink:href="#pip" x="13" y="38" width="18" height="18"/></g><g transform="rotate(180 125 175)"><g fill="#354c62" text-anchor="middle"><text x="22" y="31" font-family="Georgia,serif" font-weight="700" font-size="29">2</text><use xlink:href="#pip" x="13" y="38" width="18" height="18"/></g></g>
+    <g id="main-art"><use xlink:href="#character" x="42" y="48" width="166" height="216"/>
+      <path d="M57 273h136m-125 31h114" stroke="#b49a51" stroke-width="1"/>
+      <text x="125" y="288" text-anchor="middle" fill="#3c5368" font-family="Georgia,serif" font-weight="700" font-size="11.5">BULBASAUR</text>
+      <text x="125" y="300" text-anchor="middle" fill="#3c5368" font-family="Arial,sans-serif" font-size="6.5" letter-spacing=".3">A LITTLE FOREST MAGIC</text>
+      <path d="m125 309 13 13-13 13-13-13Z" fill="#cbd6cc" stroke="#b49a51" stroke-width="1"/>
+      <text x="125" y="327" text-anchor="middle" fill="#354c62" font-family="Georgia,serif" font-weight="700" font-size="15">2</text></g>
+  </svg>

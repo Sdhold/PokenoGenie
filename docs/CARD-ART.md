@@ -58,6 +58,20 @@ The Jack, Queen and King portraits are mirrored like the other character courts.
 
 `tools/cat-card-art.mjs` contains the editable portrait, scene, back and background definitions. The back and the moonlit sitting-room background reuse the same four pet illustrations. The supplied photos are references only and are not included in the public repository or deployed app.
 
+## Route 66, Dinosaurs, and Pokémon
+
+These three collections use original, bundled SVG illustrations with the same outlined shapes, cream card faces, muted colors, mirrored courts, readable suit/rank corners, and integrated number-card scenes as the existing story decks. No paid service, external image URL, or runtime artwork generator is needed. The phone picker scrolls horizontally in one compact row.
+
+| Collection | Jack | Queen | King | Ace |
+| --- | --- | --- | --- | --- |
+| Route 66 | Hot Rod | Sunset Convertible | Finned Cruiser | Route 66 highway shield |
+| Dinosaurs | Velociraptor | Triceratops | Tyrannosaurus rex | Hatching dinosaur egg |
+| Pokémon | Pikachu | Ninetales | Charizard | Poké Ball |
+
+Each collection also has nine supporting illustrations rotated across ranks 2–10 and the four suits. Route 66 includes pickups, a woody wagon, a camper bus, a delivery van, a hauler, a sedan, a muscle coupe, a roadster, and a motorcycle, with different body geometry. Dinosaur silhouettes include plates, armor, a club tail, a long neck, a sail, a crest, and a domed skull. Pokémon includes Bulbasaur, Squirtle, Eevee, Jigglypuff, Psyduck, Meowth, Snorlax, Gengar, and Dragonite; the borders follow the pictured character with lightning, flames, water, leaves, or other decorative trails. Ninetales has nine drawn tails; Charizard has teal wing membranes and a flame tail; Pikachu has black ear tips and a lightning-bolt tail.
+
+The source modules are `tools/character-art/route66.mjs`, `dinosaurs.mjs`, and `pokemon.mjs`. `tools/adventure-card-art.mjs` supplies their palettes, themed frames, object aces, and scenery. Regenerate cards, backgrounds, and winner art in that order.
+
 ## Matching backgrounds
 
 Every alternate deck has a bundled 1600 × 900 SVG background shared by the caller, Blazor display, and lightweight TV display. The caller's shuffle and drawing panels also show the selected scenery behind the deck, with light labels and contrasting controls. The Illustrated deck retains its original green table and cream panels. Backgrounds follow the card collection automatically, including during verification; no external image service is used.
@@ -70,5 +84,8 @@ Every alternate deck has a bundled 1600 × 900 SVG background shared by the call
 - **Star Wars:** a battle station, starfighters and a star field in the cards' vector style.
 - **Lord of the Rings:** mountains, Elven woodland, the White Tree and a golden ring.
 - **Royal Cats:** a moonlit sitting room, plants, paw prints and all four named cats.
+- **Route 66:** red rock mesas at dusk, a winding highway, a neon diner, and the deck's classic vehicle illustrations.
+- **Dinosaurs:** a prehistoric river valley, volcano, ferns, and Brachiosaurus, Stegosaurus, and Triceratops.
+- **Pokémon:** a meadow at blue hour, a distant stadium, a Poké Ball, Pikachu, Bulbasaur, and Squirtle.
 
 Run `node tools/generate-deck-backgrounds.mjs` to regenerate them after generating card art. The automotive backgrounds reuse the deck's existing vehicle symbols. The assets are in `src/PokenoGenie/wwwroot/backgrounds/`; their colors and overlays are controlled by `css/deck-backgrounds.css`.

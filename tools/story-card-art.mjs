@@ -1,6 +1,7 @@
 import { middleEarthCast, middleEarthPortrait } from "./character-art/middle-earth.mjs";
 import { wizardingCast, wizardingPortrait } from "./character-art/wizarding-world.mjs";
 import { galaxyCast, galaxyPortrait } from "./character-art/galaxy.mjs";
+import { adventureThemes } from "./adventure-card-art.mjs";
 
 export const storyThemes = {
   harrypotter: {
@@ -14,7 +15,8 @@ export const storyThemes = {
   lordoftherings: {
     name: "Lord of the Rings", title: "LORD OF THE RINGS", background: "#edf0dc", panel: "#c9d6bc", ink: "#31554a", gold: "#aa8f4e", red: "#9f4e43", black: "#284e47",
     cast: middleEarthCast, portrait: middleEarthPortrait, courts: { K: "aragorn", Q: "arwen", J: "frodo" }, ace: { id: "onering", name: "The One Ring", role: "One ring to rule them all" }
-  }
+  },
+  ...adventureThemes
 };
 const suits = ["S", "H", "D", "C"];
 function escape(value) { return value.replaceAll("&", "&amp;").replaceAll('"', "&quot;").replaceAll("<", "&lt;"); }
@@ -35,6 +37,7 @@ function stars(seed, color) {
   }).join("");
 }
 function scenery(themeId, theme, seed) {
+  if (theme.scenery) return theme.scenery(seed);
   if (themeId === "starwars") return `${stars(seed,"#c5e5ef")}<circle cx="125" cy="164" r="81" fill="none" stroke="#567d91" stroke-width="1" opacity=".45"/>
     <path d="M65 113 43 105m142 8 22-8M72 241l-24 16m130-16 24 16" stroke="#668e9f" stroke-width="1" opacity=".6"/>`;
   if (themeId === "harrypotter") return `<path d="M48 250v-36h10v-55l10-19 10 19v35h10v-27h10v-45l11-17 10 17v42h13v-18l12-23 12 23v48h12v-46l11-15 10 15v63h13v42Z" fill="#b6a27d" opacity=".3"/>
@@ -55,6 +58,7 @@ function saberRail(x, color, inverted = false) {
   </g>`;
 }
 function rails(themeId, theme, character) {
+  if (theme.rails) return theme.rails(character);
   if (themeId === "starwars") {
     if (character.saber) return saberRail(39,character.saber)+saberRail(39,character.saber,true);
     return `<g data-motif="starship-panels" fill="none" stroke="#719aaa" stroke-width="1.7"><path d="M40 77v75l5 6v39l-5 6v70m170-196v75l-5 6v39l5 6v70"/><path d="M36 85h8m-8 9h8m-8 9h8m162 144h8m-8 9h8m-8 9h8"/></g>`;
@@ -72,6 +76,8 @@ function rails(themeId, theme, character) {
     </g>`;
 }
 function artifact(themeId) {
+  const theme = storyThemes[themeId];
+  if (theme.artifact) return `<symbol id="artifact" data-artifact="${theme.ace.id}" viewBox="0 0 200 240">${theme.artifact()}</symbol>`;
   if (themeId === "harrypotter") return `<symbol id="artifact" data-artifact="snitch" viewBox="0 0 200 240">
     <path d="M81 119Q54 73 8 68q8 29 60 52-43-13-63-27 13 34 65 43m49-17q27-46 73-51-8 29-60 52 43-13 63-27-13 34-65 43" fill="#eee9da" stroke="#9b9f8e" stroke-width="2"/>
     <path d="M17 77q27 13 57 42M11 99q27 24 59 30m113-52q-27 13-57 42m63-20q-27 24-59 30" fill="none" stroke="#c5c6b2" stroke-width="2"/>
@@ -152,7 +158,7 @@ export function storyBackSvg(themeId) {
     <text x="125" y="${themeId==="lordoftherings"?49:60}" text-anchor="middle" fill="${theme.ink}" font-family="${themeId==="starwars"?"Arial,sans-serif":"Georgia,serif"}" font-weight="700" font-size="${themeId==="harrypotter"?21:19}" letter-spacing="1.4">${title}</text>
     <use xlink:href="#artifact" x="33" y="79" width="184" height="191"/>
     <path d="M62 278h126" stroke="${theme.gold}" stroke-width="1.5"/>
-    <text x="125" y="296" text-anchor="middle" fill="${theme.ink}" font-family="Arial,sans-serif" font-size="7.2" letter-spacing="1.7">${themeId==="harrypotter"?"WIZARDING":themeId==="starwars"?"GALACTIC":"MIDDLE-EARTH"} COLLECTION</text>
+    <text x="125" y="296" text-anchor="middle" fill="${theme.ink}" font-family="Arial,sans-serif" font-size="7.2" letter-spacing="1.7">${theme.collection ?? (themeId==="harrypotter"?"WIZARDING":themeId==="starwars"?"GALACTIC":"MIDDLE-EARTH")} COLLECTION</text>
     <g fill="${theme.gold}"><path d="m125 306 4 8-4 8-4-8Z"/><circle cx="105" cy="314" r="2"/><circle cx="145" cy="314" r="2"/></g>
   </svg>\n`.replace(/[\t ]+$/gm,"");
 }

@@ -153,7 +153,7 @@
                     }
                     else
                     {
-                        <div class="paused-banner">Round complete. The final card stays visible for verification.</div>
+                        <div class="paused-banner">Round complete. The TV shows all called cards for verification.</div>
                     }
 
                     @if (_room.Phase is GamePhase.Paused or GamePhase.Finished)
@@ -209,7 +209,8 @@
                     <div><span class="eyebrow">CARD DECK</span><h2 id="deck-theme-heading">Choose a look.</h2></div>
                     <p>Changes the cards and background on your phone and TV. The round stays as it is.</p>
                 </div>
-                <div class="deck-theme-options" role="group" aria-label="Deck themes">
+                <p id="deck-theme-hint" class="deck-theme-hint"><strong>@DeckThemeCatalog.FindOrDefault(_themeId).Name</strong><span>Swipe or scroll · @DeckThemeCatalog.All.Count decks →</span></p>
+                <div class="deck-theme-options" role="group" aria-label="Deck themes" aria-describedby="deck-theme-hint">
                     @foreach (var theme in DeckThemeCatalog.All)
                     {
                         <button class="deck-theme-option @(theme.Id == _themeId ? "selected" : "")"

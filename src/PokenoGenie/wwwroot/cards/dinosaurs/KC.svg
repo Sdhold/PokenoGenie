@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 250 350" role="img" aria-label="K of C — Dinosaurs: Tyrannosaurus Rex" data-deck="dinosaurs" data-character="tyrannosaurus">
+    <defs><symbol id="pip" viewBox="0 0 32 32"><g fill="#35574d"><circle cx="16" cy="8" r="6.5"/><circle cx="8" cy="19" r="6.5"/><circle cx="24" cy="19" r="6.5"/><path d="M13 20h6l4 11H9Z"/></g></symbol><linearGradient id="artifact-gold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f4e3ac"/><stop offset=".28" stop-color="#d3aa53"/><stop offset=".55" stop-color="#f8e7ae"/><stop offset=".8" stop-color="#b48c3e"/><stop offset="1" stop-color="#e5c373"/></linearGradient><symbol id="character" data-character="tyrannosaurus" viewBox="0 0 200 240"><g stroke="#345550" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="102" cy="107" r="76" fill="#c8d0a0" opacity=".38" stroke="none"/>
+    <path d="M11 195V71m0 42 15-16m-15 45 18-18m-18 48 18-19m158 48V91m0 39-15-17m15 48-16-18" stroke="#729575" opacity=".35"/>
+    <ellipse cx="102" cy="218" rx="86" ry="9" fill="#4b7561" opacity=".16"/><path d="M8 221h184m-174-6 12 5m132-4 13 4" fill="none" stroke="#729274" stroke-width="1.4"/><path d="M91 141q-34 23-75 16l36 20 45-8 4 26-17 19h31l9-20-1-24 14 3 8 29-5 12h30l-10-15-9-46 3-35q32-2 30-21l-6-30q-6-14-37-12-22 1-26 20l1 36-24 30Z" fill="#71966c"/>
+    <path d="M113 133q-4 21 13 32l12 4 8 31-4 8h12l-7-45-15-17 4-33Z" fill="#c9c795" stroke="none"/>
+    <path d="m142 132 12 10 9-4m-17 7 8 9 9-7" fill="none" stroke-width="4"/><path d="m160 136 4 4m-6 7 6 3"/>
+    <path d="M128 94q23 9 55-1l-3 14q-23 9-48 0Z" fill="#6c5543"/><path d="m135 99 4 7 4-7m9 1 4 7 4-8m10-1 4 7 4-8" fill="#f5e4b4" stroke="none"/>
+    <path d="m117 76 20-7m-34 75 9-7m-12 67h14m35 1h13" fill="none"/><ellipse cx="149" cy="79" rx="4.2" ry="4.8" fill="#f4d789" stroke="#345550" stroke-width="1.2"/><ellipse cx="150" cy="79" rx="1.5" ry="3.2" fill="#25443e"/><circle cx="148" cy="77.3" r=".9" fill="#fff3c5"/><circle cx="177" cy="81" r="2" fill="#345550"/>
+    <g fill="#496f57" stroke="none" opacity=".45"><ellipse cx="112" cy="143" rx="2.5" ry="1.7"/><ellipse cx="119" cy="131" rx="2.5" ry="1.7"/><ellipse cx="122" cy="116" rx="2.5" ry="1.7"/><ellipse cx="133" cy="73" rx="2.5" ry="1.7"/><ellipse cx="136" cy="83" rx="2.5" ry="1.7"/><ellipse cx="83" cy="162" rx="2.5" ry="1.7"/><ellipse cx="68" cy="164" rx="2.5" ry="1.7"/><ellipse cx="111" cy="178" rx="2.5" ry="1.7"/></g>
+  </g></symbol></defs>
+    <rect width="250" height="350" rx="11" fill="#f0edd9"/>
+    <rect x="4" y="4" width="242" height="342" rx="8" fill="none" stroke="#a39055" stroke-width="2"/>
+    <rect x="9" y="9" width="232" height="332" rx="5" fill="none" stroke="#a39055" stroke-width=".7" opacity=".65"/>
+    <rect x="47" y="40" width="156" height="270" rx="70" fill="#c3cba8" opacity=".33"/>
+    <circle cx="163" cy="83" r="25" fill="#c4c794" opacity=".28"/>
+  <path d="M48 247q50-34 100-4l55-24v52H48Z" fill="#7b9b7a" opacity=".17"/>
+  <path d="M60 210V88m0 24 22-14m-22 40 29-18m-29 42 25-15m92 77V108m0 37-21-15m21 41-26-17" fill="none" stroke="#6b9077" opacity=".24" stroke-width="2"/><g data-motif="prehistoric-ferns" fill="none" stroke="#78947a" stroke-width="1.3">
+    <path d="M39 79q-8 89 0 197m172-197q8 89 0 197"/>
+    <path d="m38 92q-15-6-13-16 13 0 13 16 14-4 13-15-12 2-13 15m174 0q15-6 13-16-13 0-13 16-14-4-13-15 12 2 13 15" fill="#a4b796"/><path d="m38 116q-15-6-13-16 13 0 13 16 14-4 13-15-12 2-13 15m174 0q15-6 13-16-13 0-13 16-14-4-13-15 12 2 13 15" fill="#a4b796"/><path d="m38 140q-15-6-13-16 13 0 13 16 14-4 13-15-12 2-13 15m174 0q15-6 13-16-13 0-13 16-14-4-13-15 12 2 13 15" fill="#a4b796"/><path d="m38 164q-15-6-13-16 13 0 13 16 14-4 13-15-12 2-13 15m174 0q15-6 13-16-13 0-13 16-14-4-13-15 12 2 13 15" fill="#a4b796"/><path d="m38 188q-15-6-13-16 13 0 13 16 14-4 13-15-12 2-13 15m174 0q15-6 13-16-13 0-13 16-14-4-13-15 12 2 13 15" fill="#a4b796"/><path d="m38 212q-15-6-13-16 13 0 13 16 14-4 13-15-12 2-13 15m174 0q15-6 13-16-13 0-13 16-14-4-13-15 12 2 13 15" fill="#a4b796"/><path d="m38 236q-15-6-13-16 13 0 13 16 14-4 13-15-12 2-13 15m174 0q15-6 13-16-13 0-13 16-14-4-13-15 12 2 13 15" fill="#a4b796"/><path d="m38 260q-15-6-13-16 13 0 13 16 14-4 13-15-12 2-13 15m174 0q15-6 13-16-13 0-13 16-14-4-13-15 12 2 13 15" fill="#a4b796"/>
+  </g>
+    <text x="125" y="26" text-anchor="middle" fill="#35574d" font-family="Georgia,serif" font-weight="700" font-size="9" letter-spacing="1.3">DINOSAURS</text>
+    <g fill="#35574d" text-anchor="middle"><text x="22" y="31" font-family="Georgia,serif" font-weight="700" font-size="29">K</text><use xlink:href="#pip" x="13" y="38" width="18" height="18"/></g><g transform="rotate(180 125 175)"><g fill="#35574d" text-anchor="middle"><text x="22" y="31" font-family="Georgia,serif" font-weight="700" font-size="29">K</text><use xlink:href="#pip" x="13" y="38" width="18" height="18"/></g></g>
+    <g id="main-art"><g data-portrait="upright"><use xlink:href="#character" x="43" y="37" width="164" height="143"/></g>
+      <g data-portrait="inverted" transform="rotate(180 125 175)"><use xlink:href="#character" x="43" y="37" width="164" height="143"/></g>
+      <path d="M42 161h166v32H42Z" fill="#f0edd9" stroke="#a39055" stroke-width="1.5"/>
+      <text x="125" y="175" text-anchor="middle" fill="#35574d" font-family="Georgia,serif" font-weight="700" font-size="10.8">TYRANNOSAURUS REX</text>
+      <text x="125" y="186" text-anchor="middle" fill="#35574d" font-family="Arial,sans-serif" font-size="6.1" letter-spacing=".8">KING • CROWN OF THE CRETACEOUS</text></g>
+  </svg>

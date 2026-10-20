@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 250 350" role="img" aria-label="Q of S — Pokémon: Ninetales" data-deck="pokemon" data-character="ninetales">
+    <defs><symbol id="pip" viewBox="0 0 32 32"><g fill="#354c62"><path d="M16 2C11 10 3 13 3 21c0 5 4 8 8 8 2 0 4-1 5-3 1 2 3 3 5 3 4 0 8-3 8-8 0-8-8-11-13-19Z"/><path d="M13 25h6l4 6H9Z"/></g></symbol><linearGradient id="artifact-gold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f4e3ac"/><stop offset=".28" stop-color="#d3aa53"/><stop offset=".55" stop-color="#f8e7ae"/><stop offset=".8" stop-color="#b48c3e"/><stop offset="1" stop-color="#e5c373"/></linearGradient><symbol id="character" data-character="ninetales" viewBox="0 0 200 240"><g stroke="#3b4c5b" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="101" cy="120" r="83" fill="#e2b37f" opacity=".18" stroke="none"/>
+    <path d="M23 65h11m-5-5v11m137 120h10m-5-5v10" stroke="#e2b37f" opacity=".7"/>
+    <ellipse cx="101" cy="220" rx="78" ry="7" fill="#e2b37f" opacity=".3" stroke="none"/>
+    <g data-feature="nine-tails"><path data-tail="1" d="M99 165Q32 164 17 110 10 79 37 56 20 108 91 120Z" fill="#f2dfb1"/><path data-tail="2" d="M105 162Q34 121 30 71 29 39 52 21 35 72 107 115Z" fill="#ead6a1"/><path data-tail="3" d="M111 160Q64 87 77 34 83 15 101 9 80 56 120 114Z" fill="#f2dfb1"/><path data-tail="4" d="M119 161Q99 86 120 38 132 15 149 18 119 51 135 122Z" fill="#ead6a1"/><path data-tail="5" d="M125 163Q132 89 163 59 182 44 194 56 160 65 148 137Z" fill="#f2dfb1"/><path data-tail="6" d="M127 171Q153 108 184 102 204 99 196 122 177 111 154 156Z" fill="#ead6a1"/><path data-tail="7" d="M122 179Q172 143 192 161 206 176 189 186 184 165 148 185Z" fill="#f2dfb1"/><path data-tail="8" d="M108 181Q59 145 29 159 8 174 23 193 26 172 78 192Z" fill="#ead6a1"/><path data-tail="9" d="M105 176Q35 146 15 129 1 112 12 98 15 129 91 154Z" fill="#f2dfb1"/></g>
+    <path d="M80 154q25-24 48 0l23 40-9 15h-18l-4-31-12 4-7 29H81l7-35-21-8Z" fill="#eddaac"/>
+    <path d="M57 135 39 90l26 8 18 13 23-28 3 44q8 21-19 33-24 6-39-11Z" fill="#f4e2b7"/>
+    <path d="m48 102 13 25 8-14m30-17-13 27 13-6" fill="#b67b63"/>
+    <path d="m60 142 19 5 17-10-4 15-14 9Z" fill="#e1c999" stroke="none"/>
+    <path d="m62 132 11 1m12-2 9-5" stroke="#ad514c" stroke-width="4"/>
+    <path d="m73 142 6 2 4-3m-6 9 5-2" fill="none"/>
+    <path d="M84 207h13m30-2h12" fill="none"/>
+  </g></symbol></defs>
+    <rect width="250" height="350" rx="11" fill="#f4efdc"/>
+    <rect x="4" y="4" width="242" height="342" rx="8" fill="none" stroke="#b49a51" stroke-width="2"/>
+    <rect x="9" y="9" width="232" height="332" rx="5" fill="none" stroke="#b49a51" stroke-width=".7" opacity=".65"/>
+    <rect x="47" y="40" width="156" height="270" rx="70" fill="#cbd6cc" opacity=".33"/>
+    <g fill="none" stroke="#8b9fa3" opacity=".2">
+  <circle cx="125" cy="161" r="74"/><circle cx="125" cy="161" r="57"/><path d="M51 161h148"/>
+  <path d="m86 63 3-6 3 6 6 3-6 3-3 6-3-6-6-3Z"/><path d="m127 118 3-6 3 6 6 3-6 3-3 6-3-6-6-3Z"/><path d="m168 173 3-6 3 6 6 3-6 3-3 6-3-6-6-3Z"/><path d="m79 228 3-6 3 6 6 3-6 3-3 6-3-6-6-3Z"/></g><g data-motif="flame-trails" fill="#dfb47e" stroke="#b98858" stroke-width="1.1"><path d="M38 275q-14-17-5-38l7-20 1 19 8-9-6 31q-3 9-5 17Zm0-62q-11-16-3-31l6-16 1 19 5-6q2 22-9 34Zm0-57q-10-18 0-38l3 17 4-6q5 17-7 27Zm0-54q-8-12 2-25l2 10 4-3q2 14-8 18Z"/><path transform="rotate(180 125 175)" d="M38 275q-14-17-5-38l7-20 1 19 8-9-6 31q-3 9-5 17Zm0-62q-11-16-3-31l6-16 1 19 5-6q2 22-9 34Zm0-57q-10-18 0-38l3 17 4-6q5 17-7 27Zm0-54q-8-12 2-25l2 10 4-3q2 14-8 18Z"/></g>
+    <text x="125" y="26" text-anchor="middle" fill="#3c5368" font-family="Georgia,serif" font-weight="700" font-size="9" letter-spacing="1.3">POKÉMON</text>
+    <g fill="#354c62" text-anchor="middle"><text x="22" y="31" font-family="Georgia,serif" font-weight="700" font-size="29">Q</text><use xlink:href="#pip" x="13" y="38" width="18" height="18"/></g><g transform="rotate(180 125 175)"><g fill="#354c62" text-anchor="middle"><text x="22" y="31" font-family="Georgia,serif" font-weight="700" font-size="29">Q</text><use xlink:href="#pip" x="13" y="38" width="18" height="18"/></g></g>
+    <g id="main-art"><g data-portrait="upright"><use xlink:href="#character" x="43" y="37" width="164" height="143"/></g>
+      <g data-portrait="inverted" transform="rotate(180 125 175)"><use xlink:href="#character" x="43" y="37" width="164" height="143"/></g>
+      <path d="M42 161h166v32H42Z" fill="#f4efdc" stroke="#b49a51" stroke-width="1.5"/>
+      <text x="125" y="175" text-anchor="middle" fill="#3c5368" font-family="Georgia,serif" font-weight="700" font-size="10.8">NINETALES</text>
+      <text x="125" y="186" text-anchor="middle" fill="#3c5368" font-family="Arial,sans-serif" font-size="6.1" letter-spacing=".8">QUEEN • NINE TAILS IN THE MOONLIGHT</text></g>
+  </svg>

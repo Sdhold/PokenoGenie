@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 250 350" role="img" aria-label="J of H — Pokémon: Pikachu" data-deck="pokemon" data-character="pikachu">
+    <defs><symbol id="pip" viewBox="0 0 32 32"><g fill="#ae5152"><path d="M16 29 3.5 16C-2 9 3 2 10 3c3 0 5 2 6 4 1-2 3-4 6-4 7-1 12 6 6.5 13Z"/></g></symbol><linearGradient id="artifact-gold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f4e3ac"/><stop offset=".28" stop-color="#d3aa53"/><stop offset=".55" stop-color="#f8e7ae"/><stop offset=".8" stop-color="#b48c3e"/><stop offset="1" stop-color="#e5c373"/></linearGradient><symbol id="character" data-character="pikachu" viewBox="0 0 200 240"><g stroke="#3b4c5b" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="101" cy="120" r="83" fill="#e7cf7e" opacity=".18" stroke="none"/>
+    <path d="M23 65h11m-5-5v11m137 120h10m-5-5v10" stroke="#e7cf7e" opacity=".7"/>
+    <ellipse cx="101" cy="220" rx="78" ry="7" fill="#e7cf7e" opacity=".3" stroke="none"/>
+    <path d="m137 158 20-34-18-10 24-43 24 15-25 20 18 14-31 42 12 9-18 19Z" fill="#edcb69" data-feature="lightning-tail"/>
+    <path d="m84 78-9-44-17-19-2 29 11 42m43-9 20-46 24-13-9 31-20 38" fill="#edcb69"/>
+    <path d="m58 16 17 18 4 19-20-9Zm94 3-8 29-16 13 2-29Z" fill="#354655" stroke="none" data-feature="black-ear-tips"/>
+    <path d="M66 120q-6 30-6 52l-17 21 8 12 31-10 18 2 23 11 17-6-11-22 2-60Z" fill="#edcb69"/>
+    <path d="m65 132-22 21 3 12 11-6 19-16m47-9 22 17-2 13-13-4-12-16" fill="#edcb69"/>
+    <path d="M62 82q39-24 69 2l9 26-6 21q-36 26-72 1l-8-25Z" fill="#f0cf6f"/>
+    <ellipse cx="78" cy="105" rx="6" ry="9" fill="#263b49"/><ellipse cx="76.5" cy="102" rx="2.04" ry="2.5200000000000005" fill="#fff9e6" stroke="none"/><ellipse cx="117" cy="105" rx="6" ry="9" fill="#263b49"/><ellipse cx="115.5" cy="102" rx="2.04" ry="2.5200000000000005" fill="#fff9e6" stroke="none"/><circle cx="66" cy="122" r="10" fill="#c96858" stroke="none"/><circle cx="130" cy="121" r="10" fill="#c96858" stroke="none"/>
+    <path d="m94 115 5 3 5-3m-17 11q6 9 12 0 7 9 12-1" fill="none"/>
+    <path d="m74 172 11 5m-10 3 9 4m30-12 11 6m-12 0 10 7" stroke="#a9844c" stroke-width="5"/><path d="m153 54-15 26h12l-10 24 29-34h-15l12-16Z" fill="#e9c667" stroke="none" opacity=".65"/>
+  </g></symbol></defs>
+    <rect width="250" height="350" rx="11" fill="#f4efdc"/>
+    <rect x="4" y="4" width="242" height="342" rx="8" fill="none" stroke="#b49a51" stroke-width="2"/>
+    <rect x="9" y="9" width="232" height="332" rx="5" fill="none" stroke="#b49a51" stroke-width=".7" opacity=".65"/>
+    <rect x="47" y="40" width="156" height="270" rx="70" fill="#cbd6cc" opacity=".33"/>
+    <g fill="none" stroke="#8b9fa3" opacity=".2">
+  <circle cx="125" cy="161" r="74"/><circle cx="125" cy="161" r="57"/><path d="M51 161h148"/>
+  <path d="m99 63 3-6 3 6 6 3-6 3-3 6-3-6-6-3Z"/><path d="m140 118 3-6 3 6 6 3-6 3-3 6-3-6-6-3Z"/><path d="m181 173 3-6 3 6 6 3-6 3-3 6-3-6-6-3Z"/><path d="m92 228 3-6 3 6 6 3-6 3-3 6-3-6-6-3Z"/></g><g data-motif="electric-trails" fill="none" stroke="#b69743" stroke-width="2"><path d="m39 76-5 35 10-4-12 49 12-3-10 51 10-3-6 74m174-199 5 35-10-4 12 49-12-3 10 51-10-3 6 74"/></g>
+    <text x="125" y="26" text-anchor="middle" fill="#3c5368" font-family="Georgia,serif" font-weight="700" font-size="9" letter-spacing="1.3">POKÉMON</text>
+    <g fill="#ae5152" text-anchor="middle"><text x="22" y="31" font-family="Georgia,serif" font-weight="700" font-size="29">J</text><use xlink:href="#pip" x="13" y="38" width="18" height="18"/></g><g transform="rotate(180 125 175)"><g fill="#ae5152" text-anchor="middle"><text x="22" y="31" font-family="Georgia,serif" font-weight="700" font-size="29">J</text><use xlink:href="#pip" x="13" y="38" width="18" height="18"/></g></g>
+    <g id="main-art"><g data-portrait="upright"><use xlink:href="#character" x="43" y="37" width="164" height="143"/></g>
+      <g data-portrait="inverted" transform="rotate(180 125 175)"><use xlink:href="#character" x="43" y="37" width="164" height="143"/></g>
+      <path d="M42 161h166v32H42Z" fill="#f4efdc" stroke="#b49a51" stroke-width="1.5"/>
+      <text x="125" y="175" text-anchor="middle" fill="#3c5368" font-family="Georgia,serif" font-weight="700" font-size="10.8">PIKACHU</text>
+      <text x="125" y="186" text-anchor="middle" fill="#3c5368" font-family="Arial,sans-serif" font-size="6.1" letter-spacing=".8">JACK • A SPARK OF ADVENTURE</text></g>
+  </svg>

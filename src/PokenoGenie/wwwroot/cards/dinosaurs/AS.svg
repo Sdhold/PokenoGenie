@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 250 350" role="img" aria-label="A of S — Dinosaurs: A New Beginning" data-deck="dinosaurs" data-character="dinosaur-egg">
+    <defs><symbol id="pip" viewBox="0 0 32 32"><g fill="#35574d"><path d="M16 2C11 10 3 13 3 21c0 5 4 8 8 8 2 0 4-1 5-3 1 2 3 3 5 3 4 0 8-3 8-8 0-8-8-11-13-19Z"/><path d="M13 25h6l4 6H9Z"/></g></symbol><linearGradient id="artifact-gold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f4e3ac"/><stop offset=".28" stop-color="#d3aa53"/><stop offset=".55" stop-color="#f8e7ae"/><stop offset=".8" stop-color="#b48c3e"/><stop offset="1" stop-color="#e5c373"/></linearGradient><symbol id="artifact" data-artifact="dinosaur-egg" viewBox="0 0 200 240"><g data-motif="hatching-egg" stroke="#345550" stroke-width="2.5" stroke-linejoin="round">
+    <ellipse cx="101" cy="210" rx="66" ry="10" fill="#668b6d" opacity=".18" stroke="none"/>
+    <path d="M53 147q-2-62 48-99 50 37 48 99" fill="#e4d7a7"/>
+    <path d="M59 134q-1-49 30-70l-4 52" fill="#f6e9bd" stroke="none"/>
+    <path d="M76 159q-8-52 20-67 31-14 44 14l-5 27-20 7 7 25" fill="#86aa85"/>
+    <path d="m84 105 9-13 11 2 9-7 14 6m-25 39 27-4" fill="none"/><ellipse cx="113" cy="109" rx="4.2" ry="4.8" fill="#f4d789" stroke="#345550" stroke-width="1.2"/><ellipse cx="114" cy="109" rx="1.5" ry="3.2" fill="#25443e"/><circle cx="112" cy="107.3" r=".9" fill="#fff3c5"/>
+    <path d="m51 134 19 13 15-15 13 19 21-17 13 17 18-17q10 69-48 76-58-6-51-76Z" fill="#e9d9a9"/>
+    <path d="m77 157 8 19-9 17m47-33-7 14 7 13" fill="none" stroke="#b5aa7a"/>
+    <g fill="#b2a477" stroke="none"><ellipse cx="65" cy="166" rx="5" ry="7"/><ellipse cx="98" cy="184" rx="6" ry="4"/><ellipse cx="135" cy="171" rx="4" ry="6"/><ellipse cx="105" cy="64" rx="4" ry="6"/></g>
+    <path d="m37 202 14-8 7 14m91-1 14-14 9 12" fill="#d7cb9c"/>
+  </g></symbol></defs>
+    <rect width="250" height="350" rx="11" fill="#f0edd9"/>
+    <rect x="4" y="4" width="242" height="342" rx="8" fill="none" stroke="#a39055" stroke-width="2"/>
+    <rect x="9" y="9" width="232" height="332" rx="5" fill="none" stroke="#a39055" stroke-width=".7" opacity=".65"/>
+    <rect x="47" y="40" width="156" height="270" rx="70" fill="#c3cba8" opacity=".33"/>
+    <circle cx="163" cy="83" r="25" fill="#c4c794" opacity=".28"/>
+  <path d="M48 247q50-34 100-4l55-24v52H48Z" fill="#7b9b7a" opacity=".17"/>
+  <path d="M60 210V88m0 24 22-14m-22 40 29-18m-29 42 25-15m92 77V108m0 37-21-15m21 41-26-17" fill="none" stroke="#6b9077" opacity=".24" stroke-width="2"/><g data-motif="prehistoric-ferns" fill="none" stroke="#78947a" stroke-width="1.3">
+    <path d="M39 79q-8 89 0 197m172-197q8 89 0 197"/>
+    <path d="m38 92q-15-6-13-16 13 0 13 16 14-4 13-15-12 2-13 15m174 0q15-6 13-16-13 0-13 16-14-4-13-15 12 2 13 15" fill="#a4b796"/><path d="m38 116q-15-6-13-16 13 0 13 16 14-4 13-15-12 2-13 15m174 0q15-6 13-16-13 0-13 16-14-4-13-15 12 2 13 15" fill="#a4b796"/><path d="m38 140q-15-6-13-16 13 0 13 16 14-4 13-15-12 2-13 15m174 0q15-6 13-16-13 0-13 16-14-4-13-15 12 2 13 15" fill="#a4b796"/><path d="m38 164q-15-6-13-16 13 0 13 16 14-4 13-15-12 2-13 15m174 0q15-6 13-16-13 0-13 16-14-4-13-15 12 2 13 15" fill="#a4b796"/><path d="m38 188q-15-6-13-16 13 0 13 16 14-4 13-15-12 2-13 15m174 0q15-6 13-16-13 0-13 16-14-4-13-15 12 2 13 15" fill="#a4b796"/><path d="m38 212q-15-6-13-16 13 0 13 16 14-4 13-15-12 2-13 15m174 0q15-6 13-16-13 0-13 16-14-4-13-15 12 2 13 15" fill="#a4b796"/><path d="m38 236q-15-6-13-16 13 0 13 16 14-4 13-15-12 2-13 15m174 0q15-6 13-16-13 0-13 16-14-4-13-15 12 2 13 15" fill="#a4b796"/><path d="m38 260q-15-6-13-16 13 0 13 16 14-4 13-15-12 2-13 15m174 0q15-6 13-16-13 0-13 16-14-4-13-15 12 2 13 15" fill="#a4b796"/>
+  </g>
+    <text x="125" y="26" text-anchor="middle" fill="#35574d" font-family="Georgia,serif" font-weight="700" font-size="9" letter-spacing="1.3">DINOSAURS</text>
+    <g fill="#35574d" text-anchor="middle"><text x="22" y="31" font-family="Georgia,serif" font-weight="700" font-size="29">A</text><use xlink:href="#pip" x="13" y="38" width="18" height="18"/></g><g transform="rotate(180 125 175)"><g fill="#35574d" text-anchor="middle"><text x="22" y="31" font-family="Georgia,serif" font-weight="700" font-size="29">A</text><use xlink:href="#pip" x="13" y="38" width="18" height="18"/></g></g>
+    <g id="main-art"><use xlink:href="#artifact" x="42" y="48" width="166" height="216"/>
+      <path d="M57 273h136m-125 31h114" stroke="#a39055" stroke-width="1"/>
+      <text x="125" y="288" text-anchor="middle" fill="#35574d" font-family="Georgia,serif" font-weight="700" font-size="11.5">A NEW BEGINNING</text>
+      <text x="125" y="300" text-anchor="middle" fill="#35574d" font-family="Arial,sans-serif" font-size="6.5" letter-spacing=".3">SOMETHING WONDERFUL IS HATCHING</text>
+      <path d="m125 309 13 13-13 13-13-13Z" fill="#c3cba8" stroke="#a39055" stroke-width="1"/>
+      <text x="125" y="327" text-anchor="middle" fill="#35574d" font-family="Georgia,serif" font-weight="700" font-size="15">A</text></g>
+  </svg>
