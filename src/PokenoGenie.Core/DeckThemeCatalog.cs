@@ -26,7 +26,8 @@ public static class DeckThemeCatalog
         new("halloween", "Halloween", "Friendly frights, a moonlight witch, pumpkins, and a haunted house", "QS"),
         new("christmas", "Christmas", "Santa, Mrs. Claus, an elf, and cozy winter scenes", "KS"),
         new("friendsgiving", "FriendsGiving", "The six Friends, Thanksgiving treats, and an orange couch", "QH"),
-        new("mcpherson", "McPherson Magical Forest", "Diamond, Pitter, Clementine, and Quinn in an enchanted woodland", "AH")
+        new("mcpherson", "McPherson Magical Forest", "Diamond, Pitter, Clementine, and Quinn in an enchanted woodland", "AH"),
+        new("pawffice", "The Pawffice", "Ellie, Parker, Sadie, and Pugsy at the Scranton paper office", "QH")
     ];
 
     public static DeckTheme FindOrDefault(string? id) =>

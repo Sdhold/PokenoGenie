@@ -27,7 +27,7 @@
         "6": "Six", "7": "Seven", "8": "Eight", "9": "Nine", "10": "Ten",
         J: "Jack", Q: "Queen", K: "King"
     };
-    var themeIds = { illustrated: true, midnight: true, sunburst: true, mopar: true, dart1969: true, harrypotter: true, starwars: true, lordoftherings: true, cats: true, route66: true, dinosaurs: true, pokemon: true, halloween: true, christmas: true, friendsgiving: true, mcpherson: true };
+    var themeIds = { illustrated: true, midnight: true, sunburst: true, mopar: true, dart1969: true, harrypotter: true, starwars: true, lordoftherings: true, cats: true, route66: true, dinosaurs: true, pokemon: true, halloween: true, christmas: true, friendsgiving: true, mcpherson: true, pawffice: true };
 
     function cardAsset(themeId, id) {
         var path = themeId === "illustrated" ? "cards/" + id + ".svg" : "cards/" + themeId + "/" + id + ".svg";

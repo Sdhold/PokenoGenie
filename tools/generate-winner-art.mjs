@@ -1,4 +1,5 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { pawfficeWinnerSvg } from "./pawffice-card-art.mjs";
 const root = new URL("../src/PokenoGenie/wwwroot/", import.meta.url);
 await mkdir(new URL("winners/", root), { recursive: true });
 const themes = {
@@ -30,3 +31,5 @@ for (const [theme, [caption, color, gold]] of Object.entries(themes)) {
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600" role="img" aria-label="${caption}" data-deck="${theme}"><rect width="1000" height="600" rx="36" fill="${color}"/>${background}<rect width="1000" height="600" rx="36" fill="${color}" opacity=".55"/><rect x="22" y="22" width="956" height="556" rx="24" fill="none" stroke="${gold}" stroke-width="2"/>${stars}<text x="500" y="124" text-anchor="middle" fill="${gold}" font-family="Georgia,serif" font-size="86" font-weight="bold" letter-spacing="8">POKENO!</text>${faces.join("")}<path d="M173 448h654M250 530h500" stroke="${gold}" stroke-width="2"/><text x="500" y="501" text-anchor="middle" fill="${gold}" font-family="Georgia,serif" font-size="35">${caption}</text></svg>\n`;
   await writeFile(new URL(`winners/${theme}.svg`, root), svg);
 }
+const pawfficeFaces = await Promise.all(["JS", "QH", "KS", "AH"].map(id => readFile(new URL(`cards/pawffice/${id}.svg`, root), "utf8")));
+await writeFile(new URL("winners/pawffice.svg", root), pawfficeWinnerSvg(pawfficeFaces), "utf8");

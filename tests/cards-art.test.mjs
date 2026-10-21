@@ -7,7 +7,7 @@ const ranks = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
 const suits = ["S", "H", "D", "C"];
 const traditionalDirectories = [directory, ...["midnight", "sunburst", "mopar", "dart1969"].map(id => new URL(`${id}/`, directory))];
 const storyIds = ["harrypotter", "starwars", "lordoftherings", "route66", "dinosaurs", "pokemon", "halloween", "christmas", "friendsgiving"];
-const themeDirectories = [...traditionalDirectories, ...[...storyIds,"cats","mcpherson"].map(id => new URL(`${id}/`, directory))];
+const themeDirectories = [...traditionalDirectories, ...[...storyIds,"cats","mcpherson","pawffice"].map(id => new URL(`${id}/`, directory))];
 
 test("every theme has 52 self-contained SVG faces", async () => {
   const expected = suits.flatMap(suit => ranks.map(rank => `${rank}${suit}.svg`)).sort();

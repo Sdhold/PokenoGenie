@@ -23,7 +23,7 @@ jobs:
         with:
           node-version: '24'
       - name: Test card artwork and TV verification display
-        run: node --test tests/cards-art.test.mjs tests/tv-display.test.mjs tests/board-verification.test.mjs
+        run: node --test tests/cards-art.test.mjs tests/pawffice-art.test.mjs tests/tv-display.test.mjs tests/board-verification.test.mjs
       - uses: pnpm/action-setup@v4
         with:
           version: 11.25.0

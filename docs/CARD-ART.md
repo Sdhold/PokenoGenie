@@ -99,6 +99,14 @@ Each face names the pet with a plain rank label. Court portraits are mirrored. D
 
 `tools/mcpherson-card-art.mjs` contains the editable portraits, scenes, back, and background. The back and enchanted woodland background show all four pets. The winner graphic uses the same four named card faces. The original reference photos (`IMG_20261020_154108.jpg`, `IMG_20261020_155902.jpg`, `IMG_20261020_154115.jpg`, and `IMG_20261020_154119.jpg`) stay local and are not published. No paid service or runtime image generation is used.
 
+## The Pawffice
+
+The user-approved collection uses original photo-referenced portraits: **Ellie is Queen, Parker is King, Sadie is Ace, and Pugsy is Jack**, in all four suits. Cream cards, navy details, pink hearts, paw prints, and paperclip borders keep the existing outlined style. The courts are mirrored, and all names have plain rank labels.
+
+Nine number-card scenes show the same dogs at reception, with the boss's mug, at tea break, among paper boxes, with the stapler prank, on a conference call, with a Dundie, at pretzel break, and resting on a pillow. The back and winner graphic include all four dogs. The Office (US) inspired background places Ellie on her pillow at reception, Parker at the boss's desk, Sadie by the paper boxes, and Pugsy by the water cooler. The caller's deck panel and both TV views share this scenery.
+
+`tools/pawffice-card-art.mjs` contains the approved illustrations, including the heart-and-paw winner design. `tools/generate-pawffice-preview.mjs` regenerates an offline review of the cards, full background, TV composition, and celebration. See [the artwork notes and local review instructions](PAWFFICE-PREVIEW.md). The source photos stay local and are not bundled or published. No paid service is used.
+
 ## Matching backgrounds
 
 Every alternate deck has a bundled 1600 × 900 SVG background shared by the caller, Blazor display, and lightweight TV display. The caller's shuffle and drawing panels also show the selected scenery behind the deck, with light labels and contrasting controls. The Illustrated deck retains its original green table and cream panels. Backgrounds follow the card collection automatically, including during verification; no external image service is used.
@@ -118,5 +126,6 @@ Every alternate deck has a bundled 1600 × 900 SVG background shared by the call
 - **Christmas:** a snowy cottage, lit tree, forest, sleigh, and falling snow.
 - **FriendsGiving:** a purple apartment door with a gold frame, café window, orange couch, and shared Thanksgiving table.
 - **McPherson Magical Forest:** an enchanted woodland, glowing doorway, fireflies, mushrooms, ferns, and Diamond, Pitter, Clementine, and Quinn.
+- **The Pawffice:** a Scranton paper office with reception, desks, blinds, a boss's mug, a Dundie, and Ellie, Parker, Sadie, and Pugsy integrated into the room.
 
 Run `node tools/generate-deck-backgrounds.mjs` to regenerate them after generating card art. The automotive backgrounds reuse the deck's existing vehicle symbols. The assets are in `src/PokenoGenie/wwwroot/backgrounds/`; their colors and overlays are controlled by `css/deck-backgrounds.css`.

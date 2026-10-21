@@ -14,6 +14,7 @@
 [data-deck-theme="christmas"] { background-color: #213f43; background-image: linear-gradient(90deg, #102d3022, #102d3088, #102d3022), url("../backgrounds/christmas.svg"); }
 [data-deck-theme="friendsgiving"] { background-color: #4a3e55; background-image: linear-gradient(90deg, #29263b22, #29263b88, #29263b22), url("../backgrounds/friendsgiving.svg"); }
 [data-deck-theme="mcpherson"] { background-color: #153837; background-image: linear-gradient(90deg, #0b292744, #0b292799, #0b292744), url("../backgrounds/mcpherson.svg"); }
+[data-deck-theme="pawffice"] { background-color: #34596c; background-image: linear-gradient(90deg, #183b526b, #183b528f, #183b526b), url("../backgrounds/pawffice.svg"); }
 [data-deck-theme] { background-position: center center; background-repeat: no-repeat; background-size: cover; }
 .controller-shell[data-deck-theme] { background-attachment: fixed; }
 

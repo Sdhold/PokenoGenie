@@ -178,7 +178,7 @@
         "theme": {
           ".read": "auth != null && $code.matches(/^[A-HJ-NP-Z2-9]{8}$/) && root.child('rooms').child($code).child('state').exists()",
           ".write": "auth != null && $code.matches(/^[A-HJ-NP-Z2-9]{8}$/) && root.child('rooms').child($code).child('state').child('ownerUid').val() == auth.uid",
-          ".validate": "newData.isString() && newData.val().matches(/^(illustrated|midnight|sunburst|mopar|dart1969|harrypotter|starwars|lordoftherings|cats|route66|dinosaurs|pokemon|halloween|christmas|friendsgiving|mcpherson)$/)"
+          ".validate": "newData.isString() && newData.val().matches(/^(illustrated|midnight|sunburst|mopar|dart1969|harrypotter|starwars|lordoftherings|cats|route66|dinosaurs|pokemon|halloween|christmas|friendsgiving|mcpherson|pawffice)$/)"
         },
         "boards": {
           ".read": "auth != null && root.child('rooms').child($code).child('state').exists()",

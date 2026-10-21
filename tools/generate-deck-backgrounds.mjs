@@ -3,6 +3,7 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { catBackgroundSvg } from "./cat-card-art.mjs";
 import { mcphersonBackgroundSvg } from "./mcpherson-card-art.mjs";
+import { pawfficeBackgroundSvg } from "./pawffice-card-art.mjs";
 import { adventureThemes, adventureBackgroundSvg } from "./adventure-card-art.mjs";
 import { seasonalThemes, seasonalBackgroundSvg } from "./seasonal-card-art.mjs";
 
@@ -101,6 +102,7 @@ for (const theme of ["mopar","dart1969"]) {
 }
 await writeFile(new URL("cats.svg",output),catBackgroundSvg());
 await writeFile(new URL("mcpherson.svg",output),mcphersonBackgroundSvg());
+await writeFile(new URL("pawffice.svg",output),pawfficeBackgroundSvg());
 for (const id of Object.keys(adventureThemes)) await writeFile(new URL(`${id}.svg`,output),adventureBackgroundSvg(id));
 for (const id of Object.keys(seasonalThemes)) await writeFile(new URL(`${id}.svg`,output),seasonalBackgroundSvg(id));
-console.log("Generated fifteen bundled deck backgrounds; Illustrated keeps its green table.");
+console.log("Generated sixteen bundled deck backgrounds; Illustrated keeps its green table.");
